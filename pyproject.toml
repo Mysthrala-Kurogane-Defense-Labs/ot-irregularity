@@ -15,4 +15,4 @@ ot-irregularity="ot_irregularity.cli:main"
 [tool.hatch.build.targets.wheel]
 packages=["src/ot_irregularity"]
 [tool.pytest.ini_options]
-pythonpath=["src"]
+pythonpath=["src", "."]

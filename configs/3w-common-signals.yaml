@@ -1,0 +1,15 @@
+source: Petrobras 3W versions 1.1.1 and 2.0.0
+schema_reference: https://github.com/petrobras/3W/blob/main/dataset/dataset.ini
+# Stable tag IDs present in both versions; source tag IDs remain in tag_id.
+signals:
+  P-PDG: {signal_class: downhole_pressure, unit: Pa}
+  P-TPT: {signal_class: subsea_tree_pressure, unit: Pa}
+  T-TPT: {signal_class: subsea_tree_temperature, unit: degC}
+  P-MON-CKP: {signal_class: production_choke_upstream_pressure, unit: Pa}
+  T-JUS-CKP: {signal_class: production_choke_downstream_temperature, unit: degC}
+  P-JUS-CKGL: {signal_class: gas_lift_choke_downstream_pressure, unit: Pa}
+  QGL: {signal_class: gas_lift_flow, unit: m3/s}
+# Exact repeated source sentinel observed for P-PDG in selected 3W 1.1.1 files.
+# Treat it as unavailable, not as a 1e42-Pa process observation.
+invalid_values:
+  P-PDG: [-1.180116e42]

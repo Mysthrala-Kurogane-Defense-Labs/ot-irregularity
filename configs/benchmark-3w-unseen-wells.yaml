@@ -1,0 +1,17 @@
+seed: 42
+split_group: asset_id
+window: {size: 15m, stride: 1m}
+features: {statistical: true, slopes: true, quality: false, sampling: true}
+scaler: {type: robust}
+normalization:
+  canonical_units:
+    downhole_pressure: Pa
+    subsea_tree_pressure: Pa
+    subsea_tree_temperature: degC
+    production_choke_upstream_pressure: Pa
+    production_choke_downstream_temperature: degC
+    gas_lift_choke_downstream_pressure: Pa
+    gas_lift_flow: m3/s
+autoencoder: {latent_dim: 16, epochs: 30, batch_size: 128, learning_rate: 0.001, patience: 8}
+isolation_forest: {n_estimators: 300, max_samples: auto, contamination: auto, max_features: 1.0, random_state: 42}
+ensemble: {autoencoder_weight: 0.5, isolation_weight: 0.5, decision_threshold: 0.95}

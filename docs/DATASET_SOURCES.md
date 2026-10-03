@@ -13,6 +13,13 @@ This project does not redistribute the source datasets. Downloaded research data
 
 The tested subset and measured results are recorded in [BENCHMARK_3W.md](BENCHMARK_3W.md). The normalizer pins the Figshare archive checksum and stores normalized files and artifacts outside Git.
 
+## Out-of-distribution follow-up: Petrobras 3W Dataset 2.0.0
+
+- Source: [Figshare version 2.0.0](https://doi.org/10.6084/m9.figshare.29205836.v1), published 2025-05-31, CC BY 4.0. Dataset 2.0.0 adds wells, signals and label 9; see the [official release notes](https://github.com/petrobras/3W/blob/main/dataset/README.md) and [dataset.ini](https://github.com/petrobras/3W/blob/main/dataset/dataset.ini).
+- For the reproducible shared-signal comparison, use seven tags present in both versions and exclude the twenty additional 2.0.0 signals from model features. Map source units to canonical SI units before RobustScaler.
+- The exact source checksums, label handling, selected instances, split and limitations are in [BENCHMARK_3W_OOD.md](BENCHMARK_3W_OOD.md). Raw and normalized datasets remain outside Git.
+- Citation: Vaz Vargas, R. E., de Melo Junior, A. J., de Campos Lima, C. B. et al. “3W Dataset 2.0.0: a realistic and public dataset with rare undesirable real events in oil wells.” *Scientific Data* (2026). https://doi.org/10.1038/s41597-026-07225-z.
+
 ## Candidate, limited fit: UCI AI4I 2020
 
 - Source and license: [UCI dataset 601](https://archive.ics.uci.edu/dataset/601/ai4i), DOI https://doi.org/10.24432/C5HS5C, CC BY 4.0. Cite as *AI4I 2020 Predictive Maintenance Dataset* (UCI Machine Learning Repository, 2020).

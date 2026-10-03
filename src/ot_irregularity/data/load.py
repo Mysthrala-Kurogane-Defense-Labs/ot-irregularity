@@ -1,6 +1,17 @@
 from pathlib import Path
 import polars as pl
 REQUIRED = {"run_id", "asset_id", "timestamp", "tag_id", "signal_class", "value"}
+
+def dataset_has_column(path, name):
+    """Check file headers only, avoiding a full dataset read for CLI routing."""
+    path=Path(path)
+    files=[path] if path.is_file() else sorted([*path.rglob("*.parquet"),*path.rglob("*.csv")])
+    for file in files:
+        if file.suffix==".parquet":
+            if name in pl.read_parquet_schema(file):return True
+        elif name in pl.scan_csv(file).collect_schema().names():return True
+    return False
+
 def load_dataset(path):
     path=Path(path)
     files=[path] if path.is_file() else sorted([*path.rglob("*.parquet"), *path.rglob("*.csv")])

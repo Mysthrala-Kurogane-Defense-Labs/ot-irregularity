@@ -19,8 +19,8 @@ def main():
  elif a.cmd=="inspect":
   d=Path(a.model);th=json.loads((d/"thresholds.json").read_text());th.pop("autoencoder_reference",None);th.pop("isolation_reference",None);print(json.dumps({"metadata":json.loads((d/"training_metadata.json").read_text()),"features":json.loads((d/"feature_schema.json").read_text()),"metrics":json.loads((d/"metrics.json").read_text()),"thresholds":th},indent=2))
  elif a.cmd=="evaluate":
-  path=Path(a.dataset)
-  if any(part.lower()=="challenge" for part in path.parts) and not a.challenge:raise SystemExit("Challenge evaluation requires --challenge")
+  path=Path(a.dataset).resolve()
+  if any(part.name.casefold()=="challenge" for part in (path,*path.parents)) and not a.challenge:raise SystemExit("Challenge evaluation requires --challenge")
   cfg=yaml.safe_load((Path(a.model)/"training_config.yaml").read_text());raw=load_dataset(path)
   if a.labels not in raw.columns:print(json.dumps({"windows":_windows(path,cfg).height,"metrics":None,"reason":f"No ground-truth column {a.labels!r}; metrics omitted."},indent=2));return
   schema=json.loads((Path(a.model)/"feature_schema.json").read_text());w=make_windows(raw,_duration_minutes(cfg["window"]["size"]),_duration_minutes(cfg["window"]["stride"]),schema.get("signal_classes"),schema.get("sampling_intervals_ms"));w,_=encode_context(w,schema.get("context_vocabulary",{}));cols,errors,sa,si,scores,threshold=_scores(a.model,w);labels=w[a.labels].cast(__import__('polars').Boolean).to_numpy().astype(int);assets=w["asset_id"].to_numpy();events=w["event_id"].to_numpy() if "event_id" in w.columns else None;secs=_duration_minutes(cfg["window"]["stride"])*60

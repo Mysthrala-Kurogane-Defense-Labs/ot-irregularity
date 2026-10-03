@@ -37,6 +37,10 @@ def test_end_to_end_and_reproducible_inference(tmp_path):
  try:
   with pytest.raises(SystemExit,match="requires --challenge"):cli_main()
  finally:sys.argv=old_argv
+ sys.argv=["ot-irregularity","evaluate","--model",str(out),"--dataset",str(challenge/"observations.csv")]
+ try:
+  with pytest.raises(SystemExit,match="requires --challenge"):cli_main()
+ finally:sys.argv=old_argv
  sys.argv=["ot-irregularity","evaluate","--model",str(out),"--dataset",str(challenge),"--challenge"]
  try:cli_main()
  finally:sys.argv=old_argv

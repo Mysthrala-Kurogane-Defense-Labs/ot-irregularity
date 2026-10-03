@@ -41,7 +41,7 @@ def make_windows(df,size_minutes=15,stride_minutes=1,signal_classes=None,samplin
                 sg=g.filter(pl.col("signal_class")==name);feats.update(_signal_features(name,sg,width,intervals.get(name),options))
             out.append(feats)
     if not out:raise ValueError("No windows generated")
-    return pl.DataFrame(out).sort(["run_id","asset_id","window_start"])
+    return pl.DataFrame(out,infer_schema_length=None).sort(["run_id","asset_id","window_start"])
 
 def encode_context(frame, vocabulary=None):
     vocab=vocabulary or {key:sorted(str(x) for x in frame[key].drop_nulls().unique().to_list()) if key in frame.columns else [] for key in ("asset_class","operating_regime")}

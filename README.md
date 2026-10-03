@@ -18,4 +18,4 @@ uv run pytest
 
 El formato de entrada es long-format CSV o Parquet, descrito en [DATA_SCHEMA.md](DATA_SCHEMA.md). La salida de inferencia es JSONL o Parquet; guarda ambos scores de detector, ensamble, contribuciones de reconstrucción y observaciones de señal/regímenes.
 
-Lee [ARCHITECTURE.md](ARCHITECTURE.md), [FEATURES.md](FEATURES.md), [TRAINING.md](TRAINING.md), [EVALUATION.md](EVALUATION.md) y [MODEL_CARD_TEMPLATE.md](MODEL_CARD_TEMPLATE.md) para revisar supuestos y límites. El dataset de ejemplo es sintético y solo prueba el flujo técnico.
+Las fuentes de datasets consideradas y sus licencias están en [DATASET_SOURCES.md](docs/DATASET_SOURCES.md). El procedimiento y resultados exploratorios con Petrobras 3W están en [BENCHMARK_3W.md](docs/BENCHMARK_3W.md); los datos originales no se incluyen. Lee [ARCHITECTURE.md](ARCHITECTURE.md), [FEATURES.md](FEATURES.md), [TRAINING.md](TRAINING.md), [EVALUATION.md](EVALUATION.md) y [MODEL_CARD_TEMPLATE.md](MODEL_CARD_TEMPLATE.md) para revisar supuestos y límites. El dataset de ejemplo es sintético y solo prueba el flujo técnico.

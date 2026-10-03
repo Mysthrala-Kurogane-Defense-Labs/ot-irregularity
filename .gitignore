@@ -5,3 +5,4 @@ artifacts/model-*/
 artifacts/predictions.*
 predictions.jsonl
 *.py[cod]
+dist/

@@ -13,6 +13,12 @@ def test_cdf_calibration_order_and_bounds():
  scores=cdf_calibrate([1,2,3],[0,2,4]);assert np.allclose(scores,[0,2/3,1]);assert np.all(np.diff(scores)>=0)
 def test_window_statistics_and_labels():
  d=pl.DataFrame({"run_id":["a"]*4,"asset_id":["p"]*4,"timestamp":pl.datetime_range(datetime.datetime(2026,1,1),datetime.datetime(2026,1,1,0,3),interval="1m",eager=True),"tag_id":["x"]*4,"signal_class":["temp"]*4,"value":[1.,2.,9.,10.],"is_anomaly":[False,False,True,True],"event_id":[None,None,"e1","e1"]});w=make_windows(d,2,1);assert w.height>=3 and "temp_mean" in w.columns;assert w["is_anomaly"].any();assert "event_start_us" in w.columns
+def test_late_event_ids_do_not_break_window_schema_inference():
+ timestamps=pl.datetime_range(datetime.datetime(2026,1,1),datetime.datetime(2026,1,1,1,45),interval="1m",eager=True)
+ n=len(timestamps)
+ d=pl.DataFrame({"run_id":["a"]*n,"asset_id":["p"]*n,"timestamp":timestamps,"tag_id":["x"]*n,"signal_class":["temp"]*n,"value":np.arange(n,dtype=float),"is_anomaly":[False]*(n-6)+[True]*6,"event_id":[None]*(n-6)+["event-1"]*6})
+ windows=make_windows(d,1,1)
+ assert windows["event_id"].drop_nulls().to_list()==["event-1"]*6
 def test_missing_signal_and_unseen_regime_are_explicit():
  ts=pl.datetime_range(datetime.datetime(2026,1,1),datetime.datetime(2026,1,1,0,3),interval="1m",eager=True)
  d=pl.DataFrame({"run_id":["a"]*6,"asset_id":["p"]*6,"timestamp":[ts[0],ts[0],ts[1],ts[1],ts[2],ts[3]],"tag_id":["t","v","t","v","t","t"],"signal_class":["temp","vibration","temp","vibration","temp","temp"],"value":[1.,2.,2.,2.,3.,4.],"asset_class":["pump"]*6,"operating_regime":["steady"]*6})

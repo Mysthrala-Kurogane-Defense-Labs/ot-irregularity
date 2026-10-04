@@ -13,6 +13,14 @@ This project does not redistribute the source datasets. Downloaded research data
 
 The tested subset and measured results are recorded in [BENCHMARK_3W.md](BENCHMARK_3W.md). The normalizer pins the Figshare archive checksum and stores normalized files and artifacts outside Git.
 
+## Generated pseudo-synthetic source: OT Irregularity Lab
+
+- Source release: [OT Irregularity Training Dataset v0.3.0](https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab/releases/tag/dataset-v0.3.0), generated telemetry release, CC BY 4.0. Its release includes a dataset-specific license and attribution; do not infer data terms from the Lab software license.
+- The source release contains 1,000 generated runs and 8,477,689 long-format observations. Its simulator has simplified, uncalibrated process models; it is appropriate for software and controlled detector evaluation, not for claims about field performance or real failure prevalence.
+- `scripts/prepare_otlab.py` verifies the source manifest and per-run telemetry SHA-256 values, selects event-free train and validation runs, preserves the disjoint source test partition, and derives evaluation labels from separate ground truth. It also adapts separately generated Lab datasets when their manifest explicitly declares CC BY 4.0. Adapted data records its precise source, changes and attribution in `DATASET_LICENSE.txt`.
+- Retain the release attribution and license when redistributing derived data; model weights and derivative distribution should keep the source license context visible. Original and adapted Parquet, model artifacts, and predictions remain outside Git.
+- Preparation, evaluation metrics, reproducibility evidence and limits are documented in [BENCHMARK_OT_IRREGULARITY_LAB.md](BENCHMARK_OT_IRREGULARITY_LAB.md).
+
 ## Out-of-distribution follow-up: Petrobras 3W Dataset 2.0.0
 
 - Source: [Figshare version 2.0.0](https://doi.org/10.6084/m9.figshare.29205836.v1), published 2025-05-31, CC BY 4.0. Dataset 2.0.0 adds wells, signals and label 9; see the [official release notes](https://github.com/petrobras/3W/blob/main/dataset/README.md) and [dataset.ini](https://github.com/petrobras/3W/blob/main/dataset/dataset.ini).

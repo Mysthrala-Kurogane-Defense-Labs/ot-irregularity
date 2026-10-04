@@ -6,7 +6,13 @@ def evaluate_scores(y_true,scores,threshold=.95,asset_ids=None,event_ids=None,ev
     if asset_ids is not None and len(y):
         duration_hours=len(y)*window_seconds/3600;result["false_positives_per_asset_hour"]=float(result["false_positive_windows"]/max(duration_hours,1e-12));result["false_positives_per_asset_day"]=float(result["false_positive_windows"]/max(duration_hours/24,1e-12))
     if event_ids is not None:
-        events=np.asarray(event_ids,dtype=object);starts=np.asarray(event_start_us,dtype=object) if event_start_us is not None else None;ends=np.asarray(window_end_us,dtype=float) if window_end_us is not None else None;known=[e for e in set(events) if e not in (None,"")];detected=0;latencies=[]
+        events=np.asarray(event_ids,dtype=object);starts=np.asarray(event_start_us,dtype=object) if event_start_us is not None else None;ends=np.asarray(window_end_us,dtype=float) if window_end_us is not None else None
+        known=[]
+        for event in set(events):
+            if event is None or event=="":continue
+            if isinstance(event,(float,np.floating)) and np.isnan(event):continue
+            known.append(event)
+        detected=0;latencies=[]
         for event in known:
             ids=np.where(events==event)[0];hit=ids[pred[ids]]
             if len(hit):

@@ -1,4 +1,4 @@
-\.venv/
+.venv/
 __pycache__/
 .pytest_cache/
 artifacts/model-*/
@@ -6,3 +6,14 @@ artifacts/predictions.*
 predictions.jsonl
 *.py[cod]
 dist/
+# Local datasets and trained artifacts (keep generated industrial data out of Git).
+datasets/
+artifacts/
+*.pt
+*.joblib
+*.onnx
+*.parquet
+*.jsonl
+.env
+.env.*
+!.env.example

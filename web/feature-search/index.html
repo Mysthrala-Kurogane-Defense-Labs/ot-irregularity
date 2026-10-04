@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Feature Search · OT Irregularity</title>
+  <link rel="stylesheet" href="/app.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="OT Irregularity Feature Search">
+      <span class="brand-mark">OI</span>
+      <span><strong>OT IRREGULARITY</strong><small>FEATURE SEARCH / LAB</small></span>
+    </a>
+    <div class="connection"><span class="pulse" id="connection-dot"></span><span id="connection-label">Conectando</span><span class="divider"></span><span id="updated-label">—</span></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">EXPERIMENT CONTROL ROOM <span id="run-id">SIN EJECUCIÓN</span></p>
+        <h1>Qué señales sostienen<br><em>la detección?</em></h1>
+        <p class="lede">Comparación reproducible de grupos de features en lotes sintéticos independientes. El test reservado no participa en el ranking.</p>
+      </div>
+      <div class="hero-state">
+        <span class="state-label">FASE ACTUAL</span>
+        <strong id="phase-label">Esperando runner</strong>
+        <div class="phase-track"><i id="progress-fill"></i></div>
+        <div class="progress-caption"><span id="progress-label">0%</span><span id="status-label">Sin iniciar</span></div>
+      </div>
+    </section>
+    <section class="metrics-strip" aria-label="Resumen del experimento">
+      <div><span>AVANCE GLOBAL</span><strong id="progress-value">0%</strong></div>
+      <div><span>ENTRENAMIENTOS</span><strong id="runs-value">0 / 0</strong></div>
+      <div><span>SEMILLAS</span><strong id="datasets-value">0 / 0</strong></div>
+      <div><span>CUDA</span><strong id="device-value">—</strong></div>
+      <div><span>ACTIVOS</span><strong id="workers-value">0</strong></div>
+    </section>
+    <section class="panel ranking-panel">
+      <div class="panel-head">
+        <div><p class="eyebrow">SELECCIÓN · VALIDATION</p><h2>Ranking de configuraciones</h2></div>
+        <div class="rank-key"><span><i class="teal-dot"></i> Finalista</span><span>Orden: media de rangos en PR-AUC, detección de eventos y FP/asset-día</span></div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>#</th><th>Configuración</th><th>Rep.</th><th>PR-AUC</th><th>Precisión</th><th>Recall</th><th>Eventos</th><th>FP / asset-día</th><th>Latencia</th><th>Estado</th></tr></thead>
+          <tbody id="ranking-body"><tr><td colspan="10" class="empty">El ranking aparecerá cuando termine el primer entrenamiento.</td></tr></tbody>
+        </table>
+      </div>
+      <p class="table-foot">Los finalistas y el baseline se comparan en 12 semillas pareadas. Cada celda muestra media ± desviación estándar tras el análisis final.</p>
+    </section>
+    <section class="lower-grid">
+      <article class="panel workers-panel">
+        <div class="panel-head"><div><p class="eyebrow">EJECUCIÓN CUDA</p><h2>Trabajos activos</h2></div><span class="live-tag"><i></i> EN VIVO</span></div>
+        <div id="workers-list" class="workers-list"><div class="empty">Los procesos aparecerán aquí al iniciar el runner.</div></div>
+      </article>
+      <article class="panel phases-panel">
+        <div class="panel-head"><div><p class="eyebrow">PIPELINE</p><h2>Fases del estudio</h2></div></div>
+        <ol class="phase-list" id="phase-list">
+          <li data-phase="generating"><b>01</b><span>Generar 15 lotes</span><i></i></li>
+          <li data-phase="screening"><b>02</b><span>Cribar configuraciones</span><i></i></li>
+          <li data-phase="finalists"><b>03</b><span>Repetir finalistas</span><i></i></li>
+          <li data-phase="control"><b>04</b><span>Baseline pareado</span><i></i></li>
+          <li data-phase="completed"><b>05</b><span>Informe final</span><i></i></li>
+        </ol>
+        <p class="note">Semillas y particiones independientes. `test` permanece reservado; solo `validation` ordena candidatos.</p>
+      </article>
+    </section>
+    <footer><span>OT IRREGULARITY / EXPERIMENT TRACKER</span><span>LOCAL · SOLO LECTURA · JSON STATE</span></footer>
+  </main>
+</body>
+</html>

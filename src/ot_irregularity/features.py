@@ -2,31 +2,47 @@ import hashlib
 import numpy as np
 import polars as pl
 
+def _filter_feature_options(features, options):
+    statistical={"mean","median","min","max","range","std","mad","last","delta"}
+    quality={"good_ratio","uncertain_ratio","bad_ratio"}
+    sampling={"sample_count","expected_sample_count","coverage_ratio","missing"}
+    def has_suffix(key, suffixes):
+        return any(key.endswith("_" + suffix) for suffix in suffixes)
+    return {key:value for key,value in features.items()
+            if (options.get("statistical",True) or not has_suffix(key,statistical))
+            and (options.get("slopes",True) or not key.endswith("_slope"))
+            and (options.get("quality",True) or not has_suffix(key,quality))
+            and (options.get("sampling",True) or not has_suffix(key,sampling))}
+
 def _signal_features(name, sg, width, default_interval, options):
     if sg.is_empty():
         expected=width/(default_interval*1000) if default_interval and default_interval>0 else 0.
-        return {f"{name}_mean":0.,f"{name}_median":0.,f"{name}_min":0.,f"{name}_max":0.,f"{name}_range":0.,f"{name}_std":0.,f"{name}_mad":0.,f"{name}_last":0.,f"{name}_delta":0.,f"{name}_slope":0.,f"{name}_sample_count":0.,f"{name}_expected_sample_count":expected,f"{name}_coverage_ratio":0.,f"{name}_good_ratio":0.,f"{name}_uncertain_ratio":0.,f"{name}_bad_ratio":1.,f"{name}_missing":1.}
-    usable=sg.filter(pl.col("quality").is_null()|(pl.col("quality")!="bad")) if "quality" in sg.columns else sg
+        feats={f"{name}_mean":0.,f"{name}_median":0.,f"{name}_min":0.,f"{name}_max":0.,f"{name}_range":0.,f"{name}_std":0.,f"{name}_mad":0.,f"{name}_last":0.,f"{name}_delta":0.,f"{name}_slope":0.,f"{name}_sample_count":0.,f"{name}_expected_sample_count":expected,f"{name}_coverage_ratio":0.,f"{name}_good_ratio":0.,f"{name}_uncertain_ratio":0.,f"{name}_bad_ratio":1.,f"{name}_missing":1.}
+        return _filter_feature_options(feats,options)
+    usable=sg.filter(pl.col("value").is_not_null()&pl.col("value").cast(pl.Float64).is_finite())
+    if "quality" in sg.columns:usable=usable.filter(pl.col("quality").is_null()|(pl.col("quality")!="bad"))
     vals=usable["value"].to_numpy();allv=sg["value"].to_numpy();vals=vals if len(vals) else np.array([0.]);t=usable["_us"].to_numpy().astype(float);v=vals.astype(float);relative_seconds=(t-t[0])/1_000_000 if len(t) else t
     feats={f"{name}_mean":float(np.mean(vals)),f"{name}_median":float(np.median(vals)),f"{name}_min":float(np.min(vals)),f"{name}_max":float(np.max(vals)),f"{name}_range":float(np.ptp(vals)),f"{name}_std":float(np.std(vals)),f"{name}_mad":float(np.median(np.abs(vals-np.median(vals)))),f"{name}_last":float(vals[-1]),f"{name}_delta":float(vals[-1]-vals[0]),f"{name}_slope":float(np.polyfit(relative_seconds,v,1)[0]) if len(v)>1 and np.ptp(relative_seconds)>0 else 0.,f"{name}_sample_count":float(len(allv))}
     interval=sg["sampling_interval_ms"][0] if "sampling_interval_ms" in sg.columns else default_interval;expected=width/(float(interval)*1000) if interval and interval>0 else float(len(allv));feats[f"{name}_expected_sample_count"]=expected;feats[f"{name}_coverage_ratio"]=min(len(allv)/expected,1.) if expected else 0.
     q=[v if v is not None else "uncertain" for v in sg["quality"].to_list()] if "quality" in sg.columns else ["good"]*len(allv)
     for label in ("good","uncertain","bad"):feats[f"{name}_{label}_ratio"]=q.count(label)/len(q) if q else 0.
     feats[f"{name}_missing"]=0.
-    statistical={"mean","median","min","max","range","std","mad","last","delta"}
-    quality={"good_ratio","uncertain_ratio","bad_ratio"}
-    sampling={"sample_count","expected_sample_count","coverage_ratio","missing"}
-    return {key:value for key,value in feats.items() if (options.get("statistical",True) or key.rsplit("_",1)[-1] not in statistical) and (options.get("slopes",True) or not key.endswith("_slope")) and (options.get("quality",True) or key.rsplit("_",1)[-1] not in quality) and (options.get("sampling",True) or key.rsplit("_",1)[-1] not in sampling)}
+    return _filter_feature_options(feats,options)
 
 def make_windows(df,size_minutes=15,stride_minutes=1,signal_classes=None,sampling_intervals=None,options=None):
     width=size_minutes*60*1_000_000;step=stride_minutes*60*1_000_000;options=options or {}
+    channel_column="measurement_role" if "measurement_role" in df.columns else "signal_class"
+    if "value_kind" in df.columns:
+        # Categorical encodings need a dedicated vocabulary and transition features.
+        df=df.filter(pl.col("value_kind").is_null() | (pl.col("value_kind")=="continuous"))
+    if df.is_empty():raise ValueError("No continuous measurement channels available for window generation")
     df=df.sort(["run_id","asset_id","timestamp","signal_class"]).with_columns(pl.col("timestamp").dt.timestamp("us").alias("_us"));out=[]
-    classes=list(signal_classes or sorted(str(x) for x in df["signal_class"].unique().to_list()));intervals=sampling_intervals or {}
-    unexpected=set(str(x) for x in df["signal_class"].unique().to_list())-set(classes)
-    if signal_classes is not None and unexpected:raise ValueError(f"Untrained signal classes: {sorted(unexpected)}")
+    classes=list(signal_classes or sorted(str(x) for x in df[channel_column].unique().to_list()));intervals=sampling_intervals or {}
+    unexpected=set(str(x) for x in df[channel_column].unique().to_list())-set(classes)
+    if signal_classes is not None and unexpected:raise ValueError(f"Untrained measurement channels: {sorted(unexpected)}")
     for (run,asset),assetdf in df.group_by(["run_id","asset_id"],maintain_order=True):
         time_us=assetdf["_us"].to_numpy().astype(np.int64,copy=False)
-        signal_frames={name:assetdf.filter(pl.col("signal_class")==name) for name in classes}
+        signal_frames={name:assetdf.filter(pl.col(channel_column)==name) for name in classes}
         signal_times={name:signal_frames[name]["_us"].to_numpy().astype(np.int64,copy=False) for name in classes}
         constant_context={}
         for context in ("asset_class","operating_regime"):
@@ -40,7 +56,9 @@ def make_windows(df,size_minutes=15,stride_minutes=1,signal_classes=None,samplin
         constant_event= str(event_ids[0]) if len(event_ids)==1 and not event_has_null else (False if event_ids else None)
         constant_event_start=None
         if isinstance(constant_event,str):
-            constant_event_start=int(assetdf.filter(pl.col("event_id")==constant_event)["_us"].min())
+            event_rows=assetdf.filter(pl.col("event_id")==constant_event)
+            starts=event_rows["event_start_us"].drop_nulls() if "event_start_us" in event_rows.columns else []
+            constant_event_start=int(starts.min()) if len(starts) else int(event_rows["_us"].min())
         low=int(time_us[0]);high=int(time_us[-1])
         last_start=high-width+step
         for start in range((low//step)*step,last_start+1,step):
@@ -60,7 +78,9 @@ def make_windows(df,size_minutes=15,stride_minutes=1,signal_classes=None,samplin
             if "event_id" in g.columns:
                 if constant_event is False:
                     ids=[x for x in g["event_id"].drop_nulls().unique().to_list() if x];event_id=str(ids[0]) if ids else None
-                    event_rows=g.filter(pl.col("event_id").is_not_null());event_start=int(event_rows["_us"].min()) if not event_rows.is_empty() else None
+                    event_rows=g.filter(pl.col("event_id")==event_id) if event_id else g.head(0)
+                    starts=event_rows["event_start_us"].drop_nulls() if "event_start_us" in event_rows.columns else []
+                    event_start=int(starts.min()) if len(starts) else (int(event_rows["_us"].min()) if not event_rows.is_empty() else None)
                 else:event_id=constant_event;event_start=constant_event_start
                 feats["event_id"]=event_id;feats["event_start_us"]=event_start
             for name in classes:

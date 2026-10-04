@@ -1,0 +1,9 @@
+seed: 42
+device: cuda:0
+split_group: run_id
+window: {size: 1m, stride: 1m}
+features: {statistical: true, slopes: true, quality: true, sampling: true}
+scaler: {type: robust}
+autoencoder: {latent_dim: 16, epochs: 100000, steps: 100000, batch_size: 128, learning_rate: 0.001, patience: 100000, log_interval: 10000}
+isolation_forest: {n_estimators: 300, max_samples: auto, contamination: auto, max_features: 1.0, random_state: 42}
+ensemble: {autoencoder_weight: 0.5, isolation_weight: 0.5, decision_threshold: 0.95}

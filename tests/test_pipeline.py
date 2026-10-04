@@ -9,9 +9,18 @@ from ot_irregularity.metrics import evaluate_scores
 from ot_irregularity.pipeline import _hash_paths,cdf_calibrate,train,infer
 from ot_irregularity.normalization import normalize_units
 from ot_irregularity.cli import main as cli_main
+from ot_irregularity.models import resolve_device,train_ae
 
 def test_cdf_calibration_order_and_bounds():
  scores=cdf_calibrate([1,2,3],[0,2,4]);assert np.allclose(scores,[0,2/3,1]);assert np.all(np.diff(scores)>=0)
+def test_autoencoder_records_training_device_and_best_checkpoint(tmp_path):
+ x=np.array([[0.,0.],[1.,1.],[2.,2.]],dtype=np.float32)
+ model=train_ae(x,x,{"device":"auto","epochs":3,"patience":3,"batch_size":2},42,tmp_path/"ae.pt")
+ checkpoint=__import__("torch").load(tmp_path/"ae.pt",map_location="cpu",weights_only=True)
+ assert model.training_metadata["device"]==str(resolve_device("auto"))
+ assert 1<=model.training_metadata["epochs_completed"]<=3
+ assert 1<=model.training_metadata["best_epoch"]<=model.training_metadata["epochs_completed"]
+ assert checkpoint["best_epoch"]==model.training_metadata["best_epoch"]
 def test_engineering_units_are_normalized_before_feature_scaling():
  d=pl.DataFrame({"signal_class":["pressure","pressure","temperature","flow","valve"],"value":[1.,100.,32.,60.,50.],"unit":["bar","kPa","degF","L/min","%"]})
  out=normalize_units(d,{"pressure":"Pa","temperature":"degC","flow":"m3/s","valve":"ratio"})
@@ -23,7 +32,7 @@ def test_unit_normalization_rejects_unknown_or_missing_units():
  d=d.with_columns(pl.lit(None,dtype=pl.String).alias("unit"))
  with pytest.raises(ValueError,match="without units"):normalize_units(d,{"pressure":"Pa"})
 def test_window_statistics_and_labels():
- d=pl.DataFrame({"run_id":["a"]*4,"asset_id":["p"]*4,"timestamp":pl.datetime_range(datetime.datetime(2026,1,1),datetime.datetime(2026,1,1,0,3),interval="1m",eager=True),"tag_id":["x"]*4,"signal_class":["temp"]*4,"value":[1.,2.,9.,10.],"is_anomaly":[False,False,True,True],"event_id":[None,None,"e1","e1"]});w=make_windows(d,2,1);assert w.height>=3 and "temp_mean" in w.columns;assert w["is_anomaly"].any();assert "event_start_us" in w.columns
+	d=pl.DataFrame({"run_id":["a"]*4,"asset_id":["p"]*4,"timestamp":pl.datetime_range(datetime.datetime(2026,1,1),datetime.datetime(2026,1,1,0,3),interval="1m",eager=True),"tag_id":["x"]*4,"signal_class":["temp"]*4,"value":[1.,2.,9.,10.],"is_anomaly":[False,False,True,True],"event_id":[None,None,"e1","e1"],"event_start_us":[None,None,1_767_225_600_000_000,1_767_225_600_000_000]});w=make_windows(d,2,1);assert w.height>=3 and "temp_mean" in w.columns;assert w["is_anomaly"].any();assert "event_start_us" in w.columns;assert w.filter(pl.col("event_id").is_not_null())["event_start_us"].unique().to_list()==[1_767_225_600_000_000]
 def test_uncertain_quality_values_still_contribute_to_signal_statistics():
  timestamps=[datetime.datetime(2020,1,1),datetime.datetime(2020,1,1,0,0,30)]
  d=pl.DataFrame({"run_id":["r","r"],"asset_id":["a","a"],"asset_class":["pump","pump"],"operating_regime":["steady","steady"],"timestamp":timestamps,"signal_class":["temperature"]*2,"tag_id":["T1"]*2,"value":[10.,30.],"quality":["uncertain"]*2,"sampling_interval_ms":[30000.,30000.]})
@@ -31,12 +40,32 @@ def test_uncertain_quality_values_still_contribute_to_signal_statistics():
  assert w["temperature_mean"].to_list()==[20.]
  assert w["temperature_last"].to_list()==[30.]
  assert w["temperature_slope"].to_list()==pytest.approx([2/3])
+def test_measurement_roles_separate_points_and_drop_categorical_codes():
+ timestamps=[datetime.datetime(2020,1,1),datetime.datetime(2020,1,1,0,0,30)]
+ d=pl.DataFrame({"run_id":["r"]*6,"asset_id":["a"]*6,"timestamp":timestamps*3,"signal_class":["temperature"]*4+["state"]*2,"measurement_role":["oil_temp"]*2+["discharge_temp"]*2+["cycle_state"]*2,"value_kind":["continuous"]*4+["categorical"]*2,"value":[10.,12.,40.,42.,0.,1.],"quality":["good"]*6,"sampling_interval_ms":[30000.]*6})
+ w=make_windows(d,1,1)
+ assert "oil_temp_mean" in w.columns and "discharge_temp_mean" in w.columns
+ assert w["oil_temp_mean"].to_list()==[11.]
+ assert w["discharge_temp_mean"].to_list()==[41.]
+ assert not any(column.startswith("cycle_state_") for column in w.columns)
+def test_feature_family_switches_also_apply_to_empty_channels():
+ timestamps=pl.datetime_range(datetime.datetime(2020,1,1),datetime.datetime(2020,1,1,0,2),interval="1m",eager=True)
+ d=pl.DataFrame({"run_id":["r"]*3,"asset_id":["a"]*3,"timestamp":timestamps,"signal_class":["temperature"]*3,"measurement_role":["motor_temp"]*3,"value":[20.,21.,22.],"quality":["good"]*3,"sampling_interval_ms":[60000.]*3})
+ w=make_windows(d,1,1,["motor_temp","oil_temp"],options={"statistical":False,"slopes":False,"quality":False,"sampling":False})
+ assert not any(column.endswith(("_mean","_slope","_good_ratio","_sample_count","_missing")) for column in w.columns)
 def test_late_event_ids_do_not_break_window_schema_inference():
  timestamps=pl.datetime_range(datetime.datetime(2026,1,1),datetime.datetime(2026,1,1,1,45),interval="1m",eager=True)
  n=len(timestamps)
  d=pl.DataFrame({"run_id":["a"]*n,"asset_id":["p"]*n,"timestamp":timestamps,"tag_id":["x"]*n,"signal_class":["temp"]*n,"value":np.arange(n,dtype=float),"is_anomaly":[False]*(n-6)+[True]*6,"event_id":[None]*(n-6)+["event-1"]*6})
  windows=make_windows(d,1,1)
  assert windows["event_id"].drop_nulls().to_list()==["event-1"]*6
+def test_missing_regime_is_not_reported_as_regime_mismatch():
+	from ot_irregularity.pipeline import _prediction_records
+	w=pl.DataFrame({"run_id":["missing","unknown"],"asset_id":["a","a"],"window_start":[0,0],"window_end":[60_000_000,60_000_000],"operating_regime":[None,"UNSEEN"],"context_regime_unknown":[True,True]})
+	rows=_prediction_records(w,["temperature_mean"],np.array([[0.5],[0.5]]),np.array([0.5,0.5]),np.array([0.5,0.5]),np.array([0.5,0.5]),.95,model_version="0.3.0")
+	assert "regime_mismatch" not in rows[0]["observations"]
+	assert "regime_mismatch" in rows[1]["observations"]
+	assert rows[0]["model_version"]=="0.3.0"
 def test_missing_signal_and_unseen_regime_are_explicit():
  ts=pl.datetime_range(datetime.datetime(2026,1,1),datetime.datetime(2026,1,1,0,3),interval="1m",eager=True)
  d=pl.DataFrame({"run_id":["a"]*6,"asset_id":["p"]*6,"timestamp":[ts[0],ts[0],ts[1],ts[1],ts[2],ts[3]],"tag_id":["t","v","t","v","t","t"],"signal_class":["temp","vibration","temp","vibration","temp","temp"],"value":[1.,2.,2.,2.,3.,4.],"asset_class":["pump"]*6,"operating_regime":["steady"]*6})
@@ -49,14 +78,14 @@ def test_schema_rejects_missing_fields(tmp_path):
 def test_metrics_and_event_latency():
  result=evaluate_scores([0,1,1],[.1,.99,.98],.95,["p"]*3,[None,"e","e"],[None,1_000_000,1_000_000],[1_000_000,3_000_000,4_000_000],60);assert result["precision"]==1 and result["recall"]==1 and result["event_detection_rate"]==1 and result["mean_detection_latency_seconds"]==2
 def _fast_config(root,tmp_path):
- cfg=yaml.safe_load((root/"configs/baseline.yaml").read_text());cfg["autoencoder"].update(epochs=3,patience=2);cfg["isolation_forest"]["n_estimators"]=40;f=tmp_path/"config.yaml";f.write_text(yaml.safe_dump(cfg));return f
+ cfg=yaml.safe_load((root/"configs/baseline.yaml").read_text());cfg["model_version"]="0.3.0-test";cfg["autoencoder"].update(epochs=3,patience=2);cfg["isolation_forest"]["n_estimators"]=40;f=tmp_path/"config.yaml";f.write_text(yaml.safe_dump(cfg));return f
 def test_training_rejects_group_leakage(tmp_path):
  root=Path(__file__).parents[1];data=tmp_path/"data";shutil.copytree(root/"examples/synthetic/train",data/"train");shutil.copytree(root/"examples/synthetic/validation",data/"validation");tr=pl.read_csv(data/"train/observations.csv").with_columns(pl.when(pl.col("run_id")=="r0").then(pl.lit("r100")).otherwise(pl.col("run_id")).alias("run_id"));tr.write_csv(data/"train/observations.csv");
  with pytest.raises(ValueError,match="Data leakage"):train(data,_fast_config(root,tmp_path),tmp_path/"out")
 def test_end_to_end_and_reproducible_inference(tmp_path,capsys):
  root=Path(__file__).parents[1];out=tmp_path/"model";metrics=train(root/"examples/synthetic",_fast_config(root,tmp_path),out);assert metrics["validation_windows"]>0 and metrics["calibration_normal_windows"]<metrics["validation_windows"];assert json.loads((out/"training_metadata.json").read_text())["dataset_hash"]==_hash_paths([root/"examples/synthetic/train",root/"examples/synthetic/validation"]);assert metrics["supervised_validation"]["irregularity"]["pr_auc"] is not None and metrics["supervised_validation"]["autoencoder"]["pr_auc"] is not None
- expected={"autoencoder.pt","isolation_forest.joblib","scaler.joblib","feature_schema.json","training_config.yaml","training_metadata.json","thresholds.json","metrics.json","model_card.md"};assert expected <= {p.name for p in out.iterdir()}
- a=infer(out,root/"examples/synthetic/test",tmp_path/"a.jsonl");b=infer(out,root/"examples/synthetic/test",tmp_path/"b.jsonl");assert a==b and (tmp_path/"a.jsonl").read_bytes()==(tmp_path/"b.jsonl").read_bytes();assert a and isinstance(a[0]["window_start"],str) and a[0]["scores"]
+ expected={"autoencoder.pt","isolation_forest.joblib","scaler.joblib","feature_schema.json","training_config.yaml","training_metadata.json","thresholds.json","metrics.json","model_card.md"};assert expected <= {p.name for p in out.iterdir()};metadata=json.loads((out/"training_metadata.json").read_text());assert metadata["model_version"]=="0.3.0-test" and "Version: 0.3.0-test" in (out/"model_card.md").read_text();assert metadata["git_commit"] and isinstance(metadata["git_working_tree_dirty"],bool);progress=[json.loads(line) for line in (out/"training_progress.jsonl").read_text().splitlines()];assert progress[0]["phase"]=="loading_data" and progress[-1]["phase"]=="completed" and progress[-1]["model_version"]=="0.3.0-test";assert any("steps_completed" in event for event in progress)
+ a=infer(out,root/"examples/synthetic/test",tmp_path/"a.jsonl");b=infer(out,root/"examples/synthetic/test",tmp_path/"b.jsonl");assert a==b and (tmp_path/"a.jsonl").read_bytes()==(tmp_path/"b.jsonl").read_bytes();assert a and a[0]["model_version"]=="0.3.0-test" and isinstance(a[0]["window_start"],str) and a[0]["scores"]
  challenge=root/"examples/synthetic/challenge";challenge_predictions=infer(out,challenge,tmp_path/"challenge.jsonl");assert any("regime_mismatch" in r["observations"] for r in challenge_predictions)
  old_argv=sys.argv;sys.argv=["ot-irregularity","evaluate","--model",str(out),"--dataset",str(challenge)]
  try:

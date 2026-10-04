@@ -1,0 +1,16 @@
+# Reproducible development search defaults; runtime paths are supplied by CLI.
+seed: 20261004
+runs_per_dataset: 120
+dataset_repeats: 15
+screening_repeats: 3
+finalist_repeats: 12
+max_finalists: 5
+workers: 4
+steps: 30000
+device: cuda:0
+window: {size: 1m, stride: 1m}
+features: {statistical: true, slopes: true, quality: true, sampling: true}
+scaler: {type: robust}
+autoencoder: {latent_dim: 16, epochs: 10000, steps: 30000, batch_size: 128, learning_rate: 0.001, patience: 10000, log_interval: 1000}
+isolation_forest: {n_estimators: 300, max_samples: auto, contamination: auto, max_features: 1.0}
+ensemble: {autoencoder_weight: 0.5, isolation_weight: 0.5, decision_threshold: 0.95}

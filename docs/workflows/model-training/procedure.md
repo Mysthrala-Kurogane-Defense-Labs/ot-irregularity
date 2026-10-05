@@ -15,3 +15,5 @@
 ## Cautions
 
 Report PR-AUC, precision, recall, event detection, false alarms per asset-day and latency together. Do not present accuracy as primary or infer faults/cause from scores. A synthetic test only characterizes that simulator suite.
+
+For contextual models, preserve whole-run fit/early-stop/calibration/development separation and freeze candidates before generating test conclusions. Check cache provenance and hashes before reuse. Compare event counts to original ground-truth intervals with `evaluate --events` or the holdout audit; a single event identifier per window loses overlaps. Preserve the old metric when reconciling definitions. Report the failed acceptance target explicitly even when the candidate improves its baseline.

@@ -2,6 +2,17 @@ import hashlib
 import numpy as np
 import polars as pl
 
+FEATURE_SUFFIXES = ('expected_sample_count','uncertain_ratio','coverage_ratio','sample_count',
+                    'good_ratio','bad_ratio','missing','median','slope','range','delta',
+                    'mean','min','max','std','mad','last')
+
+def feature_signal(name):
+    """Exact role identity: underscores inside a role or feature suffix are significant."""
+    for suffix in FEATURE_SUFFIXES:
+        if name.endswith('_'+suffix):
+            return name[:-len(suffix)-1]
+    return None
+
 def _filter_feature_options(features, options):
     statistical={"mean","median","min","max","range","std","mad","last","delta"}
     quality={"good_ratio","uncertain_ratio","bad_ratio"}
@@ -29,8 +40,13 @@ def _signal_features(name, sg, width, default_interval, options):
     feats[f"{name}_missing"]=0.
     return _filter_feature_options(feats,options)
 
-def make_windows(df,size_minutes=15,stride_minutes=1,signal_classes=None,sampling_intervals=None,options=None):
-    width=size_minutes*60*1_000_000;step=stride_minutes*60*1_000_000;options=options or {}
+def make_windows(df,size_minutes=15,stride_minutes=1,signal_classes=None,sampling_intervals=None,options=None,tail_policy='legacy'):
+    durations=np.asarray([size_minutes,stride_minutes],dtype=float)*60*1_000_000
+    if not np.isfinite(durations).all() or np.any(durations<1):
+        raise ValueError('Window size and stride must be finite and at least one microsecond')
+    width,step=(int(round(v)) for v in durations);options=options or {}
+    if tail_policy not in ('legacy','complete'):
+        raise ValueError('window.tail_policy must be legacy or complete')
     channel_column="measurement_role" if "measurement_role" in df.columns else "signal_class"
     if "value_kind" in df.columns:
         # Categorical encodings need a dedicated vocabulary and transition features.
@@ -60,7 +76,9 @@ def make_windows(df,size_minutes=15,stride_minutes=1,signal_classes=None,samplin
             starts=event_rows["event_start_us"].drop_nulls() if "event_start_us" in event_rows.columns else []
             constant_event_start=int(starts.min()) if len(starts) else int(event_rows["_us"].min())
         low=int(time_us[0]);high=int(time_us[-1])
-        last_start=high-width+step
+        # Complete mode closes a window only once this asset's observed watermark
+        # reaches its end. It never assumes samples after a finite file's end.
+        last_start=high-width+(step if tail_policy=='legacy' else 0)
         for start in range((low//step)*step,last_start+1,step):
             # Rows are already sorted by timestamp. Binary-search bounds avoid
             # rescanning every observation for every overlapping window.

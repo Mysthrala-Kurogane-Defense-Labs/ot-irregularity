@@ -2,7 +2,11 @@
 
 Proyecto open source independiente para aprender comportamiento operacional normal y puntuar desviaciones temporales y multivariables. No diagnostica averías ni depende de Kurogane Hub. Python >=3.12, uv; licencia Apache-2.0.
 
+El [candidato contextual v0.4](docs/MODEL_V0.4_CONTEXTUAL.md) mejora la detección en una evaluación pseudo-sintética independiente: 55/119 eventos frente a 8/119 de v0.3, con menos ventanas falsas. Sigue perdiendo familias físicas completas y no alcanza aún el objetivo exploratorio de alarmas. Es una opción de investigación reproducible, no una validación industrial.
+
 ## Inicio rápido
+
+El [registro del estudio](docs/STUDY_PROGRESS.md) conserva la evolución, las hipótesis probadas, los resultados negativos y los indicadores pendientes.
 
 ```bash
 uv sync --extra test

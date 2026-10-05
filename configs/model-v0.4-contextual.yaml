@@ -1,0 +1,21 @@
+model_version: 0.4.0-candidate
+model_family: contextual
+seed: 20261005
+device: auto
+split_group: run_id
+window: {size: 1m, stride: 1m}
+features: {statistical: true, slopes: true, quality: true, sampling: true}
+scaler: {type: robust}
+autoencoder: {latent_dim: 8, epochs: 10000, steps: 3000, batch_size: 128, learning_rate: 0.001, patience: 40, log_interval: 500}
+isolation_forest: {n_estimators: 200, max_samples: auto, contamination: auto, max_features: 1.0}
+contextual:
+  compact_features: false
+  top_k: 4
+  residual_quantile: 0.95
+  residual_floor: 0.00000001
+  early_stop_modulo: 5
+  calibration_modulo: 2
+  calibration_quantile: 0.99
+  min_partition_windows: 20
+# Selected on development; both scores are still trained, saved and returned.
+ensemble: {autoencoder_weight: 1.0, isolation_weight: 0.0}

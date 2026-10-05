@@ -1,0 +1,1214 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-05",
+  "decision": "retain v0.4 weights; reject short-window candidates; offer explicit complete-tail batch policy",
+  "temporal_protocol": {
+    "created_at": "2026-10-05T09:39:00.850582+00:00",
+    "durations_seconds": [
+      30,
+      15
+    ],
+    "seed": 20261005,
+    "test_used": false,
+    "hypothesis": "Short windows preserve local physical deviations diluted by a minute.",
+    "metric_contract": "Max score per common complete minute for AP, precision, false alert minutes and interval detection; fine-window event localization reported separately.",
+    "threshold": "q99 of max minute scores on normal calibration minutes only; strict nextafter cutoff",
+    "selection": "More physical events, no loss of total events, precision >=0.5, no increase in false alert minutes. Require fine-window physical detections >= baseline physical detections as a localization guard. Rank eligible by physical then total events then fewer false minutes.",
+    "baseline_manifest_sha256": "c5bb2754d36927b83096a3eea8ff59efbefe42985ecc91bf994794b4649b06ef",
+    "script_sha256": "a051e8a01e8729c621f5f57afe9a533d7658d4d4bf7d42d1925f9c0c2175399c"
+  },
+  "temporal_development": {
+    "rows": [
+      {
+        "id": "v0.4",
+        "metrics": {
+          "threshold": 0.9905660377358492,
+          "samples": 2057,
+          "positive_samples": 255,
+          "precision": 0.9404761904761905,
+          "recall": 0.30980392156862746,
+          "f1": 0.46607669616519176,
+          "pr_auc": 0.5595910002944788,
+          "roc_auc": 0.7584470414136799,
+          "false_positive_windows": 5,
+          "false_positives_per_asset_hour": 0.14584346135148274,
+          "false_positives_per_asset_day": 3.500243072435586,
+          "event_count": 124,
+          "event_detection_rate": 0.4274193548387097,
+          "mean_time_to_first_detection_seconds": 49.18867924528302,
+          "mean_detection_latency_seconds": 49.18867924528302,
+          "detected_events": 53,
+          "events_without_windows": 0,
+          "by_family": {
+            "asset_communication_loss": {
+              "total": 5,
+              "detected": 5
+            },
+            "bearing_degradation": {
+              "total": 13,
+              "detected": 0
+            },
+            "cavitation": {
+              "total": 5,
+              "detected": 1
+            },
+            "cooling_degradation": {
+              "total": 10,
+              "detected": 2
+            },
+            "maintenance_activity": {
+              "total": 8,
+              "detected": 2
+            },
+            "mechanical_overload": {
+              "total": 7,
+              "detected": 1
+            },
+            "missing_telemetry": {
+              "total": 9,
+              "detected": 8
+            },
+            "multivariate_novelty": {
+              "total": 8,
+              "detected": 8
+            },
+            "quality_degradation": {
+              "total": 5,
+              "detected": 3
+            },
+            "regime_mismatch": {
+              "total": 4,
+              "detected": 1
+            },
+            "sensor_bias": {
+              "total": 11,
+              "detected": 2
+            },
+            "sensor_drift": {
+              "total": 15,
+              "detected": 2
+            },
+            "sensor_stuck": {
+              "total": 8,
+              "detected": 8
+            },
+            "single_signal_loss": {
+              "total": 8,
+              "detected": 8
+            },
+            "sudden_spike": {
+              "total": 8,
+              "detected": 2
+            }
+          },
+          "physical_events": {
+            "total": 35,
+            "detected": 4
+          }
+        }
+      },
+      {
+        "id": "30s",
+        "metrics": {
+          "threshold": 0.9885277246653921,
+          "samples": 2057,
+          "positive_samples": 255,
+          "precision": 0.7672413793103449,
+          "recall": 0.34901960784313724,
+          "f1": 0.4797843665768194,
+          "pr_auc": 0.5549743465873049,
+          "roc_auc": 0.7645611629779547,
+          "false_positive_windows": 27,
+          "false_positives_per_asset_hour": 0.7875546912980068,
+          "false_positives_per_asset_day": 18.901312591152163,
+          "event_count": 124,
+          "event_detection_rate": 0.4435483870967742,
+          "mean_time_to_first_detection_seconds": 44.18181818181818,
+          "mean_detection_latency_seconds": 44.18181818181818,
+          "detected_events": 55,
+          "events_without_windows": 0,
+          "by_family": {
+            "asset_communication_loss": {
+              "total": 5,
+              "detected": 5
+            },
+            "bearing_degradation": {
+              "total": 13,
+              "detected": 0
+            },
+            "cavitation": {
+              "total": 5,
+              "detected": 2
+            },
+            "cooling_degradation": {
+              "total": 10,
+              "detected": 3
+            },
+            "maintenance_activity": {
+              "total": 8,
+              "detected": 3
+            },
+            "mechanical_overload": {
+              "total": 7,
+              "detected": 0
+            },
+            "missing_telemetry": {
+              "total": 9,
+              "detected": 8
+            },
+            "multivariate_novelty": {
+              "total": 8,
+              "detected": 8
+            },
+            "quality_degradation": {
+              "total": 5,
+              "detected": 2
+            },
+            "regime_mismatch": {
+              "total": 4,
+              "detected": 0
+            },
+            "sensor_bias": {
+              "total": 11,
+              "detected": 2
+            },
+            "sensor_drift": {
+              "total": 15,
+              "detected": 2
+            },
+            "sensor_stuck": {
+              "total": 8,
+              "detected": 7
+            },
+            "single_signal_loss": {
+              "total": 8,
+              "detected": 8
+            },
+            "sudden_spike": {
+              "total": 8,
+              "detected": 5
+            }
+          },
+          "physical_events": {
+            "total": 35,
+            "detected": 5
+          }
+        },
+        "fine_window_localization": {
+          "event_count": 124,
+          "detected_events": 54,
+          "event_detection_rate": 0.43548387096774194,
+          "physical_events": {
+            "total": 35,
+            "detected": 4
+          },
+          "by_family": {
+            "asset_communication_loss": {
+              "total": 5,
+              "detected": 5
+            },
+            "bearing_degradation": {
+              "total": 13,
+              "detected": 0
+            },
+            "cavitation": {
+              "total": 5,
+              "detected": 2
+            },
+            "cooling_degradation": {
+              "total": 10,
+              "detected": 2
+            },
+            "maintenance_activity": {
+              "total": 8,
+              "detected": 3
+            },
+            "mechanical_overload": {
+              "total": 7,
+              "detected": 0
+            },
+            "missing_telemetry": {
+              "total": 9,
+              "detected": 8
+            },
+            "multivariate_novelty": {
+              "total": 8,
+              "detected": 8
+            },
+            "quality_degradation": {
+              "total": 5,
+              "detected": 2
+            },
+            "regime_mismatch": {
+              "total": 4,
+              "detected": 0
+            },
+            "sensor_bias": {
+              "total": 11,
+              "detected": 2
+            },
+            "sensor_drift": {
+              "total": 15,
+              "detected": 2
+            },
+            "sensor_stuck": {
+              "total": 8,
+              "detected": 7
+            },
+            "single_signal_loss": {
+              "total": 8,
+              "detected": 8
+            },
+            "sudden_spike": {
+              "total": 8,
+              "detected": 5
+            }
+          },
+          "mean_detection_latency_seconds": 30.12962962962963
+        }
+      },
+      {
+        "id": "15s",
+        "metrics": {
+          "threshold": 0.9966426858513191,
+          "samples": 2057,
+          "positive_samples": 255,
+          "precision": 0.85,
+          "recall": 0.26666666666666666,
+          "f1": 0.4059701492537313,
+          "pr_auc": 0.5013845153568418,
+          "roc_auc": 0.7582446519118191,
+          "false_positive_windows": 12,
+          "false_positives_per_asset_hour": 0.3500243072435586,
+          "false_positives_per_asset_day": 8.400583373845407,
+          "event_count": 124,
+          "event_detection_rate": 0.3467741935483871,
+          "mean_time_to_first_detection_seconds": 51.883720930232556,
+          "mean_detection_latency_seconds": 51.883720930232556,
+          "detected_events": 43,
+          "events_without_windows": 0,
+          "by_family": {
+            "asset_communication_loss": {
+              "total": 5,
+              "detected": 5
+            },
+            "bearing_degradation": {
+              "total": 13,
+              "detected": 0
+            },
+            "cavitation": {
+              "total": 5,
+              "detected": 2
+            },
+            "cooling_degradation": {
+              "total": 10,
+              "detected": 1
+            },
+            "maintenance_activity": {
+              "total": 8,
+              "detected": 3
+            },
+            "mechanical_overload": {
+              "total": 7,
+              "detected": 1
+            },
+            "missing_telemetry": {
+              "total": 9,
+              "detected": 8
+            },
+            "multivariate_novelty": {
+              "total": 8,
+              "detected": 8
+            },
+            "quality_degradation": {
+              "total": 5,
+              "detected": 1
+            },
+            "regime_mismatch": {
+              "total": 4,
+              "detected": 0
+            },
+            "sensor_bias": {
+              "total": 11,
+              "detected": 2
+            },
+            "sensor_drift": {
+              "total": 15,
+              "detected": 2
+            },
+            "sensor_stuck": {
+              "total": 8,
+              "detected": 0
+            },
+            "single_signal_loss": {
+              "total": 8,
+              "detected": 8
+            },
+            "sudden_spike": {
+              "total": 8,
+              "detected": 2
+            }
+          },
+          "physical_events": {
+            "total": 35,
+            "detected": 4
+          }
+        },
+        "fine_window_localization": {
+          "event_count": 124,
+          "detected_events": 41,
+          "event_detection_rate": 0.33064516129032256,
+          "physical_events": {
+            "total": 35,
+            "detected": 3
+          },
+          "by_family": {
+            "asset_communication_loss": {
+              "total": 5,
+              "detected": 5
+            },
+            "bearing_degradation": {
+              "total": 13,
+              "detected": 0
+            },
+            "cavitation": {
+              "total": 5,
+              "detected": 2
+            },
+            "cooling_degradation": {
+              "total": 10,
+              "detected": 0
+            },
+            "maintenance_activity": {
+              "total": 8,
+              "detected": 3
+            },
+            "mechanical_overload": {
+              "total": 7,
+              "detected": 1
+            },
+            "missing_telemetry": {
+              "total": 9,
+              "detected": 8
+            },
+            "multivariate_novelty": {
+              "total": 8,
+              "detected": 8
+            },
+            "quality_degradation": {
+              "total": 5,
+              "detected": 0
+            },
+            "regime_mismatch": {
+              "total": 4,
+              "detected": 0
+            },
+            "sensor_bias": {
+              "total": 11,
+              "detected": 2
+            },
+            "sensor_drift": {
+              "total": 15,
+              "detected": 2
+            },
+            "sensor_stuck": {
+              "total": 8,
+              "detected": 0
+            },
+            "single_signal_loss": {
+              "total": 8,
+              "detected": 8
+            },
+            "sudden_spike": {
+              "total": 8,
+              "detected": 2
+            }
+          },
+          "mean_detection_latency_seconds": 26.26829268292683
+        }
+      }
+    ],
+    "eligible": [],
+    "selection": null,
+    "test_used": false,
+    "truth_hashes": {
+      "raw-01/validation/validation-00001/ground_truth.json": "c805717ba864a06c7f4bccf371ff1bc3f7601824b69b095730fcd7e032e603ed",
+      "raw-01/validation/validation-00002/ground_truth.json": "4f5a30184d8e6da950ad1e82a5830ed5c3341f1e2fa7ac06ec9ae2c85589cfcd",
+      "raw-01/validation/validation-00004/ground_truth.json": "2c60fd306360873ccaf8eab640c4b79c2e45ebab8c011318a01b21702b3b8856",
+      "raw-01/validation/validation-00005/ground_truth.json": "178687c0c244daa626d034489f47d1970818818d8d4d70fe8f196b1f0b7473d4",
+      "raw-01/validation/validation-00008/ground_truth.json": "8d075e745e14887dd2fb4a28602b7fd72b5b41e96790d740ffa50b3ca76dccaa",
+      "raw-01/validation/validation-00009/ground_truth.json": "5d8c95613e07c8f6c06bbe1e8d236914a9a9a67340f339054c4cdaf2ba517156",
+      "raw-01/validation/validation-00010/ground_truth.json": "26dac52534b9e595918d388a8bdb9a473d80eeeadf7cccba0e9878ca007a0a29",
+      "raw-01/validation/validation-00011/ground_truth.json": "52d3eedfad9bd93ef7d6191e3d661b0374657c8977a8e32de67ba85e999af286",
+      "raw-01/validation/validation-00013/ground_truth.json": "15fdca4360a2d8ffcd1b0081f10ca244024d98a83571d24223d9a06feb4a9cc5",
+      "raw-01/validation/validation-00017/ground_truth.json": "d7f465e4f9ea878ed49cae11dd70d17aa1295c3fd48239ce78e19736cbd29266",
+      "raw-01/validation/validation-00018/ground_truth.json": "e7383aa3fc20328e4272d45141d169ffef94e150fb69acd67e3a4ee5adb58b4f",
+      "raw-02/validation/validation-00001/ground_truth.json": "56ce830eaffc145805bbbcd49568c61787af6c47efe1c1a80826c50696b3294d",
+      "raw-02/validation/validation-00002/ground_truth.json": "e55000b1876c71fb3f6a7f9577bf3d914fa4d260c5e0125cbb67049df687e926",
+      "raw-02/validation/validation-00003/ground_truth.json": "8a408fab5d85236411acc215c1b913bd7895b2301bfb9275174011ecb7f729c6",
+      "raw-02/validation/validation-00004/ground_truth.json": "510804b5a9891651d3944280cec584cb1c421f566eecc0fdc4601ca94d818255",
+      "raw-02/validation/validation-00005/ground_truth.json": "39223d89f1efaed0ff5b46abadadeacf875145704bfd0cde421ec10705d03f69",
+      "raw-02/validation/validation-00007/ground_truth.json": "f51cdf5f2121fc8c33ce56a378ee6e5357955054fd0b0836bf59e9caf88adc1a",
+      "raw-02/validation/validation-00010/ground_truth.json": "fe427d2d340867378117415f35ce092eee838eca5fd91e8037f669a7608cc185",
+      "raw-02/validation/validation-00011/ground_truth.json": "29acb325dd0a3dfe1045a0a79ac6393dc75d846fd89085381376880eeeea58bc",
+      "raw-02/validation/validation-00014/ground_truth.json": "8188ff4dd70865a2edeaed2339c2d5726a51d0ebf07ca958417917a1d1b0d36d",
+      "raw-02/validation/validation-00015/ground_truth.json": "942556a108a22353572fe0af216efffb9b6a0f9ae4d8c161a9976056960c9b19",
+      "raw-02/validation/validation-00016/ground_truth.json": "4414969fa039b51e6d5938c1f1f55ef03817b84c7174eca1dc3b3714449c417e",
+      "raw-02/validation/validation-00017/ground_truth.json": "9cadbf38bbf75b430d09cbb8ee8d19c97182fc400f2f3f1912731b66c1e49b1f",
+      "raw-03/validation/validation-00001/ground_truth.json": "a0dba360e67490822aac95098e9398c3272ab56a03600ddbd9f35efa165a9092",
+      "raw-03/validation/validation-00003/ground_truth.json": "795973c23aac92b614404de9e90adf59dc6b6fa41298d8019bd609626fdaea35",
+      "raw-03/validation/validation-00006/ground_truth.json": "efea55f5849e2311fb96b6c3de6f2931a179bfdd9e3ccc0ee5001ca3b4390414",
+      "raw-03/validation/validation-00007/ground_truth.json": "e68f2461cd7760a638483d327a62da27345bc023bad7ad478a4daaab347122c0",
+      "raw-03/validation/validation-00009/ground_truth.json": "f5128323ebbff0e9348a1b4daf2250ff6086a974a55a7732a30df538b7d2c151",
+      "raw-03/validation/validation-00010/ground_truth.json": "42445eab365681723da366b0b7815c2a710b335f2c808c2b50578c42cf37c177",
+      "raw-03/validation/validation-00011/ground_truth.json": "b8668bf05e9dd35358151ae812839f7d23fa00761d35f5405e8074b7b6d4b777",
+      "raw-03/validation/validation-00012/ground_truth.json": "a6838c2a2afd1609d40edb785d09cd5247932416882bdaf7dd7f2120be89b20e",
+      "raw-03/validation/validation-00016/ground_truth.json": "afde99dc4de912ddaa0baec795f1031cc4ea350c0e2f14c54b75990ef01b79cf",
+      "raw-04/validation/validation-00001/ground_truth.json": "c2bf5097acd6e65b52a1e2b93b6330923f4af5e638cc16fc90b79a95ea7a338d",
+      "raw-04/validation/validation-00003/ground_truth.json": "fa3b9a874fbf76b1705e0e56c3ee672a66b94ab3ea160f09e29f73aa33b0421f",
+      "raw-04/validation/validation-00005/ground_truth.json": "d373b334b0299d2baec939332c9f7eac1f3ca200831f74957ad1efd83e448517",
+      "raw-04/validation/validation-00006/ground_truth.json": "11cc42861ca5a627a9e05f5b8dd03da622488baffa58a79992f21278a5e4d366",
+      "raw-04/validation/validation-00007/ground_truth.json": "6e0684166d41c3426303e531a72b6536e11282861acdd0c317267c1e07382ff4",
+      "raw-04/validation/validation-00012/ground_truth.json": "3d6acdb859b7f63728ea660b3a4beec6108e53d0c50c52c3ed0c955374a92fca",
+      "raw-04/validation/validation-00014/ground_truth.json": "674f1444a8e1b61c28b68fbd74c2189c25da1ba2496b5e99b41bf36786c4d53d",
+      "raw-04/validation/validation-00015/ground_truth.json": "ef2e8bb8ad06844e275e9e43a651efe95cefe17b886fb4f7594d00fef03a48ce",
+      "raw-04/validation/validation-00016/ground_truth.json": "b4fdc63585ce00f0ec7c6839eb5ac1ceca7c151c9c844ceddb221cd889db5513",
+      "raw-04/validation/validation-00017/ground_truth.json": "5875fd63c7f7b4657dba7e54aa528712be0e64eff76886a1ba7491ed3ab8a226",
+      "raw-05/validation/validation-00001/ground_truth.json": "e0ba730f6cfb853866f89bb63dbb48425e2ed8d9b389d053639c9864689d4853",
+      "raw-05/validation/validation-00003/ground_truth.json": "6d78fb7b6b03cc3b6e998386be95f1829c9fa8e15c5a12e6e477fc4dbeb12e9d",
+      "raw-05/validation/validation-00005/ground_truth.json": "95e411f1b04be656e599be7643136f395f801f2d161d5ded734391ed54ec2949",
+      "raw-05/validation/validation-00006/ground_truth.json": "b9af562527697369049072660c630b8446cf3ba06f2299778217c39e220ac436",
+      "raw-05/validation/validation-00009/ground_truth.json": "9a29567867ba9ee730af92ee613ff046078b2fb80f6619b4f22bb7a8fa8c5593",
+      "raw-05/validation/validation-00016/ground_truth.json": "1fec8b84dce3fed63884a91cd5bf5106400cc9cec2ffa73a3efb5859876be5de",
+      "raw-06/validation/validation-00001/ground_truth.json": "23be6ea8759a2de243b06a39442cfb735d8b684e27f3a64db4e49008f7df3ecf",
+      "raw-06/validation/validation-00002/ground_truth.json": "21e00a2e4c41daca35bf5f8b45bfebcb631cee8fbc585677545394819d35207d",
+      "raw-06/validation/validation-00005/ground_truth.json": "416fe4f6b67a1cb539996e7add6a4db52ea444cb00dbc4a095380e4db3635860",
+      "raw-06/validation/validation-00007/ground_truth.json": "016603cac8a01e8fa9dad915a980f5376d725cbce1e2337032a1fbdac047fb3e",
+      "raw-06/validation/validation-00009/ground_truth.json": "f0a374c9d08c3ee0ffd2068abec45cdde002db7469a5146d29625f0f3acb2204",
+      "raw-06/validation/validation-00014/ground_truth.json": "04599f7fcb698b89d45e028efa4f93a6d651c4de485e78920760200d789a4c7e",
+      "raw-06/validation/validation-00015/ground_truth.json": "1e2c7edf9c7cf9f04da706e72ca09c43a543e743bc7fa2a428971013948c604b",
+      "raw-06/validation/validation-00016/ground_truth.json": "3d3c6f07a8622fb435281e7cd07dc86ebcdd3ea905cd66ac05fac5c34154b5ae",
+      "raw-06/validation/validation-00018/ground_truth.json": "d20cb522ab0c3fb7b5c100187cc3998aa052a3c196fac40ebc472b075f327c92",
+      "raw-07/validation/validation-00003/ground_truth.json": "73a5de28a3a84e4a791edf131bbc181553388432f1bd0940fad03afb36fcad18",
+      "raw-07/validation/validation-00004/ground_truth.json": "b4a4c2198ba15976f0848ade38576fd0f88876534d28a193f7f39cf381188471",
+      "raw-07/validation/validation-00008/ground_truth.json": "c43c902b775ed77e3e585369ec22bae2bd532b09042aec1734fa327f90e53c46",
+      "raw-07/validation/validation-00009/ground_truth.json": "4c0b74381bdbd7ee7b0003350f142579eb2787e2836f86b4565de23b6c11aa92",
+      "raw-07/validation/validation-00010/ground_truth.json": "a31ae087673fbd2fdd32d4d190e8273345eaea59dcb3a641263f7043f62493f2",
+      "raw-07/validation/validation-00014/ground_truth.json": "1de0625731ab61853cf7a78c13ca04e4dbc79b61e7b9804782a0a258a6a18778",
+      "raw-07/validation/validation-00015/ground_truth.json": "7efeefca23375cf151fef48856d59345811447a6e04ec9f9bdee8ef19af52b90",
+      "raw-07/validation/validation-00017/ground_truth.json": "1fc05a7471dcb9b208aabe904a032f316b1984c0f2d982a7599e4a3060719e23",
+      "raw-07/validation/validation-00018/ground_truth.json": "d8137ec8c1ce7fdcb901ec471c18667ab05b85207e9912da2f3ca31fddcc7e6e",
+      "raw-08/validation/validation-00001/ground_truth.json": "40aed7dbbc05f232fbfa28b108743c4b0220d6c89b90822877761ef36964a3bc",
+      "raw-08/validation/validation-00006/ground_truth.json": "4f76e24f639df2ddc27077b10c709193aeacf89f172cd1ff5398659a8357b1fc",
+      "raw-08/validation/validation-00007/ground_truth.json": "48ce8ee37ea6df45565b6c33fa79c13363d5ab2e407d73a8fa7f96761e91b9ab",
+      "raw-08/validation/validation-00013/ground_truth.json": "34251906caa07bc8820396b21d607b8703dd2ad314bf8f8b011dfa25b646abbc",
+      "raw-08/validation/validation-00014/ground_truth.json": "0e06b76194d05e70efc89abc56e9a894dbcc4b17265b9cd1abbb4522f64970e6",
+      "raw-08/validation/validation-00017/ground_truth.json": "0fc30c5febbf047b8b124cce7bb18cf77340ba616edfc2932e01ab2971c7092d",
+      "raw-08/validation/validation-00018/ground_truth.json": "eaa3a101a676b3c958d280d667b97b3fcad31b3e4a77f2d53c7f30f770c4544c",
+      "raw-09/validation/validation-00001/ground_truth.json": "e72880cc041ee3505abb24371a265126310ac972c118efcea9ad2b62b32582c8",
+      "raw-09/validation/validation-00002/ground_truth.json": "7fb04c52d3bec61a80252db1ede8decd4adb10ee1bf46803ef503e9904062273",
+      "raw-09/validation/validation-00004/ground_truth.json": "635cb8a00edac46b0f873ace0f29f68ba39584dc10b783dbf85def6af1b6783a",
+      "raw-09/validation/validation-00006/ground_truth.json": "0a264f088dfbd361f3c055fc614db90ebb85cf4c8fe262868b7a58f487a1b434",
+      "raw-09/validation/validation-00007/ground_truth.json": "4e289ac612afd6d8cbc4d2d385ea3b7bec2bb641c90786438bdaa61fd2ff1b3c",
+      "raw-09/validation/validation-00010/ground_truth.json": "8cebc3499a4e70a9d1f0077e97ec5cc2ef308e837777ae189c1166b5094ee417",
+      "raw-09/validation/validation-00015/ground_truth.json": "3c44a65cb27c1eee653cebd0ee1c5bb045f02572ff8d0fd4642b415ce1e9b505",
+      "raw-09/validation/validation-00016/ground_truth.json": "8eed163bee353b122d0994a97dbeb7d6fbfafa0a7ec315c9c8f57aaf864c1ee7",
+      "raw-10/validation/validation-00001/ground_truth.json": "98baea4234d18a54e1356fd0733dfcd09c4cb557931fad9e7d510e9b6ed4c3d6",
+      "raw-10/validation/validation-00002/ground_truth.json": "cba98eceddbaa879962d5d0bd721b76c511454f49fe3effc0afc37d0dc66adaa",
+      "raw-10/validation/validation-00003/ground_truth.json": "e3d47506530af95ebaa1883bac2492cfa6968f7d28f23e55f263bbda6916d330",
+      "raw-10/validation/validation-00004/ground_truth.json": "d5d1a59087af77caeb7839c4bee17c7dd80f50ba98bda48b4e8824df4e7c68cc",
+      "raw-10/validation/validation-00006/ground_truth.json": "04b46f89e0c44a5b9e1251b58a737b3f00aa844e55381667964a415b7c05abfe",
+      "raw-10/validation/validation-00009/ground_truth.json": "cbcf00a5edc49207a7475d99bfe8b82a9b77205dcce3d2cce8433bcdff123360",
+      "raw-10/validation/validation-00010/ground_truth.json": "38ac3ca3c3d5779c4c2822aa951fb1da1c163cde81a2f856ec485bfaf661a819",
+      "raw-10/validation/validation-00012/ground_truth.json": "8364a907ff30715e3a643e37c4d00eb8799a455d9f932852d0f402b6ce093f6f",
+      "raw-10/validation/validation-00014/ground_truth.json": "b876cea5a05b2be2a0d35a58dafe529aebb08a1499dbbca45ed4cb11666eec96",
+      "raw-10/validation/validation-00015/ground_truth.json": "123c7cd380f59aeaf6eb5162a69fc449e668ed5c62610a1bc4aff13265e4642a",
+      "raw-10/validation/validation-00017/ground_truth.json": "128c769fbe2041b6a1b8b661389f2b6f13b12f136b195d57a297f0dff898b454",
+      "raw-11/validation/validation-00001/ground_truth.json": "7ed0d23e7310e018b009d39051fa2e0799d7580ca04ad8f30288aa2e9458e04b",
+      "raw-11/validation/validation-00002/ground_truth.json": "33e0871a6042df50d1d9d432bc77346175c6267e14a55b1b6d9a4114f0ba57c2",
+      "raw-11/validation/validation-00005/ground_truth.json": "f182871b897f7b19587d554aa58e2839f4c184c6b51009e48dd3a32c73686066",
+      "raw-11/validation/validation-00009/ground_truth.json": "2a73c7cc46e01d3372d0474bab4206bf763162d3430e9ba6095e50f0d40eea53",
+      "raw-11/validation/validation-00010/ground_truth.json": "864790a42ab5af22b88328b61944ceb2f26e1987dc3314783aa8a4bcaefd9746",
+      "raw-11/validation/validation-00013/ground_truth.json": "d938139af62542f03a46a660f58462f3624e8e4f7b4d8698255fec8582acc788",
+      "raw-11/validation/validation-00014/ground_truth.json": "ddd752bbf357ef97359f8e6e363b2ac5eb9fdcedef6129a93006821f8e4deaf7",
+      "raw-11/validation/validation-00015/ground_truth.json": "6fb279b704c6f25e2ba059ee8338f961fba91438c20f2a53232a51419ffe5385",
+      "raw-11/validation/validation-00018/ground_truth.json": "d78f69983bb5a61e13d66e53582891ebda8b02a3416699d062abee6ad646fd34",
+      "raw-12/validation/validation-00001/ground_truth.json": "b367bbc147d2c04e50ac7dddb97d140091f2e4e3c1c6b05fd0cfab4e3b1400c9",
+      "raw-12/validation/validation-00003/ground_truth.json": "77fde237d5d62077b2ae0cd5dfb21ff51ce15c4cb3c92927bdc6ab2db8e32d79",
+      "raw-12/validation/validation-00004/ground_truth.json": "513e37f22f9a4e84a2f71a80cca36fbe10f338ca0b5447ffdb5ae7b130d9890c",
+      "raw-12/validation/validation-00005/ground_truth.json": "d96dc79c62d7b696aadc09cf180d794d7952b0a6d79ee960ee9fbeadcda45355",
+      "raw-12/validation/validation-00011/ground_truth.json": "9ec9976e3e204745338e9475c07bf59abd339d369aa2084536367ce4c3293247",
+      "raw-12/validation/validation-00012/ground_truth.json": "2c35f4ab8d8f0efaf2098e67a8c16dc64ba16888cb26cdab03a9fcdc098f4a4b",
+      "raw-12/validation/validation-00013/ground_truth.json": "ac6a94d81b9f13d24f2eba028cdd298992652786e544eaad1228fcf6dd79e9e9",
+      "raw-12/validation/validation-00014/ground_truth.json": "8f797b5108b70e4f6e1b1f32cef64b6823d68d43f189ae49dbccf4537a921366",
+      "raw-12/validation/validation-00015/ground_truth.json": "6c61cf6a9590387fb0c4d626621b3228145bb027dda8b27533b582fc8bca58fd",
+      "raw-12/validation/validation-00017/ground_truth.json": "f51d84ae3974fbc108024807401c338e6cc6b07961741729187a7547eae070ce",
+      "raw-12/validation/validation-00018/ground_truth.json": "9cacfe0f1dacb7817e47cfc078b9e47a29fbbfdeeb08e3db8597def91a0fd6e7",
+      "raw-13/validation/validation-00002/ground_truth.json": "102adfd64afe0ec91f11004dea661059c279265ffdaf76ad8e7a4d1b44ff4166",
+      "raw-13/validation/validation-00006/ground_truth.json": "78b95411c387892e3ef2c499d40d0312cea0a5f37ab459e3244921f68c0e8391",
+      "raw-13/validation/validation-00009/ground_truth.json": "67ae3dad16aab1cfc9b91a55765e04d8abc4a8fbb48b26263ce488151dadbe18",
+      "raw-13/validation/validation-00010/ground_truth.json": "e869ac6c1d9998fb8765db7d701978b4e925244f6470aa0bc33e155e995a35b0",
+      "raw-13/validation/validation-00017/ground_truth.json": "5d481cc5a5628da02453a6de3a989bb4e58ab16be76bf49da9d83b0fd4c5ad86",
+      "raw-13/validation/validation-00018/ground_truth.json": "d76cc13197358b0d5abc032bb49ae698ab61ef2377a611ee5264b61349523606",
+      "raw-14/validation/validation-00006/ground_truth.json": "eab87594877fb965eba27926aa5d45e9f1381db3db3a5dbf3192d9f99bd789eb",
+      "raw-14/validation/validation-00007/ground_truth.json": "a31561d7652f4b1766169e7cff35b9e09a176733af816f9313908e42c6e4d906",
+      "raw-14/validation/validation-00008/ground_truth.json": "416aa2e8bd98f64efe389d80d6f9ad2f22e5ef99f89aad98051010e6cc1f8962",
+      "raw-14/validation/validation-00011/ground_truth.json": "3acadea3f925e64d362023fbcbd584974e74ee9459d475865aec79b13920467b",
+      "raw-14/validation/validation-00013/ground_truth.json": "35f13fe361b71e584cda2ae0fe1b164c8a263d748cee7cd89a130658b8bb6d2b",
+      "raw-14/validation/validation-00017/ground_truth.json": "98cfd92c01065393d9fc703721788abbf038705c0af474389fc3d4f5f477e477",
+      "raw-15/validation/validation-00001/ground_truth.json": "597702040c5cb015bb65df00aa8fbaa2bea6c4fe4fee7717cc0e492c0c6157bf",
+      "raw-15/validation/validation-00002/ground_truth.json": "c0a55b72ff282c2b09bb273d46da5c23c5f54c0415fbe5ee0763f2f7c7450865",
+      "raw-15/validation/validation-00005/ground_truth.json": "90fffc4a171a90fef6cc54d216aa5a3487d31e70d6b0b936b9a0c9d76b07f39e",
+      "raw-15/validation/validation-00007/ground_truth.json": "c8f1ee915a9a25f56e3cfcad2a1c665020336400379b91f3f7a62eff3d20607a",
+      "raw-15/validation/validation-00010/ground_truth.json": "eba18c299053776123b957e42a620372196d6cf4ee5852fde5d770da9a2f4433",
+      "raw-15/validation/validation-00013/ground_truth.json": "ab6c933309c63e73c495fcf1849bf0dbee3ed1196e5b9c1a0f2c2f6bb591e374",
+      "raw-15/validation/validation-00014/ground_truth.json": "b63c3be7fe3af3650cd52509ac49337b15d6b822bbf5245dd50ca2cb18d15284",
+      "raw-15/validation/validation-00016/ground_truth.json": "c1aa63394fc6ee7d3b1149d27781f75238b1c8d393d1276ec847ed4dd9132cbf",
+      "raw-15/validation/validation-00018/ground_truth.json": "7fb80555503806604158a6408b2acc5a9b20b04b548ee6c7bb1cc069125f8259"
+    },
+    "coverage": {
+      "train": {
+        "original_minutes": 6749,
+        "common_minutes": 6138
+      },
+      "validation": {
+        "original_minutes": 4412,
+        "common_minutes": 4030
+      }
+    },
+    "calibration_minutes": 1729,
+    "development_minutes": 2057,
+    "events": 124
+  },
+  "tail_development": {
+    "baseline": {
+      "threshold": 0.9905660377358492,
+      "samples": 2234,
+      "positive_samples": 257,
+      "precision": 0.8404255319148937,
+      "recall": 0.30739299610894943,
+      "f1": 0.45014245014245013,
+      "pr_auc": 0.5000589385056917,
+      "roc_auc": 0.7354095443908449,
+      "false_positive_windows": 15,
+      "false_positives_per_asset_hour": 0.40286481647269473,
+      "false_positives_per_asset_day": 9.668755595344672,
+      "event_count": 124,
+      "event_detection_rate": 0.4274193548387097,
+      "mean_time_to_first_detection_seconds": 49.18867924528302,
+      "mean_detection_latency_seconds": 49.18867924528302,
+      "detected_events": 53,
+      "events_without_windows": 0,
+      "by_family": {
+        "asset_communication_loss": {
+          "total": 5,
+          "detected": 5
+        },
+        "bearing_degradation": {
+          "total": 13,
+          "detected": 0
+        },
+        "cavitation": {
+          "total": 5,
+          "detected": 1
+        },
+        "cooling_degradation": {
+          "total": 10,
+          "detected": 2
+        },
+        "maintenance_activity": {
+          "total": 8,
+          "detected": 2
+        },
+        "mechanical_overload": {
+          "total": 7,
+          "detected": 1
+        },
+        "missing_telemetry": {
+          "total": 9,
+          "detected": 8
+        },
+        "multivariate_novelty": {
+          "total": 8,
+          "detected": 8
+        },
+        "quality_degradation": {
+          "total": 5,
+          "detected": 3
+        },
+        "regime_mismatch": {
+          "total": 4,
+          "detected": 1
+        },
+        "sensor_bias": {
+          "total": 11,
+          "detected": 2
+        },
+        "sensor_drift": {
+          "total": 15,
+          "detected": 2
+        },
+        "sensor_stuck": {
+          "total": 8,
+          "detected": 8
+        },
+        "single_signal_loss": {
+          "total": 8,
+          "detected": 8
+        },
+        "sudden_spike": {
+          "total": 8,
+          "detected": 2
+        }
+      },
+      "physical_events": {
+        "total": 35,
+        "detected": 4
+      }
+    },
+    "complete": {
+      "threshold": 0.9905660377358492,
+      "samples": 1965,
+      "positive_samples": 251,
+      "precision": 0.9512195121951219,
+      "recall": 0.3107569721115538,
+      "f1": 0.46846846846846846,
+      "pr_auc": 0.5727320274072801,
+      "roc_auc": 0.7660245831144501,
+      "false_positive_windows": 4,
+      "false_positives_per_asset_hour": 0.12213740458015267,
+      "false_positives_per_asset_day": 2.931297709923664,
+      "event_count": 124,
+      "event_detection_rate": 0.4274193548387097,
+      "mean_time_to_first_detection_seconds": 49.18867924528302,
+      "mean_detection_latency_seconds": 49.18867924528302,
+      "detected_events": 53,
+      "events_without_windows": 0,
+      "by_family": {
+        "asset_communication_loss": {
+          "total": 5,
+          "detected": 5
+        },
+        "bearing_degradation": {
+          "total": 13,
+          "detected": 0
+        },
+        "cavitation": {
+          "total": 5,
+          "detected": 1
+        },
+        "cooling_degradation": {
+          "total": 10,
+          "detected": 2
+        },
+        "maintenance_activity": {
+          "total": 8,
+          "detected": 2
+        },
+        "mechanical_overload": {
+          "total": 7,
+          "detected": 1
+        },
+        "missing_telemetry": {
+          "total": 9,
+          "detected": 8
+        },
+        "multivariate_novelty": {
+          "total": 8,
+          "detected": 8
+        },
+        "quality_degradation": {
+          "total": 5,
+          "detected": 3
+        },
+        "regime_mismatch": {
+          "total": 4,
+          "detected": 1
+        },
+        "sensor_bias": {
+          "total": 11,
+          "detected": 2
+        },
+        "sensor_drift": {
+          "total": 15,
+          "detected": 2
+        },
+        "sensor_stuck": {
+          "total": 8,
+          "detected": 8
+        },
+        "single_signal_loss": {
+          "total": 8,
+          "detected": 8
+        },
+        "sudden_spike": {
+          "total": 8,
+          "detected": 2
+        }
+      },
+      "physical_events": {
+        "total": 35,
+        "detected": 4
+      }
+    },
+    "retained_minutes": 1965,
+    "excluded_minutes": 269,
+    "threshold_unchanged": true,
+    "test_used": false
+  },
+  "tail_frozen": {
+    "frozen_at": "2026-10-05T09:50:04.931891+00:00",
+    "baseline_files": {
+      "contextual_models.json": "c5bb2754d36927b83096a3eea8ff59efbefe42985ecc91bf994794b4649b06ef",
+      "feature_schema.json": "5e962a6510fb94b3813d40dec3609b8345e95ed57a19bee90b342f3cd5328d56",
+      "groups/047aaa859de4a39a/autoencoder.pt": "deb7af09a352083239dd73062d357fff4febb58f5eaffd924181aa679b3db83f",
+      "groups/047aaa859de4a39a/isolation_forest.joblib": "1a56dd93546017c9a0f1137f43276f1a6f0271b17ddf385243766cb5620fcaa0",
+      "groups/047aaa859de4a39a/scaler.joblib": "0d7bbbcb65ba5172b00de73bea6c3a83bba247a92943a2111b78af77366bbef0",
+      "groups/73d84d65ae16d9f8/autoencoder.pt": "8e7a49639bbc7a27d9a75bb49a87830829566a174a97800181e237227ba73c27",
+      "groups/73d84d65ae16d9f8/isolation_forest.joblib": "937ab2dbf8c820d930a07616b0490305e125aa1fe1b7bf79aec0845fea749ae3",
+      "groups/73d84d65ae16d9f8/scaler.joblib": "def474ee1e4646fc682dc8e6ad557981f11f2c3256e5c3f60903cb7d1a0d5308",
+      "groups/c276c4ed90af3cca/autoencoder.pt": "9476e9790d8cf79d641f0cd210782fe6ac6aa146a7001a2c996114d8376172e1",
+      "groups/c276c4ed90af3cca/isolation_forest.joblib": "b84a993ed5115a85367de75434019c6ce89d763e5658a716f8d2d5e569b73fa3",
+      "groups/c276c4ed90af3cca/scaler.joblib": "0cf0cd5472b257938ccd837ee67f929043760168150a715dce9a0d53727d97a5",
+      "groups/fcfb73e6dd15f00f/autoencoder.pt": "268590091363fbdac5948ac2aa54e3334a4982c84bcc538a617ccc88a4566faf",
+      "groups/fcfb73e6dd15f00f/isolation_forest.joblib": "5cebc2f5f07258852875fd843eeb52624932e75584e66cb7c7d74c6588ea9cef",
+      "groups/fcfb73e6dd15f00f/scaler.joblib": "8bcadb3117b5255e637f43013a93fc02a792a4864f7a219904b77823657251d9",
+      "metrics.json": "5c7512e90e12615199822aa3c3777c660765ecfb6014087a82fd7e9f45a27c34",
+      "model_card.md": "09dfd0bbe1f7cca593b7ce4108d675aefc04c930ed3c2300eb5684a35c451071",
+      "thresholds.json": "e39aa3c08fd04dbe254b5106b98a54eee8fd5cc5b6508ac5b685bc4bf103532b",
+      "training_config.yaml": "1198dbf31e0140d66a1d6458275898f40447c0c7d8224795b7551164d26a0c45",
+      "training_metadata.json": "072c7b2d1371cbd45324e494ab98f03bebf6bc62b8816b01263113117be4baec",
+      "training_progress.jsonl": "0bf3cc5ecf2e3e60af229f7c59831a29d8aef932022bdd732ceb2f1a5912cf40"
+    },
+    "holdout_seeds": [
+      910521,
+      910522,
+      910523
+    ],
+    "policy": "window.tail_policy: complete; window_end <= last observed timestamp of its run/asset",
+    "weights_and_threshold": "unchanged",
+    "acceptance": "No loss of detected events or physical detections, fewer false alert minutes. Report excluded coverage and events without windows. No physical-learning improvement claim.",
+    "test_used_for_selection": false,
+    "script_sha256": "724535bbd68b468ff810f1dbdf05f841ea02830acc41821e25745af67fea04d4"
+  },
+  "tail_holdout": {
+    "rows": [
+      {
+        "id": "v0.4-legacy",
+        "metrics": {
+          "threshold": 0.9905660377358492,
+          "samples": 1856,
+          "positive_samples": 165,
+          "precision": 0.6933333333333334,
+          "recall": 0.3151515151515151,
+          "f1": 0.43333333333333335,
+          "pr_auc": 0.44648759314873865,
+          "roc_auc": 0.7601329677615898,
+          "false_positive_windows": 23,
+          "false_positives_per_asset_hour": 0.7435344827586207,
+          "false_positives_per_asset_day": 17.844827586206897,
+          "event_count": 84,
+          "event_detection_rate": 0.39285714285714285,
+          "mean_time_to_first_detection_seconds": 38.24242424242424,
+          "mean_detection_latency_seconds": 38.24242424242424,
+          "detected_events": 33,
+          "events_without_windows": 0,
+          "by_family": {
+            "asset_communication_loss": {
+              "total": 7,
+              "detected": 7
+            },
+            "bearing_degradation": {
+              "total": 5,
+              "detected": 0
+            },
+            "cavitation": {
+              "total": 8,
+              "detected": 2
+            },
+            "cooling_degradation": {
+              "total": 5,
+              "detected": 0
+            },
+            "maintenance_activity": {
+              "total": 3,
+              "detected": 0
+            },
+            "mechanical_overload": {
+              "total": 4,
+              "detected": 0
+            },
+            "missing_telemetry": {
+              "total": 6,
+              "detected": 5
+            },
+            "multivariate_novelty": {
+              "total": 7,
+              "detected": 7
+            },
+            "quality_degradation": {
+              "total": 4,
+              "detected": 2
+            },
+            "regime_mismatch": {
+              "total": 6,
+              "detected": 0
+            },
+            "sensor_bias": {
+              "total": 7,
+              "detected": 1
+            },
+            "sensor_drift": {
+              "total": 5,
+              "detected": 0
+            },
+            "sensor_stuck": {
+              "total": 5,
+              "detected": 5
+            },
+            "single_signal_loss": {
+              "total": 3,
+              "detected": 3
+            },
+            "sudden_spike": {
+              "total": 9,
+              "detected": 1
+            }
+          },
+          "physical_events": {
+            "total": 22,
+            "detected": 2
+          },
+          "false_alert_minutes_per_observed_asset_day": 19.20054466472595
+        }
+      },
+      {
+        "id": "v0.4-complete-tail",
+        "metrics": {
+          "threshold": 0.9905660377358492,
+          "samples": 1631,
+          "positive_samples": 161,
+          "precision": 0.864406779661017,
+          "recall": 0.3167701863354037,
+          "f1": 0.4636363636363636,
+          "pr_auc": 0.5506706852892387,
+          "roc_auc": 0.7913508260447035,
+          "false_positive_windows": 8,
+          "false_positives_per_asset_hour": 0.29429797670141017,
+          "false_positives_per_asset_day": 7.063151440833844,
+          "event_count": 84,
+          "event_detection_rate": 0.39285714285714285,
+          "mean_time_to_first_detection_seconds": 38.24242424242424,
+          "mean_detection_latency_seconds": 38.24242424242424,
+          "detected_events": 33,
+          "events_without_windows": 0,
+          "by_family": {
+            "asset_communication_loss": {
+              "total": 7,
+              "detected": 7
+            },
+            "bearing_degradation": {
+              "total": 5,
+              "detected": 0
+            },
+            "cavitation": {
+              "total": 8,
+              "detected": 2
+            },
+            "cooling_degradation": {
+              "total": 5,
+              "detected": 0
+            },
+            "maintenance_activity": {
+              "total": 3,
+              "detected": 0
+            },
+            "mechanical_overload": {
+              "total": 4,
+              "detected": 0
+            },
+            "missing_telemetry": {
+              "total": 6,
+              "detected": 5
+            },
+            "multivariate_novelty": {
+              "total": 7,
+              "detected": 7
+            },
+            "quality_degradation": {
+              "total": 4,
+              "detected": 2
+            },
+            "regime_mismatch": {
+              "total": 6,
+              "detected": 0
+            },
+            "sensor_bias": {
+              "total": 7,
+              "detected": 1
+            },
+            "sensor_drift": {
+              "total": 5,
+              "detected": 0
+            },
+            "sensor_stuck": {
+              "total": 5,
+              "detected": 5
+            },
+            "single_signal_loss": {
+              "total": 3,
+              "detected": 3
+            },
+            "sudden_spike": {
+              "total": 9,
+              "detected": 1
+            }
+          },
+          "physical_events": {
+            "total": 22,
+            "detected": 2
+          },
+          "false_alert_minutes_per_observed_asset_day": 6.678450318165547
+        }
+      }
+    ],
+    "sources": [
+      {
+        "seed": 910521,
+        "manifest_sha256": "13fd02178c6c0a5913a8d03ed837f59c8350bb5a02791eb44409c2b0acaf0797",
+        "truth_hashes": {
+          "test/test-00001/ground_truth.json": "2e5428f3829c9031e07568f53953af5fa2009468727febf80c2131d08e07f8ba",
+          "test/test-00002/ground_truth.json": "01f55d7d4f0d8b1132c5b73929afdec469f9ab60af86dd9666db1968cd86b690",
+          "test/test-00003/ground_truth.json": "bed6984c8f6b867e7945859aa1d65c42a09df625843dc368c01cf94b1a749f13",
+          "test/test-00004/ground_truth.json": "8f10f47554f1b5e3c1f5ecec8ab4453661c1f6097a25e72062842fcafc23c16d",
+          "test/test-00005/ground_truth.json": "6c0524c829645e6e1c573bdce8d86b6a2adca46ddefeb7d4e62dc496246be46f",
+          "test/test-00006/ground_truth.json": "3c5c86e87d7288fed0878038b76e6a95cbde5a85d644c535d52caae9b5648482",
+          "test/test-00007/ground_truth.json": "9496390eb2f9ea99af555dee97f841f206649a2baeaec3e920cae30ff7c98b0f",
+          "test/test-00008/ground_truth.json": "a66a16bd652747959bcd5ebeca22609cd2f74f411b1bf611d33cd53ee32b894d",
+          "test/test-00009/ground_truth.json": "c1c94fb191c5df35ceff55753519709fbe7397233d169aa0ad5c181c6adc056b",
+          "test/test-00010/ground_truth.json": "13dd6f3bc3843ac0f8c35b2cb07e7f41e79b0ccb31b107d7a020bd0420bfe68a",
+          "test/test-00011/ground_truth.json": "cc81a5d8e170543ca2ff8200b90274f9970515fb6820b0b15828423d8a5dd121",
+          "test/test-00012/ground_truth.json": "c342c44900c7f04a6225ff5c4bba7582c143b11620606aa7e17ff858f474ffd5",
+          "test/test-00013/ground_truth.json": "2d612bf0835485dabb4e77b7c76b54548249f8438653ececb55f332fde0b1fbe",
+          "test/test-00014/ground_truth.json": "1d1924644fe4a34379f07b60a683b049a1c4825d6b635cda0bf01828ac1ba7aa",
+          "test/test-00015/ground_truth.json": "d69b3abf4223e4b6f5dc56bdda8a13f1c52f5179068eb489cd61a83bdc9a55d1",
+          "test/test-00016/ground_truth.json": "73ebba74372c1355a04416fa27ab395c60d52323c7a6fab9bd24f7f15eb424b4",
+          "test/test-00017/ground_truth.json": "e6c41af8aeaa327334fb690601983b25a275b0bda7df9e6715327ae7883338d3",
+          "test/test-00018/ground_truth.json": "c6441049b87e88a332365f4da970f3f1bff1ab7cd51b54723d4167d901258e75",
+          "test/test-00019/ground_truth.json": "72ffa5cf2d1432090b02c7138b069a476fabe25573fd3292bfa7bc51c9f29492",
+          "test/test-00020/ground_truth.json": "3e95c92a6ceb110f88c2a7e31ee9617eef1b7815524b1eef4d40539ab5830ff7",
+          "test/test-00021/ground_truth.json": "31d5da5aaff095bf910f725d56c46270cd11c5e224c8c1b17542bce5c67ed3ae",
+          "test/test-00022/ground_truth.json": "fefe2f80b4ee8b33a21d78e484e14addcab9c0f8fba01a56f3a05f6f5fbe79d4",
+          "test/test-00023/ground_truth.json": "c8128f84cd06a30652858e63a68cf1e0398ff05e0559ba888e02c60d9295128f",
+          "test/test-00024/ground_truth.json": "85f663fe55f01a55bacd3647b8f54df488a0e794dc2b0a2e576845b038c75660",
+          "test/test-00025/ground_truth.json": "7b02d12815933e55732d0a06cdc266c1fcefca70fda7cfdc599401f88b3a68b9",
+          "test/test-00026/ground_truth.json": "756d589c36fed857c04ee46b9bed246bd0270a2407ab48f6aa91ecdb7e698206",
+          "test/test-00027/ground_truth.json": "88937288f8b9f6da183af67273e7705c19a841eb348c36d7fba104a549cf896d",
+          "test/test-00028/ground_truth.json": "4009c53e108bf5939e717cd40091115e773852f4787df8b83a9ce5c5498cc168",
+          "test/test-00029/ground_truth.json": "c2b7a70c504854350b71bee1ddba131fcffbf3ad9d09a1d34bbef2355f4247b0",
+          "test/test-00030/ground_truth.json": "b01302ab1f0574f1e01a992a6433d3c89d59c2455a5edd41e43784ef94b8c19a",
+          "test/test-00031/ground_truth.json": "00b4b1d52a1880d0283e83254b4b5a56070a650ed1dcc75733a168523b7522db",
+          "test/test-00032/ground_truth.json": "d8b31642bfd7a99182fc1830813e5c96f5e1d1e260c86d7573653083a45e1545",
+          "test/test-00033/ground_truth.json": "39d6986e6f560ad1ab7d2bb6e3f84bb7a2d3198732616758c63d2616138da4b1",
+          "test/test-00034/ground_truth.json": "fe03020f216d8ad7dbb45f282b02ecd01f9e68a45d7ee19ed425703f00941669",
+          "test/test-00035/ground_truth.json": "14a0aaee8608be1d3ae6e227a6829896763ffa45775b2b16ca044c101892d54a",
+          "test/test-00036/ground_truth.json": "39f0cf8afd4de23100e1cf4b55c58b4b8806a7164b168ae2bc1777ae827cc586"
+        },
+        "license": "CC-BY-4.0",
+        "attribution": "holdout-910521, generated by Mysthrala Kurogane Defense Labs' OT Irregularity Lab simulator 0.6.0; CC BY 4.0.",
+        "source_url": "https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab",
+        "simulator_version": "0.6.0",
+        "test_runs": 36
+      },
+      {
+        "seed": 910522,
+        "manifest_sha256": "be37814c06727d5e79f272c7832e2421c29b3331e776cb46718fe8838a126e12",
+        "truth_hashes": {
+          "test/test-00001/ground_truth.json": "3fdb268adca71ddbd7c000e29e9be8f7af3899be625c0bb8b1984a5394dcedde",
+          "test/test-00002/ground_truth.json": "e2e9bb0732e8fd01fb13af8419afaa756aa2405c3d73469da2a6ea29d11bb438",
+          "test/test-00003/ground_truth.json": "0dd2d4323ee9618b882ed17804b9ce5de8d00c67ea56eb1ab245e870b8d26466",
+          "test/test-00004/ground_truth.json": "ca21917e0708a8cbebd7345b31a0b05d7c0535844db1ab908710b2a4c38913d5",
+          "test/test-00005/ground_truth.json": "e4e7518b140088b4713d76e1b7514e9cb1f11e4f48e84a370a7f5449199c797c",
+          "test/test-00006/ground_truth.json": "414163df3f435597ddd1ec41902a185c5286bee1aa21eaf439f538ddeaf2123e",
+          "test/test-00007/ground_truth.json": "19d74bbb16e80389ce5b81ffb3be90a4651d5622a0357a529b89873c5ec52a44",
+          "test/test-00008/ground_truth.json": "88598508093454a11b5f6cfed385d84e090a1100ae1c38bfe5e9171acec3d5d2",
+          "test/test-00009/ground_truth.json": "84dc768759955025e2abcd2f1c651d3100cb4a7a4f30c335f379a17a50cb2bf1",
+          "test/test-00010/ground_truth.json": "5acce0e4971fce5fbb7e2a8ab1a31869c2241ebff92840d49645491a5ffe5385",
+          "test/test-00011/ground_truth.json": "d885308aeacf44d9bb9da2f39b59722563f9b8a0d4e4d4a36afd9d07f1ecfb18",
+          "test/test-00012/ground_truth.json": "824c501287e2be9bec30230cc19fc85f88ee1665ea1973ba1a9ee9078121c1f5",
+          "test/test-00013/ground_truth.json": "d59546c6c1b1667a2d27089b79f73458f32adcd974d7e0fc96eec531dc723368",
+          "test/test-00014/ground_truth.json": "840be79bdbfe0319453ecbe4a6979e3186b8be48e5aacde5e85e4b07d06dd26c",
+          "test/test-00015/ground_truth.json": "2ecdea0f4a9c4d1d22628048e4a0e5908bdffa5d5b44406cd7b0215364154438",
+          "test/test-00016/ground_truth.json": "e33a06a083387c7682924631682eceb2b1ef32fc25dfb33d5946cafd89521e95",
+          "test/test-00017/ground_truth.json": "cfd5348df5e2647efc06f91ccf647b83887d6ac3fccef6a9e928caf1f12afb19",
+          "test/test-00018/ground_truth.json": "6b2a6cefee542532af4d32a810af14043d1d6d95003fe0be5c191db6d33f1fd0",
+          "test/test-00019/ground_truth.json": "d0a14a4bc6e432fde6a25ed9f6578de8887a8107dfee1b8f75e55773074a9414",
+          "test/test-00020/ground_truth.json": "ce762f3c153914f5185469f35bcb0441764355d4c839e2bea8ff97b940008da6",
+          "test/test-00021/ground_truth.json": "389785c9d865ea61df6020f4b1d3d705c441af20b2520a49d7de519fd858b7b4",
+          "test/test-00022/ground_truth.json": "e5dc08d5b49cc6433b0d8da73ba4c49ab32879aa424f3f3cc0a62aa308d51c48",
+          "test/test-00023/ground_truth.json": "5fd3149801b395005b487b24d3db08494d44d7fcccdc13150400ed60963f3b47",
+          "test/test-00024/ground_truth.json": "87b47f1cd17a0975c6f47a8e72cd4ba8a132af53d9b180a608ff769a8039a1fc",
+          "test/test-00025/ground_truth.json": "b824cb8f98842cbfd69bd9f30511c8a1cbaac32982c571227f2b9ca505241ff8",
+          "test/test-00026/ground_truth.json": "b82c039002c044dab9aaef6d5cb2e4daed2020b7d0985bd5ec56c17997d6a37f",
+          "test/test-00027/ground_truth.json": "19df0180cd8978c99ee1afc80352f51439edcb94f5d9984a273afd94870489a6",
+          "test/test-00028/ground_truth.json": "e952e82ff5f92c0683ddb1ce9455e15e7211368ae9633febe40806d0229e423f",
+          "test/test-00029/ground_truth.json": "29b83e573af951ad710406adc9a426e2186f85732d07e442f8d27338612cc614",
+          "test/test-00030/ground_truth.json": "1cc795352a2c74b27f853a4cdb3d481dd31111730a83f676a01168fde5cdd98b",
+          "test/test-00031/ground_truth.json": "9b1977b8b7a7f9acb74d805dd30b3670465c8e03bd34f92fe1b78b75efa5a36d",
+          "test/test-00032/ground_truth.json": "86f899918c678736c956871a0933cf628db7e72d6d718981868fb91e4e891e38",
+          "test/test-00033/ground_truth.json": "d9dbb6a1eefe80e8b3ad0102f09365b838f4675abe26863c36f1edc13dc53ae2",
+          "test/test-00034/ground_truth.json": "d1efbae43953fd4583f5008da86210985dd5ca0b3a8db476ffc800525643c3d8",
+          "test/test-00035/ground_truth.json": "9bad835017b5d0c77c80c123e63bee3b9eba313cd27b21fe65e2f86080edf634",
+          "test/test-00036/ground_truth.json": "a2155f69b323f46dbb5b180c8792b0a5d0b091d62148c7955e07a866addfc1a1"
+        },
+        "license": "CC-BY-4.0",
+        "attribution": "holdout-910522, generated by Mysthrala Kurogane Defense Labs' OT Irregularity Lab simulator 0.6.0; CC BY 4.0.",
+        "source_url": "https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab",
+        "simulator_version": "0.6.0",
+        "test_runs": 36
+      },
+      {
+        "seed": 910523,
+        "manifest_sha256": "985d60837cdb2126232478d539217bc184b940d7e30c7d8c9243ffa162c9f7a4",
+        "truth_hashes": {
+          "test/test-00001/ground_truth.json": "5003368501de7320d1c9e8a419d8f9400135883d8935c2c9df62e21552d161b2",
+          "test/test-00002/ground_truth.json": "23ca5894257dde235e6ba496e45b5126a53e96cf2177dbdd0f82126a5a49e9da",
+          "test/test-00003/ground_truth.json": "e04a22d1999c90cedce5bbd937cdb09cb2f32fe27298d8900cdce2e760445c17",
+          "test/test-00004/ground_truth.json": "7fe61fba1fb542cb3ae2182a2f7bf3c928339d09060bfb3d10f6093eaef91c39",
+          "test/test-00005/ground_truth.json": "7321d6dcaed775431b4a65cc9c1fa59f04680ccc78901f3bb6b91ff5149cd542",
+          "test/test-00006/ground_truth.json": "d8e3920bd723d38cc92c36523b71de72b9b7c912b5510cf333fb9ab1be7b7357",
+          "test/test-00007/ground_truth.json": "daeb25f005e594e37491b475c8732a17b927294a2c1be86a4bcd048ca4a43466",
+          "test/test-00008/ground_truth.json": "0a0d121371618304922f7debc4fa5079c4efba3a75b4e81d02febffdf1e7204a",
+          "test/test-00009/ground_truth.json": "f23e2deddeb1a929f695735c2a9ec4b6dc82016e2b42086bdcad136b6c7bd24a",
+          "test/test-00010/ground_truth.json": "12524aa52ccb1adc7c671eb7fec7d7d8b0f60cb57e2c504eb702ca7e84cff0f3",
+          "test/test-00011/ground_truth.json": "a40189ccb7620e9a62dfc36c462aeac8d726afa1f060111d51f5925ff3f86a25",
+          "test/test-00012/ground_truth.json": "821b231182ce19dcb97bfad43cd1863b129a67a7f8bf570894fd4479f53eae97",
+          "test/test-00013/ground_truth.json": "c8ad94a2d96978fdca6976c30ef1036d2c1a1cb4f63a4dfde87786dc8bc1f5d7",
+          "test/test-00014/ground_truth.json": "a2c5b88a7ed225530a9d8e71ca5165c1970280d66884ff29146392682c0d6b25",
+          "test/test-00015/ground_truth.json": "f259a2cd4eedd200266cc0cd26014209ab84b063eae6dacd6ac5a90954937e7b",
+          "test/test-00016/ground_truth.json": "c37ce27690a4839696704186e3dfd1af2d7be1cdfbb395e67caf1e5734abc80c",
+          "test/test-00017/ground_truth.json": "26fe52b983f2284aacb24cac11850ded84b502435426e72a2430f9af05f80684",
+          "test/test-00018/ground_truth.json": "ff058511cb97e3f8496e59698a12a0630360262d995b3fafd0083451d18c2fbc",
+          "test/test-00019/ground_truth.json": "d2fa1ad290089c1b2cd2850bc1ef224628190f1d73cc59d68cd0eb7fae3c3005",
+          "test/test-00020/ground_truth.json": "6fa34971c26d13efe6ca3a9c8b545e122ba4b6af2582db3a3f417357538fbe88",
+          "test/test-00021/ground_truth.json": "7f5f52debe5cb21715ef0218335ef8441f248f653107b866ec03124c596f0541",
+          "test/test-00022/ground_truth.json": "2fe86dd28004705545d3b07e0b3e39b4bf578a526dda42b205317e8f7a6776ef",
+          "test/test-00023/ground_truth.json": "1bc5800db6cabc87fe69d496e6531d18974bc2ef81b5129ecec1f7ab23d323d5",
+          "test/test-00024/ground_truth.json": "e33a17289e6cca5e713d5f709c7a7c360e0613f6386a6eb2286292ddbe3e3db1",
+          "test/test-00025/ground_truth.json": "cf443bd3815c61a44493fc779ab68e17c89e4cec2fd5d4640ce7cc74e86df924",
+          "test/test-00026/ground_truth.json": "7f432534a5bb3c39ed36adad106c8a17a70d0df7ac1b1d8112a07f0e81057020",
+          "test/test-00027/ground_truth.json": "96d581e427c0c4eced09f1f6a668cc147c77adb6df8d4c3dd992b03739877ea7",
+          "test/test-00028/ground_truth.json": "1e6b0df62dcebdd56299905d889d680c79acb1481169dc6e501cc801bee2a58a",
+          "test/test-00029/ground_truth.json": "d4c6deaa7b8f070d57f5192f3b0715b4e5cb0773c4b9f8d040acbd0608b4226e",
+          "test/test-00030/ground_truth.json": "fcb9eca4dc0e63a7819f2ef3fa96f4a0814ee67837a8a120a787ef6e94ec757c",
+          "test/test-00031/ground_truth.json": "aa1ad0e5e4d8965355f96e25609ec591ae180706f6ae8f83e59308f0e6534132",
+          "test/test-00032/ground_truth.json": "a57092d6aa2552934d2648945c792f8c0e59e10edc30509fee2dff1eedc49d6d",
+          "test/test-00033/ground_truth.json": "800abc6a248999761ef64d60ce0a2aeb851fceb34c238870fa323020bfd6fa71",
+          "test/test-00034/ground_truth.json": "4a075d156b49721fd1e3f2304f31e9dc102f5404298bb03a6847645f4d3f71eb",
+          "test/test-00035/ground_truth.json": "c74df4a982037984bed00b78197946a01ed2e46c77cf0101c51f497cf1431404",
+          "test/test-00036/ground_truth.json": "0cef5b581a6ef655e0fc48a74d280b2314a044b885ba26a4b50bf4aee3904902"
+        },
+        "license": "CC-BY-4.0",
+        "attribution": "holdout-910523, generated by Mysthrala Kurogane Defense Labs' OT Irregularity Lab simulator 0.6.0; CC BY 4.0.",
+        "source_url": "https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab",
+        "simulator_version": "0.6.0",
+        "test_runs": 36
+      }
+    ],
+    "event_count": 84,
+    "threshold": 0.9905660377358492,
+    "coverage": {
+      "original_minutes": 1856,
+      "retained_minutes": 1631,
+      "excluded_minutes": 225,
+      "observed_asset_hours": 28.74918444444444,
+      "retained_window_asset_hours": 27.183333333333334,
+      "excluded_positive_minutes": 4
+    },
+    "paired_false_alert_count_delta_ci95": [
+      -25.0,
+      -6.0
+    ],
+    "bootstrap_replicates": 2000,
+    "gate_passed": true,
+    "selection_after_test": false,
+    "limit": "Batch endpoint correction with reduced emitted coverage; no improvement in learned physical sensitivity. PR-AUC populations differ."
+  },
+  "cache_provenance": {
+    "15s": {
+      "provenance": {
+        "dataset_hash": "aa66417ccbf5c5052ef6dee4407acbc6f7553369f80d76b2ff84995be8e32356",
+        "schema_sha256": "dd87b96ffbe71131fb688086d00c2453610e6602ac5ae17c150c65dfde93e63c",
+        "feature_config": {
+          "window": {
+            "size": "15s",
+            "stride": "15s"
+          },
+          "features": {
+            "quality": true,
+            "sampling": true,
+            "slopes": true,
+            "statistical": true
+          },
+          "normalization": {}
+        }
+      },
+      "files": {
+        "train.parquet": "59a2690d0bd1e7281dd335363c8e2242945f8d16c51b389189094d7830c020cd",
+        "validation.parquet": "0d3fa0fc6a9af70a70efa336a1cf3014fb5aa7431e2bda644c7b9067ae6313e2"
+      }
+    },
+    "30s": {
+      "provenance": {
+        "dataset_hash": "aa66417ccbf5c5052ef6dee4407acbc6f7553369f80d76b2ff84995be8e32356",
+        "schema_sha256": "dd87b96ffbe71131fb688086d00c2453610e6602ac5ae17c150c65dfde93e63c",
+        "feature_config": {
+          "window": {
+            "size": "30s",
+            "stride": "30s"
+          },
+          "features": {
+            "quality": true,
+            "sampling": true,
+            "slopes": true,
+            "statistical": true
+          },
+          "normalization": {}
+        }
+      },
+      "files": {
+        "train.parquet": "461c2c4de70217b7c7b9b02746f822b6b8b05373554f2ee013b5f8dbc562b1fc",
+        "validation.parquet": "4f81a3d3012cfa54466f02ccc9526d8f2c1e787e0b4f4caa7534ce1641eaf702"
+      }
+    }
+  },
+  "research_models": {
+    "15s": {
+      "contextual_models.json": "742341eb75a62eebfd8fbc40aaae7db0987c705a9cef2d8397d5f9a10816c7ae",
+      "training_config.yaml": "afc3846cba0eccf772a12ce4e1e84557290a4b3183465ab622610ff68be6b510",
+      "feature_schema.json": "5e962a6510fb94b3813d40dec3609b8345e95ed57a19bee90b342f3cd5328d56",
+      "minute_decision.json": "ecd45377d46d06cd0011ea5087ffbcdc2b061a1809c9bcb050d243fa699f5130"
+    },
+    "30s": {
+      "contextual_models.json": "c081920f490da11901f2585f9015a53c5909c55a017c84ed6c61085742722eb9",
+      "training_config.yaml": "9cd68b1a06ca8b28d20f7834d6b9abbc682554b014d06ed8575ff2cbd8108d0d",
+      "feature_schema.json": "5e962a6510fb94b3813d40dec3609b8345e95ed57a19bee90b342f3cd5328d56",
+      "minute_decision.json": "46b83ce950cd80c0815b29266fe7051e76c0f3adef6e1662a7e718a9d8064b9d"
+    }
+  },
+  "provenance_note": "The duration compatibility marker was added after screening, after verifying actual cached window widths; no scores or weights changed. Research protocol source hash reflects the script at experiment start.",
+  "evidence_hashes": {
+    "temporal_results.json": "75f15caf769b9039bd14a30d856d5ab71062ff43c13936e83be950cc616a188d",
+    "tail_development.json": "2c2b67489dad966943330576c30be4df7f6653c291df1e29f5c6857ea0706f99",
+    "tail_results.json": "d00cdab706d301118f873b3a3adc3c059cc27ea4b8773500966a92d542e5009d",
+    "tail_predictions.parquet": "236d42ef2be64ea25a9a29bdebab6af1d484ccdb86f8c834bd80b0c553be84ee",
+    "tail_events.json": "b76a05d12777e36e5e285179b654f47b90902211bdb68ae87146c52108dd3bc4"
+  },
+  "source": {
+    "url": "https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab",
+    "license": "CC-BY-4.0",
+    "attribution": "Mysthrala Kurogane Defense Labs, OT Irregularity Lab generated pseudo-synthetic telemetry",
+    "new_generator_commit": "718babb7772c3a21f0b87c403f628540cbce58db",
+    "suite_sha256": "a768415b78245f671ac41edb75b249e9c8ab0523c1088aa9848b9c62f613e091"
+  }
+}

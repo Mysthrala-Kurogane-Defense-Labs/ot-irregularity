@@ -67,6 +67,10 @@ def test_prepare_keeps_normal_train_and_labeled_validation_test(tmp_path):
     assert test["event_id"].to_list() == [None, "test-run/evt-test", "test-run/evt-test"]
     assert test["quality"].to_list() == ["good"] * 3
     assert test["event_start_us"].to_list() == [None, 1735689601000000, 1735689601000000]
+    event_doc=json.loads((output/"test"/"events.json").read_text())
+    assert event_doc["events"][0]["event_id"]=="test-run/evt-test"
+    assert event_doc["events"][0]["start_us"]==1735689601000000
+    assert manifest["partitions"]["test"]["events_sha256"]==hashlib.sha256((output/"test"/"events.json").read_bytes()).hexdigest()
     assert "fixture" in (output / "DATASET_LICENSE.txt").read_text(encoding="utf-8")
     assert (output / "DATASET_LICENSE.txt").is_file()
 

@@ -5,7 +5,7 @@ import joblib, numpy as np, torch, yaml
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import RobustScaler, StandardScaler
 from .data.load import load_dataset
-from .features import encode_context, feature_columns, make_windows
+from .features import encode_context, feature_columns, feature_signal, make_windows
 from .metrics import evaluate_scores
 from .models import ae_errors, load_ae, resolve_device, train_ae
 from .normalization import normalize_units
@@ -34,12 +34,29 @@ def _git_working_tree_dirty():
 def _duration_minutes(value):
     text=str(value).strip().lower();units={"m":1,"min":1,"h":60,"s":1/60}
     for suffix,mult in units.items():
-        if text.endswith(suffix): return max(1,int(float(text[:-len(suffix)])*mult))
+        if text.endswith(suffix):
+            duration=float(text[:-len(suffix)])*mult
+            if not np.isfinite(duration) or duration < 1/60_000_000:
+                raise ValueError('Window duration must be finite and at least one microsecond')
+            return duration
     raise ValueError(f"Unsupported window duration {value!r}; use s, m, min, or h")
+
+def _model_config(modeldir,tail_policy=None):
+    """Preserve historical window interpretation for already-trained artifacts."""
+    cfg=yaml.safe_load((Path(modeldir)/'training_config.yaml').read_text())
+    version=cfg.get('window_duration_version',1)
+    if version not in (1,2):raise ValueError(f'Unsupported window duration version: {version}')
+    if version==1:
+        cfg['window']={key:(f'{max(1,int(_duration_minutes(value)))}m' if key in ('size','stride') else value)
+                       for key,value in cfg.get('window',{}).items()}
+    if tail_policy is not None:
+        if tail_policy not in ('legacy','complete'):raise ValueError('tail_policy must be legacy or complete')
+        cfg.setdefault('window',{})['tail_policy']=tail_policy
+    return cfg
 
 def _windows(path,cfg,signal_schema=None):
     d=normalize_units(load_dataset(path),cfg.get("normalization",{}).get("canonical_units",{}));d=_exclude_feature_inputs(d,cfg);w=cfg.get("window",{});signals=((signal_schema.get("measurement_roles") or signal_schema.get("signal_classes")) if signal_schema else None);intervals=signal_schema.get("sampling_intervals_ms",{}) if signal_schema else None
-    return make_windows(d,_duration_minutes(w.get("size","15m")),_duration_minutes(w.get("stride","1m")),signals,intervals,cfg.get("features",{}))
+    return make_windows(d,_duration_minutes(w.get("size","15m")),_duration_minutes(w.get("stride","1m")),signals,intervals,cfg.get("features",{}),w.get('tail_policy','legacy'))
 
 def _exclude_feature_inputs(frame,cfg):
     options=cfg.get("features",{})
@@ -50,6 +67,9 @@ def _exclude_feature_inputs(frame,cfg):
     return frame
 
 def _scores(modeldir,w):
+    if (Path(modeldir)/"contextual_models.json").is_file():
+        from .contextual import score_contextual
+        return score_contextual(modeldir,w)
     d=Path(modeldir);schema=json.loads((d/"feature_schema.json").read_text());cols=schema["features"]
     if set(cols)-set(w.columns):raise ValueError("Inference dataset is missing trained feature signals")
     produced=set(feature_columns(w))
@@ -64,7 +84,8 @@ def _prediction_records(w,cols,errors,sa,si,se,threshold,signal_applicability=No
     for i,row in enumerate(w.iter_rows(named=True)):
         contrib=errors[i]/max(float(errors[i].sum()),1e-12);by_signal={}
         for name,value in zip(cols,contrib):
-            signal=name.rsplit("_",1)[0] if name.rsplit("_",1)[-1] in {"mean","median","min","max","range","std","mad","last","delta","slope","sample_count","expected_sample_count","coverage_ratio","good_ratio","uncertain_ratio","bad_ratio"} else name
+            signal=feature_signal(name)
+            if signal is None or value<=0 or name[len(signal)+1:] not in {"mean","median","min","max","range","std","mad","last","delta","slope"}:continue
             by_signal[signal]=by_signal.get(signal,0.)+float(value)
         observations=[]
         # Missing optional regime context is not evidence of a mismatched regime.
@@ -76,6 +97,8 @@ def _prediction_records(w,cols,errors,sa,si,se,threshold,signal_applicability=No
         if missing_signals:observations.append("signal_loss")
         if any(c.endswith("_coverage_ratio") and c[:-15] in applicable and row.get(c,1)<.8 for c in cols):observations.append("sampling_degradation")
         if se[i]>=threshold:
+            if any(name.endswith(("_bad_ratio","_uncertain_ratio")) and value>0 and row.get(name,0)>0 for name,value in zip(cols,contrib)):
+                observations.append("quality_degradation")
             for signal,_ in sorted(by_signal.items(),key=lambda pair:pair[1],reverse=True)[:3]:
                 n=signal.lower()
                 if "vibr" in n:observations.append("vibration_deviation")
@@ -90,8 +113,13 @@ def _record_progress(path,phase,**fields):
     with Path(path).open("a",encoding="utf-8") as stream:stream.write(json.dumps(event)+"\n")
 
 def train(dataset,config,output):
+    requested_cfg=yaml.safe_load(Path(config).read_text())
+    if requested_cfg.get("model_family")=="contextual" and not all((Path(dataset)/part).is_dir() for part in ("train","validation")):
+        raise ValueError("Contextual training requires explicit train/ and validation/ directories")
+    if requested_cfg.get("model_family")=="contextual" and Path(output).exists() and any(Path(output).iterdir()):
+        raise FileExistsError("Contextual training requires an empty output directory; preserve previous artifacts")
     out=Path(output);out.mkdir(parents=True,exist_ok=True);progress=out/"training_progress.jsonl";progress.write_text("",encoding="utf-8");_record_progress(progress,"loading_data")
-    cfg=yaml.safe_load(Path(config).read_text());seed=int(cfg.get("seed",42));random.seed(seed);np.random.seed(seed);torch.manual_seed(seed)
+    cfg=yaml.safe_load(Path(config).read_text());cfg['window_duration_version']=2;seed=int(cfg.get("seed",42));random.seed(seed);np.random.seed(seed);torch.manual_seed(seed)
     root=Path(dataset);trainp=root/"train";valp=root/"validation"
     if not trainp.exists():trainp=root
     if not valp.exists():raise ValueError("A separate validation/ partition is required for calibration")
@@ -114,6 +142,17 @@ def train(dataset,config,output):
     tr=_windows(trainp,cfg,signal_schema);va=_windows(valp,cfg,signal_schema);_record_progress(progress,"features_ready",training_windows=tr.height,validation_windows=va.height)
     if "is_anomaly" in tr.columns and tr["is_anomaly"].any():raise ValueError("Training partition must contain normal-only windows")
     tr,context_vocab=encode_context(tr);va,context_vocab=encode_context(va,context_vocab)
+    if cfg.get("model_family")=="contextual":
+        from .contextual import train_contextual_windows
+        applicability={}
+        if "asset_class" in rawtr.columns:
+            for key,sub in rawtr.group_by("asset_class"):
+                applicability[str(key[0])]=sorted(str(v) for v in sub[channel_column].drop_nulls().unique().to_list())
+        schema={**signal_schema,"context_vocabulary":context_vocab,"signals_by_asset_class":applicability,"canonical_units":units}
+        metadata={"model_version":str(cfg.get("model_version","0.4.0-candidate")),"training_date":datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                  "git_commit":_git_commit(),"git_working_tree_dirty":_git_working_tree_dirty(),"dataset_hash":_hash_paths([trainp,valp]),
+                  "dataset_schema_version":"1","stride_seconds":_duration_minutes(cfg.get("window",{}).get("stride","1m"))*60}
+        return train_contextual_windows(tr,va,cfg,out,schema,metadata)
     normal=va.filter(~__import__("polars").col("is_anomaly")) if "is_anomaly" in va.columns else va
     if normal.is_empty():raise ValueError("Validation must contain at least one normal window for score calibration")
     cols=feature_columns(tr);val_cols=set(feature_columns(va));missing=set(cols)-val_cols;extra=val_cols-set(cols)
@@ -140,8 +179,12 @@ def train(dataset,config,output):
     (out/"model_card.md").write_text(model_card);_record_progress(progress,"completed",metrics_file=str(out/"metrics.json"),model_version=model_version)
     return metrics
 
-def infer(modeldir,dataset,output):
-    cfg=yaml.safe_load((Path(modeldir)/"training_config.yaml").read_text());schema=json.loads((Path(modeldir)/"feature_schema.json").read_text());w=_windows(dataset,cfg,schema);w,_=encode_context(w,schema.get("context_vocabulary",{}));cols,errors,sa,si,se,threshold=_scores(modeldir,w);records=_prediction_records(w,cols,errors,sa,si,se,threshold,schema.get("signals_by_asset_class"),str(cfg.get("model_version","0.1.0")))
+def infer(modeldir,dataset,output,*,tail_policy=None):
+    cfg=_model_config(modeldir,tail_policy);schema=json.loads((Path(modeldir)/"feature_schema.json").read_text());w=_windows(dataset,cfg,schema);w,_=encode_context(w,schema.get("context_vocabulary",{}));cols,errors,sa,si,se,threshold=_scores(modeldir,w);records=_prediction_records(w,cols,errors,sa,si,se,threshold,schema.get("signals_by_asset_class"),str(cfg.get("model_version","0.1.0")))
+    if cfg.get('window',{}).get('tail_policy')=='complete':
+        for record in records:record['window_tail_policy']='complete'
+    if (Path(modeldir)/"contextual_models.json").exists():
+        for record in records:record["contribution_basis"]="share of top-k normalized squared reconstruction error"
     if output and str(output).lower().endswith(".parquet"):
         import polars as pl;pl.DataFrame(records).write_parquet(output)
     elif output:Path(output).write_text("\n".join(json.dumps(r) for r in records)+"\n")

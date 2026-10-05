@@ -1,0 +1,38 @@
+name: Python tests
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    env:
+      CUDA_VISIBLE_DEVICES: ""
+      PYTHONHASHSEED: "42"
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d0d8abe699bfb85fec6de9f7adb5ae17292296ff # v6
+        with:
+          version: "0.12.23"
+          enable-cache: true
+      - name: Install locked Python environment
+        run: uv sync --frozen --extra test --python 3.12
+      - name: Record environment
+        run: uv run --frozen python -c "import sys, torch, polars, sklearn; print(sys.version); print('torch', torch.__version__, 'polars', polars.__version__, 'sklearn', sklearn.__version__); assert not torch.cuda.is_available()"
+      - name: Tests including synthetic train-save-load-infer
+        run: uv run --frozen pytest -q
+      - name: Check whitespace
+        run: git show --format= --check HEAD

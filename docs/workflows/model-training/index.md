@@ -7,3 +7,7 @@
 | 2026-10-05 | Experiment complete; supplement rejected | Physical/regime ablation, development selection and fresh frozen holdout; v0.4 retained | [run record](runs/2026-10-05-physical.md); [study progress](../../STUDY_PROGRESS.md) |
 | 2026-10-05 | Experiment complete; operational target unmet | Contextual AE residual tails, three seeds, new independent holdout, complete event intervals | [run record](runs/2026-10-05.md); [candidate report](../../MODEL_V0.4_CONTEXTUAL.md) |
 | 2026-10-04 | Complete locally | Fit v0.3 candidate from 15 semantically corrected simulator batches; held-out test and deterministic inference | [run record](runs/2026-10-04.md); [candidate report](../../MODEL_V0.3_CANDIDATE.md) |
+
+## Entrega y continuación
+
+v0.4 integrada mediante PR #1 (79b32ce). v0.5 continúa en su rama independiente: [mantenimiento y protocolo siguiente](../../V0.5_MAINTENANCE.md). Validación de separación: árbol v0.4 idéntico a f3dc360 y 60 tests; candidato restaurado en v0.5 con 65 tests. El CI nuevo debe verificarse en GitHub.

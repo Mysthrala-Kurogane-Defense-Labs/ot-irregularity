@@ -43,11 +43,13 @@ def verify_source(source, frozen):
     return manifest
 
 
-def verify_run(source, entry):
+def verify_run(source, entry, partition='test'):
     run_id = entry['run_id']
     if Path(run_id).name != run_id or run_id in ('.', '..'):
         raise ValueError('Invalid run identity')
-    folder = source / 'test' / run_id
+    if partition not in ('train', 'validation', 'test') or entry.get('partition', partition) != partition:
+        raise ValueError('Unexpected source partition')
+    folder = source / partition / run_id
     source_hashes = {}
     for name, field in [('telemetry.parquet', 'telemetry_sha256'), ('ground_truth.json', 'ground_truth_sha256'),
                         ('run_metadata.json', 'metadata_sha256')]:

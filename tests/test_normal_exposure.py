@@ -69,6 +69,12 @@ def test_run_source_verification_uses_lab_canonical_scenario_hash(tmp_path):
                       ('run_metadata.json', 'metadata_sha256')]:
         entry[key] = hashlib.sha256((folder/name).read_bytes()).hexdigest()
     assert verify_run(tmp_path, entry)[2] == scenario
+    import shutil
+    shutil.copytree(folder, tmp_path/'train'/'r')
+    training_entry = {**entry, 'partition': 'train'}
+    assert verify_run(tmp_path, training_entry, 'train')[2] == scenario
+    with pytest.raises(ValueError, match='partition'):
+        verify_run(tmp_path, training_entry)
     scenario['duration_s'] = 1
     (folder/'scenario.yaml').write_text(yaml.safe_dump(scenario))
     with pytest.raises(ValueError, match='semantic hash'):

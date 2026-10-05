@@ -37,3 +37,11 @@ Eligibility:
 3. New normal-development false windows <= original v0.5 overall and <=10/asset-day per class. Report all profiles/cadences, component availability and episode counts.
 
 Among eligible primary points: most events, then fewer new normal false windows, prefer repetition disabled, then the higher threshold. Keep all rejected points. If none passes, record remaining event identities/false-alarm strata and generate no new holdout. An eligible choice must be frozen and evaluated on new mixed-event and long-normal data before promotion. This changes no earlier rejection and does not establish v1.0 readiness.
+
+## Declared correction r2: configured versus observed intervals
+
+The first execution at `896f383` exposed an adapter error: Lab row intervals contain observed elapsed time, including jitter and dropouts, rather than configured cadence. Preserve its rejected results at `a4f913b`. Before the corrected evaluation, require explicit `declared_sampling_interval_ms` for this channel; absent declarations make sampling/repetition unavailable. Preserve the source's observed interval separately as `observed_sampling_interval_ms` and leave the existing feature pipeline unchanged.
+
+For Lab runs, verified run metadata and canonical scenario must agree on positive nominal cadence. Match metadata identity and hash, scenario hash and telemetry hash to the source manifest. Match normalized historical observations to those exact raw runs before joining cadence by namespaced run ID. Read only the train/validation runs already selected; no test/challenge telemetry or anomaly labels determine cadence. Retain source hashes. The cadence is configuration known before acquisition, but extraction retains its conservative first-observation availability rule. Generic sources must supply their own verified declared-cadence contract; do not guess from gaps.
+
+Repeat the same six primary points, reference quantiles, split, frozen original models and exact-event/false-alarm gates in a new output directory. No new hyperparameters or threshold selection are introduced. Add jitter, dropout, unknown declaration, true declared change and provenance-mismatch tests before evaluation. Confirm any selected point with the two original secondary seeds, without reselection. Only then freeze a candidate for new independent mixed and normal data.

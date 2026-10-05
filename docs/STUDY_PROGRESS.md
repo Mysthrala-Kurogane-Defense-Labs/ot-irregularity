@@ -4,6 +4,8 @@ Este registro conserva avances, resultados negativos y cambios de medición. Los
 
 ## Evolución hasta el 5 de octubre de 2026
 
+Última iteración: [presupuestos separados de alerta](workflows/model-training/runs/2026-10-05-alert-budgets.md) rechazados en desarrollo. La unión conserva todas las alertas baseline y gana eventos físicos, pero pasa de 4 a entre 8 y 17 falsas ventanas. Ninguna de tres semillas cumple el gate; no se consume un nuevo test.
+
 | Etapa | Pregunta y evidencia | Decisión |
 |---|---|---|
 | v0.3, búsqueda de features | 120 entrenamientos; test histórico: PR-AUC 0,1599, 23/276 eventos, 39,48 falsas ventanas/activo-día | Conservar el resultado débil como referencia; no afirmar calidad operacional |

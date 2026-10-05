@@ -12,7 +12,7 @@ def raw_samples(start=0, count=60, interval=1000):
         'measurement_role': ['flow']*count, 'unit': ['l/min']*count,
         'timestamp': [datetime(2025,1,1)+timedelta(milliseconds=start+i*interval) for i in range(count)],
         'value': np.arange(count, dtype=float), 'quality': ['good']*count,
-        'sampling_interval_ms': [interval]*count})
+        'sampling_interval_ms': [interval]*count, 'declared_sampling_interval_ms': [interval]*count})
 
 
 def window(start=0):
@@ -94,7 +94,7 @@ def test_health_requires_normal_disjoint_references_and_preserves_unavailability
     with pytest.raises(ValueError, match='leakage'):
         TelemetryHealthReference().fit(fit, fit)
     model = TelemetryHealthReference(minimum_windows=2).fit(fit, cal)
-    features = extract_health(raw_samples().drop('quality', 'sampling_interval_ms'), window(), {'PUMP': ['flow']})
+    features = extract_health(raw_samples().drop('quality', 'declared_sampling_interval_ms'), window(), {'PUMP': ['flow']})
     scores, details = model.score(features)
     assert scores['health_score'][0] is None
     assert scores['observations'][0].to_list() == []
@@ -136,3 +136,48 @@ def test_health_study_alignment_and_gate_reject_substitutions():
                          (1, {**normal, 'by_class': {'PUMP': {'false_windows_per_asset_day': 11}}})]:
         changed = args.copy(); changed[index] = value
         assert not candidate_gate(*changed)
+
+
+def test_declared_cadence_survives_observed_jitter_and_dropout():
+    raw = raw_samples().with_columns(pl.Series('sampling_interval_ms', [1000, 999, 1001]*20))
+    score = extract_health(raw, window(), {'PUMP': ['flow']})
+    assert score['coverage_ratio'][0] == 1
+    assert score['cadence_reason'][0] is None
+    missing = raw.filter(pl.int_range(pl.len()) % 3 != 1)
+    feature = extract_health(missing, window(), {'PUMP': ['flow']})
+    assert feature['coverage_ratio'][0] == pytest.approx(2/3)
+    # Observed gaps must not become an implicit configured expectation.
+    unknown = extract_health(raw.drop('declared_sampling_interval_ms'), window(), {'PUMP': ['flow']})
+    assert unknown['coverage_ratio'][0] is None
+    assert unknown['repetition_ratio'][0] is None
+
+
+def test_lab_cadence_provenance_and_assignment(tmp_path):
+    import hashlib
+    import json
+    import yaml
+    from scripts.health_cadence import attach_declared_cadence, declared_cadence
+    from scripts.prepare_otlab import _sha256
+    folder = tmp_path/'train'/'train-00001'; folder.mkdir(parents=True)
+    scenario = {'sampling_interval_ms': 1000}
+    scenario_hash = hashlib.sha256(json.dumps(scenario, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    (folder/'scenario.yaml').write_text(yaml.safe_dump(scenario))
+    meta = {'run_id': 'train-00001', 'sampling_interval_ms': 1000, 'scenario_sha256': scenario_hash}
+    (folder/'run_metadata.json').write_text(json.dumps(meta))
+    raw_samples().drop('declared_sampling_interval_ms').write_parquet(folder/'telemetry.parquet')
+    entry = {'partition':'train', 'run_id':'train-00001', 'scenario_sha256':scenario_hash,
+             'metadata_sha256':_sha256(folder/'run_metadata.json'), 'telemetry_sha256':_sha256(folder/'telemetry.parquet')}
+    _, period, hashes = declared_cadence(tmp_path, entry)
+    assigned = attach_declared_cadence(pl.read_parquet(folder/'telemetry.parquet'), period)
+    assert period == 1000 and len(hashes) == 3
+    assert assigned['observed_sampling_interval_ms'].equals(assigned['sampling_interval_ms'])
+    with pytest.raises(ValueError, match='already assigned'):
+        attach_declared_cadence(assigned, period)
+    with pytest.raises(ValueError, match='development'):
+        declared_cadence(tmp_path, {**entry, 'partition':'test'})
+    with pytest.raises(ValueError, match='hash mismatch'):
+        declared_cadence(tmp_path, {**entry, 'metadata_sha256':'changed'})
+    meta['sampling_interval_ms'] = 500
+    (folder/'run_metadata.json').write_text(json.dumps(meta))
+    with pytest.raises(ValueError, match='disagreement'):
+        declared_cadence(tmp_path, {**entry, 'metadata_sha256':_sha256(folder/'run_metadata.json')})

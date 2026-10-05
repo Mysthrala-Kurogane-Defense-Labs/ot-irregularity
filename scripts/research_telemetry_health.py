@@ -10,6 +10,7 @@ import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from scripts.evaluate_normal_exposure import verify_run
+from scripts.health_cadence import attach_declared_cadence, declared_cadence, historical_cadence
 from scripts.prepare_otlab import _sha256, normalize_observations
 from scripts.relationship_operating_points import residual_scores
 from scripts.research_detection import cache_windows, write_json
@@ -66,6 +67,9 @@ def run(args):
     old = cache_windows(args.dataset, schema, cfg, args.cache)
     raw = {p: pl.read_parquet(args.dataset / p / 'telemetry.parquet') for p in old}
     old = {p: closed(frame, raw[p]) for p, frame in old.items()}
+    cadence_sources = {}
+    for p in raw:
+        raw[p], cadence_sources[p] = historical_cadence(raw[p], args.raw_root, p)
     new = {p: pl.read_parquet(args.normal_cache / (p + '.parquet')) for p in ('train', 'validation')}
     populations = [set(f['run_id']) for f in [*old.values(), *new.values()]]
     if any(a & b for i, a in enumerate(populations) for b in populations[i+1:]):
@@ -78,6 +82,8 @@ def run(args):
     repo = Path(__file__).resolve().parents[1]
     identity = {'protocol_sha256': _sha256(repo / 'docs/TELEMETRY_HEALTH_PROTOCOL.md'), 'git_commit': _git_commit(),
                 'implementation_sha256': _sha256(repo / 'src/ot_irregularity/telemetry_health.py'),
+                'cadence_adapter_sha256': _sha256(repo / 'scripts/health_cadence.py'),
+                'historical_declared_cadence': cadence_sources,
                 'baseline_files': relational['baseline_files'], 'relational_models': relational['models'],
                 'historical_cache_manifest': json.loads((args.cache / 'cache_manifest.json').read_text()),
                 'normal_cache_manifest_sha256': _sha256(args.normal_cache / 'manifest.json'), 'test_used': False}
@@ -99,7 +105,8 @@ def run(args):
             if entry['partition'] not in parts:
                 raise ValueError('Do not read normal source test/challenge')
             folder, _, _, _ = verify_run(args.normal_source, entry, entry['partition'])
-            observations = normalize_observations(pl.read_parquet(folder / 'telemetry.parquet')).with_columns(
+            _, period, _ = declared_cadence(args.normal_source, entry)
+            observations = attach_declared_cadence(normalize_observations(pl.read_parquet(folder / 'telemetry.parquet')), period).with_columns(
                 (pl.lit('normal-dev-920611::') + pl.col('run_id')).alias('run_id'))
             windows = new[entry['partition']].filter(pl.col('run_id') == 'normal-dev-920611::' + entry['run_id'])
             parts[entry['partition']].append(extract_health(observations, windows, schema['signals_by_asset_class']))

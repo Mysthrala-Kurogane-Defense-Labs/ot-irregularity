@@ -59,7 +59,7 @@ Both consecutive windows must have >=95% good and >=90% coverage for required si
 Exact timestamp alignment; no interpolation/backfill. Maximum gap is 1.5 times the **first declared run/asset interval**, not a pooled interval across datasets. Each complete minute needs at least 20 valid pairs and 90% of expected pairs. Cadence changes and asynchronous signals need explicit handling before broader use. Normal-only fit runs train Ridge(alpha=1) and predictor RobustScaler; normal calibration runs supply score references. Development compares variants; independent test does not tune thresholds. See [protocol and limitations](docs/workflows/model-training/runs/2026-10-05-sample-thermal.md).
 # Experimental telemetry health features
 
-The standalone research channel in `telemetry_health.py` uses normalized role observations in complete one-minute windows. It does not change the existing model feature schema or generic inference CLI. See [protocol](docs/TELEMETRY_HEALTH_PROTOCOL.md).
+The standalone research channel in `telemetry_health.py` uses normalized role observations in complete one-minute windows. It requires explicit `declared_sampling_interval_ms`; a source's observed gaps are not a declared expectation. The Lab adapter verifies nominal cadence against run metadata/scenario hashes and preserves row intervals as `observed_sampling_interval_ms`. It does not change the existing model feature schema or generic inference CLI. See [protocol](docs/TELEMETRY_HEALTH_PROTOCOL.md), including the retained failed first execution and r2 correction.
 
 | Name | Formula | Inputs | Window | Reason |
 |---|---|---|---|---|

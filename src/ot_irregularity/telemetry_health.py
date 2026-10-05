@@ -28,7 +28,7 @@ def extract_health(raw, windows, roles_by_class):
         time = part['_time'].to_numpy()
         value = part['value'].cast(pl.Float64).to_numpy()
         quality = np.array([str(q).lower() if q is not None else None for q in part['quality']]) if 'quality' in part.columns else np.full(len(part), None)
-        interval = part['sampling_interval_ms'].cast(pl.Float64).to_numpy() if 'sampling_interval_ms' in part.columns else np.full(len(part), np.nan)
+        interval = part['declared_sampling_interval_ms'].cast(pl.Float64).to_numpy() if 'declared_sampling_interval_ms' in part.columns else np.full(len(part), np.nan)
         declared = np.flatnonzero(np.isfinite(interval) & (interval > 0))
         first = int(declared[0]) if len(declared) else None
         period = float(interval[first]) * 1000 if first is not None else None

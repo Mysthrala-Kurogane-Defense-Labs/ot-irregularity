@@ -2,6 +2,7 @@
 
 | Date | Status | Scope | Evidence |
 | --- | --- | --- | --- |
+| 2026-10-05 | Minute thermal model rejected; paired signal effect verified | Normal-only dynamics and ten exact original replay/intervention pairs; version discrepancy recorded | [run record](runs/2026-10-05-thermal.md) |
 | 2026-10-05 | Separate alert decisions rejected in development | Three frozen seeds, no baseline alerts lost but false windows increase; no new test | [run record](runs/2026-10-05-alert-budgets.md) |
 | 2026-10-05 | Relational v0.5 candidate passes exploratory targets; family regressions remain | Diagnostics, eight representations, adaptive operating points, three AE seeds and fresh holdout | [run record](runs/2026-10-05-relationships.md); [study progress](../../STUDY_PROGRESS.md) |
 | 2026-10-05 | Short-window candidates rejected; batch endpoint policy validated | Temporal screen; fresh frozen tail-policy holdout, coverage and original event denominators | [run record](runs/2026-10-05-temporal.md); [study progress](../../STUDY_PROGRESS.md) |

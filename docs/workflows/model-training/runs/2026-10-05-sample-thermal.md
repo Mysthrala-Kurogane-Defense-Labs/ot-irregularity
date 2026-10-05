@@ -37,4 +37,27 @@ Gate: no baseline events lost, cooling improvement, precision >=50%, all-event d
 
 74 local tests passed after correcting an Int32/Int64 mismatch in the new mixed-cadence test fixture. Tests cover causal context, target exclusion, missing/bad sample history, duplicate identities, serialization, time-weighted aggregation, mixed cadences and monotonic tail scores. Earlier empirical-CDF implementation: 72 tests; its pooled-cadence results are explicitly superseded.
 
-Data: OT Irregularity Lab, Mysthrala Kurogane Defense Labs, CC BY 4.0. Historical source version caveat remains as documented in the [paired thermal audit](2026-10-05-thermal.md). Data/models stay outside Git; results and provenance are public. Independent holdout results are pending at this record's creation.
+Data: OT Irregularity Lab, Mysthrala Kurogane Defense Labs, CC BY 4.0. Historical source version caveat remains as documented in the [paired thermal audit](2026-10-05-thermal.md). Data/models stay outside Git; results and provenance are public.
+
+## Independent holdout: small component gain, no overall model promotion
+
+The candidate was frozen at clean code commit `838be89`, before generation of seeds 910541/42/43. All three batches completed (240 runs each); only their 108 test runs were evaluated. Same 1,512 complete minute windows (25.2 asset-hours), 105 original events, 34 physical events including seven cooling events. The thermal supplement is available on 1,461 windows; the baseline remains active on all windows. No baseline event detection was lost.
+
+| Metric on the same fresh test | v0.4 complete | Thermal union | Original v0.5 relational control |
+|---|---:|---:|---:|
+| Events detected | 60/105 | 62/105 | 67/105 |
+| Physical events | 6/34 | 8/34 | 18/34 |
+| Cooling | 1/7 | 2/7 | 1/7 |
+| False windows | 7 | 8 | 7 |
+| False windows/asset-day | 6.67 | 7.62 | 6.67 |
+| Precision | 91.57% | 90.80% | 92.71% |
+| PR-AUC | .6216 | .6102 | .6949 |
+| Mean detection latency, seconds | 46.48 | 46.77 | 49.18 |
+
+Thermal union adds one cooling and one overload event. It passes the previously frozen exploratory gate, but the improvement is small and uncertain: paired run-bootstrap IC95% for event-rate change [0, .0516], cooling-rate change [0, .5], PR-AUC change [-.0364, .0148], and false-window/day change [0, 3.2146]. All-event/cooling intervals use 2,000 resamples; window metrics use 500. Precision and ranking point estimates fall slightly, and the original relational model remains better overall on this sample. **Do not replace v0.5 with this thermal component or claim statistically established thermal improvement.**
+
+For the union's PR-AUC, the continuous ranking is the maximum relative decision margin `m=max(baseline/baseline_threshold, thermal/thermal_threshold)`, mapped to `m/(1+m)` with decision threshold .5. An assertion verifies identical decisions to the frozen Boolean union. This ranking is not a calibrated probability. Event denominators use every original interval, not one event ID per window.
+
+The relational control still loses integrity detections compared with baseline: communication 7 vs 8/9, missing telemetry 5 vs 10/11, quality 1 vs 3/4, single-signal loss 4 vs 5/5. Its physical gains do not erase those losses. The thermal union preserves baseline detections but has not yet been combined with the relational supplement. The next joint decision must be selected on development, then independently tested; do not construct and promote it from these test outcomes.
+
+[Frozen manifest, source hashes and complete results](../../../results/thermal-holdout-20261005.json). `validate_thermal_candidate.py` checks artifact hashes and rejects runtime source changes since freeze, evaluates the selected component plus the two frozen controls, and refuses a second evaluation once results exist. No threshold or model was changed after viewing this test. Fifteen test seed batches are now consumed. Long normal exposure and real-industrial generalization remain unvalidated.

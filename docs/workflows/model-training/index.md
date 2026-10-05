@@ -2,7 +2,7 @@
 
 | Date | Status | Scope | Evidence |
 | --- | --- | --- | --- |
-| 2026-10-05 | Sample-first thermal component selected on development; independent test pending | Corrected per-run cadence, initial-context ablation, adaptive tail magnitude stage | [run record](runs/2026-10-05-sample-thermal.md) |
+| 2026-10-05 | Thermal component passes exploratory fresh-test gate; gain small/uncertain, no model replacement | Corrected per-run cadence, initial-context ablation, magnitude calibration, three new frozen holdouts | [run record](runs/2026-10-05-sample-thermal.md) |
 | 2026-10-05 | Minute thermal model rejected; paired signal effect verified | Normal-only dynamics and ten exact original replay/intervention pairs; version discrepancy recorded | [run record](runs/2026-10-05-thermal.md) |
 | 2026-10-05 | Separate alert decisions rejected in development | Three frozen seeds, no baseline alerts lost but false windows increase; no new test | [run record](runs/2026-10-05-alert-budgets.md) |
 | 2026-10-05 | Relational v0.5 candidate passes exploratory targets; family regressions remain | Diagnostics, eight representations, adaptive operating points, three AE seeds and fresh holdout | [run record](runs/2026-10-05-relationships.md); [study progress](../../STUDY_PROGRESS.md) |

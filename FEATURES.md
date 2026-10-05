@@ -39,9 +39,21 @@ Signal prefixes come from normalized `measurement_role` values when supplied, ot
 Temporal history never crosses run, asset or gap boundaries and never reads a future window. At warmup, or if previous quality is insufficient, the temporal transform uses its static predictor. All current roles must have good ratio >=0.95, coverage >=0.9, finite means and missing=0; otherwise this residual detector is **unavailable**. A score sentinel of zero only disables its contribution to the supplemental maximum; it must not be reported as physical normality. The baseline detector still evaluates that window.
 
 The direct research control scores the two largest absolute residuals divided by their normal early-stop q95. The residual AE uses RobustScaler on normal-fit residuals, latent 2, and the two largest squared reconstruction errors normalized by their normal early-stop q95. Both use normal-calibration empirical CDFs. The supplemental maximum with v0.4 receives its own normal-calibration threshold. Selection, availability and results are recorded separately; these features are not universally valid physical laws.
-# Experimental thermal dynamics (development screen)
+## Experimental thermal dynamics (development screen)
 
 `thermal_delta_residual_degC = (temperature_last[t] - temperature_last[t-1]) - Ridge(previous_temperature_last, current_driver_means)`.
 Fit per asset class and thermal role on normal fit runs only; predictor RobustScaler fits there too, with fixed Ridge alpha=1. Drivers are the applicable nonthermal, nonvibration operating roles, excluding photoeye counts. Current target temperature is never a predictor. The one-minute endpoint change represents thermal inertia under changing operation; residual magnitude is calibrated against normal validation residuals, separately for each target. Maximum percentile across available targets is the class thermal score. These are normal-reference percentiles, not fault probabilities.
 
 Both consecutive windows must have >=95% good and >=90% coverage for required signals, no missing/nonfinite inputs, same run/asset and a contiguous boundary. Window duration must match fitting. Missing history yields unavailable status; internal zero disables the supplement and is not a normality assertion. The minute-level screen was rejected; see [thermal diagnostic](docs/workflows/model-training/runs/2026-10-05-thermal.md). No production defaults changed.
+
+## Sample-first thermal features (research component)
+
+| Name | Formula | Inputs / window | Reason |
+|---|---|---|---|
+| `thermal_rate_residual` | `(T[t]-T[t-1])/dt - Ridge(T[t-1], drivers[t], optional T_initial)` | Consecutive good finite samples, same run/asset; drivers exclude all current temperatures, vibration and photoeye counts | Model thermal change before averaging can dilute the deviation |
+| `abs_time_weighted_mean_rate` | `abs(sum(residual * dt) / sum(dt))` | Available sample residuals ending within the complete minute | Persistent signed thermal departure, in degC/s |
+| `q95_abs_rate` | `quantile(abs(residual), .95)` | Same minute and required samples | Large residual excursions without relying on a single maximum |
+| `initial_temperature_context` | First fully usable target temperature observed in the run/asset, retained causally | Optional predictor, full-run batch context only | Investigate sensitivity to starting thermal conditions; this is not measured ambient temperature |
+| `thermal_relative_magnitude` | `r/(r+a)`, `a=max(normal calibration q99 of r, 1e-9 degC/s)` | One summary/thermal role; maximum across available roles, then pooled normal threshold | Retain exceedance magnitude beyond empirical-CDF saturation; bounded magnitude, not percentile or failure probability |
+
+Exact timestamp alignment; no interpolation/backfill. Maximum gap is 1.5 times the **first declared run/asset interval**, not a pooled interval across datasets. Each complete minute needs at least 20 valid pairs and 90% of expected pairs. Cadence changes and asynchronous signals need explicit handling before broader use. Normal-only fit runs train Ridge(alpha=1) and predictor RobustScaler; normal calibration runs supply score references. Development compares variants; independent test does not tune thresholds. See [protocol and limitations](docs/workflows/model-training/runs/2026-10-05-sample-thermal.md).

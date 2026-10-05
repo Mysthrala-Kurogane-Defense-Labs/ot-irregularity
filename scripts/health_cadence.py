@@ -11,10 +11,11 @@ import yaml
 from scripts.prepare_otlab import _sha256, normalize_observations
 
 
-def declared_cadence(source, entry):
+def declared_cadence(source, entry, *, allow_test=False):
     source = Path(source).resolve()
     partition, run = entry['partition'], entry['run_id']
-    if partition not in ('train', 'validation') or not re.fullmatch(partition + r'-[0-9]+', run):
+    allowed = ('train', 'validation', 'test') if allow_test else ('train', 'validation')
+    if partition not in allowed or not re.fullmatch(partition + r'-[0-9]+', run):
         raise ValueError('Only explicit development run identities are allowed')
     folder = (source / partition / run).resolve()
     if not folder.is_relative_to(source):

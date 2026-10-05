@@ -19,6 +19,38 @@ def evaluate_scores(y_true,scores,threshold=.95,asset_ids=None,event_ids=None,ev
                 detected+=1
                 if starts is not None and ends is not None:
                     valid=[starts[i] for i in ids if starts[i] is not None];onset=min(valid) if valid else None
-                    if onset is not None:latencies.append(max(0.,(ends[hit[0]]-float(onset))/1e6))
+                    if onset is not None:latencies.append(max(0.,(np.min(ends[hit])-float(onset))/1e6))
         result["event_count"]=len(known);result["event_detection_rate"]=float(detected/len(known)) if known else None;result["mean_time_to_first_detection_seconds"]=float(np.mean(latencies)) if latencies else None;result["mean_detection_latency_seconds"]=result["mean_time_to_first_detection_seconds"]
     return result
+
+
+def evaluate_event_intervals(events, scores, threshold, run_ids, asset_ids, window_start_us, window_end_us):
+    """Count every raw event, including overlaps and events without observable windows.
+
+    A detection is dispatched at the end of a window overlapping the event interval.
+    Events must contain run_id, asset_id, event_id, start_us and end_us.
+    """
+    s=np.asarray(scores,dtype=float);runs=np.asarray(run_ids);assets=np.asarray(asset_ids)
+    starts=np.asarray(window_start_us,dtype=np.int64);ends=np.asarray(window_end_us,dtype=np.int64)
+    if any(len(a)!=len(s) for a in (runs,assets,starts,ends)) or not np.isfinite(s).all():
+        raise ValueError('Event evaluation arrays must have equal lengths and finite scores')
+    if np.any(ends<=starts):raise ValueError('Window end must follow window start')
+    seen=set();details=[];latencies=[]
+    for event in events:
+        key=(event['run_id'],event['asset_id'],event['event_id'])
+        if key in seen:raise ValueError(f'Duplicate event identity: {key}')
+        seen.add(key)
+        begin,finish=int(event['start_us']),int(event['end_us'])
+        if finish<begin:raise ValueError('Event end cannot precede start')
+        overlap=(runs==key[0])&(assets==key[1])&(starts<=finish)&(ends>begin)
+        hit=overlap&(s>=threshold)
+        latency=float((np.min(ends[hit])-begin)/1e6) if hit.any() else None
+        if latency is not None:latencies.append(latency)
+        details.append({'run_id':key[0],'asset_id':key[1],'event_id':key[2],
+                        'observable':bool(overlap.any()),'detected':bool(hit.any()),'latency_seconds':latency})
+    detected=sum(e['detected'] for e in details)
+    return {'event_count':len(events),'detected_events':detected,
+            'events_without_windows':sum(not e['observable'] for e in details),
+            'event_detection_rate':detected/len(events) if events else None,
+            'mean_detection_latency_seconds':float(np.mean(latencies)) if latencies else None,
+            'events':details}

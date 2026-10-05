@@ -151,6 +151,7 @@ def prepare(source: Path, output: Path, *, max_train_runs: int | None = None,
         partition_stats = {}
         for partition, runs in selected.items():
             frames = []
+            interval_events = []
             observation_count = 0
             event_count = 0
             for entry, truth in runs:
@@ -175,6 +176,9 @@ def prepare(source: Path, output: Path, *, max_train_runs: int | None = None,
                     {**event, "event_id": f"{entry['run_id']}/{event['event_id']}"}
                     for event in events
                 ]
+                interval_events.extend({"run_id":entry["run_id"],"asset_id":event["asset_id"],
+                    "event_id":event["event_id"],"start_us":_epoch_us(event["start"]),
+                    "end_us":_epoch_us(event["end"])} for event in namespaced_events)
                 frame = _annotate(frame, namespaced_events)
                 frames.append(frame)
                 observation_count += frame.height
@@ -184,6 +188,7 @@ def prepare(source: Path, output: Path, *, max_train_runs: int | None = None,
             dest = stage / partition
             dest.mkdir()
             pl.concat(frames, how="diagonal_relaxed").write_parquet(dest / "telemetry.parquet", compression="zstd")
+            (dest / "events.json").write_text(json.dumps({"schema_version":"1","events":interval_events},indent=2)+"\n",encoding="utf-8")
             partition_stats[partition] = {
                 "runs": len(runs),
                 "normal_runs": sum(not truth.get("events") for _, truth in runs),
@@ -192,6 +197,7 @@ def prepare(source: Path, output: Path, *, max_train_runs: int | None = None,
                 "observations": observation_count,
                 "run_ids": sorted(entry["run_id"] for entry, _ in runs),
                 "parquet_sha256": _sha256(dest / "telemetry.parquet"),
+                "events_sha256": _sha256(dest / "events.json"),
             }
         result = {
             "dataset_id": output.name,

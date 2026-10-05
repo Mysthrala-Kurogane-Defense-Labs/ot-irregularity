@@ -2,6 +2,17 @@ import hashlib
 import numpy as np
 import polars as pl
 
+FEATURE_SUFFIXES = ('expected_sample_count','uncertain_ratio','coverage_ratio','sample_count',
+                    'good_ratio','bad_ratio','missing','median','slope','range','delta',
+                    'mean','min','max','std','mad','last')
+
+def feature_signal(name):
+    """Exact role identity: underscores inside a role or feature suffix are significant."""
+    for suffix in FEATURE_SUFFIXES:
+        if name.endswith('_'+suffix):
+            return name[:-len(suffix)-1]
+    return None
+
 def _filter_feature_options(features, options):
     statistical={"mean","median","min","max","range","std","mad","last","delta"}
     quality={"good_ratio","uncertain_ratio","bad_ratio"}

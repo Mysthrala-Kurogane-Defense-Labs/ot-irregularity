@@ -1,0 +1,2280 @@
+{
+  "frozen": {
+    "format_version": 1,
+    "frozen_at": "2026-10-05T12:01:17.132884+00:00",
+    "git_commit": "238aa4bccee5adb5dc38eadc84f4e28df65a4da2",
+    "lab_commit": "718babb7772c3a21f0b87c403f628540cbce58db",
+    "master_seed": 920601,
+    "runs": 180,
+    "minimum_asset_hours_per_class": 168,
+    "suite_sha256": "f910abc741b73a0cfe8a0c2c335e3a5e18f58b5e3cb3531f5f20b9db27138531",
+    "protocol_sha256": "e934fcb73a3d7a743fd5b99d7a5dc127142164ad849c1617a2f38ce5b169eb78",
+    "source_directory_name": "normal-exposure-920601",
+    "baseline_files": {
+      "contextual_models.json": "c5bb2754d36927b83096a3eea8ff59efbefe42985ecc91bf994794b4649b06ef",
+      "feature_schema.json": "5e962a6510fb94b3813d40dec3609b8345e95ed57a19bee90b342f3cd5328d56",
+      "groups/047aaa859de4a39a/autoencoder.pt": "deb7af09a352083239dd73062d357fff4febb58f5eaffd924181aa679b3db83f",
+      "groups/047aaa859de4a39a/isolation_forest.joblib": "1a56dd93546017c9a0f1137f43276f1a6f0271b17ddf385243766cb5620fcaa0",
+      "groups/047aaa859de4a39a/scaler.joblib": "0d7bbbcb65ba5172b00de73bea6c3a83bba247a92943a2111b78af77366bbef0",
+      "groups/73d84d65ae16d9f8/autoencoder.pt": "8e7a49639bbc7a27d9a75bb49a87830829566a174a97800181e237227ba73c27",
+      "groups/73d84d65ae16d9f8/isolation_forest.joblib": "937ab2dbf8c820d930a07616b0490305e125aa1fe1b7bf79aec0845fea749ae3",
+      "groups/73d84d65ae16d9f8/scaler.joblib": "def474ee1e4646fc682dc8e6ad557981f11f2c3256e5c3f60903cb7d1a0d5308",
+      "groups/c276c4ed90af3cca/autoencoder.pt": "9476e9790d8cf79d641f0cd210782fe6ac6aa146a7001a2c996114d8376172e1",
+      "groups/c276c4ed90af3cca/isolation_forest.joblib": "b84a993ed5115a85367de75434019c6ce89d763e5658a716f8d2d5e569b73fa3",
+      "groups/c276c4ed90af3cca/scaler.joblib": "0cf0cd5472b257938ccd837ee67f929043760168150a715dce9a0d53727d97a5",
+      "groups/fcfb73e6dd15f00f/autoencoder.pt": "268590091363fbdac5948ac2aa54e3334a4982c84bcc538a617ccc88a4566faf",
+      "groups/fcfb73e6dd15f00f/isolation_forest.joblib": "5cebc2f5f07258852875fd843eeb52624932e75584e66cb7c7d74c6588ea9cef",
+      "groups/fcfb73e6dd15f00f/scaler.joblib": "8bcadb3117b5255e637f43013a93fc02a792a4864f7a219904b77823657251d9",
+      "metrics.json": "5c7512e90e12615199822aa3c3777c660765ecfb6014087a82fd7e9f45a27c34",
+      "model_card.md": "09dfd0bbe1f7cca593b7ce4108d675aefc04c930ed3c2300eb5684a35c451071",
+      "thresholds.json": "e39aa3c08fd04dbe254b5106b98a54eee8fd5cc5b6508ac5b685bc4bf103532b",
+      "training_config.yaml": "1198dbf31e0140d66a1d6458275898f40447c0c7d8224795b7551164d26a0c45",
+      "training_metadata.json": "072c7b2d1371cbd45324e494ab98f03bebf6bc62b8816b01263113117be4baec",
+      "training_progress.jsonl": "0bf3cc5ecf2e3e60af229f7c59831a29d8aef932022bdd732ceb2f1a5912cf40"
+    },
+    "baseline_threshold": 0.9905660377358492,
+    "sample_files": {
+      "initial-False-CNC-spindle_temperature_c.joblib": "1766e56aeff26f014850e001150fe100d2462dfd9bff8a168c4c248001765744",
+      "initial-False-COMPRESSOR-discharge_temperature_c.joblib": "e09160d6b68a82a9fcd4e4216feda58ce2a75471841b995b348e98f6ff438e88",
+      "initial-False-COMPRESSOR-oil_temperature_c.joblib": "57a41c495b9606cc536cb4f946693202d75d5dab74460e4aaaaae64c85e4c2cc",
+      "initial-False-CONVEYOR-motor_temperature_c.joblib": "f98935972ee7000b5e49e2f003e0fc8024ad62086f67a3ca1cbfaab6ea1d22e2",
+      "initial-False-PUMP-motor_temperature_c.joblib": "8dc5498a641fe220d2db0a21254cf7bb249ab4f8fbcb6b0985c5cb5eb0717909",
+      "initial-True-CNC-spindle_temperature_c.joblib": "00cafce9ec738947a37d94c141608442043e7a605ed122fe49426e5ca0d6e102",
+      "initial-True-COMPRESSOR-discharge_temperature_c.joblib": "99f759ba6b154b5e1bc690404896b82de3738d9a8686f18f3aabdb470048d607",
+      "initial-True-COMPRESSOR-oil_temperature_c.joblib": "6f7e85631e0c75ffd823a63ce9266ff22b6a56be80299182817be70850f8c759",
+      "initial-True-CONVEYOR-motor_temperature_c.joblib": "204b27a9d8662693ca00fb37223058e0c04323968836d3b459e143aeda014fef",
+      "initial-True-PUMP-motor_temperature_c.joblib": "b5ba4448e527e96015940be6004fd2f74a53adae13dd2736fcb74d1ab4ee644d",
+      "progress.json": "1e0258ea527d70d34e0390f8b4f5ceb50e8902b8d742aba2acdd817b76aaf1ac",
+      "protocol.json": "253851dcd21aa60d86e6bc0b63edb20a748b5b3d698557c9ead59f97f6a97f01",
+      "results.json": "4d8688c68a6b4c0ff2b80dd227b4a91a3498e6ce18de94a8cf71f7d70aac92a2",
+      "validation_scores.parquet": "c583d8a3ac4d2832ee8fe29d89cbb5a0ecfb9832eb5bf0c7b02fbee9a937c87d"
+    },
+    "thermal_selected": {
+      "initial_context": true,
+      "score": "abs_time_weighted_mean_rate",
+      "quantile": 0.999,
+      "threshold": 0.5546097406379873,
+      "eligible": true,
+      "available_development_windows": 1917,
+      "metrics": {
+        "samples": 1965,
+        "positive_samples": 251,
+        "precision": 0.956989247311828,
+        "recall": 0.3545816733067729,
+        "f1": 0.5174418604651163,
+        "false_positive_windows": 4,
+        "false_positives_per_asset_hour": 0.12213740458015267,
+        "false_positives_per_asset_day": 2.931297709923664,
+        "event_count": 124,
+        "event_detection_rate": 0.49193548387096775,
+        "mean_time_to_first_detection_seconds": 48.98360655737705,
+        "mean_detection_latency_seconds": 48.98360655737705,
+        "detected_events": 61,
+        "events_without_windows": 0,
+        "by_family": {
+          "asset_communication_loss": {
+            "total": 5,
+            "detected": 5
+          },
+          "bearing_degradation": {
+            "total": 13,
+            "detected": 0
+          },
+          "cavitation": {
+            "total": 5,
+            "detected": 1
+          },
+          "cooling_degradation": {
+            "total": 10,
+            "detected": 5
+          },
+          "maintenance_activity": {
+            "total": 8,
+            "detected": 3
+          },
+          "mechanical_overload": {
+            "total": 7,
+            "detected": 2
+          },
+          "missing_telemetry": {
+            "total": 9,
+            "detected": 8
+          },
+          "multivariate_novelty": {
+            "total": 8,
+            "detected": 8
+          },
+          "quality_degradation": {
+            "total": 5,
+            "detected": 3
+          },
+          "regime_mismatch": {
+            "total": 4,
+            "detected": 1
+          },
+          "sensor_bias": {
+            "total": 11,
+            "detected": 4
+          },
+          "sensor_drift": {
+            "total": 15,
+            "detected": 3
+          },
+          "sensor_stuck": {
+            "total": 8,
+            "detected": 8
+          },
+          "single_signal_loss": {
+            "total": 8,
+            "detected": 8
+          },
+          "sudden_spike": {
+            "total": 8,
+            "detected": 2
+          }
+        },
+        "physical_events": {
+          "total": 35,
+          "detected": 8
+        }
+      },
+      "lost_baseline_alert_windows": 0
+    },
+    "thermal_anchors": {
+      "initial-False-CNC-spindle_temperature_c": [
+        0.11493400437949308,
+        0.14024542725567837
+      ],
+      "initial-False-COMPRESSOR-discharge_temperature_c": [
+        3.099667015713362,
+        8.91601923143978
+      ],
+      "initial-False-COMPRESSOR-oil_temperature_c": [
+        0.08944303005369544,
+        0.10293179072003711
+      ],
+      "initial-False-CONVEYOR-motor_temperature_c": [
+        0.1078797389467405,
+        0.11335303573078491
+      ],
+      "initial-False-PUMP-motor_temperature_c": [
+        0.10151856716194461,
+        0.11623966141978398
+      ],
+      "initial-True-CNC-spindle_temperature_c": [
+        0.03641478725157296,
+        0.04319791180193743
+      ],
+      "initial-True-COMPRESSOR-discharge_temperature_c": [
+        3.3459896180562647,
+        6.022629999966109
+      ],
+      "initial-True-COMPRESSOR-oil_temperature_c": [
+        0.02741579564105925,
+        0.034289258146134635
+      ],
+      "initial-True-CONVEYOR-motor_temperature_c": [
+        0.0318158194380567,
+        0.03704781369692997
+      ],
+      "initial-True-PUMP-motor_temperature_c": [
+        0.03072221772239698,
+        0.03693025246222252
+      ]
+    },
+    "relational_control_files": {
+      "baseline/contextual_models.json": "c5bb2754d36927b83096a3eea8ff59efbefe42985ecc91bf994794b4649b06ef",
+      "baseline/feature_schema.json": "5e962a6510fb94b3813d40dec3609b8345e95ed57a19bee90b342f3cd5328d56",
+      "baseline/groups/047aaa859de4a39a/autoencoder.pt": "deb7af09a352083239dd73062d357fff4febb58f5eaffd924181aa679b3db83f",
+      "baseline/groups/047aaa859de4a39a/isolation_forest.joblib": "1a56dd93546017c9a0f1137f43276f1a6f0271b17ddf385243766cb5620fcaa0",
+      "baseline/groups/047aaa859de4a39a/scaler.joblib": "0d7bbbcb65ba5172b00de73bea6c3a83bba247a92943a2111b78af77366bbef0",
+      "baseline/groups/73d84d65ae16d9f8/autoencoder.pt": "8e7a49639bbc7a27d9a75bb49a87830829566a174a97800181e237227ba73c27",
+      "baseline/groups/73d84d65ae16d9f8/isolation_forest.joblib": "937ab2dbf8c820d930a07616b0490305e125aa1fe1b7bf79aec0845fea749ae3",
+      "baseline/groups/73d84d65ae16d9f8/scaler.joblib": "def474ee1e4646fc682dc8e6ad557981f11f2c3256e5c3f60903cb7d1a0d5308",
+      "baseline/groups/c276c4ed90af3cca/autoencoder.pt": "9476e9790d8cf79d641f0cd210782fe6ac6aa146a7001a2c996114d8376172e1",
+      "baseline/groups/c276c4ed90af3cca/isolation_forest.joblib": "b84a993ed5115a85367de75434019c6ce89d763e5658a716f8d2d5e569b73fa3",
+      "baseline/groups/c276c4ed90af3cca/scaler.joblib": "0cf0cd5472b257938ccd837ee67f929043760168150a715dce9a0d53727d97a5",
+      "baseline/groups/fcfb73e6dd15f00f/autoencoder.pt": "268590091363fbdac5948ac2aa54e3334a4982c84bcc538a617ccc88a4566faf",
+      "baseline/groups/fcfb73e6dd15f00f/isolation_forest.joblib": "5cebc2f5f07258852875fd843eeb52624932e75584e66cb7c7d74c6588ea9cef",
+      "baseline/groups/fcfb73e6dd15f00f/scaler.joblib": "8bcadb3117b5255e637f43013a93fc02a792a4864f7a219904b77823657251d9",
+      "baseline/metrics.json": "5c7512e90e12615199822aa3c3777c660765ecfb6014087a82fd7e9f45a27c34",
+      "baseline/model_card.md": "09dfd0bbe1f7cca593b7ce4108d675aefc04c930ed3c2300eb5684a35c451071",
+      "baseline/thresholds.json": "e39aa3c08fd04dbe254b5106b98a54eee8fd5cc5b6508ac5b685bc4bf103532b",
+      "baseline/training_config.yaml": "1198dbf31e0140d66a1d6458275898f40447c0c7d8224795b7551164d26a0c45",
+      "baseline/training_metadata.json": "072c7b2d1371cbd45324e494ab98f03bebf6bc62b8816b01263113117be4baec",
+      "baseline/training_progress.jsonl": "0bf3cc5ecf2e3e60af229f7c59831a29d8aef932022bdd732ceb2f1a5912cf40",
+      "candidate.json": "909533057d86c7f9bf6511c365d5c4502aca6cc9c97d18fc717cec3d0f500932",
+      "metrics.json": "e1774b7b6df619737a81fb322514b1d89dccf6b969626dec12d76d947a385a2e",
+      "model_card.md": "4ffa13324c3bf5d61e6693c61057d48413a1beceabef29bb023e6139143d8aa2",
+      "relationships/CNC/autoencoder.pt": "eb6c7a74964f01e3bcada1618c4e2f790e3293f4a7c5700727b26797b8b304d6",
+      "relationships/CNC/detector.joblib": "aa21013600e132d45c48e41f8b79091c2cde15f1297c096717627ec535de85e7",
+      "relationships/COMPRESSOR/autoencoder.pt": "e54a1be0c90bb9b309632285d16db4d1eb827059ef83e47c2c91a7bf07eb380e",
+      "relationships/COMPRESSOR/detector.joblib": "f69c75762a6e6fe47b3e064545cd30dc3a615bab2aab605f45fdd8f12fb111b9",
+      "relationships/CONVEYOR/autoencoder.pt": "29f34221f92aa82e18e29ae93fb93a7a8b918861d309dbdebe8531c22c6f37de",
+      "relationships/CONVEYOR/detector.joblib": "6a8640cbe8208dff39b128d2c8ee37a75e6a0cb5e701f5c66afa1dbcd3195867",
+      "relationships/PUMP/autoencoder.pt": "a16baca671928934d2cc21a06bc9961abddad51e33b0f82557a0900bcb219ab0",
+      "relationships/PUMP/detector.joblib": "4278ef86d01749b2538ea857079ca77d4547e877247ea0cdefccef56ec09e480"
+    },
+    "relational_control_threshold": 0.9978213507625273,
+    "joint_relational_model": {
+      "directory": "seed-20261005",
+      "seed": 20261005,
+      "threshold": 0.9978213507625273,
+      "files": {
+        "CNC/autoencoder.pt": "eb6c7a74964f01e3bcada1618c4e2f790e3293f4a7c5700727b26797b8b304d6",
+        "CNC/detector.joblib": "aa21013600e132d45c48e41f8b79091c2cde15f1297c096717627ec535de85e7",
+        "COMPRESSOR/autoencoder.pt": "e54a1be0c90bb9b309632285d16db4d1eb827059ef83e47c2c91a7bf07eb380e",
+        "COMPRESSOR/detector.joblib": "f69c75762a6e6fe47b3e064545cd30dc3a615bab2aab605f45fdd8f12fb111b9",
+        "CONVEYOR/autoencoder.pt": "29f34221f92aa82e18e29ae93fb93a7a8b918861d309dbdebe8531c22c6f37de",
+        "CONVEYOR/detector.joblib": "6a8640cbe8208dff39b128d2c8ee37a75e6a0cb5e701f5c66afa1dbcd3195867",
+        "PUMP/autoencoder.pt": "a16baca671928934d2cc21a06bc9961abddad51e33b0f82557a0900bcb219ab0",
+        "PUMP/detector.joblib": "4278ef86d01749b2538ea857079ca77d4547e877247ea0cdefccef56ec09e480"
+      }
+    },
+    "joint_point": {
+      "seed": 20261005,
+      "thermal_enabled": true,
+      "quantile": 0.9975,
+      "threshold": 0.629970859648794,
+      "eligible": false,
+      "metrics": {
+        "samples": 1965,
+        "positive_samples": 251,
+        "precision": 0.9552238805970149,
+        "recall": 0.5099601593625498,
+        "f1": 0.6649350649350649,
+        "false_positive_windows": 6,
+        "false_positives_per_asset_hour": 0.183206106870229,
+        "false_positives_per_asset_day": 4.396946564885496,
+        "event_count": 124,
+        "event_detection_rate": 0.7016129032258065,
+        "mean_time_to_first_detection_seconds": 50.98850574712644,
+        "mean_detection_latency_seconds": 50.98850574712644,
+        "detected_events": 87,
+        "events_without_windows": 0,
+        "by_family": {
+          "asset_communication_loss": {
+            "total": 5,
+            "detected": 5
+          },
+          "bearing_degradation": {
+            "total": 13,
+            "detected": 5
+          },
+          "cavitation": {
+            "total": 5,
+            "detected": 4
+          },
+          "cooling_degradation": {
+            "total": 10,
+            "detected": 5
+          },
+          "maintenance_activity": {
+            "total": 8,
+            "detected": 5
+          },
+          "mechanical_overload": {
+            "total": 7,
+            "detected": 4
+          },
+          "missing_telemetry": {
+            "total": 9,
+            "detected": 8
+          },
+          "multivariate_novelty": {
+            "total": 8,
+            "detected": 8
+          },
+          "quality_degradation": {
+            "total": 5,
+            "detected": 3
+          },
+          "regime_mismatch": {
+            "total": 4,
+            "detected": 3
+          },
+          "sensor_bias": {
+            "total": 11,
+            "detected": 8
+          },
+          "sensor_drift": {
+            "total": 15,
+            "detected": 6
+          },
+          "sensor_stuck": {
+            "total": 8,
+            "detected": 8
+          },
+          "single_signal_loss": {
+            "total": 8,
+            "detected": 8
+          },
+          "sudden_spike": {
+            "total": 8,
+            "detected": 7
+          }
+        },
+        "physical_events": {
+          "total": 35,
+          "detected": 18
+        }
+      },
+      "lost_baseline_alert_windows": 0
+    },
+    "joint_relational_anchors": {
+      "CNC": 2.1691733865720684,
+      "COMPRESSOR": 2.0123180710183437,
+      "CONVEYOR": 3.7308994042893233,
+      "PUMP": 4.00875737684839
+    },
+    "joint_results_sha256": "43b1f3f0c5a8ca002d2cffe6382baea526f104fa67166f41101cc865e3e335c0",
+    "thermal_freeze_sha256": "3452740a35f99b995637d3361aa784e75a3a81600153388772ec53f75de65507",
+    "bootstrap_seed": 20261005,
+    "bootstrap_repetitions": 2000,
+    "episode_rule": "Consecutive touching alert windows in one run/asset; any normal or missing window ends episode",
+    "selection_or_retraining_allowed": false,
+    "joint_status": "Rejected development diagnostic, not a promoted candidate"
+  },
+  "evaluation": {
+    "runs": 180,
+    "overall": {
+      "v04": {
+        "runs": 180,
+        "asset_hours": 714.133333333332,
+        "windows": 42848,
+        "false_windows": 156,
+        "alarm_episodes": 156,
+        "alarm_seconds": 9360.0,
+        "false_windows_per_asset_day": 5.242718446601952,
+        "alarm_episodes_per_asset_day": 5.242718446601952,
+        "fraction_runs_with_alarm": 0.3611111111111111,
+        "false_windows_per_asset_day_ci95": [
+          4.06722689075631,
+          6.553443954681085
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          4.06722689075631,
+          6.553443954681085
+        ],
+        "zero_count_caution": false
+      },
+      "v05-relational": {
+        "runs": 180,
+        "asset_hours": 714.133333333332,
+        "windows": 42848,
+        "false_windows": 171,
+        "alarm_episodes": 169,
+        "alarm_seconds": 10260.0,
+        "false_windows_per_asset_day": 5.746825989544448,
+        "alarm_episodes_per_asset_day": 5.679611650485448,
+        "fraction_runs_with_alarm": 0.5777777777777777,
+        "false_windows_per_asset_day_ci95": [
+          4.772630207306266,
+          6.689153737160452
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          4.739042249531088,
+          6.5913124708080435
+        ],
+        "zero_count_caution": false,
+        "paired_false_windows_per_asset_day_delta_ci95": [
+          -1.1085217612732594,
+          2.018338704741629
+        ]
+      },
+      "thermal-union": {
+        "runs": 180,
+        "asset_hours": 714.133333333332,
+        "windows": 42848,
+        "false_windows": 226,
+        "alarm_episodes": 183,
+        "alarm_seconds": 13560.0,
+        "false_windows_per_asset_day": 7.59522031366693,
+        "alarm_episodes_per_asset_day": 6.150112023898443,
+        "fraction_runs_with_alarm": 0.4166666666666667,
+        "false_windows_per_asset_day_ci95": [
+          5.677478357218569,
+          9.582516110955465
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          4.839409827627772,
+          7.497968625205373
+        ],
+        "zero_count_caution": false,
+        "paired_false_windows_per_asset_day_delta_ci95": [
+          0.8398656215005609,
+          4.100859484623141
+        ]
+      },
+      "joint-rejected": {
+        "runs": 180,
+        "asset_hours": 714.133333333332,
+        "windows": 42848,
+        "false_windows": 346,
+        "alarm_episodes": 300,
+        "alarm_seconds": 20760.0,
+        "false_windows_per_asset_day": 11.628080657206894,
+        "alarm_episodes_per_asset_day": 10.082150858849907,
+        "fraction_runs_with_alarm": 0.6944444444444444,
+        "false_windows_per_asset_day_ci95": [
+          9.471894310895832,
+          13.72608341648432
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          8.541583691308139,
+          11.529121651633034
+        ],
+        "zero_count_caution": false,
+        "paired_false_windows_per_asset_day_delta_ci95": [
+          4.570575056011957,
+          8.332404453229795
+        ]
+      }
+    },
+    "by_class": {
+      "CNC": {
+        "v04": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 30,
+          "alarm_episodes": 30,
+          "alarm_seconds": 1800.0,
+          "false_windows_per_asset_day": 4.032860343539963,
+          "alarm_episodes_per_asset_day": 4.032860343539963,
+          "fraction_runs_with_alarm": 0.16666666666666666,
+          "false_windows_per_asset_day_ci95": [
+            2.821415326649822,
+            5.379658167553945
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            2.821415326649822,
+            5.379658167553945
+          ],
+          "zero_count_caution": false
+        },
+        "v05-relational": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 12,
+          "alarm_episodes": 12,
+          "alarm_seconds": 720.0,
+          "false_windows_per_asset_day": 1.6131441374159852,
+          "alarm_episodes_per_asset_day": 1.6131441374159852,
+          "fraction_runs_with_alarm": 0.05555555555555555,
+          "false_windows_per_asset_day_ci95": [
+            0.6718924972004491,
+            2.689088186638126
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            0.6718924972004491,
+            2.689088186638126
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -4.169643986566358,
+            -0.8064948977375527
+          ]
+        },
+        "thermal-union": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 30,
+          "alarm_episodes": 30,
+          "alarm_seconds": 1800.0,
+          "false_windows_per_asset_day": 4.032860343539963,
+          "alarm_episodes_per_asset_day": 4.032860343539963,
+          "fraction_runs_with_alarm": 0.16666666666666666,
+          "false_windows_per_asset_day_ci95": [
+            2.821415326649822,
+            5.379658167553945
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            2.821415326649822,
+            5.379658167553945
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "joint-rejected": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 42,
+          "alarm_episodes": 42,
+          "alarm_seconds": 2520.0,
+          "false_windows_per_asset_day": 5.646004480955948,
+          "alarm_episodes_per_asset_day": 5.646004480955948,
+          "fraction_runs_with_alarm": 0.21666666666666667,
+          "false_windows_per_asset_day_ci95": [
+            4.034724787568413,
+            7.265354610779921
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.034724787568413,
+            7.265354610779921
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.6718924972004494,
+            2.6890881866381267
+          ]
+        }
+      },
+      "COMPRESSOR": {
+        "v04": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 22,
+          "alarm_episodes": 22,
+          "alarm_seconds": 1320.0,
+          "false_windows_per_asset_day": 2.9574309185959726,
+          "alarm_episodes_per_asset_day": 2.9574309185959726,
+          "fraction_runs_with_alarm": 0.12222222222222222,
+          "false_windows_per_asset_day_ci95": [
+            1.8811190609593709,
+            4.164975581887871
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            1.8811190609593709,
+            4.164975581887871
+          ],
+          "zero_count_caution": false
+        },
+        "v05-relational": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 53,
+          "alarm_episodes": 53,
+          "alarm_seconds": 3180.0,
+          "false_windows_per_asset_day": 7.124719940253935,
+          "alarm_episodes_per_asset_day": 7.124719940253935,
+          "fraction_runs_with_alarm": 0.2111111111111111,
+          "false_windows_per_asset_day_ci95": [
+            4.975707472790308,
+            9.54710990755441
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.975707472790308,
+            9.54710990755441
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            1.7480501383919007,
+            6.849516307956014
+          ]
+        },
+        "thermal-union": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 86,
+          "alarm_episodes": 43,
+          "alarm_seconds": 5160.0,
+          "false_windows_per_asset_day": 11.560866318147895,
+          "alarm_episodes_per_asset_day": 5.780433159073947,
+          "fraction_runs_with_alarm": 0.17222222222222222,
+          "false_windows_per_asset_day_ci95": [
+            5.511537224379223,
+            18.54854017154782
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            3.630591091605198,
+            8.06199525735951
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            2.553191489361706,
+            15.612605988869046
+          ]
+        },
+        "joint-rejected": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 90,
+          "alarm_episodes": 47,
+          "alarm_seconds": 5400.0,
+          "false_windows_per_asset_day": 12.098581030619888,
+          "alarm_episodes_per_asset_day": 6.318147871545942,
+          "fraction_runs_with_alarm": 0.18333333333333332,
+          "false_windows_per_asset_day_ci95": [
+            5.914848034191296,
+            19.099006049207713
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.03435741037052,
+            8.742026199791015
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            2.956595995504001,
+            16.150931753526162
+          ]
+        }
+      },
+      "CONVEYOR": {
+        "v04": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 57,
+          "alarm_episodes": 57,
+          "alarm_seconds": 3420.0,
+          "false_windows_per_asset_day": 7.6624346527259295,
+          "alarm_episodes_per_asset_day": 7.6624346527259295,
+          "fraction_runs_with_alarm": 0.3,
+          "false_windows_per_asset_day_ci95": [
+            6.043028622292774,
+            9.545349515027763
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            6.043028622292774,
+            9.545349515027763
+          ],
+          "zero_count_caution": false
+        },
+        "v05-relational": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 48,
+          "alarm_episodes": 48,
+          "alarm_seconds": 2880.0,
+          "false_windows_per_asset_day": 6.452576549663941,
+          "alarm_episodes_per_asset_day": 6.452576549663941,
+          "fraction_runs_with_alarm": 0.21666666666666667,
+          "false_windows_per_asset_day_ci95": [
+            4.570991105930694,
+            8.339268494367714
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.570991105930694,
+            8.339268494367714
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -3.8962674798305885,
+            1.4771985451832519
+          ]
+        },
+        "thermal-union": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 61,
+          "alarm_episodes": 61,
+          "alarm_seconds": 3660.0,
+          "false_windows_per_asset_day": 8.200149365197925,
+          "alarm_episodes_per_asset_day": 8.200149365197925,
+          "fraction_runs_with_alarm": 0.32222222222222224,
+          "false_windows_per_asset_day_ci95": [
+            6.456177714389604,
+            10.084080699892974
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            6.456177714389604,
+            10.084080699892974
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.13434089000839666,
+            1.076135161684224
+          ]
+        },
+        "joint-rejected": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 119,
+          "alarm_episodes": 119,
+          "alarm_seconds": 7140.0,
+          "false_windows_per_asset_day": 15.997012696041853,
+          "alarm_episodes_per_asset_day": 15.997012696041853,
+          "fraction_runs_with_alarm": 0.5222222222222223,
+          "false_windows_per_asset_day_ci95": [
+            13.300988990483322,
+            18.57454170031027
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            13.300988990483322,
+            18.57454170031027
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            6.190567469372586,
+            10.482501166588914
+          ]
+        }
+      },
+      "PUMP": {
+        "v04": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 47,
+          "alarm_episodes": 47,
+          "alarm_seconds": 2820.0,
+          "false_windows_per_asset_day": 6.318147871545942,
+          "alarm_episodes_per_asset_day": 6.318147871545942,
+          "fraction_runs_with_alarm": 0.22777777777777777,
+          "false_windows_per_asset_day_ci95": [
+            4.570148417810146,
+            8.202465690569984
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.570148417810146,
+            8.202465690569984
+          ],
+          "zero_count_caution": false
+        },
+        "v05-relational": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 58,
+          "alarm_episodes": 56,
+          "alarm_seconds": 3480.0,
+          "false_windows_per_asset_day": 7.796863330843928,
+          "alarm_episodes_per_asset_day": 7.528005974607931,
+          "fraction_runs_with_alarm": 0.2777777777777778,
+          "false_windows_per_asset_day_ci95": [
+            5.912088477300881,
+            9.817899081893165
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            5.776119402985082,
+            9.530356904751333
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -0.9455420597517196,
+            3.895885810243499
+          ]
+        },
+        "thermal-union": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 49,
+          "alarm_episodes": 49,
+          "alarm_seconds": 2940.0,
+          "false_windows_per_asset_day": 6.5870052277819395,
+          "alarm_episodes_per_asset_day": 6.5870052277819395,
+          "fraction_runs_with_alarm": 0.23333333333333334,
+          "false_windows_per_asset_day_ci95": [
+            4.7098402018503025,
+            8.484598986487477
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.7098402018503025,
+            8.484598986487477
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.0,
+            0.6723960414112604
+          ]
+        },
+        "joint-rejected": {
+          "runs": 180,
+          "asset_hours": 178.533333333333,
+          "windows": 10712,
+          "false_windows": 95,
+          "alarm_episodes": 92,
+          "alarm_seconds": 5700.0,
+          "false_windows_per_asset_day": 12.770724421209882,
+          "alarm_episodes_per_asset_day": 12.367438386855886,
+          "fraction_runs_with_alarm": 0.4111111111111111,
+          "false_windows_per_asset_day_ci95": [
+            10.226938304590458,
+            15.332097389045682
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            9.951391718435616,
+            14.791331573158983
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            4.704498712809438,
+            8.32997060256941
+          ]
+        }
+      }
+    },
+    "strata": {
+      "sampling_interval_ms": {
+        "500": {
+          "v04": {
+            "runs": 88,
+            "asset_hours": 348.8000000000002,
+            "windows": 20928,
+            "false_windows": 107,
+            "alarm_episodes": 107,
+            "alarm_seconds": 6420.0,
+            "false_windows_per_asset_day": 7.362385321100914,
+            "alarm_episodes_per_asset_day": 7.362385321100914,
+            "fraction_runs_with_alarm": 0.4659090909090909,
+            "false_windows_per_asset_day_ci95": [
+              5.369024856596556,
+              9.442939368812882
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              5.369024856596556,
+              9.442939368812882
+            ],
+            "zero_count_caution": false
+          },
+          "v05-relational": {
+            "runs": 88,
+            "asset_hours": 348.8000000000002,
+            "windows": 20928,
+            "false_windows": 44,
+            "alarm_episodes": 44,
+            "alarm_seconds": 2640.0,
+            "false_windows_per_asset_day": 3.027522935779815,
+            "alarm_episodes_per_asset_day": 3.027522935779815,
+            "fraction_runs_with_alarm": 0.3977272727272727,
+            "false_windows_per_asset_day_ci95": [
+              2.1362940275650835,
+              3.923518164435945
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.1362940275650835,
+              3.923518164435945
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -6.335148892170001,
+              -2.4077736778445353
+            ]
+          },
+          "thermal-union": {
+            "runs": 88,
+            "asset_hours": 348.8000000000002,
+            "windows": 20928,
+            "false_windows": 112,
+            "alarm_episodes": 112,
+            "alarm_seconds": 6720.0,
+            "false_windows_per_asset_day": 7.706422018348619,
+            "alarm_episodes_per_asset_day": 7.706422018348619,
+            "fraction_runs_with_alarm": 0.4772727272727273,
+            "false_windows_per_asset_day_ci95": [
+              5.704467353951888,
+              9.837663303368327
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              5.704467353951888,
+              9.837663303368327
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.8941621560509435
+            ]
+          },
+          "joint-rejected": {
+            "runs": 88,
+            "asset_hours": 348.8000000000002,
+            "windows": 20928,
+            "false_windows": 145,
+            "alarm_episodes": 144,
+            "alarm_seconds": 8700.0,
+            "false_windows_per_asset_day": 9.97706422018348,
+            "alarm_episodes_per_asset_day": 9.90825688073394,
+            "fraction_runs_with_alarm": 0.6590909090909091,
+            "false_windows_per_asset_day_ci95": [
+              7.915832149346462,
+              12.185886402753868
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              7.849963207380172,
+              12.119357306809482
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              1.7896749521988529,
+              3.5091743119266035
+            ]
+          }
+        },
+        "1000": {
+          "v04": {
+            "runs": 92,
+            "asset_hours": 365.3333333333335,
+            "windows": 21920,
+            "false_windows": 49,
+            "alarm_episodes": 49,
+            "alarm_seconds": 2940.0,
+            "false_windows_per_asset_day": 3.2189781021897796,
+            "alarm_episodes_per_asset_day": 3.2189781021897796,
+            "fraction_runs_with_alarm": 0.2608695652173913,
+            "false_windows_per_asset_day_ci95": [
+              2.0335091765043254,
+              4.7282445268789415
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.0335091765043254,
+              4.7282445268789415
+            ],
+            "zero_count_caution": false
+          },
+          "v05-relational": {
+            "runs": 92,
+            "asset_hours": 365.3333333333335,
+            "windows": 21920,
+            "false_windows": 127,
+            "alarm_episodes": 125,
+            "alarm_seconds": 7620.0,
+            "false_windows_per_asset_day": 8.343065693430653,
+            "alarm_episodes_per_asset_day": 8.211678832116785,
+            "fraction_runs_with_alarm": 0.75,
+            "false_windows_per_asset_day_ci95": [
+              6.8940046836631685,
+              9.84157800474485
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              6.83208562559179,
+              9.651959000174118
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              3.2153843298944156,
+              6.964774593903995
+            ]
+          },
+          "thermal-union": {
+            "runs": 92,
+            "asset_hours": 365.3333333333335,
+            "windows": 21920,
+            "false_windows": 114,
+            "alarm_episodes": 71,
+            "alarm_seconds": 6840.0,
+            "false_windows_per_asset_day": 7.489051094890508,
+            "alarm_episodes_per_asset_day": 4.664233576642334,
+            "fraction_runs_with_alarm": 0.358695652173913,
+            "false_windows_per_asset_day_ci95": [
+              4.665084869501733,
+              10.83758680040358
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.2207118900345604,
+              6.430944367879652
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              1.643227848569573,
+              7.550748789410543
+            ]
+          },
+          "joint-rejected": {
+            "runs": 92,
+            "asset_hours": 365.3333333333335,
+            "windows": 21920,
+            "false_windows": 201,
+            "alarm_episodes": 156,
+            "alarm_seconds": 12060.0,
+            "false_windows_per_asset_day": 13.20437956204379,
+            "alarm_episodes_per_asset_day": 10.248175182481747,
+            "fraction_runs_with_alarm": 0.7282608695652174,
+            "false_windows_per_asset_day_ci95": [
+              10.049261083743838,
+              16.739835185564452
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              8.407148292662765,
+              12.300383701808876
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              6.957155879671831,
+              13.469672714318753
+            ]
+          }
+        }
+      },
+      "expose_operating_regime": {
+        "False": {
+          "v04": {
+            "runs": 89,
+            "asset_hours": 352.8000000000001,
+            "windows": 21168,
+            "false_windows": 88,
+            "alarm_episodes": 88,
+            "alarm_seconds": 5280.0,
+            "false_windows_per_asset_day": 5.986394557823127,
+            "alarm_episodes_per_asset_day": 5.986394557823127,
+            "fraction_runs_with_alarm": 0.42696629213483145,
+            "false_windows_per_asset_day_ci95": [
+              4.0816133746149115,
+              7.966974848255579
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.0816133746149115,
+              7.966974848255579
+            ],
+            "zero_count_caution": false
+          },
+          "v05-relational": {
+            "runs": 89,
+            "asset_hours": 352.8000000000001,
+            "windows": 21168,
+            "false_windows": 91,
+            "alarm_episodes": 89,
+            "alarm_seconds": 5460.0,
+            "false_windows_per_asset_day": 6.190476190476188,
+            "alarm_episodes_per_asset_day": 6.054421768707481,
+            "fraction_runs_with_alarm": 0.5955056179775281,
+            "false_windows_per_asset_day_ci95": [
+              4.769926814155383,
+              7.676992638410692
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.695652173913042,
+              7.475965062022793
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.310349415843316,
+              2.519159095202917
+            ]
+          },
+          "thermal-union": {
+            "runs": 89,
+            "asset_hours": 352.8000000000001,
+            "windows": 21168,
+            "false_windows": 121,
+            "alarm_episodes": 100,
+            "alarm_seconds": 7260.0,
+            "false_windows_per_asset_day": 8.2312925170068,
+            "alarm_episodes_per_asset_day": 6.802721088435372,
+            "fraction_runs_with_alarm": 0.47191011235955055,
+            "false_windows_per_asset_day_ci95": [
+              5.582450832072615,
+              11.108185370065957
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.828928294486063,
+              8.777293264244848
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.2724679639654347,
+              4.7655293419448315
+            ]
+          },
+          "joint-rejected": {
+            "runs": 89,
+            "asset_hours": 352.8000000000001,
+            "windows": 21168,
+            "false_windows": 179,
+            "alarm_episodes": 156,
+            "alarm_seconds": 10740.0,
+            "false_windows_per_asset_day": 12.176870748299315,
+            "alarm_episodes_per_asset_day": 10.61224489795918,
+            "fraction_runs_with_alarm": 0.7415730337078652,
+            "false_windows_per_asset_day_ci95": [
+              9.25344925344925,
+              15.30753283186385
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              8.508104035715247,
+              12.786820248751097
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              3.8073654390934832,
+              9.185068611328271
+            ]
+          }
+        },
+        "True": {
+          "v04": {
+            "runs": 91,
+            "asset_hours": 361.3333333333334,
+            "windows": 21680,
+            "false_windows": 68,
+            "alarm_episodes": 68,
+            "alarm_seconds": 4080.0,
+            "false_windows_per_asset_day": 4.51660516605166,
+            "alarm_episodes_per_asset_day": 4.51660516605166,
+            "fraction_runs_with_alarm": 0.2967032967032967,
+            "false_windows_per_asset_day_ci95": [
+              2.7896550315807516,
+              6.176039275610327
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.7896550315807516,
+              6.176039275610327
+            ],
+            "zero_count_caution": false
+          },
+          "v05-relational": {
+            "runs": 91,
+            "asset_hours": 361.3333333333334,
+            "windows": 21680,
+            "false_windows": 80,
+            "alarm_episodes": 80,
+            "alarm_seconds": 4800.0,
+            "false_windows_per_asset_day": 5.3136531365313635,
+            "alarm_episodes_per_asset_day": 5.3136531365313635,
+            "fraction_runs_with_alarm": 0.5604395604395604,
+            "false_windows_per_asset_day_ci95": [
+              4.117302543063298,
+              6.6347522850382425
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.117302543063298,
+              6.6347522850382425
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -1.1285318492291359,
+              2.8550482089713407
+            ]
+          },
+          "thermal-union": {
+            "runs": 91,
+            "asset_hours": 361.3333333333334,
+            "windows": 21680,
+            "false_windows": 105,
+            "alarm_episodes": 83,
+            "alarm_seconds": 6300.0,
+            "false_windows_per_asset_day": 6.974169741697415,
+            "alarm_episodes_per_asset_day": 5.51291512915129,
+            "fraction_runs_with_alarm": 0.3626373626373626,
+            "false_windows_per_asset_day_ci95": [
+              4.586368309475553,
+              9.630996309963097
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.8509597460928626,
+              7.361963287705178
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.5977859778597789,
+              4.855472311004852
+            ]
+          },
+          "joint-rejected": {
+            "runs": 91,
+            "asset_hours": 361.3333333333334,
+            "windows": 21680,
+            "false_windows": 167,
+            "alarm_episodes": 144,
+            "alarm_seconds": 10020.0,
+            "false_windows_per_asset_day": 11.092250922509223,
+            "alarm_episodes_per_asset_day": 9.564575645756456,
+            "fraction_runs_with_alarm": 0.6483516483516484,
+            "false_windows_per_asset_day_ci95": [
+              8.504983388704316,
+              13.951042222404888
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              7.635558834378457,
+              11.60867703502392
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              4.378323541132352,
+              9.166263249890111
+            ]
+          }
+        }
+      },
+      "profile": {
+        "planned-maintenance": {
+          "v04": {
+            "runs": 22,
+            "asset_hours": 87.33333333333333,
+            "windows": 5240,
+            "false_windows": 60,
+            "alarm_episodes": 60,
+            "alarm_seconds": 3600.0,
+            "false_windows_per_asset_day": 16.48854961832061,
+            "alarm_episodes_per_asset_day": 16.48854961832061,
+            "fraction_runs_with_alarm": 0.8636363636363636,
+            "false_windows_per_asset_day_ci95": [
+              12.3756232541594,
+              20.10788591932037
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              12.3756232541594,
+              20.10788591932037
+            ],
+            "zero_count_caution": false
+          },
+          "v05-relational": {
+            "runs": 22,
+            "asset_hours": 87.33333333333333,
+            "windows": 5240,
+            "false_windows": 30,
+            "alarm_episodes": 30,
+            "alarm_seconds": 1800.0,
+            "false_windows_per_asset_day": 8.244274809160306,
+            "alarm_episodes_per_asset_day": 8.244274809160306,
+            "fraction_runs_with_alarm": 0.7727272727272727,
+            "false_windows_per_asset_day_ci95": [
+              5.7754010695187175,
+              10.701219512195122
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              5.7754010695187175,
+              10.701219512195122
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -13.160951460999755,
+              -3.0275229357798175
+            ]
+          },
+          "thermal-union": {
+            "runs": 22,
+            "asset_hours": 87.33333333333333,
+            "windows": 5240,
+            "false_windows": 75,
+            "alarm_episodes": 70,
+            "alarm_seconds": 4500.0,
+            "false_windows_per_asset_day": 20.610687022900766,
+            "alarm_episodes_per_asset_day": 19.236641221374047,
+            "fraction_runs_with_alarm": 0.9090909090909091,
+            "false_windows_per_asset_day_ci95": [
+              16.188716145301207,
+              24.77064220183486
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              15.389019511939491,
+              22.551566080977846
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              9.603841672713067
+            ]
+          },
+          "joint-rejected": {
+            "runs": 22,
+            "asset_hours": 87.33333333333333,
+            "windows": 5240,
+            "false_windows": 87,
+            "alarm_episodes": 82,
+            "alarm_seconds": 5220.0,
+            "false_windows_per_asset_day": 23.90839694656489,
+            "alarm_episodes_per_asset_day": 22.53435114503817,
+            "fraction_runs_with_alarm": 1.0,
+            "false_windows_per_asset_day_ci95": [
+              19.511078309780423,
+              28.536585365853657
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              18.93256633942006,
+              25.851795263559964
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              3.2926202329426193,
+              13.18102957360211
+            ]
+          }
+        },
+        "production-stop": {
+          "v04": {
+            "runs": 25,
+            "asset_hours": 99.33333333333334,
+            "windows": 5960,
+            "false_windows": 17,
+            "alarm_episodes": 17,
+            "alarm_seconds": 1020.0,
+            "false_windows_per_asset_day": 4.10738255033557,
+            "alarm_episodes_per_asset_day": 4.10738255033557,
+            "fraction_runs_with_alarm": 0.36,
+            "false_windows_per_asset_day_ci95": [
+              1.9290020093770932,
+              6.536650975117686
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.9290020093770932,
+              6.536650975117686
+            ],
+            "zero_count_caution": false
+          },
+          "v05-relational": {
+            "runs": 25,
+            "asset_hours": 99.33333333333334,
+            "windows": 5960,
+            "false_windows": 19,
+            "alarm_episodes": 18,
+            "alarm_seconds": 1140.0,
+            "false_windows_per_asset_day": 4.590604026845637,
+            "alarm_episodes_per_asset_day": 4.348993288590604,
+            "fraction_runs_with_alarm": 0.44,
+            "false_windows_per_asset_day_ci95": [
+              1.9406355091364866,
+              7.736736064472801
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.9341840161182002,
+              7.258186541423519
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.6266559609176983,
+              4.832458488104963
+            ]
+          },
+          "thermal-union": {
+            "runs": 25,
+            "asset_hours": 99.33333333333334,
+            "windows": 5960,
+            "false_windows": 22,
+            "alarm_episodes": 20,
+            "alarm_seconds": 1320.0,
+            "false_windows_per_asset_day": 5.315436241610738,
+            "alarm_episodes_per_asset_day": 4.83221476510067,
+            "fraction_runs_with_alarm": 0.4,
+            "false_windows_per_asset_day_ci95": [
+              2.4177300201477503,
+              8.704120736555858
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.4112525117213663,
+              7.5103472481707065
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              3.6265950302216257
+            ]
+          },
+          "joint-rejected": {
+            "runs": 25,
+            "asset_hours": 99.33333333333334,
+            "windows": 5960,
+            "false_windows": 37,
+            "alarm_episodes": 34,
+            "alarm_seconds": 2220.0,
+            "false_windows_per_asset_day": 8.939597315436242,
+            "alarm_episodes_per_asset_day": 8.21476510067114,
+            "fraction_runs_with_alarm": 0.76,
+            "false_windows_per_asset_day_ci95": [
+              5.790787751239474,
+              12.796780684104627
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              5.542075996292863,
+              11.136516476126427
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              2.1730382293762585,
+              8.220558473413867
+            ]
+          }
+        },
+        "standard-shift": {
+          "v04": {
+            "runs": 60,
+            "asset_hours": 237.66666666666674,
+            "windows": 14260,
+            "false_windows": 1,
+            "alarm_episodes": 1,
+            "alarm_seconds": 60.0,
+            "false_windows_per_asset_day": 0.10098176718092564,
+            "alarm_episodes_per_asset_day": 0.10098176718092564,
+            "fraction_runs_with_alarm": 0.016666666666666666,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              0.3034560269738689
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              0.3034560269738689
+            ],
+            "zero_count_caution": false
+          },
+          "v05-relational": {
+            "runs": 60,
+            "asset_hours": 237.66666666666674,
+            "windows": 14260,
+            "false_windows": 41,
+            "alarm_episodes": 41,
+            "alarm_seconds": 2460.0,
+            "false_windows_per_asset_day": 4.140252454417951,
+            "alarm_episodes_per_asset_day": 4.140252454417951,
+            "fraction_runs_with_alarm": 0.48333333333333334,
+            "false_windows_per_asset_day_ci95": [
+              2.9284712482468436,
+              5.44690389464836
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.9284712482468436,
+              5.44690389464836
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              2.826696578799775,
+              5.349220512379762
+            ]
+          },
+          "thermal-union": {
+            "runs": 60,
+            "asset_hours": 237.66666666666674,
+            "windows": 14260,
+            "false_windows": 28,
+            "alarm_episodes": 10,
+            "alarm_seconds": 1680.0,
+            "false_windows_per_asset_day": 2.8274894810659177,
+            "alarm_episodes_per_asset_day": 1.0098176718092564,
+            "fraction_runs_with_alarm": 0.1,
+            "false_windows_per_asset_day_ci95": [
+              0.30320044918585054,
+              6.360201179663419
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.30260577192490884,
+              1.917040358744394
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.2022457711348598,
+              6.2503500420050395
+            ]
+          },
+          "joint-rejected": {
+            "runs": 60,
+            "asset_hours": 237.66666666666674,
+            "windows": 14260,
+            "false_windows": 60,
+            "alarm_episodes": 42,
+            "alarm_seconds": 3600.0,
+            "false_windows_per_asset_day": 6.058906030855538,
+            "alarm_episodes_per_asset_day": 4.2412342215988765,
+            "fraction_runs_with_alarm": 0.5,
+            "false_windows_per_asset_day_ci95": [
+              3.1443930085662353,
+              9.986200498559993
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.9317401647172447,
+              5.645516991450737
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              3.03285593934288,
+              9.893646279476432
+            ]
+          }
+        },
+        "startup-maintenance-shutdown": {
+          "v04": {
+            "runs": 20,
+            "asset_hours": 79.33333333333333,
+            "windows": 4760,
+            "false_windows": 46,
+            "alarm_episodes": 46,
+            "alarm_seconds": 2760.0,
+            "false_windows_per_asset_day": 13.915966386554622,
+            "alarm_episodes_per_asset_day": 13.915966386554622,
+            "fraction_runs_with_alarm": 0.7,
+            "false_windows_per_asset_day_ci95": [
+              8.77292508943124,
+              19.05882352941176
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              8.77292508943124,
+              19.05882352941176
+            ],
+            "zero_count_caution": false
+          },
+          "v05-relational": {
+            "runs": 20,
+            "asset_hours": 79.33333333333333,
+            "windows": 4760,
+            "false_windows": 19,
+            "alarm_episodes": 19,
+            "alarm_seconds": 1140.0,
+            "false_windows_per_asset_day": 5.7478991596638656,
+            "alarm_episodes_per_asset_day": 5.7478991596638656,
+            "fraction_runs_with_alarm": 0.6,
+            "false_windows_per_asset_day_ci95": [
+              2.7204030226700255,
+              9.393939393939394
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.7204030226700255,
+              9.393939393939394
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -14.230445752733388,
+              -1.5189233574696355
+            ]
+          },
+          "thermal-union": {
+            "runs": 20,
+            "asset_hours": 79.33333333333333,
+            "windows": 4760,
+            "false_windows": 47,
+            "alarm_episodes": 47,
+            "alarm_seconds": 2820.0,
+            "false_windows_per_asset_day": 14.218487394957984,
+            "alarm_episodes_per_asset_day": 14.218487394957984,
+            "fraction_runs_with_alarm": 0.75,
+            "false_windows_per_asset_day_ci95": [
+              9.35417691063982,
+              19.107395179083124
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              9.35417691063982,
+              19.107395179083124
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.9106239460370986
+            ]
+          },
+          "joint-rejected": {
+            "runs": 20,
+            "asset_hours": 79.33333333333333,
+            "windows": 4760,
+            "false_windows": 51,
+            "alarm_episodes": 51,
+            "alarm_seconds": 3060.0,
+            "false_windows_per_asset_day": 15.428571428571429,
+            "alarm_episodes_per_asset_day": 15.428571428571429,
+            "fraction_runs_with_alarm": 0.75,
+            "false_windows_per_asset_day_ci95": [
+              10.552763819095478,
+              20.33812696549838
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              10.552763819095478,
+              20.33812696549838
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              3.3334035383319294
+            ]
+          }
+        },
+        "steady-heavy-production": {
+          "v04": {
+            "runs": 22,
+            "asset_hours": 87.4,
+            "windows": 5244,
+            "false_windows": 0,
+            "alarm_episodes": 0,
+            "alarm_seconds": 0.0,
+            "false_windows_per_asset_day": 0.0,
+            "alarm_episodes_per_asset_day": 0.0,
+            "fraction_runs_with_alarm": 0.0,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              0.0
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              0.0
+            ],
+            "zero_count_caution": true
+          },
+          "v05-relational": {
+            "runs": 22,
+            "asset_hours": 87.4,
+            "windows": 5244,
+            "false_windows": 18,
+            "alarm_episodes": 18,
+            "alarm_seconds": 1080.0,
+            "false_windows_per_asset_day": 4.94279176201373,
+            "alarm_episodes_per_asset_day": 4.94279176201373,
+            "fraction_runs_with_alarm": 0.5454545454545454,
+            "false_windows_per_asset_day_ci95": [
+              2.7397260273972606,
+              7.436878347360366
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.7397260273972606,
+              7.436878347360366
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              2.7397260273972606,
+              7.436878347360366
+            ]
+          },
+          "thermal-union": {
+            "runs": 22,
+            "asset_hours": 87.4,
+            "windows": 5244,
+            "false_windows": 11,
+            "alarm_episodes": 2,
+            "alarm_seconds": 660.0,
+            "false_windows_per_asset_day": 3.020594965675057,
+            "alarm_episodes_per_asset_day": 0.5491990846681922,
+            "fraction_runs_with_alarm": 0.045454545454545456,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              9.07563025210084
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              1.650114591291062
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              9.07563025210084
+            ]
+          },
+          "joint-rejected": {
+            "runs": 22,
+            "asset_hours": 87.4,
+            "windows": 5244,
+            "false_windows": 26,
+            "alarm_episodes": 17,
+            "alarm_seconds": 1560.0,
+            "false_windows_per_asset_day": 7.139588100686498,
+            "alarm_episodes_per_asset_day": 4.668192219679634,
+            "fraction_runs_with_alarm": 0.4090909090909091,
+            "false_windows_per_asset_day_ci95": [
+              2.1901140684410647,
+              15.132045501127248
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.9221967963386726,
+              7.7065694250436945
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              2.1901140684410647,
+              15.132045501127248
+            ]
+          }
+        },
+        "variable-production": {
+          "v04": {
+            "runs": 31,
+            "asset_hours": 123.06666666666668,
+            "windows": 7384,
+            "false_windows": 32,
+            "alarm_episodes": 32,
+            "alarm_seconds": 1920.0,
+            "false_windows_per_asset_day": 6.240520043336944,
+            "alarm_episodes_per_asset_day": 6.240520043336944,
+            "fraction_runs_with_alarm": 0.7096774193548387,
+            "false_windows_per_asset_day_ci95": [
+              4.288034650785056,
+              8.590138214243256
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.288034650785056,
+              8.590138214243256
+            ],
+            "zero_count_caution": false
+          },
+          "v05-relational": {
+            "runs": 31,
+            "asset_hours": 123.06666666666668,
+            "windows": 7384,
+            "false_windows": 44,
+            "alarm_episodes": 43,
+            "alarm_seconds": 2640.0,
+            "false_windows_per_asset_day": 8.580715059588298,
+            "alarm_episodes_per_asset_day": 8.385698808234018,
+            "fraction_runs_with_alarm": 0.7419354838709677,
+            "false_windows_per_asset_day_ci95": [
+              5.844155844155844,
+              11.726384364820845
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              5.840995132504055,
+              11.29259058950784
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -1.3673544231982613,
+              6.243902439024389
+            ]
+          },
+          "thermal-union": {
+            "runs": 31,
+            "asset_hours": 123.06666666666668,
+            "windows": 7384,
+            "false_windows": 43,
+            "alarm_episodes": 34,
+            "alarm_seconds": 2580.0,
+            "false_windows_per_asset_day": 8.385698808234018,
+            "alarm_episodes_per_asset_day": 6.630552546045503,
+            "fraction_runs_with_alarm": 0.7419354838709677,
+            "false_windows_per_asset_day_ci95": [
+              4.877982718072034,
+              13.28702701622311
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.67027027027027,
+              8.975609756097558
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              6.449511400651465
+            ]
+          },
+          "joint-rejected": {
+            "runs": 31,
+            "asset_hours": 123.06666666666668,
+            "windows": 7384,
+            "false_windows": 85,
+            "alarm_episodes": 74,
+            "alarm_seconds": 5100.0,
+            "false_windows_per_asset_day": 16.576381365113757,
+            "alarm_episodes_per_asset_day": 14.431202600216684,
+            "fraction_runs_with_alarm": 0.967741935483871,
+            "false_windows_per_asset_day_ci95": [
+              12.655489453758786,
+              21.901140684410645
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              11.665907327142472,
+              17.39437301282584
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              6.2439024390243905,
+              15.83083386560554
+            ]
+          }
+        }
+      }
+    },
+    "availability": {
+      "CNC": {
+        "thermal_available_windows": 10712,
+        "relational_available_windows": 10712
+      },
+      "COMPRESSOR": {
+        "thermal_available_windows": 10712,
+        "relational_available_windows": 10712
+      },
+      "CONVEYOR": {
+        "thermal_available_windows": 10712,
+        "relational_available_windows": 10712
+      },
+      "PUMP": {
+        "thermal_available_windows": 10712,
+        "relational_available_windows": 10712
+      }
+    },
+    "exposure_target_met": true,
+    "no_selection_or_retraining": true,
+    "execution_sha256": "6792bef3ededf65cc425e9c4f460fb6fe640cef1efd5f5bda289b1e1fc06c76f",
+    "source_attribution": "OT Irregularity Lab 0.6.0, Mysthrala Kurogane Defense Labs; CC BY 4.0",
+    "source_url": "https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab",
+    "limitations": [
+      "Normal-only synthetic exposure cannot establish recall or industrial generalization.",
+      "One-hour runs aggregated by class do not establish continuous week-long stability.",
+      "Run-cluster bootstrap conditions on this simulator population; zero-count intervals do not prove zero risk."
+    ]
+  },
+  "diagnostics": {
+    "diagnostic_only": true,
+    "selection_or_retraining": false,
+    "strata": [
+      {
+        "asset_class": "CNC",
+        "truth_regime_diagnostic": "COOLDOWN",
+        "windows": 632,
+        "extra_joint": 2,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CNC",
+        "truth_regime_diagnostic": "HIGH_LOAD",
+        "windows": 1097,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CNC",
+        "truth_regime_diagnostic": "IDLE",
+        "windows": 156,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CNC",
+        "truth_regime_diagnostic": "LOW_LOAD",
+        "windows": 474,
+        "extra_joint": 1,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CNC",
+        "truth_regime_diagnostic": "MAINTENANCE",
+        "windows": 166,
+        "extra_joint": 2,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CNC",
+        "truth_regime_diagnostic": "NORMAL_LOAD",
+        "windows": 1511,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CNC",
+        "truth_regime_diagnostic": "OFF",
+        "windows": 75,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CNC",
+        "truth_regime_diagnostic": "WARMUP",
+        "windows": 720,
+        "extra_joint": 3,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CNC",
+        "truth_regime_diagnostic": "mixed",
+        "windows": 5881,
+        "extra_joint": 4,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "COMPRESSOR",
+        "truth_regime_diagnostic": "COOLDOWN",
+        "windows": 632,
+        "extra_joint": 23,
+        "extra_thermal": 22
+      },
+      {
+        "asset_class": "COMPRESSOR",
+        "truth_regime_diagnostic": "HIGH_LOAD",
+        "windows": 1097,
+        "extra_joint": 7,
+        "extra_thermal": 7
+      },
+      {
+        "asset_class": "COMPRESSOR",
+        "truth_regime_diagnostic": "IDLE",
+        "windows": 156,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "COMPRESSOR",
+        "truth_regime_diagnostic": "LOW_LOAD",
+        "windows": 474,
+        "extra_joint": 1,
+        "extra_thermal": 1
+      },
+      {
+        "asset_class": "COMPRESSOR",
+        "truth_regime_diagnostic": "MAINTENANCE",
+        "windows": 166,
+        "extra_joint": 2,
+        "extra_thermal": 2
+      },
+      {
+        "asset_class": "COMPRESSOR",
+        "truth_regime_diagnostic": "NORMAL_LOAD",
+        "windows": 1511,
+        "extra_joint": 3,
+        "extra_thermal": 2
+      },
+      {
+        "asset_class": "COMPRESSOR",
+        "truth_regime_diagnostic": "OFF",
+        "windows": 75,
+        "extra_joint": 1,
+        "extra_thermal": 1
+      },
+      {
+        "asset_class": "COMPRESSOR",
+        "truth_regime_diagnostic": "WARMUP",
+        "windows": 720,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "COMPRESSOR",
+        "truth_regime_diagnostic": "mixed",
+        "windows": 5881,
+        "extra_joint": 31,
+        "extra_thermal": 29
+      },
+      {
+        "asset_class": "CONVEYOR",
+        "truth_regime_diagnostic": "COOLDOWN",
+        "windows": 632,
+        "extra_joint": 4,
+        "extra_thermal": 4
+      },
+      {
+        "asset_class": "CONVEYOR",
+        "truth_regime_diagnostic": "HIGH_LOAD",
+        "windows": 1097,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CONVEYOR",
+        "truth_regime_diagnostic": "IDLE",
+        "windows": 156,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CONVEYOR",
+        "truth_regime_diagnostic": "LOW_LOAD",
+        "windows": 474,
+        "extra_joint": 1,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CONVEYOR",
+        "truth_regime_diagnostic": "MAINTENANCE",
+        "windows": 166,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CONVEYOR",
+        "truth_regime_diagnostic": "NORMAL_LOAD",
+        "windows": 1511,
+        "extra_joint": 4,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CONVEYOR",
+        "truth_regime_diagnostic": "OFF",
+        "windows": 75,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CONVEYOR",
+        "truth_regime_diagnostic": "WARMUP",
+        "windows": 720,
+        "extra_joint": 1,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "CONVEYOR",
+        "truth_regime_diagnostic": "mixed",
+        "windows": 5881,
+        "extra_joint": 52,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "PUMP",
+        "truth_regime_diagnostic": "COOLDOWN",
+        "windows": 632,
+        "extra_joint": 18,
+        "extra_thermal": 2
+      },
+      {
+        "asset_class": "PUMP",
+        "truth_regime_diagnostic": "HIGH_LOAD",
+        "windows": 1097,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "PUMP",
+        "truth_regime_diagnostic": "IDLE",
+        "windows": 156,
+        "extra_joint": 3,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "PUMP",
+        "truth_regime_diagnostic": "LOW_LOAD",
+        "windows": 474,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "PUMP",
+        "truth_regime_diagnostic": "MAINTENANCE",
+        "windows": 166,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "PUMP",
+        "truth_regime_diagnostic": "NORMAL_LOAD",
+        "windows": 1511,
+        "extra_joint": 0,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "PUMP",
+        "truth_regime_diagnostic": "OFF",
+        "windows": 75,
+        "extra_joint": 3,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "PUMP",
+        "truth_regime_diagnostic": "WARMUP",
+        "windows": 720,
+        "extra_joint": 3,
+        "extra_thermal": 0
+      },
+      {
+        "asset_class": "PUMP",
+        "truth_regime_diagnostic": "mixed",
+        "windows": 5881,
+        "extra_joint": 21,
+        "extra_thermal": 0
+      }
+    ]
+  },
+  "execution": {
+    "frozen_sha256": "23452d39f7a10c8d837a11e030d375c6b725a2a02d774afac4acc904d8eb5a23",
+    "manifest_sha256": "dc48e30d42f6fd6567aa4d95e03127bc0118f6fb41e849a05dbca3b70a005170",
+    "implementation": {
+      "src/ot_irregularity/__init__.py": "91447944015cec709e8aa7655f7e9d64e1e4508e7023a57fe3746911c0fc6fed",
+      "src/ot_irregularity/cli.py": "e83745f1bbc0545ca87b530294d1f74e2b88866f2e295478e07cc60bbcfd2aa0",
+      "src/ot_irregularity/contextual.py": "c5dea0bfb1995816b7c5ba82159d3b71e12f7bb94798e5e457bf80397844f4d3",
+      "src/ot_irregularity/data/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "src/ot_irregularity/data/load.py": "8b153d8c154dc623efb5f5e75492c7da0592157a89cba9fe17760ae0e3236daf",
+      "src/ot_irregularity/features.py": "907b3ff222984bf08b86cc908d9d83f46c9acd6927555a1258b439703a011601",
+      "src/ot_irregularity/metrics.py": "d4dbff5439e54a6406d4eb6aeecbc2e6ae288f5f83e6ae572e6cd23d0842e21a",
+      "src/ot_irregularity/models.py": "4a24dc0b757b0b0ebe01b8b541b06959f9585dd0c567d3abd114b6847a3d6549",
+      "src/ot_irregularity/normalization.py": "b1dd0eaed848b19ad46f5425a81c6ccba532e843df9fd3a2863ff77bc96c7311",
+      "src/ot_irregularity/pipeline.py": "e7c6ffa31014f8db6f84b3cf7158a2bb98fdfcdf3c7a1cd68cfd6f2dd01b647b",
+      "src/ot_irregularity/relationships.py": "bbeca27d81a0b7d584c5d39e3e2354d5792572bf5d707eeb80576b1536ddbeba",
+      "src/ot_irregularity/sample_thermal.py": "ce8b027bb02d5911931bfc743bf220854c1d8456fee449fad72bee7cef82a63f",
+      "src/ot_irregularity/thermal.py": "329b4e479c3d2503b36e1a73e570faf0c2169947ac27c1c9fd62d41f2137b532",
+      "scripts/__init__.py": "b475d7c13635d74e81e39fe03c27f4bdbdf2254067b8c5e220db82abd172af63",
+      "scripts/analyze_feature_search.py": "b14d0d88470c5dd252b9adda57cfd6f2b65420c826591c6be14f29047ff3d7e0",
+      "scripts/assemble_feature_search_dataset.py": "848bbf383f1c100db2ae3b720093916feb88e41b629dc52035b56e0630a116ef",
+      "scripts/audit_holdout_events.py": "3966ebde2b9d126e77adb2ead1fb56bfc0f58c304e54a1462fb20bc405e39bad",
+      "scripts/audit_thermal_counterfactual.py": "02c1e4b8653e5d7e157a2305925075dd8c5b2feb0cd3ab52a833eecf294cd062",
+      "scripts/evaluate_normal_exposure.py": "676c4ef40c81b3d245784e95d597ea2b9956f4a4fcf201ede38d3a300f41a9c4",
+      "scripts/feature_search.py": "f8968dbdc53f6eb9236719839953fb6e302e9f0793282bf65d0b12db10f0ecd9",
+      "scripts/feature_search_control.py": "062b9dc1377b5679a41a3237067ae490a87103c0733e36ee0aad5f9b4775efaa",
+      "scripts/freeze_normal_exposure.py": "a46bb6fd88ce3d8d7355293730ae537ab881054afbd3b8e768e5fde182bee1f8",
+      "scripts/freeze_thermal_candidate.py": "7c4e7351118995e78fa3e7faeb0629563772fd3966a9ec1d417a06054f9aaf09",
+      "scripts/normal_exposure_metrics.py": "3978a1f12a99a4fb0094facb26aead733b542e43c4d5aa7b8d4b7ce1545ff753",
+      "scripts/prepare_3w.py": "45fad73ba8fe67f83253210bb30355dfe6d9bca933b4cc9cdf26473bc93ec460",
+      "scripts/prepare_3w_unseen.py": "c27b0dd81e2e6f0e15f16a88c6172a7af50ff4466c3ad1146817a1c833d5afa9",
+      "scripts/prepare_otlab.py": "b9c7394c74fe262bb888439df08e4c7d313355a9ea013a8541a78080280bb3fe",
+      "scripts/relationship_candidate.py": "6d3bd00d2e1ae6b924752810f6750dcba1da106bcc76a005c1fc5856fda0f442",
+      "scripts/relationship_operating_points.py": "1fd5997828402e1d8107d9813c7e3b230d1575ad4fc27973c4cf1427a7ad26f7",
+      "scripts/research_alert_budgets.py": "1736f68355980c954b08f9c899c9f5552afe010509fe8f3194d6b77b55b3fd72",
+      "scripts/research_detection.py": "a0d4d0001adb08e4ed919cc0397a9e8415dfa0545f7f54947d643feff84bdbc8",
+      "scripts/research_joint_decisions.py": "aef40c52550cf83430e45db44a1305c15ce18d7a49ca295ab54803f886c8079a",
+      "scripts/research_physical.py": "54dcebdf8f6a6c04a5495396e472c67a36db21cd039e8ff61ea69e3f014af774",
+      "scripts/research_relationships.py": "b21e1dfd39375f47ec2df1e5bb71ba35d514a7cd24ca7a99ea2587c4c9638959",
+      "scripts/research_sample_thermal.py": "bb71fb6918a6cf453acf87364ef99799e744c901819cd3d2f403176bb6dd66bc",
+      "scripts/research_temporal.py": "b39f1f97d49bbf4cfca9252d6be66544990f143f57802949ccd45bba2fe743ab",
+      "scripts/research_thermal.py": "26b2fbcc83e15d4dd0884db7b91ae1658c80da2b4198ae693c51b12ca29474e2",
+      "scripts/research_thermal_tail.py": "aa3766d035f924f14646abc30367803b85e27d05d84ae55ce24d17987e17a31f",
+      "scripts/validate_contextual.py": "6534473d575fb7bb598a9a387460a950c51077ad284e8c9bd9a6bdc4d5a195d2",
+      "scripts/validate_physical.py": "b27b7b6c1835f3c950b2853d4d4c369c421febaec50eaa85cdead690748daf96",
+      "scripts/validate_relationships.py": "3c8474bc384a53f1cf9f35ee7e055592f64f8b52813f7877f0c3ec5d350dc7c4",
+      "scripts/validate_thermal_candidate.py": "1f7a1999d783fccdf176dec18cec1363d955372a58be149cd55a38ed07ad9254",
+      "scripts/validate_window_tail.py": "38447a16f6e08ed26f5c6ce53bae2a04d18258fbd42f67f89fd13d3143b9e713",
+      "scripts/watch_training.py": "790d5f6ef68d9c3dd7676484f6a46ac19b32a2477045eefe517792a8e7a8d799"
+    },
+    "device": "cuda:0"
+  },
+  "prediction_sha256_by_run": {
+    "test-00001": "4cf53596cadbc3026aae73333e25740e27ff9a0a9386806351e7d4d8dde60a9a",
+    "test-00002": "7035d31ab927e3a843b2fd4d1bd5693dc3c3e6b000b21b47849436f5b13d1d64",
+    "test-00003": "7c1dd7c8e68af8a5303d2ace1f29ff7f162f8c8b858cb52a56f536e4da042c08",
+    "test-00004": "82a8f6eafea11f8a45f91eceb26a5e50dd0d9d855057b2ec6b85108992430c63",
+    "test-00005": "d9e7406c476ae3b9dbb83f8433405544e284222ed21e261fd3c4e237cca17bbd",
+    "test-00006": "52d5c7ad135b17e6507e9f8ac61aad30d5d1c2be9c99302ad84a8e70faa2704a",
+    "test-00007": "5b6c9671c116620f5bbb646c072cbbd380afce14116b523cc5657b44cb8cab19",
+    "test-00008": "06ad0e46859c5d3fc3bdd510c60fdc0a4b33f7ecdba6eeac8776b887a888d257",
+    "test-00009": "98c364ab2e189bcc231693bbbceead2d7eafecd794b73f8ad750d7470398f1c1",
+    "test-00010": "8d559ad7973f40c5f8531c82abfd18f89fc59baec348e3b6a8b8b442d8739d43",
+    "test-00011": "c38b4c5b8c0f5aa28f655a59e4354403ccbfab59141d94033d5c8edcf0b69fbf",
+    "test-00012": "0bab53eee3c5a97798c43da5deac33dd367d3ff808739e886cfe034d33148932",
+    "test-00013": "527d5b474c576c1b2d0bada1eba727ddacc0f9199e540db832abc3d0a276b803",
+    "test-00014": "d2b81c520b162c2efe44be8cb223237d504155fa09ff1434952fa887c6d5a9c2",
+    "test-00015": "fad5871bd9c7e3c6964eecc7c66595b6e16d617f9dacaa35ab13c45f716883e9",
+    "test-00016": "b48bbe99d8dd6be87c06e5630a938d637fefe61eb4f35d53c8a5bbc612c44e67",
+    "test-00017": "94db12ea47b2324c993ad84c0005599f3808530ec4bbb21e1012c1d177282fcf",
+    "test-00018": "db12433e2486726e73887e163fe13d8cfdb8d37e0a8db5fa04631e9b6aeef8f7",
+    "test-00019": "bf43832fb4768edd83ff73f6623685a7c121c454dc3d586504320a5a2d71e3bb",
+    "test-00020": "d8a27c65963b0a4a647c0ed1538a2d7900857aa03f6bf0dd90ded146abcaa888",
+    "test-00021": "9a348800a469b581184649cd81e3fef1e7a706de452376839d54da329b8c9200",
+    "test-00022": "0d0bfdf8c64f39784b61a1241151a242ead39cb7f6b5d46139410a2d3e6808fb",
+    "test-00023": "5b446fe6030f56fb6de8eb39ea8b54264eca681cd4fba701e72de1456a0355ad",
+    "test-00024": "736e507cc2b01ddee7dd3c40a1bb7aff93a4662e78f16e2ef3a4209c425edff3",
+    "test-00025": "e362b35fc064a0f9a6a7412c09506293794de0778f8da6ec6d524d3fbcf1b981",
+    "test-00026": "d748e1014541e7d80f07f45ca6c7c72b355eafacc7f14efc646735ef83503b7f",
+    "test-00027": "59fbb83e722d5adb6339fd517d6c8739302d6f708b7046feaf342c2274b61d48",
+    "test-00028": "0c95c58544d2754c163e87e392a73adf6075e544d114ab51dae5226aa387bd50",
+    "test-00029": "83d6064ea9028a51ef4e715768c0cf7abe72ba8e63f8af9eeb762742a3c80b83",
+    "test-00030": "55967af7b1db6e91cd6040fb385387a0722fb51c6043cab4308867d5ac35fb4e",
+    "test-00031": "18124cc60838e1afe5a3376d090c6d3ed0a96a5705f381629ea9ebdf73bc1ae6",
+    "test-00032": "afa6a72ab22ced562d5255a022e0eebd32ef0cd7c3b92b8df9b087627d47527b",
+    "test-00033": "0f2546846e178e28fac1d690b12ae42036a3b00bdb94c65f9250b936cb36b5ac",
+    "test-00034": "f191b283bbb37669044ce1053d325050a1b7b7c786c7a074ebe5ae849c795a75",
+    "test-00035": "91411d3adff9213770095b46ebcff9e7e7bab346145bfb6226cff758edbee35e",
+    "test-00036": "9350ff8c8cfd46aac477b8a91b2f05024ae420ff3a77f41d8505a02d6286e223",
+    "test-00037": "f393ce4efd355118318fb31159a578f08b1784be179e07d2d3def8801dfd0641",
+    "test-00038": "3c511034e203538e856b7e52b85e6580b076c85ea2495a239ab776ed390c9b44",
+    "test-00039": "c1da882b0b1ce202e6ee13aedc8f02582285019b3f871d8a65e884c7065b4e11",
+    "test-00040": "97e613b41de1f2560beec86753b3454b9e4958346aaac8bc9be965215a8151ba",
+    "test-00041": "88f3bd5fdf6b47dd6f653c3f065a39761582941f8c24c5a34d43e3b7dd386037",
+    "test-00042": "85e60f521cfad32e3b77773489b32b213528e4e6e5135a1803b396284cd06b89",
+    "test-00043": "4be9c992d4ace75be2441328fbb9c76c8044032aa5e34ba41ee09abf75e6674a",
+    "test-00044": "4ecff6563310932ba9277f12c1c01c0a7639b805455df4604bbe401aa08af201",
+    "test-00045": "d70d5367f9f73db6d0ec0712ec54caee32f7fde99fec23c1ce45d1514e8e2049",
+    "test-00046": "1038b5ad9e971b37812cc76ede388684992aae7c60d5152a4b5de45d9cc09bb3",
+    "test-00047": "15ef2d329cbedffb6cec409f7a6905ca070e32a58c3ec18b552d573ec50d748d",
+    "test-00048": "97f7cc8f215e08104a705844d7ebf51f02a743eec948a88211cf452829fbf329",
+    "test-00049": "1db5c6f2934df3fa200b386e8780f0e71d56967a052bd22cc603e82fab1490ef",
+    "test-00050": "9b10849cbb18fe90350ad8f94b189e8fa504b68f80983d680390f4bb9371349b",
+    "test-00051": "883297cc1c8804f52915f7727bb92298d378d24733c6d9beda279cb89f781319",
+    "test-00052": "5f47ba3eeab61f58db99ab717c9b409ca39b8725c6caad8d1478b826b6eab9a1",
+    "test-00053": "1c723cc74f1b889d1995699aa2d422b947530d1d04819b54495fe58df76be50d",
+    "test-00054": "39973814961eb8b4d042c20f099241ea250bb9dcc874e6867fc3a2dd5aed9b19",
+    "test-00055": "ef65158954f93608cf899ffd515cd987989b44f8529ebf4c2fd97d37c93d7a01",
+    "test-00056": "405ef474428389bdc330e31a8374956784fb83386eab743792646ee1598036f3",
+    "test-00057": "6f53f7eaae4db7cb16721a63eed9a8035ff2df16a27b9cf0ff60cd5a662adbc5",
+    "test-00058": "c61f1edf5b0ab479a1587f19a3322eb42b55ab22fea614372af197e2c72e92b9",
+    "test-00059": "6c30a9303f9d32b529f7efdf6d07b1ae59319243e624433e8637684e047395ed",
+    "test-00060": "5c62f9cfa0c4882c38a225032d6f354d07a340161c6eb727d7341010dc7db250",
+    "test-00061": "82f69ff4115e2b67c78104eef96447731526d77b7545533786fed7bff1906912",
+    "test-00062": "7df70ef10b7875abbfb890cec40f0c38f0bd218da173e1d328663d417a215028",
+    "test-00063": "0367dde3745b1729b00f93d4369902b3e4318072b035b75b85feb0507902dc58",
+    "test-00064": "3863404b6a16bec704a38590362d7e5e124d8ef4b6ae98e59d398f20d2bcee6d",
+    "test-00065": "09f8ffbe4341a4766ed3ba6c92148960c916a9aa6a98aa434faa8fc3775ad716",
+    "test-00066": "bd3f75157ba673890c6b3c0e903781e051cde017249b8d0d6d7a8b57691c0ca3",
+    "test-00067": "f25b200c42958631e6a9674d17c8f96d6385895a743dfc1da7cf28835a68d3af",
+    "test-00068": "3001f6fe1bcd01db9ab8aa629584ff4c61cb3a155344f10b3ee53dc0ba388b30",
+    "test-00069": "ed0cbbc9cc3c0fc1d745943a37df8f1a4a4eee7372c8a733010b15e0573ce331",
+    "test-00070": "bfe3aa193c84374dfec663850f82614166040657df6d1bd609e953e1ee2a044d",
+    "test-00071": "cbe91f282c56dc3647be5dce1dfff86da86d2eb7abde98165a980c0578afbf22",
+    "test-00072": "4c423bd7174e617e39c65a1636a5a7c04e5b15d5a0afa47095211361176fd50f",
+    "test-00073": "643150000e47d54418eb574f1c71582de0d61cd84479ec985c6c2ea2b9a2ba6d",
+    "test-00074": "893615befab9d1d90485d2511a0afa0a0e1547f9f00678c7d48636e9ddeb1525",
+    "test-00075": "40e616a9433d07e015a9b9bed57b685585fb2954727474167d31d3373d7f3b95",
+    "test-00076": "a0c788bf01184eef2b39aa19ced8742c8035f6fc63ea3b4b27bf9d4188bf5401",
+    "test-00077": "9e6759714d55273306e4f4efcf672c9a4f462d1ef2ef46a43b7f0fe338179c8c",
+    "test-00078": "eec894b5909052029e04c31b6a1c9988a5ce851d951023ae488bf3ed5676858b",
+    "test-00079": "978b11a254d9ecdb63a81a28d1e0dc8e157962360def0541b1857116ab89ca03",
+    "test-00080": "74a95f26bec344c3090572fb2cb2687f26d172c07aa7ebde333b04f38e24a05e",
+    "test-00081": "b4b5b5b5d1cffaa9ba49760f3fac71ee65e0dd5be9c65743ed61169b96c16423",
+    "test-00082": "e8f58e82e422f446aa873cabf5b7c2476dbc35f57d41cfff20b65c99cdc813b0",
+    "test-00083": "5619eb1e8818475372ecfc09e9feba388005977018952c86b03d73d77fce1400",
+    "test-00084": "f335408a33b8a9f64f9e11695f876588dd946e12115a92c706aa6a651bbf2413",
+    "test-00085": "abe4b0c4ff3ed7ac84809bb3ebe56183d27f325a2f4656618f78ca9a3aef57bc",
+    "test-00086": "10bae050735125407401b5ccfee8922127feef3b530020e0169c26429e91655a",
+    "test-00087": "67ad2683191adae0fd004e330160b986e684f877983af4252f99bbdfadbbf529",
+    "test-00088": "2095eb748d2e11858cb5bc03935ea9ddcf36c3b47d301ccb41f7e9d4ab8dac9f",
+    "test-00089": "fb008abd55035d7322056ba0b7f64beef3f600d0f5b1d525f288afa6cccb649d",
+    "test-00090": "a86941112dfd82f5a63fb6deeb1004d89add34f586f0a487d5d49d799cdc4e88",
+    "test-00091": "d13bae1283a6187e2b512f8ba2d909ff67cba323558bbea3585dcd6a1c5c856b",
+    "test-00092": "0e8bdaaa3b428a5fcd18001db04351ecc062ca711e3af0bb852e824f3a50536e",
+    "test-00093": "bcbd0d69ac659eb581ff714af416a44157d1458df759735014692da7878472df",
+    "test-00094": "87e00bcfe8ddb5768f73e60afd1930a6a13da16c0555a70856e8bbd191928e63",
+    "test-00095": "ca2ce955352dd33d2a68e6bae37cf1980615d3f1180508e7c3e62a31b8b453e7",
+    "test-00096": "6b68ce97abc1c17182349d1eeeb02c8d623228aa2944fb63803632c4ce482e8e",
+    "test-00097": "9f9328b8a249fbc2476f7624601a9f632d770b30659064368e14db915cbc00cc",
+    "test-00098": "9407803dcf58281a595e61dc3ae522fbc90e75c84863d148187dee037a842204",
+    "test-00099": "02b7a5f5fa435da07b7b20ecb19298011ff0cacb1ecf7a61ff48f0e6d59361e4",
+    "test-00100": "f095a1fcbd4b56b61207bf641520688787810a21cb68ad3efe136460b2edc703",
+    "test-00101": "28bde1f453c3cbbd4f1098abb98c6a7342fe571b7893e1959b929cbbbdc96fec",
+    "test-00102": "fc8c058144f59a2fd7df34f4c93ee63ed42e477e8abe3b88b66d112d0f8cb805",
+    "test-00103": "7760f9c9262f23a6edbf37a51b78fad027cfd1fd61d13ad000c5bbe82506048d",
+    "test-00104": "9cd0c9b3ca875c322abe2f8bdac142f8a1d34992f2fe0ff7501c840b74dd4c08",
+    "test-00105": "d3b07aeecdd3e6b9d6ff83f33ba515c6cbc455f53b0a7675436f93f521f24e43",
+    "test-00106": "9c4914ea33a1ee2355e0f4ba9e8fb46462a4ac23fea97da9d5042da295007fea",
+    "test-00107": "72cd56ea482e30d8aae82b76eed25fb46a87a7ed772cf967e46b3162f6f7a771",
+    "test-00108": "71b51fa562992d0905e3364d8d80a633cd63533da3c1b08ce50826ade6e155ff",
+    "test-00109": "56c7305bbbce29dab599ef9917be41d79f01d33bef2db713d2cf4619c2f4514e",
+    "test-00110": "11f3ac4b035192cf52a2e979951d899bd8982016c806a0716020e1bb67818733",
+    "test-00111": "2fc47e85cbdddad35e9faeeeaab74b118b340085343a37589f1eea53be9bccd8",
+    "test-00112": "0bfd41291bf6a7a2221e8210f8567383f2ff9683170a4f0fdc0fd68c8075eca3",
+    "test-00113": "5f5aa87f1fbfdcedc4616fdde70b57d12483d467b26b616297c0561dd85fb86d",
+    "test-00114": "18ff31b8b54b9dfa8d886b30901173c534ccd25f64a83f50a565bc58d0ff9f49",
+    "test-00115": "cf8b8d3920174c5c6580b3ffc49edfc40ee921c9fa4864b764197e1366d86648",
+    "test-00116": "8cec632d7c411316a706e98a6800840bdba8a3fd98b942938a040f6452710eb1",
+    "test-00117": "3aa7e25415857930cf5c5c9d4676a81edfb6c4b6572a367e4d4f23629117d6b4",
+    "test-00118": "57a2a93be84a12cb0eaca8775d3b6ec889fed74f67f8cb3935ab5740e153f4e2",
+    "test-00119": "4d3270d8e677308f467f8f6669beec53fc884b712712db2623bb1e0a7a1d5301",
+    "test-00120": "713e2c943dfd5575757e6e3f88f81f13e83be48a7f9952b934484855d7546951",
+    "test-00121": "8233da8b2a53ed9f94193b29e75b33735bf6ed80dfda81ce3e2d25e2ac3b570e",
+    "test-00122": "9807f8cc75fccd61a7ab591e1aebf0ebdbdd6edead33e432dd8706f12a16aff7",
+    "test-00123": "cc08f369cbdd9564a22c57e220390f2b2c6739c30f6c3033e4b14fce160deb3b",
+    "test-00124": "e3b9838ca05ad03d3fc37ecd3e6829b6fee6ca22130a0b014a75c8b6d1521f88",
+    "test-00125": "77f138367d10c1fabeb0a00c0ddb00e21142ac9b7b7507134867ca1badade5c2",
+    "test-00126": "d646e7563a1ebc3135e170532892543a473fba5b121b6bfa41f4628d28d17ee9",
+    "test-00127": "47f824e0b3e0e6a7057d78a757111f9ccbb3c8a3ccb6bbf41c9072e63ecb070e",
+    "test-00128": "79578f98238f4fe6228821c3b875d38af0b2060439db4dc75b6129d11359a74f",
+    "test-00129": "9a29a1b133ccc609b18f4ce9d0d8cc82b42a340b97e6170f452405efd53d6295",
+    "test-00130": "bcf7c08f1daf0a6e99c3528e912a2afcf10273c89581391fcf5b350a3bdd3401",
+    "test-00131": "3ebbdb1ccea3a76e42a5d2c0d5603db2ab4968182535205fbf6c8b749dbce519",
+    "test-00132": "4e7516921509e82b73fa1bf4a46d94fa4c4c75f480f5c3f32a0e63fa60657044",
+    "test-00133": "c648d677f2751a07d3ca57c80f59cc425f9980040fc44c72374843032f3b61e2",
+    "test-00134": "05c73b85cecda6fc4b336628e304ad7aff5cdabb50a0f777f4f775db9452baf6",
+    "test-00135": "2c1d53adbb613f2be37e8bd5d9856429550092b013948f8eef14422e42ff691a",
+    "test-00136": "a6e81a03d5accc23048df0b66d86ef40d23dd5d1bb4282573ab0e66d795f4b11",
+    "test-00137": "a07365d5930f6bb78a35fdeca0bb6eafd0dd28a7ac08eadd74f3ba433ae22cdb",
+    "test-00138": "3af79a7026d2b76925e19f3d385d0e8e855f7425990c4030d288739910291dba",
+    "test-00139": "a45e7ab17c3c57df3bab2ed85b87a37d4ff10971518435d6822c30f83fe2d209",
+    "test-00140": "955910f4cf69e6c4314068873e4c2bdc76211451f60869c6b37be67c8cd8eced",
+    "test-00141": "c76233b716896d62e399f5800a8f7840136a33c8cd532d3b03d82f6898f4540d",
+    "test-00142": "c99e09da0386c6b95d45c3d50f08247356befa0d912d71e96f9b98f282f2c901",
+    "test-00143": "7c31655ccddf4eb46ecc239aa7c9243c081f92054df4419feb3657d3012e7b73",
+    "test-00144": "ddb2971404a925bd98ca8ae3d0b503d960a1f142bcbc2296a0ca17bdad38d4e5",
+    "test-00145": "321906237b964398b8856f9e871752abab542c9974afc2d14ab1cb1876b7a05d",
+    "test-00146": "adc86759ff62eba883280f9c75b223f17c8db810d238fc5d72efcaca1cea4a7a",
+    "test-00147": "e5710a7a771c4104c78aa5bac0d5f2b631f2eb9a88c92d3a522134f5c9617f9f",
+    "test-00148": "e23e32be6f66749926a005ba5bd1fd8fed98847744e506bdb89a75159e024374",
+    "test-00149": "d4f0cd432e9e5c219f42b047782563d3f4b38675d206562f8cdb01791b1ee04b",
+    "test-00150": "115d758696b01d735933ea7c9c88308c812f3891d81264cc37ccd84ae5dd118e",
+    "test-00151": "4097739aa3bcdca7782f25dfc01f774a721bc58409f5b88343a92fd4241ac87c",
+    "test-00152": "7b95f05f7a7f6fe06c319ef41b99f9165c960408a5c048ebee5b211b5a36ce17",
+    "test-00153": "e945e599609869f0bbe1b04425f8407cf7f4ca11d2577c6ca6530a0c2c0e2e42",
+    "test-00154": "dcd4c69d49a48d9a5f49d6465c4503f426abac9e88a7f174875bdcd1295a1870",
+    "test-00155": "e1fd22dde5b8f76755d3531e860b058b7168c99d354770e5105f9a36b6ed80fd",
+    "test-00156": "af56fbc5f3b83f1dc76252b594681390c04b34f198aab6c1393e651c551b337a",
+    "test-00157": "cf3152222f40d09522824bb87d0cb0033ba49f27a028c6c68763e28e92675219",
+    "test-00158": "68550fa6d9a3cae43932dc5047f3659c2b8c9771168a14b5d66f95be62595143",
+    "test-00159": "18e648cb0be31f3fa9ce6d10e087ba13af59096535137181657f946e3d5acce9",
+    "test-00160": "890a3827b3f3dc70b7948253640019145aced727f708f6e267b250372d2c4768",
+    "test-00161": "4866239360fe0582eec449acea996531da15535794745cf1920da9059dde3ec0",
+    "test-00162": "5e0e72d278a6fdb75859a0f975d89a0d916c8267877a49e0464af89345356201",
+    "test-00163": "0f67ea70110aba709fb5c972a246bce39c7130a9a9091f8e226a467f8d538559",
+    "test-00164": "46ea758e4f3dac8b2530e07d5dd89d2a390b7c278d0f82f32d8931784cf7e950",
+    "test-00165": "7df64bf93ca0f46ac5fa3cc20ba2aa0f9f94fad3cd220a03e0b00ee5104d1293",
+    "test-00166": "8e43ae8324ade6809acf43d30af673e0cedadfb1e531c3b8f9007275e23b764e",
+    "test-00167": "6101bf980113d5f1d4f34938882dd7b07d9aa5362ecd831607f4ce4bf8faf49a",
+    "test-00168": "4accc339863bc7177ee1899705d35d0b087d3b433a9764ce4d0cf26ffede29dc",
+    "test-00169": "c83747cdda432c82eead6e78fcaea5fcfe839584141920e53306f2e9db83b244",
+    "test-00170": "1a5e0c743bdadba3063d8133e4236458164eaeeaf2983083cf6d0a7a9e32c04e",
+    "test-00171": "3b3578dc64484a77d58affa6219619a4a9a74c0a9442d5d5dff3d4a8ca67af61",
+    "test-00172": "b7efdcf0c9d8a4b451635364d24f5cfedb7dab0dbdb949c6f039a3247c774017",
+    "test-00173": "77fe216d1afd5bca468fca41809445061126b4e8140d32bad649c19cbbaba414",
+    "test-00174": "887154a4ec5fdb1aab13b9151f0bdbfdd91af455de8ecb65eb24dcd63c4672f4",
+    "test-00175": "6ae08373d8fdc0fd1f5ac927edee87aa88c00c0da91feb55150291d84618067b",
+    "test-00176": "c536900f97579f13e68c0549ba30a362f19c62df47976e29e6b1215a4ba6a47f",
+    "test-00177": "19772e13f674077e69ecd83e6e792266a0a8d898919354d14d8200add335d07d",
+    "test-00178": "5db2867657260e449ab35baa96e0f3a279981a23b76340f9963144c44d6cc959",
+    "test-00179": "c5f95cda8186275bfab205a91e54f99d5e4460638998c0e31788841e30d4802f",
+    "test-00180": "2131aab3f6d88606752301e23d5e891d3d6f746c43e5074148e788ef57ff1d29"
+  }
+}

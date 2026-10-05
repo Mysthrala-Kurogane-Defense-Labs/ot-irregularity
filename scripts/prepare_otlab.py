@@ -64,6 +64,20 @@ def _annotate(frame: pl.DataFrame, events: list[dict]) -> pl.DataFrame:
     )
 
 
+def normalize_observations(frame: pl.DataFrame) -> pl.DataFrame:
+    """Apply Lab semantics without fitting ML transforms or retaining event labels."""
+    if "tag_id" in frame.columns:
+        frame = frame.with_columns(pl.col("tag_id").cast(pl.String).alias("measurement_role"))
+    if "unit" in frame.columns:
+        frame = frame.with_columns(
+            pl.when(pl.col("unit").cast(pl.String).str.to_lowercase().is_in(["code", "enum", "state"]))
+            .then(pl.lit("categorical")).otherwise(pl.lit("continuous")).alias("value_kind"))
+    frame = frame.drop([name for name in ("is_anomaly", "event_id", "event_start_us") if name in frame.columns])
+    if "quality" in frame.columns:
+        frame = frame.with_columns(pl.col("quality").cast(pl.String).str.to_lowercase())
+    return frame
+
+
 def prepare(source: Path, output: Path, *, max_train_runs: int | None = None,
             max_validation_runs: int | None = None, max_test_runs: int | None = None) -> dict:
     """Verify a Lab dataset and emit normal-only train plus mixed validation and labeled test."""
@@ -156,19 +170,7 @@ def prepare(source: Path, output: Path, *, max_train_runs: int | None = None,
             event_count = 0
             for entry, truth in runs:
                 telemetry_path = source / partition / entry["run_id"] / "telemetry.parquet"
-                frame = pl.read_parquet(telemetry_path)
-                # A semantic point role separates distinct measurements that share a broad class.
-                if "tag_id" in frame.columns:
-                    frame = frame.with_columns(pl.col("tag_id").cast(pl.String).alias("measurement_role"))
-                if "unit" in frame.columns:
-                    frame = frame.with_columns(
-                        pl.when(pl.col("unit").cast(pl.String).str.to_lowercase().is_in(["code", "enum", "state"]))
-                        .then(pl.lit("categorical")).otherwise(pl.lit("continuous")).alias("value_kind")
-                    )
-                # Do not admit any identifiers or event metadata as model features.
-                frame = frame.drop([name for name in ("is_anomaly", "event_id", "event_start_us") if name in frame.columns])
-                if "quality" in frame.columns:
-                    frame = frame.with_columns(pl.col("quality").cast(pl.String).str.to_lowercase())
+                frame = normalize_observations(pl.read_parquet(telemetry_path))
                 events = truth.get("events", []) if partition in ("validation", "test") else []
                 # Lab event IDs are local to a run (evt-1, evt-2); namespace them
                 # because this project's evaluator compares IDs across partitions.

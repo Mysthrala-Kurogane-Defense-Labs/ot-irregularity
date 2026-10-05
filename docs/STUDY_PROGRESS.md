@@ -4,6 +4,8 @@ Este registro conserva avances, resultados negativos y cambios de medición. Los
 
 ## Evolución hasta el 5 de octubre de 2026
 
+[Exposición normal prolongada](workflows/model-training/runs/2026-10-05-normal-exposure.md): 180 runs y 178,53 horas-activo por clase. La unión conjunta aumenta falsas ventanas de 5,24 a 11,63/activo-día; diferencia pareada IC95% [4,57, 8,33]. Térmica: 7,60 global, pero 11,56 en compresores. El baseline también falla en perfiles de mantenimiento. No se promueve candidato: mejorar cobertura y representación de normalidad con nuevos datos de desarrollo.
+
 [Decisión conjunta](workflows/model-training/runs/2026-10-05-joint-decisions.md): los 24 puntos se rechazan en desarrollo por falsas ventanas. El punto principal q=.9975 conserva todas las alertas baseline y alcanza 87/124 eventos, 18/35 físicos y 5/10 de refrigeración, pero pasa de 4 a 6 falsas ventanas. No se consume otro test ni se promueve candidato. La siguiente medición sigue el [protocolo normal prolongado](NORMAL_EXPOSURE_PROTOCOL.md).
 
 [Dinámica térmica antes de agregar](workflows/model-training/runs/2026-10-05-sample-thermal.md): componente seleccionado en desarrollo y contrastado en tres lotes nuevos. Test: 62/105 eventos frente a 60/105 baseline, refrigeración 2/7 frente a 1/7, falsas ventanas 8 frente a 7, sin perder eventos baseline. Cumple el gate exploratorio, pero los intervalos incluyen ganancia cero; v0.5 relacional detecta 67/105 y sigue siendo mejor en conjunto. No se sustituye el modelo ni se reajusta sobre test. Contexto inicial y normalización de magnitud siguen siendo supuestos explícitos.

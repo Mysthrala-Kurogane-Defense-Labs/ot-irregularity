@@ -34,3 +34,7 @@ Normal development: 33 runs, 7,864 windows, 131.067 asset-hours; 14 false window
 108 local tests pass without warnings, including class-scale invariance, explicit-normal guards, unavailable values and JSON round trips. All six reference reloads reproduce score arrays exactly. Fresh original member/control and health scores exactly match frozen development controls. Relational availability: 1,918/1,965 historical and 7,864/7,864 normal development windows. Other channels remain active outside relational availability.
 
 Freeze the selected reference, all component artifacts and code before generating new independent mixed and prolonged-normal sources. Preserve the previous failed majority confirmation and report event retention, paired uncertainty and PR-AUC tradeoffs. No further point selection on new test. Industrial generalization, thermal coverage, streaming terminal silence and generic CLI packaging remain incomplete toward v1.0.
+
+## Confirmation preparation checkpoint
+
+CI for development evidence commit `7fe727d` passed on 2026-10-05. The [new confirmation protocol](../../../CLASS_ENSEMBLE_CONFIRMATION_PROTOCOL.md) declares mixed seeds 910561/2/3 and normal 920631 before generation. Acceptance and paired-bootstrap helpers now accept an explicit candidate name, preserving majority defaults and identical criteria; 110 local tests pass. The executable freeze and inference extension are still pending. No new source has been generated or evaluated at this checkpoint; no confirmation result is claimed.

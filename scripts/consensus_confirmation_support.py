@@ -33,20 +33,20 @@ def source_manifest(source, frozen, seen_run_seeds):
     return doc, entries, normal
 
 
-def acceptance(mixed, normal, lost_integrity, lost_physical, minimum_hours):
-    candidate, control = mixed['majority'], mixed['primary-health']
+def acceptance(mixed, normal, lost_integrity, lost_physical, minimum_hours, candidate_name='majority'):
+    candidate, control = mixed[candidate_name], mixed['primary-health']
     mixed_ok = (not lost_integrity and not lost_physical
         and candidate['detected_events'] >= control['detected_events']
         and candidate['false_positive_windows'] <= control['false_positive_windows']
         and candidate['precision'] >= .5 and candidate['event_detection_rate'] >= .5)
-    normal_ok = (normal['overall']['majority']['false_windows'] <= normal['overall']['primary-health']['false_windows']
+    normal_ok = (normal['overall'][candidate_name]['false_windows'] <= normal['overall']['primary-health']['false_windows']
         and len(normal['by_class']) == 4
-        and all(v['majority']['asset_hours'] >= minimum_hours and v['majority']['false_windows_per_asset_day'] <= 10
+        and all(v[candidate_name]['asset_hours'] >= minimum_hours and v[candidate_name]['false_windows_per_asset_day'] <= 10
                 for v in normal['by_class'].values()))
     return {'mixed_passed':bool(mixed_ok),'normal_passed':bool(normal_ok),'exploratory_confirmation_passed':bool(mixed_ok and normal_ok)}
 
 
-def paired_intervals(frame, events, control_table, candidate_table, repetitions=2000, seed=20261005):
+def paired_intervals(frame, events, control_table, candidate_table, repetitions=2000, seed=20261005, candidate_name='majority'):
     runs = sorted(set(frame['run_id']) | {e['run_id'] for e in events})
     families = {(e['run_id'],e['asset_id'],e['event_id']):e['family'] for e in events}
     key = lambda e:(e['run_id'],e['asset_id'],e['event_id'])
@@ -57,7 +57,7 @@ def paired_intervals(frame, events, control_table, candidate_table, repetitions=
             for physical in (False,True) for detected in (False,True)] for r in runs]))
     cluster = [np.flatnonzero(frame['run_id'].to_numpy()==r) for r in runs]
     labels = frame['is_anomaly'].to_numpy()
-    scores = [frame[c].to_numpy() for c in ('primary-health','majority')]
+    scores = [frame[c].to_numpy() for c in ('primary-health',candidate_name)]
     rng = np.random.default_rng(seed); deltas = {'event_detection':[],'physical_detection':[],'pr_auc':[],'false_windows_per_asset_day':[]}
     for _ in range(repetitions):
         picks = rng.integers(0,len(runs),len(runs)); a,b = [c[picks].sum(axis=0) for c in counts]

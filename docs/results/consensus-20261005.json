@@ -1,0 +1,1449 @@
+{
+  "rows": [
+    {
+      "mode": "majority",
+      "historical": {
+        "threshold": 0.5,
+        "samples": 1965,
+        "positive_samples": 251,
+        "precision": 0.9855072463768116,
+        "recall": 0.5418326693227091,
+        "f1": 0.699228791773779,
+        "pr_auc": 0.7295600446920272,
+        "roc_auc": 0.8561076580492499,
+        "false_positive_windows": 2,
+        "false_positives_per_asset_hour": 0.061068702290076333,
+        "false_positives_per_asset_day": 1.465648854961832,
+        "event_count": 124,
+        "event_detection_rate": 0.717741935483871,
+        "mean_time_to_first_detection_seconds": 49.42696629213483,
+        "mean_detection_latency_seconds": 49.42696629213483,
+        "detected_events": 89,
+        "events_without_windows": 0,
+        "by_family": {
+          "asset_communication_loss": {
+            "total": 5,
+            "detected": 5
+          },
+          "bearing_degradation": {
+            "total": 13,
+            "detected": 5
+          },
+          "cavitation": {
+            "total": 5,
+            "detected": 4
+          },
+          "cooling_degradation": {
+            "total": 10,
+            "detected": 4
+          },
+          "maintenance_activity": {
+            "total": 8,
+            "detected": 5
+          },
+          "mechanical_overload": {
+            "total": 7,
+            "detected": 6
+          },
+          "missing_telemetry": {
+            "total": 9,
+            "detected": 9
+          },
+          "multivariate_novelty": {
+            "total": 8,
+            "detected": 8
+          },
+          "quality_degradation": {
+            "total": 5,
+            "detected": 5
+          },
+          "regime_mismatch": {
+            "total": 4,
+            "detected": 4
+          },
+          "sensor_bias": {
+            "total": 11,
+            "detected": 6
+          },
+          "sensor_drift": {
+            "total": 15,
+            "detected": 5
+          },
+          "sensor_stuck": {
+            "total": 8,
+            "detected": 8
+          },
+          "single_signal_loss": {
+            "total": 8,
+            "detected": 8
+          },
+          "sudden_spike": {
+            "total": 8,
+            "detected": 7
+          }
+        },
+        "physical_events": {
+          "total": 35,
+          "detected": 19
+        }
+      },
+      "new_normal": {
+        "overall": {
+          "runs": 33,
+          "asset_hours": 131.0666666666667,
+          "windows": 7864,
+          "false_windows": 14,
+          "alarm_episodes": 14,
+          "alarm_seconds": 840.0,
+          "false_windows_per_asset_day": 2.5635808748728377,
+          "alarm_episodes_per_asset_day": 2.5635808748728377,
+          "fraction_runs_with_alarm": 0.30303030303030304,
+          "false_windows_per_asset_day_ci95": [
+            1.0981050132056989,
+            4.218033622007131
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            1.0981050132056989,
+            4.218033622007131
+          ],
+          "zero_count_caution": false
+        },
+        "by_class": {
+          "CNC": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 1,
+            "alarm_episodes": 1,
+            "alarm_seconds": 60.0,
+            "false_windows_per_asset_day": 0.7324516785350965,
+            "alarm_episodes_per_asset_day": 0.7324516785350965,
+            "fraction_runs_with_alarm": 0.030303030303030304,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              2.1985012670822903
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              2.1985012670822903
+            ],
+            "zero_count_caution": false
+          },
+          "COMPRESSOR": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 10,
+            "alarm_episodes": 10,
+            "alarm_seconds": 600.0,
+            "false_windows_per_asset_day": 7.324516785350965,
+            "alarm_episodes_per_asset_day": 7.324516785350965,
+            "fraction_runs_with_alarm": 0.21212121212121213,
+            "false_windows_per_asset_day_ci95": [
+              2.198473282442748,
+              13.191007602493743
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.198473282442748,
+              13.191007602493743
+            ],
+            "zero_count_caution": false
+          },
+          "CONVEYOR": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 1,
+            "alarm_episodes": 1,
+            "alarm_seconds": 60.0,
+            "false_windows_per_asset_day": 0.7324516785350965,
+            "alarm_episodes_per_asset_day": 0.7324516785350965,
+            "fraction_runs_with_alarm": 0.030303030303030304,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              2.1995926680244398
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              2.1995926680244398
+            ],
+            "zero_count_caution": false
+          },
+          "PUMP": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 2,
+            "alarm_episodes": 2,
+            "alarm_seconds": 120.0,
+            "false_windows_per_asset_day": 1.464903357070193,
+            "alarm_episodes_per_asset_day": 1.464903357070193,
+            "fraction_runs_with_alarm": 0.06060606060606061,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              3.66412213740458
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              3.66412213740458
+            ],
+            "zero_count_caution": false
+          }
+        },
+        "strata": {
+          "profile": {
+            "planned-maintenance": {
+              "runs": 4,
+              "asset_hours": 15.8,
+              "windows": 948,
+              "false_windows": 3,
+              "alarm_episodes": 3,
+              "alarm_seconds": 180.0,
+              "false_windows_per_asset_day": 4.556962025316455,
+              "alarm_episodes_per_asset_day": 4.556962025316455,
+              "fraction_runs_with_alarm": 0.75,
+              "false_windows_per_asset_day_ci95": [
+                1.5254237288135595,
+                6.101694915254238
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                1.5254237288135595,
+                6.101694915254238
+              ],
+              "zero_count_caution": false
+            },
+            "production-stop": {
+              "runs": 4,
+              "asset_hours": 15.933333333333334,
+              "windows": 956,
+              "false_windows": 1,
+              "alarm_episodes": 1,
+              "alarm_seconds": 60.0,
+              "false_windows_per_asset_day": 1.506276150627615,
+              "alarm_episodes_per_asset_day": 1.506276150627615,
+              "fraction_runs_with_alarm": 0.25,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                4.556962025316455
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                4.556962025316455
+              ],
+              "zero_count_caution": false
+            },
+            "standard-shift": {
+              "runs": 9,
+              "asset_hours": 35.8,
+              "windows": 2148,
+              "false_windows": 0,
+              "alarm_episodes": 0,
+              "alarm_seconds": 0.0,
+              "false_windows_per_asset_day": 0.0,
+              "alarm_episodes_per_asset_day": 0.0,
+              "fraction_runs_with_alarm": 0.0,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                0.0
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                0.0
+              ],
+              "zero_count_caution": true
+            },
+            "startup-maintenance-shutdown": {
+              "runs": 4,
+              "asset_hours": 15.866666666666667,
+              "windows": 952,
+              "false_windows": 4,
+              "alarm_episodes": 4,
+              "alarm_seconds": 240.0,
+              "false_windows_per_asset_day": 6.050420168067227,
+              "alarm_episodes_per_asset_day": 6.050420168067227,
+              "fraction_runs_with_alarm": 0.5,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                13.556485355648535
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                13.556485355648535
+              ],
+              "zero_count_caution": false
+            },
+            "steady-heavy-production": {
+              "runs": 5,
+              "asset_hours": 19.866666666666667,
+              "windows": 1192,
+              "false_windows": 5,
+              "alarm_episodes": 5,
+              "alarm_seconds": 300.0,
+              "false_windows_per_asset_day": 6.040268456375839,
+              "alarm_episodes_per_asset_day": 6.040268456375839,
+              "fraction_runs_with_alarm": 0.6,
+              "false_windows_per_asset_day_ci95": [
+                1.2,
+                12.162162162162161
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                1.2,
+                12.162162162162161
+              ],
+              "zero_count_caution": false
+            },
+            "variable-production": {
+              "runs": 7,
+              "asset_hours": 27.8,
+              "windows": 1668,
+              "false_windows": 1,
+              "alarm_episodes": 1,
+              "alarm_seconds": 60.0,
+              "false_windows_per_asset_day": 0.8633093525179856,
+              "alarm_episodes_per_asset_day": 0.8633093525179856,
+              "fraction_runs_with_alarm": 0.14285714285714285,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                2.5838869574197094
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                2.5838869574197094
+              ],
+              "zero_count_caution": false
+            }
+          },
+          "sampling_interval_ms": {
+            "500": {
+              "runs": 16,
+              "asset_hours": 63.53333333333332,
+              "windows": 3812,
+              "false_windows": 2,
+              "alarm_episodes": 2,
+              "alarm_seconds": 120.0,
+              "false_windows_per_asset_day": 0.7555089192025185,
+              "alarm_episodes_per_asset_day": 0.7555089192025185,
+              "fraction_runs_with_alarm": 0.125,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                1.8848661463992886
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                1.8848661463992886
+              ],
+              "zero_count_caution": false
+            },
+            "1000": {
+              "runs": 17,
+              "asset_hours": 67.53333333333333,
+              "windows": 4052,
+              "false_windows": 12,
+              "alarm_episodes": 12,
+              "alarm_seconds": 720.0,
+              "false_windows_per_asset_day": 4.264560710760119,
+              "alarm_episodes_per_asset_day": 4.264560710760119,
+              "fraction_runs_with_alarm": 0.47058823529411764,
+              "false_windows_per_asset_day_ci95": [
+                1.775147928994083,
+                7.135777998017841
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                1.775147928994083,
+                7.135777998017841
+              ],
+              "zero_count_caution": false
+            }
+          },
+          "expose_operating_regime": {
+            "False": {
+              "runs": 15,
+              "asset_hours": 59.466666666666654,
+              "windows": 3568,
+              "false_windows": 6,
+              "alarm_episodes": 6,
+              "alarm_seconds": 360.0,
+              "false_windows_per_asset_day": 2.4215246636771304,
+              "alarm_episodes_per_asset_day": 2.4215246636771304,
+              "fraction_runs_with_alarm": 0.26666666666666666,
+              "false_windows_per_asset_day_ci95": [
+                0.40268456375838935,
+                5.2525252525252535
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.40268456375838935,
+                5.2525252525252535
+              ],
+              "zero_count_caution": false
+            },
+            "True": {
+              "runs": 18,
+              "asset_hours": 71.6,
+              "windows": 4296,
+              "false_windows": 8,
+              "alarm_episodes": 8,
+              "alarm_seconds": 480.0,
+              "false_windows_per_asset_day": 2.681564245810056,
+              "alarm_episodes_per_asset_day": 2.681564245810056,
+              "fraction_runs_with_alarm": 0.3333333333333333,
+              "false_windows_per_asset_day_ci95": [
+                0.6728971962616824,
+                5.023255813953489
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.6728971962616824,
+                5.023255813953489
+              ],
+              "zero_count_caution": false
+            }
+          }
+        }
+      },
+      "lost_baseline_nonphysical_events": [],
+      "lost_primary_corrected_physical_events": [],
+      "lost_from_corrected_members": {
+        "20261005": [
+          [
+            "dev-15::validation-00014",
+            "PUMP-01",
+            "dev-15::validation-00014/evt-1"
+          ]
+        ],
+        "20261006": [
+          [
+            "dev-07::validation-00008",
+            "CNC-01",
+            "dev-07::validation-00008/evt-1"
+          ]
+        ],
+        "20261007": []
+      },
+      "eligible": true
+    },
+    {
+      "mode": "unanimity",
+      "historical": {
+        "threshold": 0.5,
+        "samples": 1965,
+        "positive_samples": 251,
+        "precision": 0.9924812030075187,
+        "recall": 0.5258964143426295,
+        "f1": 0.6875,
+        "pr_auc": 0.7257536856500966,
+        "roc_auc": 0.8477118364348906,
+        "false_positive_windows": 1,
+        "false_positives_per_asset_hour": 0.030534351145038167,
+        "false_positives_per_asset_day": 0.732824427480916,
+        "event_count": 124,
+        "event_detection_rate": 0.6854838709677419,
+        "mean_time_to_first_detection_seconds": 49.83529411764706,
+        "mean_detection_latency_seconds": 49.83529411764706,
+        "detected_events": 85,
+        "events_without_windows": 0,
+        "by_family": {
+          "asset_communication_loss": {
+            "total": 5,
+            "detected": 5
+          },
+          "bearing_degradation": {
+            "total": 13,
+            "detected": 5
+          },
+          "cavitation": {
+            "total": 5,
+            "detected": 4
+          },
+          "cooling_degradation": {
+            "total": 10,
+            "detected": 3
+          },
+          "maintenance_activity": {
+            "total": 8,
+            "detected": 5
+          },
+          "mechanical_overload": {
+            "total": 7,
+            "detected": 4
+          },
+          "missing_telemetry": {
+            "total": 9,
+            "detected": 9
+          },
+          "multivariate_novelty": {
+            "total": 8,
+            "detected": 8
+          },
+          "quality_degradation": {
+            "total": 5,
+            "detected": 5
+          },
+          "regime_mismatch": {
+            "total": 4,
+            "detected": 3
+          },
+          "sensor_bias": {
+            "total": 11,
+            "detected": 6
+          },
+          "sensor_drift": {
+            "total": 15,
+            "detected": 5
+          },
+          "sensor_stuck": {
+            "total": 8,
+            "detected": 8
+          },
+          "single_signal_loss": {
+            "total": 8,
+            "detected": 8
+          },
+          "sudden_spike": {
+            "total": 8,
+            "detected": 7
+          }
+        },
+        "physical_events": {
+          "total": 35,
+          "detected": 16
+        }
+      },
+      "new_normal": {
+        "overall": {
+          "runs": 33,
+          "asset_hours": 131.0666666666667,
+          "windows": 7864,
+          "false_windows": 6,
+          "alarm_episodes": 6,
+          "alarm_seconds": 360.0,
+          "false_windows_per_asset_day": 1.0986775178026447,
+          "alarm_episodes_per_asset_day": 1.0986775178026447,
+          "fraction_runs_with_alarm": 0.15151515151515152,
+          "false_windows_per_asset_day_ci95": [
+            0.18329705694874143,
+            2.0214395099540576
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            0.18329705694874143,
+            2.0214395099540576
+          ],
+          "zero_count_caution": false
+        },
+        "by_class": {
+          "CNC": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 0,
+            "alarm_episodes": 0,
+            "alarm_seconds": 0.0,
+            "false_windows_per_asset_day": 0.0,
+            "alarm_episodes_per_asset_day": 0.0,
+            "fraction_runs_with_alarm": 0.0,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              0.0
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              0.0
+            ],
+            "zero_count_caution": true
+          },
+          "COMPRESSOR": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 3,
+            "alarm_episodes": 3,
+            "alarm_seconds": 180.0,
+            "false_windows_per_asset_day": 2.1973550356052893,
+            "alarm_episodes_per_asset_day": 2.1973550356052893,
+            "fraction_runs_with_alarm": 0.06060606060606061,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              5.865580448065173
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              5.865580448065173
+            ],
+            "zero_count_caution": false
+          },
+          "CONVEYOR": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 1,
+            "alarm_episodes": 1,
+            "alarm_seconds": 60.0,
+            "false_windows_per_asset_day": 0.7324516785350965,
+            "alarm_episodes_per_asset_day": 0.7324516785350965,
+            "fraction_runs_with_alarm": 0.030303030303030304,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              2.1995926680244398
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              2.1995926680244398
+            ],
+            "zero_count_caution": false
+          },
+          "PUMP": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 2,
+            "alarm_episodes": 2,
+            "alarm_seconds": 120.0,
+            "false_windows_per_asset_day": 1.464903357070193,
+            "alarm_episodes_per_asset_day": 1.464903357070193,
+            "fraction_runs_with_alarm": 0.06060606060606061,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              3.66412213740458
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              3.66412213740458
+            ],
+            "zero_count_caution": false
+          }
+        },
+        "strata": {
+          "profile": {
+            "planned-maintenance": {
+              "runs": 4,
+              "asset_hours": 15.8,
+              "windows": 948,
+              "false_windows": 2,
+              "alarm_episodes": 2,
+              "alarm_seconds": 120.0,
+              "false_windows_per_asset_day": 3.0379746835443036,
+              "alarm_episodes_per_asset_day": 3.0379746835443036,
+              "fraction_runs_with_alarm": 0.5,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                6.050420168067227
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                6.050420168067227
+              ],
+              "zero_count_caution": false
+            },
+            "production-stop": {
+              "runs": 4,
+              "asset_hours": 15.933333333333334,
+              "windows": 956,
+              "false_windows": 0,
+              "alarm_episodes": 0,
+              "alarm_seconds": 0.0,
+              "false_windows_per_asset_day": 0.0,
+              "alarm_episodes_per_asset_day": 0.0,
+              "fraction_runs_with_alarm": 0.0,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                0.0
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                0.0
+              ],
+              "zero_count_caution": true
+            },
+            "standard-shift": {
+              "runs": 9,
+              "asset_hours": 35.8,
+              "windows": 2148,
+              "false_windows": 0,
+              "alarm_episodes": 0,
+              "alarm_seconds": 0.0,
+              "false_windows_per_asset_day": 0.0,
+              "alarm_episodes_per_asset_day": 0.0,
+              "fraction_runs_with_alarm": 0.0,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                0.0
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                0.0
+              ],
+              "zero_count_caution": true
+            },
+            "startup-maintenance-shutdown": {
+              "runs": 4,
+              "asset_hours": 15.866666666666667,
+              "windows": 952,
+              "false_windows": 1,
+              "alarm_episodes": 1,
+              "alarm_seconds": 60.0,
+              "false_windows_per_asset_day": 1.5126050420168067,
+              "alarm_episodes_per_asset_day": 1.5126050420168067,
+              "fraction_runs_with_alarm": 0.25,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                4.518828451882845
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                4.518828451882845
+              ],
+              "zero_count_caution": false
+            },
+            "steady-heavy-production": {
+              "runs": 5,
+              "asset_hours": 19.866666666666667,
+              "windows": 1192,
+              "false_windows": 2,
+              "alarm_episodes": 2,
+              "alarm_seconds": 120.0,
+              "false_windows_per_asset_day": 2.4161073825503356,
+              "alarm_episodes_per_asset_day": 2.4161073825503356,
+              "fraction_runs_with_alarm": 0.2,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                7.297297297297297
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                7.297297297297297
+              ],
+              "zero_count_caution": false
+            },
+            "variable-production": {
+              "runs": 7,
+              "asset_hours": 27.8,
+              "windows": 1668,
+              "false_windows": 1,
+              "alarm_episodes": 1,
+              "alarm_seconds": 60.0,
+              "false_windows_per_asset_day": 0.8633093525179856,
+              "alarm_episodes_per_asset_day": 0.8633093525179856,
+              "fraction_runs_with_alarm": 0.14285714285714285,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                2.5838869574197094
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                2.5838869574197094
+              ],
+              "zero_count_caution": false
+            }
+          },
+          "sampling_interval_ms": {
+            "500": {
+              "runs": 16,
+              "asset_hours": 63.53333333333332,
+              "windows": 3812,
+              "false_windows": 2,
+              "alarm_episodes": 2,
+              "alarm_seconds": 120.0,
+              "false_windows_per_asset_day": 0.7555089192025185,
+              "alarm_episodes_per_asset_day": 0.7555089192025185,
+              "fraction_runs_with_alarm": 0.125,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                1.8848661463992886
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                1.8848661463992886
+              ],
+              "zero_count_caution": false
+            },
+            "1000": {
+              "runs": 17,
+              "asset_hours": 67.53333333333333,
+              "windows": 4052,
+              "false_windows": 4,
+              "alarm_episodes": 4,
+              "alarm_seconds": 240.0,
+              "false_windows_per_asset_day": 1.4215202369200395,
+              "alarm_episodes_per_asset_day": 1.4215202369200395,
+              "fraction_runs_with_alarm": 0.17647058823529413,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                3.2047477744807127
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                3.2047477744807127
+              ],
+              "zero_count_caution": false
+            }
+          },
+          "expose_operating_regime": {
+            "False": {
+              "runs": 15,
+              "asset_hours": 59.466666666666654,
+              "windows": 3568,
+              "false_windows": 2,
+              "alarm_episodes": 2,
+              "alarm_seconds": 120.0,
+              "false_windows_per_asset_day": 0.8071748878923769,
+              "alarm_episodes_per_asset_day": 0.8071748878923769,
+              "fraction_runs_with_alarm": 0.06666666666666667,
+              "false_windows_per_asset_day_ci95": [
+                0.0,
+                2.429696287964005
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.0,
+                2.429696287964005
+              ],
+              "zero_count_caution": false
+            },
+            "True": {
+              "runs": 18,
+              "asset_hours": 71.6,
+              "windows": 4296,
+              "false_windows": 4,
+              "alarm_episodes": 4,
+              "alarm_seconds": 240.0,
+              "false_windows_per_asset_day": 1.340782122905028,
+              "alarm_episodes_per_asset_day": 1.340782122905028,
+              "fraction_runs_with_alarm": 0.2222222222222222,
+              "false_windows_per_asset_day_ci95": [
+                0.3348837209302326,
+                2.6716141001855287
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.3348837209302326,
+                2.6716141001855287
+              ],
+              "zero_count_caution": false
+            }
+          }
+        }
+      },
+      "lost_baseline_nonphysical_events": [],
+      "lost_primary_corrected_physical_events": [],
+      "lost_from_corrected_members": {
+        "20261005": [
+          [
+            "dev-15::validation-00014",
+            "PUMP-01",
+            "dev-15::validation-00014/evt-1"
+          ]
+        ],
+        "20261006": [
+          [
+            "dev-07::validation-00008",
+            "CNC-01",
+            "dev-07::validation-00008/evt-1"
+          ],
+          [
+            "dev-07::validation-00015",
+            "CNC-01",
+            "dev-07::validation-00015/evt-1"
+          ],
+          [
+            "dev-07::validation-00015",
+            "CNC-01",
+            "dev-07::validation-00015/evt-2"
+          ],
+          [
+            "dev-08::validation-00007",
+            "CNC-01",
+            "dev-08::validation-00007/evt-1"
+          ],
+          [
+            "dev-10::validation-00010",
+            "COMPRESSOR-01",
+            "dev-10::validation-00010/evt-2"
+          ]
+        ],
+        "20261007": [
+          [
+            "dev-07::validation-00015",
+            "CNC-01",
+            "dev-07::validation-00015/evt-1"
+          ],
+          [
+            "dev-07::validation-00015",
+            "CNC-01",
+            "dev-07::validation-00015/evt-2"
+          ],
+          [
+            "dev-08::validation-00007",
+            "CNC-01",
+            "dev-08::validation-00007/evt-1"
+          ],
+          [
+            "dev-10::validation-00010",
+            "COMPRESSOR-01",
+            "dev-10::validation-00010/evt-2"
+          ]
+        ]
+      },
+      "eligible": false
+    },
+    {
+      "mode": "union",
+      "historical": {
+        "threshold": 0.5,
+        "samples": 1965,
+        "positive_samples": 251,
+        "precision": 0.9328859060402684,
+        "recall": 0.5537848605577689,
+        "f1": 0.695,
+        "pr_auc": 0.7059140560380571,
+        "roc_auc": 0.8537007163876582,
+        "false_positive_windows": 10,
+        "false_positives_per_asset_hour": 0.3053435114503817,
+        "false_positives_per_asset_day": 7.328244274809161,
+        "event_count": 124,
+        "event_detection_rate": 0.7338709677419355,
+        "mean_time_to_first_detection_seconds": 49.967032967032964,
+        "mean_detection_latency_seconds": 49.967032967032964,
+        "detected_events": 91,
+        "events_without_windows": 0,
+        "by_family": {
+          "asset_communication_loss": {
+            "total": 5,
+            "detected": 5
+          },
+          "bearing_degradation": {
+            "total": 13,
+            "detected": 6
+          },
+          "cavitation": {
+            "total": 5,
+            "detected": 4
+          },
+          "cooling_degradation": {
+            "total": 10,
+            "detected": 4
+          },
+          "maintenance_activity": {
+            "total": 8,
+            "detected": 5
+          },
+          "mechanical_overload": {
+            "total": 7,
+            "detected": 6
+          },
+          "missing_telemetry": {
+            "total": 9,
+            "detected": 9
+          },
+          "multivariate_novelty": {
+            "total": 8,
+            "detected": 8
+          },
+          "quality_degradation": {
+            "total": 5,
+            "detected": 5
+          },
+          "regime_mismatch": {
+            "total": 4,
+            "detected": 4
+          },
+          "sensor_bias": {
+            "total": 11,
+            "detected": 7
+          },
+          "sensor_drift": {
+            "total": 15,
+            "detected": 5
+          },
+          "sensor_stuck": {
+            "total": 8,
+            "detected": 8
+          },
+          "single_signal_loss": {
+            "total": 8,
+            "detected": 8
+          },
+          "sudden_spike": {
+            "total": 8,
+            "detected": 7
+          }
+        },
+        "physical_events": {
+          "total": 35,
+          "detected": 20
+        }
+      },
+      "new_normal": {
+        "overall": {
+          "runs": 33,
+          "asset_hours": 131.0666666666667,
+          "windows": 7864,
+          "false_windows": 65,
+          "alarm_episodes": 63,
+          "alarm_seconds": 3900.0,
+          "false_windows_per_asset_day": 11.902339776195317,
+          "alarm_episodes_per_asset_day": 11.53611393692777,
+          "fraction_runs_with_alarm": 0.7272727272727273,
+          "false_windows_per_asset_day_ci95": [
+            8.048780487804878,
+            15.947249938526694
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            7.861858811579481,
+            15.413434114952858
+          ],
+          "zero_count_caution": false
+        },
+        "by_class": {
+          "CNC": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 9,
+            "alarm_episodes": 9,
+            "alarm_seconds": 540.0,
+            "false_windows_per_asset_day": 6.592065106815869,
+            "alarm_episodes_per_asset_day": 6.592065106815869,
+            "fraction_runs_with_alarm": 0.24242424242424243,
+            "false_windows_per_asset_day_ci95": [
+              2.928317234367056,
+              11.003565970453387
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.928317234367056,
+              11.003565970453387
+            ],
+            "zero_count_caution": false
+          },
+          "COMPRESSOR": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 36,
+            "alarm_episodes": 34,
+            "alarm_seconds": 2160.0,
+            "false_windows_per_asset_day": 26.368260427263476,
+            "alarm_episodes_per_asset_day": 24.90335707019328,
+            "fraction_runs_with_alarm": 0.5151515151515151,
+            "false_windows_per_asset_day_ci95": [
+              14.649033570701933,
+              38.91941533370104
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              14.61187214611872,
+              36.60443089201736
+            ],
+            "zero_count_caution": false
+          },
+          "CONVEYOR": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 9,
+            "alarm_episodes": 9,
+            "alarm_seconds": 540.0,
+            "false_windows_per_asset_day": 6.592065106815869,
+            "alarm_episodes_per_asset_day": 6.592065106815869,
+            "fraction_runs_with_alarm": 0.2727272727272727,
+            "false_windows_per_asset_day_ci95": [
+              2.932752911179863,
+              10.269994905756494
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.932752911179863,
+              10.269994905756494
+            ],
+            "zero_count_caution": false
+          },
+          "PUMP": {
+            "runs": 33,
+            "asset_hours": 32.76666666666667,
+            "windows": 1966,
+            "false_windows": 11,
+            "alarm_episodes": 11,
+            "alarm_seconds": 660.0,
+            "false_windows_per_asset_day": 8.056968463886061,
+            "alarm_episodes_per_asset_day": 8.056968463886061,
+            "fraction_runs_with_alarm": 0.3333333333333333,
+            "false_windows_per_asset_day_ci95": [
+              4.390243902439024,
+              11.743119266055045
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.390243902439024,
+              11.743119266055045
+            ],
+            "zero_count_caution": false
+          }
+        },
+        "strata": {
+          "profile": {
+            "planned-maintenance": {
+              "runs": 4,
+              "asset_hours": 15.8,
+              "windows": 948,
+              "false_windows": 8,
+              "alarm_episodes": 7,
+              "alarm_seconds": 480.0,
+              "false_windows_per_asset_day": 12.151898734177214,
+              "alarm_episodes_per_asset_day": 10.632911392405063,
+              "fraction_runs_with_alarm": 1.0,
+              "false_windows_per_asset_day_ci95": [
+                6.02510460251046,
+                19.830508474576273
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                6.02510460251046,
+                15.254237288135593
+              ],
+              "zero_count_caution": false
+            },
+            "production-stop": {
+              "runs": 4,
+              "asset_hours": 15.933333333333334,
+              "windows": 956,
+              "false_windows": 4,
+              "alarm_episodes": 4,
+              "alarm_seconds": 240.0,
+              "false_windows_per_asset_day": 6.02510460251046,
+              "alarm_episodes_per_asset_day": 6.02510460251046,
+              "fraction_runs_with_alarm": 0.75,
+              "false_windows_per_asset_day_ci95": [
+                1.5,
+                10.632911392405063
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                1.5,
+                10.632911392405063
+              ],
+              "zero_count_caution": false
+            },
+            "standard-shift": {
+              "runs": 9,
+              "asset_hours": 35.8,
+              "windows": 2148,
+              "false_windows": 5,
+              "alarm_episodes": 5,
+              "alarm_seconds": 300.0,
+              "false_windows_per_asset_day": 3.3519553072625703,
+              "alarm_episodes_per_asset_day": 3.3519553072625703,
+              "fraction_runs_with_alarm": 0.3333333333333333,
+              "false_windows_per_asset_day_ci95": [
+                0.6666666666666666,
+                7.4022156883335075
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                0.6666666666666666,
+                7.4022156883335075
+              ],
+              "zero_count_caution": false
+            },
+            "startup-maintenance-shutdown": {
+              "runs": 4,
+              "asset_hours": 15.866666666666667,
+              "windows": 952,
+              "false_windows": 15,
+              "alarm_episodes": 15,
+              "alarm_seconds": 900.0,
+              "false_windows_per_asset_day": 22.6890756302521,
+              "alarm_episodes_per_asset_day": 22.6890756302521,
+              "fraction_runs_with_alarm": 1.0,
+              "false_windows_per_asset_day_ci95": [
+                10.543933054393305,
+                33.13807531380753
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                10.543933054393305,
+                33.13807531380753
+              ],
+              "zero_count_caution": false
+            },
+            "steady-heavy-production": {
+              "runs": 5,
+              "asset_hours": 19.866666666666667,
+              "windows": 1192,
+              "false_windows": 24,
+              "alarm_episodes": 23,
+              "alarm_seconds": 1440.0,
+              "false_windows_per_asset_day": 28.993288590604028,
+              "alarm_episodes_per_asset_day": 27.78523489932886,
+              "fraction_runs_with_alarm": 1.0,
+              "false_windows_per_asset_day_ci95": [
+                19.2,
+                37.57575757575758
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                19.2,
+                35.15151515151515
+              ],
+              "zero_count_caution": false
+            },
+            "variable-production": {
+              "runs": 7,
+              "asset_hours": 27.8,
+              "windows": 1668,
+              "false_windows": 9,
+              "alarm_episodes": 9,
+              "alarm_seconds": 540.0,
+              "false_windows_per_asset_day": 7.76978417266187,
+              "alarm_episodes_per_asset_day": 7.76978417266187,
+              "fraction_runs_with_alarm": 0.7142857142857143,
+              "false_windows_per_asset_day_ci95": [
+                2.602409638554217,
+                12.949640287769784
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                2.602409638554217,
+                12.949640287769784
+              ],
+              "zero_count_caution": false
+            }
+          },
+          "sampling_interval_ms": {
+            "500": {
+              "runs": 16,
+              "asset_hours": 63.53333333333332,
+              "windows": 3812,
+              "false_windows": 11,
+              "alarm_episodes": 11,
+              "alarm_seconds": 660.0,
+              "false_windows_per_asset_day": 4.1552990556138525,
+              "alarm_episodes_per_asset_day": 4.1552990556138525,
+              "fraction_runs_with_alarm": 0.5625,
+              "false_windows_per_asset_day_ci95": [
+                2.264150943396227,
+                6.069546891464701
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                2.264150943396227,
+                6.069546891464701
+              ],
+              "zero_count_caution": false
+            },
+            "1000": {
+              "runs": 17,
+              "asset_hours": 67.53333333333333,
+              "windows": 4052,
+              "false_windows": 54,
+              "alarm_episodes": 52,
+              "alarm_seconds": 3240.0,
+              "false_windows_per_asset_day": 19.190523198420532,
+              "alarm_episodes_per_asset_day": 18.479763079960513,
+              "fraction_runs_with_alarm": 0.8823529411764706,
+              "false_windows_per_asset_day_ci95": [
+                13.123152709359609,
+                24.901801527075694
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                12.780750284198561,
+                24.165844027640674
+              ],
+              "zero_count_caution": false
+            }
+          },
+          "expose_operating_regime": {
+            "False": {
+              "runs": 15,
+              "asset_hours": 59.466666666666654,
+              "windows": 3568,
+              "false_windows": 28,
+              "alarm_episodes": 26,
+              "alarm_seconds": 1680.0,
+              "false_windows_per_asset_day": 11.300448430493276,
+              "alarm_episodes_per_asset_day": 10.4932735426009,
+              "fraction_runs_with_alarm": 0.6666666666666666,
+              "false_windows_per_asset_day_ci95": [
+                5.240614924430883,
+                18.22272215973004
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                4.837625979843226,
+                16.602924634420702
+              ],
+              "zero_count_caution": false
+            },
+            "True": {
+              "runs": 18,
+              "asset_hours": 71.6,
+              "windows": 4296,
+              "false_windows": 37,
+              "alarm_episodes": 37,
+              "alarm_seconds": 2220.0,
+              "false_windows_per_asset_day": 12.40223463687151,
+              "alarm_episodes_per_asset_day": 12.40223463687151,
+              "fraction_runs_with_alarm": 0.7777777777777778,
+              "false_windows_per_asset_day_ci95": [
+                7.70232558139535,
+                17.716289051578627
+              ],
+              "alarm_episodes_per_asset_day_ci95": [
+                7.70232558139535,
+                17.716289051578627
+              ],
+              "zero_count_caution": false
+            }
+          }
+        }
+      },
+      "lost_baseline_nonphysical_events": [],
+      "lost_primary_corrected_physical_events": [],
+      "lost_from_corrected_members": {
+        "20261005": [],
+        "20261006": [],
+        "20261007": []
+      },
+      "eligible": false
+    }
+  ],
+  "selected": "majority",
+  "test_used": false,
+  "git_commit": "30ff4849b55938386b7266bb84e9da077bf55475",
+  "protocol_sha256": "977b3b69a43a517740fd7a70f1c753011a20060bef54b69619020e7ea22d646d",
+  "health_inputs_sha256": "db9d1ecf2df698bc3fd770c1d95a5c58addf7e45761b27bec1a504eff2bd7a0c",
+  "health_reference_sha256": "dc08096a41e03dcfae9c7f5ad39b5a1cb6be25cf31242944f07203a8868becf6",
+  "verified_score_files": {
+    "original-20261005-historical.parquet": "1d93ca2da980d7ed94eef6470684dc31d82ac017f25348191199eec3acebe798",
+    "original-20261006-historical.parquet": "c7a318c732865966279ff59284952c134df4cc80a03f247bb5f117d33bbed347",
+    "original-20261007-historical.parquet": "ba6f38340eed30b6f9372b12c56a50104be67c420502d5432622548ea85eab30",
+    "original-20261005-normal.parquet": "9ff714a8f5fc3acaf92c42afa7b638fb09178324946e46ff2e9f9aa593d01b96",
+    "original-20261006-normal.parquet": "0ded926c55d892f1f7d9249831f36eed38f335414902444c52ab60e35753f558",
+    "original-20261007-normal.parquet": "31b38b483c3a03ebc534c9d020d4e1ffc37334e8742a0825f84ab687eb352ee9"
+  },
+  "member_thresholds": [
+    0.9978213507625273,
+    0.9978213507625273,
+    0.9978213507625273
+  ],
+  "truth_hashes": {
+    "raw-01/validation/validation-00001/ground_truth.json": "c805717ba864a06c7f4bccf371ff1bc3f7601824b69b095730fcd7e032e603ed",
+    "raw-01/validation/validation-00002/ground_truth.json": "4f5a30184d8e6da950ad1e82a5830ed5c3341f1e2fa7ac06ec9ae2c85589cfcd",
+    "raw-01/validation/validation-00004/ground_truth.json": "2c60fd306360873ccaf8eab640c4b79c2e45ebab8c011318a01b21702b3b8856",
+    "raw-01/validation/validation-00005/ground_truth.json": "178687c0c244daa626d034489f47d1970818818d8d4d70fe8f196b1f0b7473d4",
+    "raw-01/validation/validation-00008/ground_truth.json": "8d075e745e14887dd2fb4a28602b7fd72b5b41e96790d740ffa50b3ca76dccaa",
+    "raw-01/validation/validation-00009/ground_truth.json": "5d8c95613e07c8f6c06bbe1e8d236914a9a9a67340f339054c4cdaf2ba517156",
+    "raw-01/validation/validation-00010/ground_truth.json": "26dac52534b9e595918d388a8bdb9a473d80eeeadf7cccba0e9878ca007a0a29",
+    "raw-01/validation/validation-00011/ground_truth.json": "52d3eedfad9bd93ef7d6191e3d661b0374657c8977a8e32de67ba85e999af286",
+    "raw-01/validation/validation-00013/ground_truth.json": "15fdca4360a2d8ffcd1b0081f10ca244024d98a83571d24223d9a06feb4a9cc5",
+    "raw-01/validation/validation-00017/ground_truth.json": "d7f465e4f9ea878ed49cae11dd70d17aa1295c3fd48239ce78e19736cbd29266",
+    "raw-01/validation/validation-00018/ground_truth.json": "e7383aa3fc20328e4272d45141d169ffef94e150fb69acd67e3a4ee5adb58b4f",
+    "raw-02/validation/validation-00001/ground_truth.json": "56ce830eaffc145805bbbcd49568c61787af6c47efe1c1a80826c50696b3294d",
+    "raw-02/validation/validation-00002/ground_truth.json": "e55000b1876c71fb3f6a7f9577bf3d914fa4d260c5e0125cbb67049df687e926",
+    "raw-02/validation/validation-00003/ground_truth.json": "8a408fab5d85236411acc215c1b913bd7895b2301bfb9275174011ecb7f729c6",
+    "raw-02/validation/validation-00004/ground_truth.json": "510804b5a9891651d3944280cec584cb1c421f566eecc0fdc4601ca94d818255",
+    "raw-02/validation/validation-00005/ground_truth.json": "39223d89f1efaed0ff5b46abadadeacf875145704bfd0cde421ec10705d03f69",
+    "raw-02/validation/validation-00007/ground_truth.json": "f51cdf5f2121fc8c33ce56a378ee6e5357955054fd0b0836bf59e9caf88adc1a",
+    "raw-02/validation/validation-00010/ground_truth.json": "fe427d2d340867378117415f35ce092eee838eca5fd91e8037f669a7608cc185",
+    "raw-02/validation/validation-00011/ground_truth.json": "29acb325dd0a3dfe1045a0a79ac6393dc75d846fd89085381376880eeeea58bc",
+    "raw-02/validation/validation-00014/ground_truth.json": "8188ff4dd70865a2edeaed2339c2d5726a51d0ebf07ca958417917a1d1b0d36d",
+    "raw-02/validation/validation-00015/ground_truth.json": "942556a108a22353572fe0af216efffb9b6a0f9ae4d8c161a9976056960c9b19",
+    "raw-02/validation/validation-00016/ground_truth.json": "4414969fa039b51e6d5938c1f1f55ef03817b84c7174eca1dc3b3714449c417e",
+    "raw-02/validation/validation-00017/ground_truth.json": "9cadbf38bbf75b430d09cbb8ee8d19c97182fc400f2f3f1912731b66c1e49b1f",
+    "raw-03/validation/validation-00001/ground_truth.json": "a0dba360e67490822aac95098e9398c3272ab56a03600ddbd9f35efa165a9092",
+    "raw-03/validation/validation-00003/ground_truth.json": "795973c23aac92b614404de9e90adf59dc6b6fa41298d8019bd609626fdaea35",
+    "raw-03/validation/validation-00006/ground_truth.json": "efea55f5849e2311fb96b6c3de6f2931a179bfdd9e3ccc0ee5001ca3b4390414",
+    "raw-03/validation/validation-00007/ground_truth.json": "e68f2461cd7760a638483d327a62da27345bc023bad7ad478a4daaab347122c0",
+    "raw-03/validation/validation-00009/ground_truth.json": "f5128323ebbff0e9348a1b4daf2250ff6086a974a55a7732a30df538b7d2c151",
+    "raw-03/validation/validation-00010/ground_truth.json": "42445eab365681723da366b0b7815c2a710b335f2c808c2b50578c42cf37c177",
+    "raw-03/validation/validation-00011/ground_truth.json": "b8668bf05e9dd35358151ae812839f7d23fa00761d35f5405e8074b7b6d4b777",
+    "raw-03/validation/validation-00012/ground_truth.json": "a6838c2a2afd1609d40edb785d09cd5247932416882bdaf7dd7f2120be89b20e",
+    "raw-03/validation/validation-00016/ground_truth.json": "afde99dc4de912ddaa0baec795f1031cc4ea350c0e2f14c54b75990ef01b79cf",
+    "raw-04/validation/validation-00001/ground_truth.json": "c2bf5097acd6e65b52a1e2b93b6330923f4af5e638cc16fc90b79a95ea7a338d",
+    "raw-04/validation/validation-00003/ground_truth.json": "fa3b9a874fbf76b1705e0e56c3ee672a66b94ab3ea160f09e29f73aa33b0421f",
+    "raw-04/validation/validation-00005/ground_truth.json": "d373b334b0299d2baec939332c9f7eac1f3ca200831f74957ad1efd83e448517",
+    "raw-04/validation/validation-00006/ground_truth.json": "11cc42861ca5a627a9e05f5b8dd03da622488baffa58a79992f21278a5e4d366",
+    "raw-04/validation/validation-00007/ground_truth.json": "6e0684166d41c3426303e531a72b6536e11282861acdd0c317267c1e07382ff4",
+    "raw-04/validation/validation-00012/ground_truth.json": "3d6acdb859b7f63728ea660b3a4beec6108e53d0c50c52c3ed0c955374a92fca",
+    "raw-04/validation/validation-00014/ground_truth.json": "674f1444a8e1b61c28b68fbd74c2189c25da1ba2496b5e99b41bf36786c4d53d",
+    "raw-04/validation/validation-00015/ground_truth.json": "ef2e8bb8ad06844e275e9e43a651efe95cefe17b886fb4f7594d00fef03a48ce",
+    "raw-04/validation/validation-00016/ground_truth.json": "b4fdc63585ce00f0ec7c6839eb5ac1ceca7c151c9c844ceddb221cd889db5513",
+    "raw-04/validation/validation-00017/ground_truth.json": "5875fd63c7f7b4657dba7e54aa528712be0e64eff76886a1ba7491ed3ab8a226",
+    "raw-05/validation/validation-00001/ground_truth.json": "e0ba730f6cfb853866f89bb63dbb48425e2ed8d9b389d053639c9864689d4853",
+    "raw-05/validation/validation-00003/ground_truth.json": "6d78fb7b6b03cc3b6e998386be95f1829c9fa8e15c5a12e6e477fc4dbeb12e9d",
+    "raw-05/validation/validation-00005/ground_truth.json": "95e411f1b04be656e599be7643136f395f801f2d161d5ded734391ed54ec2949",
+    "raw-05/validation/validation-00006/ground_truth.json": "b9af562527697369049072660c630b8446cf3ba06f2299778217c39e220ac436",
+    "raw-05/validation/validation-00009/ground_truth.json": "9a29567867ba9ee730af92ee613ff046078b2fb80f6619b4f22bb7a8fa8c5593",
+    "raw-05/validation/validation-00016/ground_truth.json": "1fec8b84dce3fed63884a91cd5bf5106400cc9cec2ffa73a3efb5859876be5de",
+    "raw-06/validation/validation-00001/ground_truth.json": "23be6ea8759a2de243b06a39442cfb735d8b684e27f3a64db4e49008f7df3ecf",
+    "raw-06/validation/validation-00002/ground_truth.json": "21e00a2e4c41daca35bf5f8b45bfebcb631cee8fbc585677545394819d35207d",
+    "raw-06/validation/validation-00005/ground_truth.json": "416fe4f6b67a1cb539996e7add6a4db52ea444cb00dbc4a095380e4db3635860",
+    "raw-06/validation/validation-00007/ground_truth.json": "016603cac8a01e8fa9dad915a980f5376d725cbce1e2337032a1fbdac047fb3e",
+    "raw-06/validation/validation-00009/ground_truth.json": "f0a374c9d08c3ee0ffd2068abec45cdde002db7469a5146d29625f0f3acb2204",
+    "raw-06/validation/validation-00014/ground_truth.json": "04599f7fcb698b89d45e028efa4f93a6d651c4de485e78920760200d789a4c7e",
+    "raw-06/validation/validation-00015/ground_truth.json": "1e2c7edf9c7cf9f04da706e72ca09c43a543e743bc7fa2a428971013948c604b",
+    "raw-06/validation/validation-00016/ground_truth.json": "3d3c6f07a8622fb435281e7cd07dc86ebcdd3ea905cd66ac05fac5c34154b5ae",
+    "raw-06/validation/validation-00018/ground_truth.json": "d20cb522ab0c3fb7b5c100187cc3998aa052a3c196fac40ebc472b075f327c92",
+    "raw-07/validation/validation-00003/ground_truth.json": "73a5de28a3a84e4a791edf131bbc181553388432f1bd0940fad03afb36fcad18",
+    "raw-07/validation/validation-00004/ground_truth.json": "b4a4c2198ba15976f0848ade38576fd0f88876534d28a193f7f39cf381188471",
+    "raw-07/validation/validation-00008/ground_truth.json": "c43c902b775ed77e3e585369ec22bae2bd532b09042aec1734fa327f90e53c46",
+    "raw-07/validation/validation-00009/ground_truth.json": "4c0b74381bdbd7ee7b0003350f142579eb2787e2836f86b4565de23b6c11aa92",
+    "raw-07/validation/validation-00010/ground_truth.json": "a31ae087673fbd2fdd32d4d190e8273345eaea59dcb3a641263f7043f62493f2",
+    "raw-07/validation/validation-00014/ground_truth.json": "1de0625731ab61853cf7a78c13ca04e4dbc79b61e7b9804782a0a258a6a18778",
+    "raw-07/validation/validation-00015/ground_truth.json": "7efeefca23375cf151fef48856d59345811447a6e04ec9f9bdee8ef19af52b90",
+    "raw-07/validation/validation-00017/ground_truth.json": "1fc05a7471dcb9b208aabe904a032f316b1984c0f2d982a7599e4a3060719e23",
+    "raw-07/validation/validation-00018/ground_truth.json": "d8137ec8c1ce7fdcb901ec471c18667ab05b85207e9912da2f3ca31fddcc7e6e",
+    "raw-08/validation/validation-00001/ground_truth.json": "40aed7dbbc05f232fbfa28b108743c4b0220d6c89b90822877761ef36964a3bc",
+    "raw-08/validation/validation-00006/ground_truth.json": "4f76e24f639df2ddc27077b10c709193aeacf89f172cd1ff5398659a8357b1fc",
+    "raw-08/validation/validation-00007/ground_truth.json": "48ce8ee37ea6df45565b6c33fa79c13363d5ab2e407d73a8fa7f96761e91b9ab",
+    "raw-08/validation/validation-00013/ground_truth.json": "34251906caa07bc8820396b21d607b8703dd2ad314bf8f8b011dfa25b646abbc",
+    "raw-08/validation/validation-00014/ground_truth.json": "0e06b76194d05e70efc89abc56e9a894dbcc4b17265b9cd1abbb4522f64970e6",
+    "raw-08/validation/validation-00017/ground_truth.json": "0fc30c5febbf047b8b124cce7bb18cf77340ba616edfc2932e01ab2971c7092d",
+    "raw-08/validation/validation-00018/ground_truth.json": "eaa3a101a676b3c958d280d667b97b3fcad31b3e4a77f2d53c7f30f770c4544c",
+    "raw-09/validation/validation-00001/ground_truth.json": "e72880cc041ee3505abb24371a265126310ac972c118efcea9ad2b62b32582c8",
+    "raw-09/validation/validation-00002/ground_truth.json": "7fb04c52d3bec61a80252db1ede8decd4adb10ee1bf46803ef503e9904062273",
+    "raw-09/validation/validation-00004/ground_truth.json": "635cb8a00edac46b0f873ace0f29f68ba39584dc10b783dbf85def6af1b6783a",
+    "raw-09/validation/validation-00006/ground_truth.json": "0a264f088dfbd361f3c055fc614db90ebb85cf4c8fe262868b7a58f487a1b434",
+    "raw-09/validation/validation-00007/ground_truth.json": "4e289ac612afd6d8cbc4d2d385ea3b7bec2bb641c90786438bdaa61fd2ff1b3c",
+    "raw-09/validation/validation-00010/ground_truth.json": "8cebc3499a4e70a9d1f0077e97ec5cc2ef308e837777ae189c1166b5094ee417",
+    "raw-09/validation/validation-00015/ground_truth.json": "3c44a65cb27c1eee653cebd0ee1c5bb045f02572ff8d0fd4642b415ce1e9b505",
+    "raw-09/validation/validation-00016/ground_truth.json": "8eed163bee353b122d0994a97dbeb7d6fbfafa0a7ec315c9c8f57aaf864c1ee7",
+    "raw-10/validation/validation-00001/ground_truth.json": "98baea4234d18a54e1356fd0733dfcd09c4cb557931fad9e7d510e9b6ed4c3d6",
+    "raw-10/validation/validation-00002/ground_truth.json": "cba98eceddbaa879962d5d0bd721b76c511454f49fe3effc0afc37d0dc66adaa",
+    "raw-10/validation/validation-00003/ground_truth.json": "e3d47506530af95ebaa1883bac2492cfa6968f7d28f23e55f263bbda6916d330",
+    "raw-10/validation/validation-00004/ground_truth.json": "d5d1a59087af77caeb7839c4bee17c7dd80f50ba98bda48b4e8824df4e7c68cc",
+    "raw-10/validation/validation-00006/ground_truth.json": "04b46f89e0c44a5b9e1251b58a737b3f00aa844e55381667964a415b7c05abfe",
+    "raw-10/validation/validation-00009/ground_truth.json": "cbcf00a5edc49207a7475d99bfe8b82a9b77205dcce3d2cce8433bcdff123360",
+    "raw-10/validation/validation-00010/ground_truth.json": "38ac3ca3c3d5779c4c2822aa951fb1da1c163cde81a2f856ec485bfaf661a819",
+    "raw-10/validation/validation-00012/ground_truth.json": "8364a907ff30715e3a643e37c4d00eb8799a455d9f932852d0f402b6ce093f6f",
+    "raw-10/validation/validation-00014/ground_truth.json": "b876cea5a05b2be2a0d35a58dafe529aebb08a1499dbbca45ed4cb11666eec96",
+    "raw-10/validation/validation-00015/ground_truth.json": "123c7cd380f59aeaf6eb5162a69fc449e668ed5c62610a1bc4aff13265e4642a",
+    "raw-10/validation/validation-00017/ground_truth.json": "128c769fbe2041b6a1b8b661389f2b6f13b12f136b195d57a297f0dff898b454",
+    "raw-11/validation/validation-00001/ground_truth.json": "7ed0d23e7310e018b009d39051fa2e0799d7580ca04ad8f30288aa2e9458e04b",
+    "raw-11/validation/validation-00002/ground_truth.json": "33e0871a6042df50d1d9d432bc77346175c6267e14a55b1b6d9a4114f0ba57c2",
+    "raw-11/validation/validation-00005/ground_truth.json": "f182871b897f7b19587d554aa58e2839f4c184c6b51009e48dd3a32c73686066",
+    "raw-11/validation/validation-00009/ground_truth.json": "2a73c7cc46e01d3372d0474bab4206bf763162d3430e9ba6095e50f0d40eea53",
+    "raw-11/validation/validation-00010/ground_truth.json": "864790a42ab5af22b88328b61944ceb2f26e1987dc3314783aa8a4bcaefd9746",
+    "raw-11/validation/validation-00013/ground_truth.json": "d938139af62542f03a46a660f58462f3624e8e4f7b4d8698255fec8582acc788",
+    "raw-11/validation/validation-00014/ground_truth.json": "ddd752bbf357ef97359f8e6e363b2ac5eb9fdcedef6129a93006821f8e4deaf7",
+    "raw-11/validation/validation-00015/ground_truth.json": "6fb279b704c6f25e2ba059ee8338f961fba91438c20f2a53232a51419ffe5385",
+    "raw-11/validation/validation-00018/ground_truth.json": "d78f69983bb5a61e13d66e53582891ebda8b02a3416699d062abee6ad646fd34",
+    "raw-12/validation/validation-00001/ground_truth.json": "b367bbc147d2c04e50ac7dddb97d140091f2e4e3c1c6b05fd0cfab4e3b1400c9",
+    "raw-12/validation/validation-00003/ground_truth.json": "77fde237d5d62077b2ae0cd5dfb21ff51ce15c4cb3c92927bdc6ab2db8e32d79",
+    "raw-12/validation/validation-00004/ground_truth.json": "513e37f22f9a4e84a2f71a80cca36fbe10f338ca0b5447ffdb5ae7b130d9890c",
+    "raw-12/validation/validation-00005/ground_truth.json": "d96dc79c62d7b696aadc09cf180d794d7952b0a6d79ee960ee9fbeadcda45355",
+    "raw-12/validation/validation-00011/ground_truth.json": "9ec9976e3e204745338e9475c07bf59abd339d369aa2084536367ce4c3293247",
+    "raw-12/validation/validation-00012/ground_truth.json": "2c35f4ab8d8f0efaf2098e67a8c16dc64ba16888cb26cdab03a9fcdc098f4a4b",
+    "raw-12/validation/validation-00013/ground_truth.json": "ac6a94d81b9f13d24f2eba028cdd298992652786e544eaad1228fcf6dd79e9e9",
+    "raw-12/validation/validation-00014/ground_truth.json": "8f797b5108b70e4f6e1b1f32cef64b6823d68d43f189ae49dbccf4537a921366",
+    "raw-12/validation/validation-00015/ground_truth.json": "6c61cf6a9590387fb0c4d626621b3228145bb027dda8b27533b582fc8bca58fd",
+    "raw-12/validation/validation-00017/ground_truth.json": "f51d84ae3974fbc108024807401c338e6cc6b07961741729187a7547eae070ce",
+    "raw-12/validation/validation-00018/ground_truth.json": "9cacfe0f1dacb7817e47cfc078b9e47a29fbbfdeeb08e3db8597def91a0fd6e7",
+    "raw-13/validation/validation-00002/ground_truth.json": "102adfd64afe0ec91f11004dea661059c279265ffdaf76ad8e7a4d1b44ff4166",
+    "raw-13/validation/validation-00006/ground_truth.json": "78b95411c387892e3ef2c499d40d0312cea0a5f37ab459e3244921f68c0e8391",
+    "raw-13/validation/validation-00009/ground_truth.json": "67ae3dad16aab1cfc9b91a55765e04d8abc4a8fbb48b26263ce488151dadbe18",
+    "raw-13/validation/validation-00010/ground_truth.json": "e869ac6c1d9998fb8765db7d701978b4e925244f6470aa0bc33e155e995a35b0",
+    "raw-13/validation/validation-00017/ground_truth.json": "5d481cc5a5628da02453a6de3a989bb4e58ab16be76bf49da9d83b0fd4c5ad86",
+    "raw-13/validation/validation-00018/ground_truth.json": "d76cc13197358b0d5abc032bb49ae698ab61ef2377a611ee5264b61349523606",
+    "raw-14/validation/validation-00006/ground_truth.json": "eab87594877fb965eba27926aa5d45e9f1381db3db3a5dbf3192d9f99bd789eb",
+    "raw-14/validation/validation-00007/ground_truth.json": "a31561d7652f4b1766169e7cff35b9e09a176733af816f9313908e42c6e4d906",
+    "raw-14/validation/validation-00008/ground_truth.json": "416aa2e8bd98f64efe389d80d6f9ad2f22e5ef99f89aad98051010e6cc1f8962",
+    "raw-14/validation/validation-00011/ground_truth.json": "3acadea3f925e64d362023fbcbd584974e74ee9459d475865aec79b13920467b",
+    "raw-14/validation/validation-00013/ground_truth.json": "35f13fe361b71e584cda2ae0fe1b164c8a263d748cee7cd89a130658b8bb6d2b",
+    "raw-14/validation/validation-00017/ground_truth.json": "98cfd92c01065393d9fc703721788abbf038705c0af474389fc3d4f5f477e477",
+    "raw-15/validation/validation-00001/ground_truth.json": "597702040c5cb015bb65df00aa8fbaa2bea6c4fe4fee7717cc0e492c0c6157bf",
+    "raw-15/validation/validation-00002/ground_truth.json": "c0a55b72ff282c2b09bb273d46da5c23c5f54c0415fbe5ee0763f2f7c7450865",
+    "raw-15/validation/validation-00005/ground_truth.json": "90fffc4a171a90fef6cc54d216aa5a3487d31e70d6b0b936b9a0c9d76b07f39e",
+    "raw-15/validation/validation-00007/ground_truth.json": "c8f1ee915a9a25f56e3cfcad2a1c665020336400379b91f3f7a62eff3d20607a",
+    "raw-15/validation/validation-00010/ground_truth.json": "eba18c299053776123b957e42a620372196d6cf4ee5852fde5d770da9a2f4433",
+    "raw-15/validation/validation-00013/ground_truth.json": "ab6c933309c63e73c495fcf1849bf0dbee3ed1196e5b9c1a0f2c2f6bb591e374",
+    "raw-15/validation/validation-00014/ground_truth.json": "b63c3be7fe3af3650cd52509ac49337b15d6b822bbf5245dd50ca2cb18d15284",
+    "raw-15/validation/validation-00016/ground_truth.json": "c1aa63394fc6ee7d3b1149d27781f75238b1c8d393d1276ec847ed4dd9132cbf",
+    "raw-15/validation/validation-00018/ground_truth.json": "7fb80555503806604158a6408b2acc5a9b20b04b548ee6c7bb1cc069125f8259"
+  },
+  "fresh_member_inference_exact": true,
+  "health_reload_exact": true
+}

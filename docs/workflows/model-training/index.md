@@ -2,6 +2,7 @@
 
 | Date | Status | Scope | Evidence |
 | --- | --- | --- | --- |
+| 2026-10-05 | Fixed majority passes development; independent confirmation pending | 89 events, 2 historical/14 normal false windows; 98 tests, exact frozen member inference | [run record](runs/2026-10-05-consensus.md) |
 | 2026-10-05 | Corrected health primary passes; secondary full-model gates fail | Verified configured cadence, 90 tests, integrity restored for three seeds; relational false-alarm stability next | [run record](runs/2026-10-05-telemetry-health-r2.md) |
 | 2026-10-05 | Health points rejected; observed/declared cadence mismatch identified | Separate quality/availability/repetition, 88 tests, exact reference reload; source adapter correction next | [run record](runs/2026-10-05-telemetry-health.md) |
 | 2026-10-05 | Normal coverage alone rejected at all three thresholds | 180 new development runs, unchanged AE/IF architecture, exact integrity-event gate and serialized score repeatability | [run record](runs/2026-10-05-normal-coverage.md) |

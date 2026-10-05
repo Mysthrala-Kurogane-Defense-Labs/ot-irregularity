@@ -95,6 +95,7 @@ def score_contextual(modeldir, windows):
 
 def train_contextual_windows(tr, va, cfg, out, schema, metadata):
     from .pipeline import _record_progress, cdf_calibrate
+    cfg={**cfg,'window_duration_version':2}
     out = Path(out)
     options = cfg.get('contextual',{})
     if cfg.get('split_group','run_id') != 'run_id':

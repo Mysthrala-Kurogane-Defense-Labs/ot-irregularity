@@ -106,6 +106,26 @@ def test_run_partition_is_stable_and_never_row_random():
     with pytest.raises(ValueError):run_bucket('r',1)
 
 
+def test_subminute_train_infer_persists_stride_and_correct_exposure(tmp_path):
+    dataset=_dataset(tmp_path);config=_config(tmp_path);out=tmp_path/'short-model'
+    origin=dt.datetime(2026,1,1,tzinfo=dt.timezone.utc)
+    for path in dataset.glob('*/telemetry.parquet'):
+        frame=pl.read_parquet(path)
+        frame.with_columns(pl.Series('timestamp',[origin+(t-origin)/2 for t in frame['timestamp']]),
+            pl.lit(30000.).alias('sampling_interval_ms')).write_parquet(path)
+    cfg=yaml.safe_load(config.read_text());cfg['window']={'size':'30s','stride':'30s'}
+    config.write_text(yaml.safe_dump(cfg))
+    result=train(dataset,config,out)
+    metadata=json.loads((out/'training_metadata.json').read_text())
+    assert metadata['stride_seconds']==30
+    scores=result['supervised_validation']['irregularity']
+    assert scores['false_positives_per_asset_day']==pytest.approx(
+        scores['false_positive_windows']/(scores['samples']*30/86400))
+    windows=_windows(dataset/'test',cfg,json.loads((out/'feature_schema.json').read_text()))
+    assert set((windows['window_end']-windows['window_start']).to_list())=={30_000_000}
+    assert len(infer(out,dataset/'test',None))==len(windows)
+
+
 def test_applicability_uses_exact_roles_not_prefixes():
     from ot_irregularity.contextual import select_columns
     frame=pl.DataFrame({'motor_mean':[1.],'motor_current_mean':[2.],'motor_bad_ratio':[0.]})

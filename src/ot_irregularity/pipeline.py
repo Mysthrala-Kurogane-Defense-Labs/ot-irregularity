@@ -34,12 +34,26 @@ def _git_working_tree_dirty():
 def _duration_minutes(value):
     text=str(value).strip().lower();units={"m":1,"min":1,"h":60,"s":1/60}
     for suffix,mult in units.items():
-        if text.endswith(suffix): return max(1,int(float(text[:-len(suffix)])*mult))
+        if text.endswith(suffix):
+            duration=float(text[:-len(suffix)])*mult
+            if not np.isfinite(duration) or duration < 1/60_000_000:
+                raise ValueError('Window duration must be finite and at least one microsecond')
+            return duration
     raise ValueError(f"Unsupported window duration {value!r}; use s, m, min, or h")
+
+def _model_config(modeldir):
+    """Preserve historical window interpretation for already-trained artifacts."""
+    cfg=yaml.safe_load((Path(modeldir)/'training_config.yaml').read_text())
+    version=cfg.get('window_duration_version',1)
+    if version not in (1,2):raise ValueError(f'Unsupported window duration version: {version}')
+    if version==1:
+        cfg['window']={key:(f'{max(1,int(_duration_minutes(value)))}m' if key in ('size','stride') else value)
+                       for key,value in cfg.get('window',{}).items()}
+    return cfg
 
 def _windows(path,cfg,signal_schema=None):
     d=normalize_units(load_dataset(path),cfg.get("normalization",{}).get("canonical_units",{}));d=_exclude_feature_inputs(d,cfg);w=cfg.get("window",{});signals=((signal_schema.get("measurement_roles") or signal_schema.get("signal_classes")) if signal_schema else None);intervals=signal_schema.get("sampling_intervals_ms",{}) if signal_schema else None
-    return make_windows(d,_duration_minutes(w.get("size","15m")),_duration_minutes(w.get("stride","1m")),signals,intervals,cfg.get("features",{}))
+    return make_windows(d,_duration_minutes(w.get("size","15m")),_duration_minutes(w.get("stride","1m")),signals,intervals,cfg.get("features",{}),w.get('tail_policy','legacy'))
 
 def _exclude_feature_inputs(frame,cfg):
     options=cfg.get("features",{})
@@ -102,7 +116,7 @@ def train(dataset,config,output):
     if requested_cfg.get("model_family")=="contextual" and Path(output).exists() and any(Path(output).iterdir()):
         raise FileExistsError("Contextual training requires an empty output directory; preserve previous artifacts")
     out=Path(output);out.mkdir(parents=True,exist_ok=True);progress=out/"training_progress.jsonl";progress.write_text("",encoding="utf-8");_record_progress(progress,"loading_data")
-    cfg=yaml.safe_load(Path(config).read_text());seed=int(cfg.get("seed",42));random.seed(seed);np.random.seed(seed);torch.manual_seed(seed)
+    cfg=yaml.safe_load(Path(config).read_text());cfg['window_duration_version']=2;seed=int(cfg.get("seed",42));random.seed(seed);np.random.seed(seed);torch.manual_seed(seed)
     root=Path(dataset);trainp=root/"train";valp=root/"validation"
     if not trainp.exists():trainp=root
     if not valp.exists():raise ValueError("A separate validation/ partition is required for calibration")
@@ -163,7 +177,7 @@ def train(dataset,config,output):
     return metrics
 
 def infer(modeldir,dataset,output):
-    cfg=yaml.safe_load((Path(modeldir)/"training_config.yaml").read_text());schema=json.loads((Path(modeldir)/"feature_schema.json").read_text());w=_windows(dataset,cfg,schema);w,_=encode_context(w,schema.get("context_vocabulary",{}));cols,errors,sa,si,se,threshold=_scores(modeldir,w);records=_prediction_records(w,cols,errors,sa,si,se,threshold,schema.get("signals_by_asset_class"),str(cfg.get("model_version","0.1.0")))
+    cfg=_model_config(modeldir);schema=json.loads((Path(modeldir)/"feature_schema.json").read_text());w=_windows(dataset,cfg,schema);w,_=encode_context(w,schema.get("context_vocabulary",{}));cols,errors,sa,si,se,threshold=_scores(modeldir,w);records=_prediction_records(w,cols,errors,sa,si,se,threshold,schema.get("signals_by_asset_class"),str(cfg.get("model_version","0.1.0")))
     if (Path(modeldir)/"contextual_models.json").exists():
         for record in records:record["contribution_basis"]="share of top-k normalized squared reconstruction error"
     if output and str(output).lower().endswith(".parquet"):

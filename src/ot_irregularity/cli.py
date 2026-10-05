@@ -4,7 +4,7 @@ import numpy as np
 from .data.load import dataset_has_column
 from .features import encode_context,make_windows
 from .metrics import evaluate_scores,evaluate_event_intervals
-from .pipeline import _duration_minutes,_prediction_records,_scores,_windows,infer,train
+from .pipeline import _duration_minutes,_model_config,_prediction_records,_scores,_windows,infer,train
 import yaml
 
 def main():
@@ -22,7 +22,7 @@ def main():
  elif a.cmd=="evaluate":
   path=Path(a.dataset).resolve()
   if any(part.name.casefold()=="challenge" for part in (path,*path.parents)) and not a.challenge:raise SystemExit("Challenge evaluation requires --challenge")
-  cfg=yaml.safe_load((Path(a.model)/"training_config.yaml").read_text());has_labels=dataset_has_column(path,a.labels)
+  cfg=_model_config(a.model);has_labels=dataset_has_column(path,a.labels)
   schema=json.loads((Path(a.model)/"feature_schema.json").read_text())
   interval_events=json.loads(Path(a.events).read_text(encoding="utf-8"))["events"] if a.events else None
   if not has_labels and interval_events is None:print(json.dumps({"windows":_windows(path,cfg,schema).height,"metrics":None,"reason":f"No ground-truth column {a.labels!r}; metrics omitted."},indent=2));return

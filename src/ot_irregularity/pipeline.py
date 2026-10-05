@@ -41,7 +41,7 @@ def _duration_minutes(value):
             return duration
     raise ValueError(f"Unsupported window duration {value!r}; use s, m, min, or h")
 
-def _model_config(modeldir):
+def _model_config(modeldir,tail_policy=None):
     """Preserve historical window interpretation for already-trained artifacts."""
     cfg=yaml.safe_load((Path(modeldir)/'training_config.yaml').read_text())
     version=cfg.get('window_duration_version',1)
@@ -49,6 +49,9 @@ def _model_config(modeldir):
     if version==1:
         cfg['window']={key:(f'{max(1,int(_duration_minutes(value)))}m' if key in ('size','stride') else value)
                        for key,value in cfg.get('window',{}).items()}
+    if tail_policy is not None:
+        if tail_policy not in ('legacy','complete'):raise ValueError('tail_policy must be legacy or complete')
+        cfg.setdefault('window',{})['tail_policy']=tail_policy
     return cfg
 
 def _windows(path,cfg,signal_schema=None):
@@ -176,8 +179,10 @@ def train(dataset,config,output):
     (out/"model_card.md").write_text(model_card);_record_progress(progress,"completed",metrics_file=str(out/"metrics.json"),model_version=model_version)
     return metrics
 
-def infer(modeldir,dataset,output):
-    cfg=_model_config(modeldir);schema=json.loads((Path(modeldir)/"feature_schema.json").read_text());w=_windows(dataset,cfg,schema);w,_=encode_context(w,schema.get("context_vocabulary",{}));cols,errors,sa,si,se,threshold=_scores(modeldir,w);records=_prediction_records(w,cols,errors,sa,si,se,threshold,schema.get("signals_by_asset_class"),str(cfg.get("model_version","0.1.0")))
+def infer(modeldir,dataset,output,*,tail_policy=None):
+    cfg=_model_config(modeldir,tail_policy);schema=json.loads((Path(modeldir)/"feature_schema.json").read_text());w=_windows(dataset,cfg,schema);w,_=encode_context(w,schema.get("context_vocabulary",{}));cols,errors,sa,si,se,threshold=_scores(modeldir,w);records=_prediction_records(w,cols,errors,sa,si,se,threshold,schema.get("signals_by_asset_class"),str(cfg.get("model_version","0.1.0")))
+    if cfg.get('window',{}).get('tail_policy')=='complete':
+        for record in records:record['window_tail_policy']='complete'
     if (Path(modeldir)/"contextual_models.json").exists():
         for record in records:record["contribution_basis"]="share of top-k normalized squared reconstruction error"
     if output and str(output).lower().endswith(".parquet"):

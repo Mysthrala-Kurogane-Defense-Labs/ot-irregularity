@@ -106,7 +106,7 @@ def test_run_partition_is_stable_and_never_row_random():
     with pytest.raises(ValueError):run_bucket('r',1)
 
 
-def test_subminute_train_infer_persists_stride_and_correct_exposure(tmp_path):
+def test_subminute_train_infer_persists_stride_and_correct_exposure(tmp_path,monkeypatch,capsys):
     dataset=_dataset(tmp_path);config=_config(tmp_path);out=tmp_path/'short-model'
     origin=dt.datetime(2026,1,1,tzinfo=dt.timezone.utc)
     for path in dataset.glob('*/telemetry.parquet'):
@@ -124,6 +124,14 @@ def test_subminute_train_infer_persists_stride_and_correct_exposure(tmp_path):
     windows=_windows(dataset/'test',cfg,json.loads((out/'feature_schema.json').read_text()))
     assert set((windows['window_end']-windows['window_start']).to_list())=={30_000_000}
     assert len(infer(out,dataset/'test',None))==len(windows)
+    closed=infer(out,dataset/'test',None,tail_policy='complete')
+    assert len(closed)<len(windows)
+    assert all(r['window_tail_policy']=='complete' for r in closed)
+    from ot_irregularity.cli import main
+    monkeypatch.setattr('sys.argv',['ot-irregularity','evaluate','--model',str(out),'--dataset',str(dataset/'test'),'--tail-policy','complete'])
+    main();evaluation=json.loads(capsys.readouterr().out)
+    assert evaluation['window_count']==len(closed)
+    assert evaluation['window_tail_policy']=='complete'
 
 
 def test_applicability_uses_exact_roles_not_prefixes():

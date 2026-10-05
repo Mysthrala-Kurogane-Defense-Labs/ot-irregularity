@@ -74,6 +74,27 @@ Evidencia completa: [segunda iteración](results/physical-ablation-20261005.json
 
 ## Indicadores siguientes y estado
 
-Prioridad: sensibilidad física por familia/severidad, cobertura de régimen estable, detección de cambios cortos y falsas ventanas durante transiciones normales. Próxima hipótesis: ventanas más cortas y relaciones temporales justificadas pueden conservar cambios que una ventana de un minuto diluye. Sigue **sin probarse**; cambiar duración requiere revisar el generador de ventanas y la exposición usada en las métricas. No se recomienda aumentar épocas ni bajar el umbral como sustituto de esa investigación.
+### Tercera iteración: resolución temporal y cierre de archivos
 
-El PR permanece draft. No hay mejora nueva que promocionar, validación de planta real ni CI remoto configurado. El objetivo exploratorio de >=50 % de eventos y <=10 falsas ventanas/día sigue pendiente.
+Las ventanas reales de 30s y 15s ya están implementadas, con compatibilidad explícita para los artefactos antiguos. Ambas alternativas **fallan** el filtro de desarrollo. Sobre 2.057 minutos comunes, v0.4 detecta 53/124 eventos con 5 minutos falsos; 30s detecta 55 con 27 falsos; 15s detecta 43 con 12 falsos. No se promocionan ni se prueban contra nuevos holdouts.
+
+La auditoría de cobertura encuentra otra causa de falsas alertas: colas incompletas de los archivos. Se formula y congela una hipótesis separada: emitir solo ventanas cuyo final haya alcanzado el último timestamp observado del activo, conservando pesos y umbral de v0.4.
+
+| Nuevo test, semillas 910521–910523 | Cierre histórico | Solo ventanas cerradas |
+|---|---:|---:|
+| Eventos detectados | 33/84 | **33/84** |
+| Eventos físicos | 2/22 | 2/22 |
+| Minutos con falsa alerta | 23 | **8** |
+| Precisión | 69,3 % | **86,4 %** |
+| Falsos minutos/día observado, misma exposición | 19,20 | **6,68** |
+| Ventanas emitidas | 1.856 | 1.631 |
+
+Se excluyen **225 minutos incompletos**, cuatro de ellos positivos. Ningún evento queda sin ventanas observables y no se pierde ninguna detección de evento en esta muestra. Son 108 runs, 28,75 horas-activo observadas y 27,18 horas cubiertas por ventanas completas. El IC95% pareado del cambio de falsos minutos es [-25; -6]. El denominador de eventos incluye todos los intervalos originales.
+
+**Avance aceptado: opción de cierre correcta para archivos finitos**, disponible con `infer/evaluate --tail-policy complete`. El modo predeterminado conserva compatibilidad y los pesos siguen siendo v0.4. No mejora la sensibilidad física ni convierte 39,3% de detección en un ratio suficiente. En monitorización continua hace falta un reloj externo para cerrar ventanas durante ausencia de muestras; esa función sigue pendiente. El recorte de cobertura se publica y no se presenta como mejor ranking del modelo.
+
+Detalles y reproducción: [ejecución temporal](workflows/model-training/runs/2026-10-05-temporal.md); [evidencia numérica](results/temporal-and-tail-20261005.json).
+
+Prioridad: sensibilidad física por familia/severidad, relaciones temporales justificadas y falsas alertas durante transiciones normales. Acortar ventanas sin más ya se ha probado y no basta. Las relaciones entre señales siguen **sin probarse**; deben evaluarse con selección en desarrollo y un nuevo holdout, manteniendo explícita la política de cierre. No se recomienda aumentar épocas ni bajar el umbral como sustituto de esa investigación.
+
+El PR permanece draft. Hay una corrección de procesamiento de archivos validada en datos sintéticos; no hay un nuevo modelo físico que promocionar, validación de planta real ni CI remoto configurado. El objetivo exploratorio conjunto de >=50 % de eventos y <=10 falsas ventanas/día sigue pendiente.

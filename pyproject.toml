@@ -7,7 +7,18 @@ version="0.1.0"
 license="Apache-2.0"
 license-files=["LICENSE"]
 requires-python=">=3.12"
-dependencies=["numpy>=2.0","polars>=1.0","pyarrow>=17","scikit-learn>=1.5","torch>=2.4","joblib>=1.4","pydantic>=2.8","PyYAML>=6","matplotlib>=3.9"]
+dependencies=[
+    "numpy>=2.0",
+    "polars>=1.0",
+    "pyarrow>=17",
+    "scikit-learn>=1.5",
+    "torch>=2.4",
+    "joblib>=1.4",
+    "pydantic>=2.8",
+    "PyYAML>=6",
+    "matplotlib>=3.9",
+    "tzdata>=2025.1 ; sys_platform == 'win32'",
+]
 [project.optional-dependencies]
 test=["pytest>=8.3"]
 [project.scripts]

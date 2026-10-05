@@ -6,6 +6,8 @@ El [candidato contextual v0.4](docs/MODEL_V0.4_CONTEXTUAL.md) mejora la detecci�
 
 ## Inicio rápido
 
+El [candidato relacional v0.5](docs/workflows/model-training/runs/2026-10-05-relationships.md) alcanza 61/96 eventos y 23/33 físicos en otro test pseudo-sintético independiente, frente a 40/96 y 1/33 de v0.4 sobre los mismos datos. Es experimental: pierde algunas detecciones de integridad y sigue sin detectar degradación de refrigeración. Tiene un script de empaquetado/inferencia explícito; no sustituye los defaults.
+
 El [registro del estudio](docs/STUDY_PROGRESS.md) conserva la evolución, las hipótesis probadas, los resultados negativos y los indicadores pendientes.
 
 ```bash

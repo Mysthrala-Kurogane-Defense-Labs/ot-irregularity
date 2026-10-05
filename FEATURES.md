@@ -57,3 +57,17 @@ Both consecutive windows must have >=95% good and >=90% coverage for required si
 | `thermal_relative_magnitude` | `r/(r+a)`, `a=max(normal calibration q99 of r, 1e-9 degC/s)` | One summary/thermal role; maximum across available roles, then pooled normal threshold | Retain exceedance magnitude beyond empirical-CDF saturation; bounded magnitude, not percentile or failure probability |
 
 Exact timestamp alignment; no interpolation/backfill. Maximum gap is 1.5 times the **first declared run/asset interval**, not a pooled interval across datasets. Each complete minute needs at least 20 valid pairs and 90% of expected pairs. Cadence changes and asynchronous signals need explicit handling before broader use. Normal-only fit runs train Ridge(alpha=1) and predictor RobustScaler; normal calibration runs supply score references. Development compares variants; independent test does not tune thresholds. See [protocol and limitations](docs/workflows/model-training/runs/2026-10-05-sample-thermal.md).
+# Experimental telemetry health features
+
+The standalone research channel in `telemetry_health.py` uses normalized role observations in complete one-minute windows. It does not change the existing model feature schema or generic inference CLI. See [protocol](docs/TELEMETRY_HEALTH_PROTOCOL.md).
+
+| Name | Formula | Inputs | Window | Reason |
+|---|---|---|---|---|
+| bad/uncertain ratio | received grade count / received observations | role quality grades | 1 minute | Explain observed grade degradation independently of reconstruction |
+| finite value count | count of finite values | role values | 1 minute | Measure usable numeric availability |
+| expected sample count | window duration / previously declared interval | role cadence declaration | 1 minute | Establish an explicit sampling expectation |
+| coverage ratio | finite count / expected count | preceding counts | 1 minute | Quantify sampling shortfall; retain values above one |
+| repetition ratio | exactly equal adjacent good finite pairs / usable pairs | values, quality, timestamps, cadence | 1 minute | Describe repeated observations without diagnosing a sensor |
+| mean value | mean of finite received values | role values in consistent units | 1 minute | Select normal repetition reference by fit-only mean quartiles |
+
+Quality is unavailable for empty windows or unknown grades. Repetition requires at least 20 good adjacent pairs with positive gap at most 1.5 declared intervals. Cadence changes invalidate coverage/repetition until a new run segment; absent declarations never borrow a pooled default. Calibration counts, bounds, fallback and availability reasons are persisted. Observation labels describe strictly positive deviations; the experiment's separately configured health threshold controls alerts. These bounded deviations are not probabilities. Entirely unavailable windows remain null. Complete-file extraction cannot detect silence beyond the last observation without a streaming watermark.

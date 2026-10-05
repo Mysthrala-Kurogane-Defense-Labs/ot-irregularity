@@ -6,6 +6,8 @@ El [candidato contextual v0.4](docs/MODEL_V0.4_CONTEXTUAL.md) mejora la detecci�
 
 ## Inicio rápido
 
+El [registro del estudio](docs/STUDY_PROGRESS.md) conserva la evolución, las hipótesis probadas, los resultados negativos y los indicadores pendientes.
+
 ```bash
 uv sync --extra test
 uv run ot-irregularity train --dataset examples/synthetic --config configs/baseline.yaml --output artifacts/model-v0.1

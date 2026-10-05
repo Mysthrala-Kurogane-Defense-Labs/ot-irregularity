@@ -50,13 +50,16 @@ def center_regimes(fit, frames, columns):
 def load_events(raw_root, dev):
     """Namespace original validation truth exactly as the historical assembled dataset."""
     runs = set(dev['run_id'].to_list())
-    events, hashes = [], {}
+    events, hashes, matched = [], {}, set()
     for truth in sorted(raw_root.glob('raw-*/validation/*/ground_truth.json')):
         doc = json.loads(truth.read_text())
         batch = truth.parents[2].name.replace('raw-', 'dev-')
         run = batch + '::' + doc['run_id']
         if run not in runs:
             continue
+        if run in matched:
+            raise ValueError('Duplicated development run ground truth')
+        matched.add(run)
         hashes[truth.relative_to(raw_root).as_posix()] = hashlib.sha256(truth.read_bytes()).hexdigest()
         for event in doc['events']:
             def micros(value):
@@ -64,8 +67,8 @@ def load_events(raw_root, dev):
             events.append({'run_id': run, 'asset_id': event['asset_id'],
                            'event_id': run + '/' + event['event_id'], 'family': event['type'],
                            'start_us': micros(event['start']), 'end_us': micros(event['end'])})
-    if not events or {e['run_id'] for e in events} - runs:
-        raise ValueError('No matching development ground truth')
+    if not events or matched != runs:
+        raise ValueError('Incomplete matching development ground truth')
     return events, hashes
 
 
@@ -75,6 +78,7 @@ def summarize(frame, scores, threshold, events):
         frame['asset_id'].to_numpy(), frame['window_start'].to_numpy(), frame['window_end'].to_numpy())
     families = {e['event_id']: e['family'] for e in events}
     result.update({k: v for k, v in intervals.items() if k != 'events'})
+    result['mean_time_to_first_detection_seconds'] = intervals['mean_detection_latency_seconds']
     by_family = {}
     for family in sorted(set(families.values())):
         selected = [e for e in intervals['events'] if families[e['event_id']] == family]

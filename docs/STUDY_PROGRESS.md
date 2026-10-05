@@ -36,4 +36,44 @@ Detalles, intervalos de confianza, hashes, fuentes y resultados por familia: [in
 4. Registrar PR-AUC, precisión, recall, falsas ventanas/día y detección por intervalos completos y familias. Informar también cobertura y tamaño de cada régimen.
 5. Congelar candidato y criterio antes de un nuevo holdout. Si desarrollo no respalda una mejora, conservar v0.4 y publicar el resultado negativo sin consumir otro test.
 
-Estado: investigación en curso; ninguna nueva mejora validada todavía. El PR permanece draft. No hay validación de planta real ni CI remoto configurado; los controles locales se detallan en cada ejecución.
+## Segunda iteración: resultado negativo conservado
+
+Se ejecutaron tres representaciones nuevas (12 AE en CUDA y 12 Isolation Forest) y dos combinaciones con v0.4. El presupuesto máximo fue de 3.000 actualizaciones por AE con early stopping. El criterio de selección se escribió antes del cribado: más eventos físicos, ninguna pérdida en detecciones totales, precisión >=50 % y ninguna subida de falsas ventanas frente a v0.4.
+
+Desarrollo: 2.234 ventanas, **124 intervalos originales**, de ellos 35 físicos. El conteo completo corrige también las detecciones de desarrollo de v0.4 de 51 a 53, sin alterar scores. Las cifras siguientes usan el mismo contrato de intervalos para todas las variantes.
+
+| Variante | PR-AUC | Eventos/124 | Físicos/35 | Falsas ventanas |
+|---|---:|---:|---:|---:|
+| v0.4 | 0,5001 | 53 | 4 | 15 |
+| Solo features físicas | 0,3650 | 25 | 3 | 11 |
+| Todas, centradas por régimen | 0,4848 | 51 | 4 | 17 |
+| Físicas, centradas por régimen | 0,3479 | 24 | 3 | 11 |
+| Máximo de v0.4 y AE físico | 0,5246 | 53 | 5 | 14 |
+| Máximo de v0.4 y AE físico centrado | 0,5151 | 52 | 5 | 13 |
+
+La combinación seleccionada toma el máximo de dos percentiles, **recalibrando su umbral con normales** para no sumar presupuestos de falsas alarmas sin control. No cambia el umbral mirando eventos de test. El centramiento resta la mediana por clase/régimen aprendida exclusivamente en ajuste normal; categorías con menos de 20 ventanas usan la mediana normal de clase. En desarrollo, 1.151 ventanas tienen régimen `unknown` y 680 `mixed`: 1.831/2.234 (82,0 %). Esto limita la información del contexto; no demuestra por sí solo la causa de los errores.
+
+### Nuevo holdout después de congelar el candidato
+
+Semillas Lab **910511, 910512, 910513**, suite 0.2.0 y checkout limpio `718babb7772c3a21f0b87c403f628540cbce58db`. Se generaron 240 runs por lote y se evaluaron únicamente sus 36 runs de test: 108 runs, 1.905 ventanas, 114 eventos, 31,75 horas-activo. Los artefactos y el umbral se congelaron antes de generar estos lotes. Una semilla de entrenamiento para este ensayo; el resultado negativo no justifica promocionar ni elegir retrospectivamente otra semilla.
+
+| Indicador | v0.4 congelado | Combinación física |
+|---|---:|---:|
+| PR-AUC | 0,4377 | 0,4435 |
+| Precisión | 79,5 % | 78,8 % |
+| Eventos | **53/114 (46,5 %)** | 50/114 (43,9 %) |
+| Eventos físicos | 4/29 | 4/29 |
+| Falsas ventanas | 18 | 18 |
+| Falsas ventanas/activo-día | 13,61 | 13,61 |
+
+Bootstrap pareado por run: ΔPR-AUC +0,0058, IC95 % [-0,0038; 0,0165] (500 réplicas); Δdetección total -2,63 puntos, IC95 % [-8,04; 1,96]; Δdetección física 0 puntos, IC95 % [-10,00; 10,53] (2.000 réplicas). Se gana una cavitación y se pierde una sobrecarga, además de otras detecciones de señal. No existe evidencia suficiente de mejora física ni global.
+
+**Decisión: conservar v0.4.** El suplemento permanece como experimento reproducible y no se incorpora al modelo principal. Estos nuevos lotes ya están consumidos para evaluación; cualquier selección posterior necesita otro holdout. La variación de PR-AUC de v0.4 entre lotes no es un cambio del modelo: los mismos pesos producen resultados distintos ante otras muestras.
+
+Evidencia completa: [segunda iteración](results/physical-ablation-20261005.json). Reproducción, controles y límites: [registro de ejecución](workflows/model-training/runs/2026-10-05-physical.md).
+
+## Indicadores siguientes y estado
+
+Prioridad: sensibilidad física por familia/severidad, cobertura de régimen estable, detección de cambios cortos y falsas ventanas durante transiciones normales. Próxima hipótesis: ventanas más cortas y relaciones temporales justificadas pueden conservar cambios que una ventana de un minuto diluye. Sigue **sin probarse**; cambiar duración requiere revisar el generador de ventanas y la exposición usada en las métricas. No se recomienda aumentar épocas ni bajar el umbral como sustituto de esa investigación.
+
+El PR permanece draft. No hay mejora nueva que promocionar, validación de planta real ni CI remoto configurado. El objetivo exploratorio de >=50 % de eventos y <=10 falsas ventanas/día sigue pendiente.

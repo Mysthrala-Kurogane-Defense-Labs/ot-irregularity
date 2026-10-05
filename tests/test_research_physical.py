@@ -2,6 +2,8 @@ import json
 
 import numpy as np
 import polars as pl
+import pytest
+from types import SimpleNamespace
 
 from scripts.research_physical import center_regimes, load_events, summarize
 
@@ -41,3 +43,34 @@ def test_physical_metrics_include_unobserved_intervals():
     assert result['physical_events'] == {'total': 2, 'detected': 1}
     assert result['event_count'] == 2
     assert result['events_without_windows'] == 1
+    assert result['mean_time_to_first_detection_seconds'] == result['mean_detection_latency_seconds']
+
+
+def test_missing_development_ground_truth_fails(tmp_path):
+    with pytest.raises(ValueError, match='Incomplete'):
+        load_events(tmp_path, pl.DataFrame({'run_id': ['dev-01::missing']}))
+
+
+def test_frozen_artifact_mutation_is_rejected_before_reading_holdout(tmp_path):
+    from scripts.validate_physical import freeze, evaluate
+    baseline, research, output = [tmp_path / name for name in ('baseline', 'research', 'output')]
+    baseline.mkdir()
+    (research / 'physical').mkdir(parents=True)
+    (baseline / 'model.bin').write_bytes(b'original')
+    (research / 'physical' / 'model.bin').write_bytes(b'supplement')
+    (research / 'results.json').write_text(json.dumps({'rows': [{'id': 'max-physical', 'metrics': {'threshold': .99}}],
+                                                    'eligible': ['max-physical']}))
+    args = SimpleNamespace(baseline=baseline, research=research, output=output)
+    freeze(args)
+    (baseline / 'model.bin').write_bytes(b'changed')
+    with pytest.raises(ValueError, match='Artifacts changed'):
+        evaluate(args)
+
+
+def test_failed_development_gate_cannot_be_frozen(tmp_path):
+    from scripts.validate_physical import freeze
+    research = tmp_path / 'research'
+    research.mkdir()
+    (research / 'results.json').write_text(json.dumps({'rows': [{'id': 'max-physical', 'metrics': {}}], 'eligible': []}))
+    with pytest.raises(ValueError, match='development gate'):
+        freeze(SimpleNamespace(research=research, output=tmp_path / 'output'))

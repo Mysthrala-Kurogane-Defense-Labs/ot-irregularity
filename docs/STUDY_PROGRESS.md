@@ -4,6 +4,8 @@ Este registro conserva avances, resultados negativos y cambios de medición. Los
 
 ## Evolución hasta el 5 de octubre de 2026
 
+[Canal de telemetría](workflows/model-training/runs/2026-10-05-telemetry-health.md): 71→79/124 eventos con cuatro falsas ventanas históricas y 25 en normalidad nueva, pero aún pierde seis eventos baseline. Ningún punto se acepta. Se detecta un error semántico del adaptador: el intervalo por fila del simulador representa el gap observado, no la cadencia configurada. El control de cambios desactiva cobertura/repetición en casi todas las ventanas. Corregir esa separación y repetir desarrollo; el ensayo actual no permite juzgar la eficacia del canal de disponibilidad. 88 tests locales y repetibilidad exacta de las cuatro tablas de scores tras cargar JSON.
+
 [Ampliación de normalidad](workflows/model-training/runs/2026-10-05-normal-coverage.md): 180 runs nuevos de desarrollo, misma arquitectura y tres umbrales. Ninguno supera el criterio: q=.99 gana eventos (53→60/124), pero sube falsas ventanas históricas (4→10) y pierde un evento de calidad pese a bad_ratio=19,17 %. La calidad está representada, pero no cruza el umbral global. Siguiente hipótesis: canal explícito de calidad/disponibilidad, calibrado por separado; sin eliminar señales físicas ni reajustar sobre test.
 
 [Exposición normal prolongada](workflows/model-training/runs/2026-10-05-normal-exposure.md): 180 runs y 178,53 horas-activo por clase. La unión conjunta aumenta falsas ventanas de 5,24 a 11,63/activo-día; diferencia pareada IC95% [4,57, 8,33]. Térmica: 7,60 global, pero 11,56 en compresores. El baseline también falla en perfiles de mantenimiento. No se promueve candidato: mejorar cobertura y representación de normalidad con nuevos datos de desarrollo.

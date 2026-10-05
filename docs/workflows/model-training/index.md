@@ -2,6 +2,7 @@
 
 | Date | Status | Scope | Evidence |
 | --- | --- | --- | --- |
+| 2026-10-05 | Health points rejected; observed/declared cadence mismatch identified | Separate quality/availability/repetition, 88 tests, exact reference reload; source adapter correction next | [run record](runs/2026-10-05-telemetry-health.md) |
 | 2026-10-05 | Normal coverage alone rejected at all three thresholds | 180 new development runs, unchanged AE/IF architecture, exact integrity-event gate and serialized score repeatability | [run record](runs/2026-10-05-normal-coverage.md) |
 | 2026-10-05 | Normal-exposure target met; joint alarm target failed | 180 normal runs, 178.53 asset-hours/class; cluster intervals, episode counts and profile diagnostics | [run record](runs/2026-10-05-normal-exposure.md) |
 | 2026-10-05 | All 24 joint operating points rejected in development | Baseline alert preservation, relational magnitude and thermal decisions; normal-exposure protocol declared | [run record](runs/2026-10-05-joint-decisions.md) |

@@ -38,3 +38,9 @@ Freeze the selected reference, all component artifacts and code before generatin
 ## Confirmation preparation checkpoint
 
 CI for development evidence commit `7fe727d` passed on 2026-10-05. The [new confirmation protocol](../../../CLASS_ENSEMBLE_CONFIRMATION_PROTOCOL.md) declares mixed seeds 910561/2/3 and normal 920631 before generation. Acceptance and paired-bootstrap helpers now accept an explicit candidate name, preserving majority defaults and identical criteria; 110 local tests pass. The executable freeze and inference extension are still pending. No new source has been generated or evaluated at this checkpoint; no confirmation result is claimed.
+
+## Frozen independent execution
+
+Clean execution commit `65a0ed4`, before source generation. [Public freeze](../../../results/class-confirmation-freeze-20261005.json) records model/reference/runtime/suite hashes and prior-source inventory; 6,660 previous run seeds excluded. The local full freeze preserves the exact excluded seeds. Selected class reference was reconstructed exactly from saved development calibration. 111 local tests pass, including rejection of modified anchors/thresholds.
+
+The evaluator now supports the frozen class candidate alongside four controls, saves raw errors and relational availability, and reports every lost primary event. Repeated code/model/reference/source hashes guard resumption. Generation of mixed seeds 910561/2/3 (240 runs each) and 180 normal runs at seed 920631 has started with four generation workers. No new inference results yet. Exact execution must use checkout 65a0ed4 if later Python files change.

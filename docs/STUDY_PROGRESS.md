@@ -4,6 +4,8 @@ Este registro conserva avances, resultados negativos y cambios de medición. Los
 
 ## Evolución hasta el 5 de octubre de 2026
 
+[Dinámica térmica antes de agregar](workflows/model-training/runs/2026-10-05-sample-thermal.md): candidato de componente seleccionado en desarrollo, 61/124 eventos y 5/10 de refrigeración frente a 53/124 y 2/10, manteniendo 4 falsas ventanas y todas las alertas baseline. Depende del contexto inicial. Incluye corrección de cadencia por run y una fase adaptativa de normalización que conserva magnitud fuera de la CDF. Pendiente de test nuevo; no sustituye automáticamente al candidato relacional.
+
 [Ensayo térmico y pares simulados](workflows/model-training/runs/2026-10-05-thermal.md): el modelo de dinámica por minuto no mejora refrigeración y se rechaza. Diez replays exactos confirman desviaciones térmicas de 0,59–4,01 °C; sus medias por minuto reducen el pico a 0,31–2,61 °C. La versión declarada 0.3.1 no reproduce estos datos; el checkout congelado 0.6.0 sí, con hashes registrados. La procedencia histórica requiere ese matiz.
 
 Última iteración: [presupuestos separados de alerta](workflows/model-training/runs/2026-10-05-alert-budgets.md) rechazados en desarrollo. La unión conserva todas las alertas baseline y gana eventos físicos, pero pasa de 4 a entre 8 y 17 falsas ventanas. Ninguna de tres semillas cumple el gate; no se consume un nuevo test.

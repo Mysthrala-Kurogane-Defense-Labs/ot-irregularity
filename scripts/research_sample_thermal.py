@@ -25,7 +25,8 @@ def run(args):
     quantiles=[.99,.995,.9975]
     protocol={'stage':'development only, sample-first dynamics','alpha':1.,'initial_context':[False,True],
         'scores':['abs_time_weighted_mean_rate','q95_abs_rate'],'quantiles':quantiles,
-        'alignment':'Exact timestamps only; no interpolation or future values; gap <=1.5*training schema nominal interval',
+        'alignment':'Exact timestamps only; no interpolation or future values; gap <=1.5*initial declared run/asset interval',
+        'revision':'r2 corrects the global-cadence error; first declared interval per run/asset is retained causally',
         'quality':'Good finite required roles in both sample endpoints, >=90% expected pairs per complete minute and >=20 pairs',
         'initial_context_limit':'First fully usable target value per run/asset, retained causally. Full run batch only; not an online chunk API or a measured ambient temperature.',
         'combination':'Union with unchanged baseline threshold; no baseline alert can be lost',
@@ -55,9 +56,8 @@ def run(args):
             gf=rawfit.filter(pl.col('asset_class')==group);gv=raws['validation'].filter(pl.col('asset_class')==group)
             mask=va['asset_class'].to_numpy()==group;windows=va.filter(pl.Series(mask));local=np.zeros((len(windows),2));valid_any=np.zeros(len(windows),dtype=bool)
             for target in targets:
-                interval=schema['sampling_intervals_ms'][target]/1000
-                model=SampleThermal(target,drivers,initial,max_gap_seconds=1.5*interval).fit(gf)
-                values,valid=aggregate_residuals(model.transform(gv),windows,interval)
+                model=SampleThermal(target,drivers,initial).fit(gf)
+                values,valid=aggregate_residuals(model.transform(gv),windows)
                 reference=values[cal[mask]&valid]
                 if len(reference)<20:raise ValueError('Insufficient normal calibration')
                 refs=[]
@@ -66,7 +66,7 @@ def run(args):
                     local[:,j]=np.maximum(local[:,j],s);refs.append(reference[:,j])
                 valid_any|=valid
                 key=f'initial-{initial}-{group}-{target}'
-                joblib.dump({'dynamics':model,'references':refs,'sampling_interval_seconds':interval},out/(key+'.joblib'))
+                joblib.dump({'dynamics':model,'references':refs,'sampling_policy':'first declared interval per run/asset'},out/(key+'.joblib'))
                 model_info[key]={'fit_samples':model.fit_samples_,'calibration_windows':len(reference),
                     'development_available':int(valid[dm[mask]].sum()),'normal_quantiles':np.quantile(reference,[.5,.95,.99],axis=0).tolist()}
                 write_json(out/'progress.json',{'phase':'fit_and_calibrate','model':key,'models_completed':len(model_info),'models_total':10})

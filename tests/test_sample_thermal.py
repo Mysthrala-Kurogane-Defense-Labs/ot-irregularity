@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 import polars as pl
 import pytest
-from ot_irregularity.sample_thermal import SampleThermal,align_samples,aggregate_residuals
+from ot_irregularity.sample_thermal import SampleThermal,align_samples,aggregate_residuals,bounded_tail_score
 
 
 def raw():
@@ -12,7 +12,7 @@ def raw():
         driver=2+np.sin(i/20);temperature+=.005*(20+driver*10-temperature)
         for role,value in [('temp',temperature),('load',driver)]:
             rows.append({'run_id':'r','asset_id':'a','timestamp':dt.datetime(2026,1,1,tzinfo=dt.timezone.utc)+dt.timedelta(seconds=i*.5),
-                         'measurement_role':role,'value':value,'quality':'good','is_anomaly':False})
+                         'measurement_role':role,'value':value,'quality':'good','is_anomaly':False,'sampling_interval_ms':500})
     return pl.DataFrame(rows)
 
 
@@ -46,3 +46,24 @@ def test_residual_aggregation_uses_time_weights_and_requires_coverage():
     values,valid=aggregate_residuals(samples,windows,.5)
     assert valid[0] and values[0].tolist()==[2.,2.]
     assert not aggregate_residuals(samples.head(100),windows,.5)[1][0]
+
+
+def test_each_run_uses_its_declared_cadence_without_future_estimation():
+    f=raw();origin=f['timestamp'][0]
+    slow=f.with_columns(pl.lit('s').alias('run_id'),pl.lit(1000,dtype=pl.Int64).alias('sampling_interval_ms'),
+                       pl.Series('timestamp',[origin+(t-origin)*2 for t in f['timestamp']]))
+    m=SampleThermal('temp',['load']).fit(pl.concat([f,slow]))
+    result=m.transform(pl.concat([f,slow]))
+    assert result.filter(pl.col('run_id')=='r')['available'].sum()==179
+    assert result.filter(pl.col('run_id')=='s')['available'].sum()==179
+    # A later reporting change must not retroactively change initial cadence.
+    changed=slow.with_columns(pl.when(pl.col('timestamp')>origin).then(10000).otherwise(pl.col('sampling_interval_ms')).alias('sampling_interval_ms'))
+    assert (align_samples(changed,['temp','load'])['nominal_interval_seconds']==1.).all()
+
+
+def test_bounded_tail_preserves_excess_magnitude_and_rejects_invalid_inputs():
+    scores=bounded_tail_score([0,1,2,10,100],1.)
+    assert scores[0]==0 and scores[1]==.5 and np.all(np.diff(scores)>0) and scores[-1]<1
+    assert bounded_tail_score([1e308],1e308)[0]==.5
+    for values,scale in [([-1],1),([np.inf],1),([1],0)]:
+        with pytest.raises(ValueError):bounded_tail_score(values,scale)

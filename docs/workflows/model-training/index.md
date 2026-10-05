@@ -10,4 +10,4 @@
 
 ## Entrega y continuación
 
-v0.4 integrada mediante PR #1 (79b32ce). v0.5 continúa en su rama independiente: [mantenimiento y protocolo siguiente](../../V0.5_MAINTENANCE.md). Validación de separación: árbol v0.4 idéntico a f3dc360 y 60 tests; candidato restaurado en v0.5 con 65 tests. El CI nuevo debe verificarse en GitHub.
+v0.4 integrada mediante PR #1 (79b32ce). v0.5 continúa en su rama independiente: [mantenimiento y protocolo siguiente](../../V0.5_MAINTENANCE.md). Validación de separación: árbol v0.4 idéntico a f3dc360 y 60 tests; candidato restaurado en v0.5 con 65 tests. CI Windows verificado en ambos PR; la dependencia tzdata y el workflow ya están en main. [Registro de entrega](runs/2026-10-05-delivery.md).

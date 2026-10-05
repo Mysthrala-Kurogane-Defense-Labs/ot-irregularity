@@ -4,6 +4,8 @@ Este registro conserva avances, resultados negativos y cambios de medición. Los
 
 ## Evolución hasta el 5 de octubre de 2026
 
+[Decisión conjunta](workflows/model-training/runs/2026-10-05-joint-decisions.md): los 24 puntos se rechazan en desarrollo por falsas ventanas. El punto principal q=.9975 conserva todas las alertas baseline y alcanza 87/124 eventos, 18/35 físicos y 5/10 de refrigeración, pero pasa de 4 a 6 falsas ventanas. No se consume otro test ni se promueve candidato. La siguiente medición sigue el [protocolo normal prolongado](NORMAL_EXPOSURE_PROTOCOL.md).
+
 [Dinámica térmica antes de agregar](workflows/model-training/runs/2026-10-05-sample-thermal.md): componente seleccionado en desarrollo y contrastado en tres lotes nuevos. Test: 62/105 eventos frente a 60/105 baseline, refrigeración 2/7 frente a 1/7, falsas ventanas 8 frente a 7, sin perder eventos baseline. Cumple el gate exploratorio, pero los intervalos incluyen ganancia cero; v0.5 relacional detecta 67/105 y sigue siendo mejor en conjunto. No se sustituye el modelo ni se reajusta sobre test. Contexto inicial y normalización de magnitud siguen siendo supuestos explícitos.
 
 [Ensayo térmico y pares simulados](workflows/model-training/runs/2026-10-05-thermal.md): el modelo de dinámica por minuto no mejora refrigeración y se rechaza. Diez replays exactos confirman desviaciones térmicas de 0,59–4,01 °C; sus medias por minuto reducen el pico a 0,31–2,61 °C. La versión declarada 0.3.1 no reproduce estos datos; el checkout congelado 0.6.0 sí, con hashes registrados. La procedencia histórica requiere ese matiz.

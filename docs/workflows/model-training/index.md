@@ -2,6 +2,7 @@
 
 | Date | Status | Scope | Evidence |
 | --- | --- | --- | --- |
+| 2026-10-05 | All 24 joint operating points rejected in development | Baseline alert preservation, relational magnitude and thermal decisions; normal-exposure protocol declared | [run record](runs/2026-10-05-joint-decisions.md) |
 | 2026-10-05 | Thermal component passes exploratory fresh-test gate; gain small/uncertain, no model replacement | Corrected per-run cadence, initial-context ablation, magnitude calibration, three new frozen holdouts | [run record](runs/2026-10-05-sample-thermal.md) |
 | 2026-10-05 | Minute thermal model rejected; paired signal effect verified | Normal-only dynamics and ten exact original replay/intervention pairs; version discrepancy recorded | [run record](runs/2026-10-05-thermal.md) |
 | 2026-10-05 | Separate alert decisions rejected in development | Three frozen seeds, no baseline alerts lost but false windows increase; no new test | [run record](runs/2026-10-05-alert-budgets.md) |

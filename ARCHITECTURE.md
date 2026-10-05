@@ -7,3 +7,6 @@ A small symmetric PyTorch MLP autoencoder minimizes reconstruction MSE. The Isol
 Validation-normal AE and Isolation Forest score arrays, scalers, feature schema, parameters, thresholds and metadata are saved together. The scaler is fit on normal training windows only. The autoencoder checkpoint is selected by validation-normal reconstruction loss with early stopping. CPU seed control is used; deterministic PyTorch operations are requested.
 
 ONNX export is deferred until exporter/runtime parity can be tested. Possible future model adapters include XGBoost, LSTM, temporal transformers and forecasting. They are not part of v0.1.
+## Familia contextual opcional
+
+`model_family: contextual` selecciona un AE y un Isolation Forest por `asset_class`. La normalización semántica y generación de ventanas son compartidas con la familia global; solo se ajustan features de roles aplicables. Cada clase persiste su scaler y modelos. `contextual_models.json` registra referencias normales y escala de residuos; los consumidores detectan ese manifiesto al cargar. Véase [el contrato y los límites](docs/MODEL_V0.4_CONTEXTUAL.md). `operating_regime` no condiciona todavía una dinámica específica en esta variante.

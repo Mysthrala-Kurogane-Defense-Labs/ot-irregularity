@@ -29,3 +29,6 @@ uv run --no-sync python scripts/watch_training.py --run $OT_IRREGULARITY_LOCAL\m
 ```
 
 El monitor lee `training_progress.jsonl` (fases, actualizaciones, época, pérdida y VRAM asignada/reservada por PyTorch) y consulta `nvidia-smi` para uso/utilización de GPU. Mantén la misma ruta de salida que el comando de entrenamiento.
+# Entrenamiento contextual opcional
+
+`configs/model-v0.4-contextual.yaml` activa modelos AE/IF por `asset_class`. Requiere suficientes runs normales por clase para ajuste, early stopping y calibración separados. Los artefactos por clase se guardan en `groups/` y la inferencia rechaza clases desconocidas. Ver [protocolo y resultados](docs/MODEL_V0.4_CONTEXTUAL.md). El conjunto de ejemplo mínimo está destinado al baseline global; no tiene la cobertura necesaria para calibrar un cuantil 0,99 por clase.

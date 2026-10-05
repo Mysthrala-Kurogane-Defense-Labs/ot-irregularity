@@ -74,33 +74,6 @@ Evidencia completa: [segunda iteración](results/physical-ablation-20261005.json
 
 ## Indicadores siguientes y estado
 
-### Cuarta iteración: candidato relacional v0.5
-
-Diagnóstico en desarrollo: 22/35 eventos físicos contienen algún valor bruto extremo respecto a la referencia normal marginal, pero ninguno supera el percentil 99 del indicador agregado de distancia de features. Esto no prueba pérdida de información: falta una ejecución normal equivalente y cambian las oportunidades de observar extremos.
-
-Se prueban seis residuos por clase: cada media de señal se predice a partir de las otras cinco, con Ridge ajustado solo sobre normales. Una variante añade el minuto anterior sin cruzar runs, activos ni huecos. Después se comparan residuos directos y AE sobre residuos, solos y como suplemento de v0.4. Todas las variantes usan la misma política de cierre y ventanas. La variante temporal no resulta elegida.
-
-El primer umbral q99 produce demasiadas falsas alertas. Una **segunda fase adaptativa de desarrollo**, explícitamente registrada, compara cuatro cuantiles normales: 24 puntos resolubles, cinco elegibles. Se selecciona el máximo de v0.4 y el AE de residuos estáticos, q99,75: 71/124 eventos, 15/35 físicos y cuatro falsos minutos frente a 53/124, 4/35 y cuatro de v0.4. La selección no utiliza test.
-
-Tres semillas AE y umbrales quedan congelados antes de generar los lotes **910531–910533**. Nuevo test: 108 runs, 1.418 minutos completos, 96 intervalos originales, 33 físicos, misma cobertura para todos los modelos.
-
-| Indicador | v0.4 con cierre completo | v0.5 principal |
-|---|---:|---:|
-| PR-AUC | 0,5423 | **0,7036** |
-| Precisión | 88,1 % | **97,6 %** |
-| Eventos detectados | 40/96 (41,7 %) | **61/96 (63,5 %)** |
-| Eventos físicos | 1/33 | **23/33** |
-| Falsos minutos | 7 | **2** |
-| Falsos minutos/activo-día | 7,11 | **2,03** |
-
-Las otras dos semillas detectan 59 y 58 eventos, 21 físicos cada una, con tres falsos minutos. Las tres pasan el objetivo exploratorio en esta muestra. Bootstrap pareado: ΔPR-AUC IC95% [0,0919; 0,2213]; Δdetección total [8,08; 35,17] puntos; Δdetección física [48,48; 83,79] puntos. La reducción de falsas alertas todavía tiene incertidumbre: su diferencia de tasa tiene IC95% [-11,39; +1,03], que incluye cero.
-
-**Regresiones que no se ocultan:** comunicaciones 8/8 -> 6/8; telemetría ausente 6/7 -> 4/7; calidad 7/8 -> 3/8; señal congelada 8/9 -> 5/9. Refrigeración sigue **0/7**. El avance físico se concentra en bearing (1/11 -> 9/11), cavitación (0/8 -> 8/8) y sobrecarga (0/7 -> 6/7). Son familias de ground truth, no diagnósticos emitidos.
-
-Se conserva v0.4 y se empaqueta v0.5 como **candidato experimental**, con inferencia JSONL/Parquet reproducible, scores separados, disponibilidad y contribuciones de residuos. No sustituye los defaults ni se publica un release de pesos. Los controles de cuantil equivalente y residuo directo también se reportan: el avance no se explica únicamente por recalibrar el umbral.
-
-[Protocolo, familias, controles y uso](workflows/model-training/runs/2026-10-05-relationships.md) · [Evidencia numérica](results/relationships-20261005.json).
-
 ### Tercera iteración: resolución temporal y cierre de archivos
 
 Las ventanas reales de 30s y 15s ya están implementadas, con compatibilidad explícita para los artefactos antiguos. Ambas alternativas **fallan** el filtro de desarrollo. Sobre 2.057 minutos comunes, v0.4 detecta 53/124 eventos con 5 minutos falsos; 30s detecta 55 con 27 falsos; 15s detecta 43 con 12 falsos. No se promocionan ni se prueban contra nuevos holdouts.
@@ -122,6 +95,6 @@ Se excluyen **225 minutos incompletos**, cuatro de ellos positivos. Ningún even
 
 Detalles y reproducción: [ejecución temporal](workflows/model-training/runs/2026-10-05-temporal.md); [evidencia numérica](results/temporal-and-tail-20261005.json).
 
-Prioridad tras v0.5: recuperar las detecciones de integridad mediante presupuestos separados para integridad y desviación física; investigar contexto térmico para refrigeración; y medir falsas alertas con trazas normales mucho más largas. Son hipótesis pendientes, que requieren selección en desarrollo y otro holdout. Los doce lotes de test evaluados hasta aquí están consumidos.
+Prioridad: sensibilidad física por familia/severidad, relaciones temporales justificadas y falsas alertas durante transiciones normales. Acortar ventanas sin más ya se ha probado y no basta. Las relaciones entre señales siguen **sin probarse**; deben evaluarse con selección en desarrollo y un nuevo holdout, manteniendo explícita la política de cierre. No se recomienda aumentar épocas ni bajar el umbral como sustituto de esa investigación.
 
-El PR permanece draft. El candidato v0.5 pasa el objetivo exploratorio conjunto en el último test pseudo-sintético, con mejoras físicas y regresiones de integridad explícitas. No hay validación de planta real ni CI remoto configurado; el resultado no establece aceptación operacional.
+El PR permanece draft. Hay una corrección de procesamiento de archivos validada en datos sintéticos; no hay un nuevo modelo físico que promocionar, validación de planta real ni CI remoto configurado. El objetivo exploratorio conjunto de >=50 % de eventos y <=10 falsas ventanas/día sigue pendiente.

@@ -1,0 +1,13 @@
+# Balanced normal development for contextual specialists
+
+Declared before generation or outcomes. Nine sources, master seeds 930101–930109 in order OFF, IDLE, WARMUP, LOW_LOAD, NORMAL_LOAD, HIGH_LOAD, COOLDOWN, MAINTENANCE, transitions. Each has 24 independent one-hour runs, all four asset classes, 12 train/calibration and 12 validation/development, zero test. All context is exposed; existing hidden-context development remains an additional control. Vary cadence 500/1000ms, jitter, ambient and drift as in prior development.
+
+For steady sources restrict each asset's supported regimes to the requested regime and use a single-entry shift pattern. This prevents automatic warmup/cooldown replacing the requested coverage. Sustained warmup/cooldown are synthetic coverage stress cases, not a claim of realistic operating frequency. Transitions retain all regimes with 64 successive states; boundary mixture is intentional. Data CC BY 4.0, attribution Mysthrala Kurogane Defense Labs / OT Irregularity Lab, pinned Lab commit 718babb7772c3a21f0b87c403f628540cbce58db.
+
+Verify suite/code/manifest/telemetry/truth hashes and actual run-seed disjointness against all historical/development/consumed test manifests before training or evaluating. No regenerated prior test and no challenge. Abort on source mismatch or nonempty anomaly truth. Preserve run-local normalization and identities. Dataset generation alone does not prove normal score behavior.
+
+One candidate: frozen class median and corrected health, with contextual .9975 tail references (>=400 valid normal windows/group) fitted on original normal calibration plus new train only. No AE/Ridge/scaler retraining. Unknown or insufficient context keeps class fallback. Validation partitions cannot contribute to references. Verify all eight steady regimes have supported references in all four classes before interpreting this as balanced calibration.
+
+Compare primary-health, class-only, previous context and expanded context on historical development, existing new-normal development and new balanced validation. Keep exact original event identities. Gate: preserve baseline integrity and primary physical events, >=86/124 events, <=4 historical false windows, precision >=.5; existing normal <=25 windows and <=10/day/class. On balanced validation require no more overall false windows than primary-health and <=10/day/class. Report by regime and class, availability, PR-AUC, latency and all losses. Repeated inference/reference reload must agree.
+
+No grid search or new test on failure. Passing is development only; require frozen independent confirmation before promotion. Do not use completed mixed 910561/2/3 or normal 920631 for fitting/selection. Distillation and industrial acceptance remain separate.

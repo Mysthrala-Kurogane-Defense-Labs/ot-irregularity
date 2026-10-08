@@ -1,0 +1,57 @@
+suite_id: balanced-regime-warmup
+suite_version: 1.0.0
+data_license: CC-BY-4.0
+description: 'Development only: balanced normal regime coverage; no test partition.'
+partitions:
+  train: 0.5
+  validation: 0.5
+  test: 0.0
+scenario:
+  scenario_id: randomized-ot-plant
+  scenario_version: 2.0.0
+  run_id: generated
+  duration_s: 3600
+  sampling_interval_ms: 1000
+  ambient_temperature_c: 22
+  assets:
+  - asset_id: CNC-01
+    asset_class: cnc
+    regimes:
+    - WARMUP
+  - asset_id: PUMP-01
+    asset_class: pump
+    regimes:
+    - WARMUP
+  - asset_id: COMPRESSOR-01
+    asset_class: compressor
+    regimes:
+    - WARMUP
+  - asset_id: CONVEYOR-01
+    asset_class: conveyor
+    regimes:
+    - WARMUP
+generation:
+  anomaly_probability: 0.0
+  vary:
+    sampling_interval_ms:
+      choices:
+      - 500
+      - 1000
+    sampling_jitter_ms:
+      min: 0
+      max: 30
+    ambient_temperature_c:
+      min: 15
+      max: 32
+    ambient_temperature_drift_c:
+      min: -4.0
+      max: 4.0
+    expose_operating_regime:
+      choices:
+      - true
+  regime_profiles:
+  - profile_id: warmup
+    weight: 1
+    shift_pattern:
+    - WARMUP
+  anomaly_templates: []

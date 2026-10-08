@@ -136,8 +136,8 @@ def run(args):
                         *[pl.Series('raw_'+str(m['seed']),raw_errors[:,i],nan_to_null=True) for i,m in enumerate(frozen['members'])])
                 if context_model is not None:
                     context_margin,route=context_model.score(class_margin,windows['asset_class'].to_numpy(),windows['operating_regime'].to_numpy())
-                    total=np.maximum.reduce([base/thresholds[0],np.nan_to_num(context_margin,nan=0),np.nan_to_num(hv,nan=0)/frozen['health_threshold']])
-                    prediction=prediction.with_columns(pl.Series('context-ensemble',total/(1+total)),pl.Series('context_margin',context_margin,nan_to_null=True),pl.Series('context_route',route))
+                    context_combined=np.maximum.reduce([base/thresholds[0],np.nan_to_num(context_margin,nan=0),np.nan_to_num(hv,nan=0)/frozen['health_threshold']])
+                    prediction=prediction.with_columns(pl.Series('context-ensemble',context_combined/(1+context_combined)),pl.Series('context_margin',context_margin,nan_to_null=True),pl.Series('context_route',route))
                 prediction = prediction.join(health,on=KEYS,maintain_order='left')
                 prediction.write_parquet(pred_path)
                 record = {'inputs':expected,'run_id':identity,'normal':normal,'predictions_sha256':_sha256(pred_path),

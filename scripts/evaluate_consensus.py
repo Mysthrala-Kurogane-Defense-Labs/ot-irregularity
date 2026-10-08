@@ -26,6 +26,7 @@ from ot_irregularity.pipeline import _model_config, _windows, _scores
 from ot_irregularity.telemetry_health import KEYS, extract_health, TelemetryHealthReference
 from ot_irregularity.consensus import consensus_scores
 from ot_irregularity.class_ensemble import ClassMagnitudeEnsemble
+from ot_irregularity.context_calibration import ContextMagnitudeCalibration
 from scripts.research_class_ensemble import member_errors
 
 MODELS = ['primary-health','majority','v04','v05']
@@ -36,14 +37,19 @@ def run(args):
     root = Path(__file__).resolve().parents[1]; out = args.output
     frozen = json.loads((out/'frozen.json').read_text()); freeze_hash = _sha256(out/'frozen.json')
     candidate_name = frozen['decision']
-    if candidate_name not in ('majority', 'class-ensemble'):
+    if candidate_name not in ('majority', 'class-ensemble', 'context-ensemble'):
         raise ValueError('Unsupported frozen candidate')
-    models = MODELS + (['class-ensemble'] if candidate_name == 'class-ensemble' else [])
+    models = MODELS + (['class-ensemble'] if candidate_name != 'majority' else []) + (['context-ensemble'] if candidate_name == 'context-ensemble' else [])
     class_model = None
-    if candidate_name == 'class-ensemble':
+    if candidate_name != 'majority':
         if _sha256(out/'class-reference.json') != frozen['class_reference_sha256']:
             raise ValueError('Frozen class reference changed')
         class_model = ClassMagnitudeEnsemble.load(out/'class-reference.json')
+    context_model = None
+    if candidate_name == 'context-ensemble':
+        if _sha256(out/'context-reference.json') != frozen['context_reference_sha256']:
+            raise ValueError('Frozen context reference changed')
+        context_model = ContextMagnitudeCalibration.load(out/'context-reference.json')
     if runtime_hashes(root) != frozen['runtime_files'] or _sha256(root/frozen.get('protocol_file','docs/CONSENSUS_CONFIRMATION_PROTOCOL.md')) != frozen['protocol_sha256']:
         raise ValueError('Frozen execution code/protocol changed')
     if hashes(args.baseline) != frozen['baseline_files'] or _sha256(args.health_reference) != frozen['health_reference_sha256']:
@@ -128,6 +134,10 @@ def run(args):
                         pl.Series('class_margin',class_margin,nan_to_null=True),
                         pl.Series('class_available',class_available),
                         *[pl.Series('raw_'+str(m['seed']),raw_errors[:,i],nan_to_null=True) for i,m in enumerate(frozen['members'])])
+                if context_model is not None:
+                    context_margin,route=context_model.score(class_margin,windows['asset_class'].to_numpy(),windows['operating_regime'].to_numpy())
+                    total=np.maximum.reduce([base/thresholds[0],np.nan_to_num(context_margin,nan=0),np.nan_to_num(hv,nan=0)/frozen['health_threshold']])
+                    prediction=prediction.with_columns(pl.Series('context-ensemble',total/(1+total)),pl.Series('context_margin',context_margin,nan_to_null=True),pl.Series('context_route',route))
                 prediction = prediction.join(health,on=KEYS,maintain_order='left')
                 prediction.write_parquet(pred_path)
                 record = {'inputs':expected,'run_id':identity,'normal':normal,'predictions_sha256':_sha256(pred_path),

@@ -34,7 +34,7 @@ def test_confirmation_population_and_seed_leakage(tmp_path):
         with pytest.raises(ValueError): source_manifest(tmp_path,frozen,set())
 
 
-@pytest.mark.parametrize('candidate_name', ['majority', 'class-ensemble'])
+@pytest.mark.parametrize('candidate_name', ['majority', 'class-ensemble', 'context-ensemble'])
 def test_confirmation_gate_requires_both_populations_and_exact_events(candidate_name):
     m={'detected_events':8,'false_positive_windows':2,'precision':.8,'event_detection_rate':.8}
     mixed={candidate_name:m,'primary-health':m.copy()}
@@ -51,7 +51,7 @@ def test_confirmation_gate_requires_both_populations_and_exact_events(candidate_
     assert not acceptance(changed,normal,[],[],168,candidate_name=candidate_name)['mixed_passed']
 
 
-@pytest.mark.parametrize('candidate_name', ['majority', 'class-ensemble'])
+@pytest.mark.parametrize('candidate_name', ['majority', 'class-ensemble', 'context-ensemble'])
 def test_confirmation_bootstrap_identical_controls_include_no_window_events(candidate_name):
     frame=pl.DataFrame({'run_id':['a','a','b','b'],'is_anomaly':[True,False,True,False],
         'primary-health':[.8,.1,.7,.2],candidate_name:[.8,.1,.7,.2],

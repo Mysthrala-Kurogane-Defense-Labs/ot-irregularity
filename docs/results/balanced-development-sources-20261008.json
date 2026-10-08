@@ -1,0 +1,149 @@
+{
+  "sources": [
+    {
+      "master_seed": 930101,
+      "manifest_sha256": "3958fca11696137410fc184555c039bf4cbdfe225f0b8a175e7e178868efc3fa",
+      "suite_sha256": "c3e023c02b0651d8290d4749af77bc29ff8c754b723877267dff7301b82d27f9",
+      "partition_counts": {
+        "train": 12,
+        "validation": 12,
+        "test": 0
+      },
+      "regime_duration_s": {
+        "OFF": 345600.0
+      },
+      "data_license": "CC-BY-4.0",
+      "simulator_version": "0.6.0"
+    },
+    {
+      "master_seed": 930102,
+      "manifest_sha256": "0b35c0eed6dfd0c56eabdbf3f3a2bdc9a567e07416a8e64da92ff4c31fcfe464",
+      "suite_sha256": "126a77f1df99f76381c8c4c8be9492aff16038d4becb0ccc1dffb53bad4abe37",
+      "partition_counts": {
+        "train": 12,
+        "validation": 12,
+        "test": 0
+      },
+      "regime_duration_s": {
+        "IDLE": 345600.0
+      },
+      "data_license": "CC-BY-4.0",
+      "simulator_version": "0.6.0"
+    },
+    {
+      "master_seed": 930103,
+      "manifest_sha256": "3866f9da5fb6b63437e49f6b70c1e795fe376ea9b83d70a608fd4eb8f012825a",
+      "suite_sha256": "c880f0a7b16eb7000ddb9459281ea5b3bfb3b3734d02f71af0790be3a6b3eafe",
+      "partition_counts": {
+        "train": 12,
+        "validation": 12,
+        "test": 0
+      },
+      "regime_duration_s": {
+        "WARMUP": 345600.0
+      },
+      "data_license": "CC-BY-4.0",
+      "simulator_version": "0.6.0"
+    },
+    {
+      "master_seed": 930104,
+      "manifest_sha256": "3bd882f3ac1be308ba28cfaa8eaf7425882085856ea822f3b47f26e277aefd2d",
+      "suite_sha256": "57d83e08c683845030c718bdf671db6de6db3cf4d87d297f2d3966ce4e6a560b",
+      "partition_counts": {
+        "train": 12,
+        "validation": 12,
+        "test": 0
+      },
+      "regime_duration_s": {
+        "LOW_LOAD": 345600.0
+      },
+      "data_license": "CC-BY-4.0",
+      "simulator_version": "0.6.0"
+    },
+    {
+      "master_seed": 930105,
+      "manifest_sha256": "e4035d27cd805912b3251380edd4c63c5aba810b95a00057366e4f0116733d8e",
+      "suite_sha256": "184610ebd5eb7ca827f96eee50848b32b491df318b2415effb217217e854febe",
+      "partition_counts": {
+        "train": 12,
+        "validation": 12,
+        "test": 0
+      },
+      "regime_duration_s": {
+        "NORMAL_LOAD": 345600.0
+      },
+      "data_license": "CC-BY-4.0",
+      "simulator_version": "0.6.0"
+    },
+    {
+      "master_seed": 930106,
+      "manifest_sha256": "35cfcefd5d86eb3a495ef1593a6a89d22b411093fd1b5c6e80916ed642b416dc",
+      "suite_sha256": "3adfef460ee25752645e325d515b4a85528c1e155ee1ea20a409b6f7541c779b",
+      "partition_counts": {
+        "train": 12,
+        "validation": 12,
+        "test": 0
+      },
+      "regime_duration_s": {
+        "HIGH_LOAD": 345600.0
+      },
+      "data_license": "CC-BY-4.0",
+      "simulator_version": "0.6.0"
+    },
+    {
+      "master_seed": 930107,
+      "manifest_sha256": "10b4fd7cd140e68498401c2257473d1bf5306db8791ca5352ccd8ce0947c0428",
+      "suite_sha256": "35e1dd75d733f13a0bfbb7c6f0f6f0c1984871a1d061ab613cb3399ec16ba834",
+      "partition_counts": {
+        "train": 12,
+        "validation": 12,
+        "test": 0
+      },
+      "regime_duration_s": {
+        "COOLDOWN": 345600.0
+      },
+      "data_license": "CC-BY-4.0",
+      "simulator_version": "0.6.0"
+    },
+    {
+      "master_seed": 930108,
+      "manifest_sha256": "f06909e6437012d944c25f3a151e03a28fcbd29e220f13b5a5e1bbb652e50a79",
+      "suite_sha256": "aa58bd30d5d7b77d97a4a3c8215fa67f75763ee52f1e373ffd8e0be7a4f5ae6f",
+      "partition_counts": {
+        "train": 12,
+        "validation": 12,
+        "test": 0
+      },
+      "regime_duration_s": {
+        "MAINTENANCE": 345600.0
+      },
+      "data_license": "CC-BY-4.0",
+      "simulator_version": "0.6.0"
+    },
+    {
+      "master_seed": 930109,
+      "manifest_sha256": "9b4e4e8084052caeab412c24a89810d0a273fe2133482626dfbdc5e43079215b",
+      "suite_sha256": "b5ffc11f5e0c0b81e364db533fb37522440ed2c07ad4b36e1eeaa58ab587c6f7",
+      "partition_counts": {
+        "train": 12,
+        "validation": 12,
+        "test": 0
+      },
+      "regime_duration_s": {
+        "WARMUP": 64128.0,
+        "OFF": 36790.0,
+        "IDLE": 36864.0,
+        "LOW_LOAD": 36864.0,
+        "NORMAL_LOAD": 36864.0,
+        "HIGH_LOAD": 36480.0,
+        "COOLDOWN": 60982.0,
+        "MAINTENANCE": 36628.0
+      },
+      "data_license": "CC-BY-4.0",
+      "simulator_version": "0.6.0"
+    }
+  ],
+  "test_used": false,
+  "attribution": "Mysthrala Kurogane Defense Labs / OT Irregularity Lab",
+  "source_url": "https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab"
+}

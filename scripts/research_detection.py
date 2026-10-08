@@ -6,6 +6,8 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import tempfile
+import time
 
 import joblib
 import numpy as np
@@ -24,9 +26,30 @@ from ot_irregularity.pipeline import _hash_paths, _windows, cdf_calibrate
 def write_json(path, obj):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    temp = path.with_suffix('.tmp')
-    temp.write_text(json.dumps(obj, indent=2) + '\n', encoding='utf-8')
-    os.replace(temp, path)
+    payload = json.dumps(obj, indent=2) + '\n'
+    # Close our handle before replacing on Windows; a reader may briefly hold
+    # the destination without delete sharing. Separate writers need unique temps.
+    with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', prefix='.'+path.name+'.',
+                                     suffix='.tmp', dir=path.parent, delete=False) as stream:
+        temp = Path(stream.name)
+        try:
+            stream.write(payload)
+        except BaseException:
+            stream.close()
+            temp.unlink(missing_ok=True)
+            raise
+    try:
+        delays = (.02, .05, .1, .2, .4, .8)
+        for attempt in range(len(delays)+1):
+            try:
+                os.replace(temp, path)
+                break
+            except PermissionError:
+                if attempt == len(delays):
+                    raise
+                time.sleep(delays[attempt])
+    finally:
+        temp.unlink(missing_ok=True)
 
 
 def bucket(run_id, modulo=5):

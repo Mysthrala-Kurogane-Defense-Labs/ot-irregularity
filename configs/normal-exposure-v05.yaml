@@ -1,0 +1,285 @@
+suite_id: normal-exposure-v05
+suite_version: 1.0.0
+data_license: CC-BY-4.0
+description: Independent normal-only exposure measurement. 180 one-hour runs, four
+  classes, repeated production transitions; no training or threshold selection.
+partitions:
+  train: 0.0
+  validation: 0.0
+  test: 1.0
+scenario:
+  scenario_id: randomized-ot-plant
+  scenario_version: 2.0.0
+  run_id: generated
+  duration_s: 3600
+  sampling_interval_ms: 1000
+  ambient_temperature_c: 22
+  assets:
+  - asset_id: CNC-01
+    asset_class: cnc
+    regimes: &id001
+    - 'OFF'
+    - IDLE
+    - WARMUP
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - COOLDOWN
+    - MAINTENANCE
+  - asset_id: PUMP-01
+    asset_class: pump
+    regimes: *id001
+  - asset_id: COMPRESSOR-01
+    asset_class: compressor
+    regimes: *id001
+  - asset_id: CONVEYOR-01
+    asset_class: conveyor
+    regimes: *id001
+generation:
+  anomaly_probability: 0.0
+  vary:
+    sampling_interval_ms:
+      choices:
+      - 500
+      - 1000
+    sampling_jitter_ms:
+      min: 0
+      max: 30
+    ambient_temperature_c:
+      min: 15
+      max: 32
+    ambient_temperature_drift_c:
+      min: -4.0
+      max: 4.0
+    expose_operating_regime:
+      choices:
+      - true
+      - false
+  regime_profiles:
+  - profile_id: standard-shift
+    weight: 3
+    shift_pattern:
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+  - profile_id: variable-production
+    weight: 2
+    shift_pattern:
+    - IDLE
+    - LOW_LOAD
+    - HIGH_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - IDLE
+    - LOW_LOAD
+    - HIGH_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - IDLE
+    - LOW_LOAD
+    - HIGH_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - IDLE
+    - LOW_LOAD
+    - HIGH_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - IDLE
+    - LOW_LOAD
+    - HIGH_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - IDLE
+    - LOW_LOAD
+    - HIGH_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - IDLE
+    - LOW_LOAD
+    - HIGH_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - IDLE
+    - LOW_LOAD
+    - HIGH_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+  - profile_id: startup-maintenance-shutdown
+    weight: 1
+    shift_pattern:
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - NORMAL_LOAD
+  - profile_id: steady-heavy-production
+    weight: 1
+    shift_pattern:
+    - HIGH_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - HIGH_LOAD
+    - NORMAL_LOAD
+  - profile_id: planned-maintenance
+    weight: 1
+    shift_pattern:
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - IDLE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - IDLE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - IDLE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - IDLE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - IDLE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - IDLE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - IDLE
+    - NORMAL_LOAD
+    - NORMAL_LOAD
+    - HIGH_LOAD
+    - MAINTENANCE
+    - IDLE
+    - NORMAL_LOAD
+  - profile_id: production-stop
+    weight: 1
+    shift_pattern:
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - 'OFF'
+    - IDLE
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - 'OFF'
+    - IDLE
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - 'OFF'
+    - IDLE
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - 'OFF'
+    - IDLE
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - 'OFF'
+    - IDLE
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - 'OFF'
+    - IDLE
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - 'OFF'
+    - IDLE
+    - NORMAL_LOAD
+    - LOW_LOAD
+    - NORMAL_LOAD
+    - 'OFF'
+    - IDLE
+    - NORMAL_LOAD
+  anomaly_templates: []

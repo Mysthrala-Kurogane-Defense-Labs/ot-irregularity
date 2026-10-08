@@ -1,0 +1,71 @@
+{
+  "scope": "new normal development only; descriptive overlap, no candidate selection",
+  "test_used": false,
+  "by_class": {
+    "CNC": {
+      "counts": {
+        "20261005": 3,
+        "20261006": 6,
+        "20261007": 1
+      },
+      "union": 9,
+      "all_three": 0,
+      "pair_intersections": {
+        "20261005-20261006": 0,
+        "20261005-20261007": 0,
+        "20261006-20261007": 1
+      },
+      "only_one_seed": 8
+    },
+    "COMPRESSOR": {
+      "counts": {
+        "20261005": 4,
+        "20261006": 14,
+        "20261007": 31
+      },
+      "union": 36,
+      "all_three": 3,
+      "pair_intersections": {
+        "20261005-20261006": 3,
+        "20261005-20261007": 3,
+        "20261006-20261007": 10
+      },
+      "only_one_seed": 26
+    },
+    "CONVEYOR": {
+      "counts": {
+        "20261005": 9,
+        "20261006": 1,
+        "20261007": 1
+      },
+      "union": 9,
+      "all_three": 1,
+      "pair_intersections": {
+        "20261005-20261006": 1,
+        "20261005-20261007": 1,
+        "20261006-20261007": 1
+      },
+      "only_one_seed": 8
+    },
+    "PUMP": {
+      "counts": {
+        "20261005": 9,
+        "20261006": 3,
+        "20261007": 3
+      },
+      "union": 11,
+      "all_three": 2,
+      "pair_intersections": {
+        "20261005-20261006": 2,
+        "20261005-20261007": 2,
+        "20261006-20261007": 2
+      },
+      "only_one_seed": 9
+    }
+  },
+  "source_sha256": {
+    "original-20261005-normal.parquet": "9ff714a8f5fc3acaf92c42afa7b638fb09178324946e46ff2e9f9aa593d01b96",
+    "original-20261006-normal.parquet": "0ded926c55d892f1f7d9249831f36eed38f335414902444c52ab60e35753f558",
+    "original-20261007-normal.parquet": "31b38b483c3a03ebc534c9d020d4e1ffc37334e8742a0825f84ab687eb352ee9"
+  }
+}

@@ -2,7 +2,33 @@
 
 Este registro conserva avances, resultados negativos y cambios de medición. Los datos son pseudo-sintéticos de [OT Irregularity Lab](https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab), CC BY 4.0; atribución: Mysthrala Kurogane Defense Labs. Los nombres de eventos pertenecen al ground truth y no son diagnósticos del detector.
 
+## Confirmación del 8 de octubre de 2026
+
+[Ensemble por clase](workflows/model-training/runs/2026-10-08-class-confirmation.md): test completado, 73 frente a 71/96 eventos y 85 frente a 144 falsas ventanas normales. Se rechaza: pierde un evento físico requerido y sube de cuatro a cinco falsas ventanas mixtas. PR-AUC .699→.711, con intervalo de diferencia que incluye cero. Los cuatro datasets quedan consumidos; sin promoción.
+
 ## Evolución hasta el 5 de octubre de 2026
+
+[Magnitud calibrada por clase](workflows/model-training/runs/2026-10-05-class-ensemble.md): mediana q=.9975, único punto elegible de seis. Desarrollo: 86→92/124 eventos, 16→20/35 físicos, falsas ventanas históricas 4→3 y normales 25→14; ninguna detección del primario corregido se pierde. PR-AUC empeora .717892→.708312: mejora al umbral elegido, no en todos los indicadores. 108 tests, referencias recargadas exactamente. Requiere nueva confirmación independiente; sin promoción.
+
+[Confirmación independiente del consenso](workflows/model-training/runs/2026-10-05-consensus-confirmation.md): 288 runs evaluados. Mayoría: 70/101 eventos frente a 73 del control con salud; falsas ventanas mixtas 6→2. Normalidad: 178,67 horas/clase, falsas ventanas/día 5,14→3,19, aunque compresores empeoran 4,97→8,33. Conserva integridad baseline y físicos exigidos, pero pierde tres detecciones adicionales: falla el criterio total y no se promueve. Reducción de falsas alertas respaldada por intervalos pareados; ganancia PR-AUC inconclusa. Reanudación idéntica y 288 hashes verificados. Estas fuentes ya son test consumido.
+
+[Mayoría fija de tres semillas](workflows/model-training/runs/2026-10-05-consensus.md): pasa desarrollo con 89/124 eventos, dos falsas ventanas históricas y 14 normales, frente a 86/4/25 del control corregido. Mantiene integridad baseline y eventos físicos del primario, pero pierde un sensor_bias del primario y un bearing_degradation de otra semilla; no conserva todas las detecciones individuales. 98 tests, scores de miembros y referencia recargados exactamente. Candidato seleccionado, aún pendiente de congelación y confirmación con datos nuevos. No promoción.
+
+[Cadencia corregida](workflows/model-training/runs/2026-10-05-telemetry-health-r2.md): el canal sin repetición recupera todas las detecciones de integridad requeridas: 71→86/124 eventos, manteniendo cuatro falsas ventanas históricas y 25 normales. 90 tests y scores reproducibles. La confirmación completa falla en las otras semillas por límites ya incumplidos por sus controles relacionales: compresores 10,25 y 22,71 falsas ventanas/día. El canal de calidad/disponibilidad añade cero falsas ventanas en las tres semillas; el siguiente problema es estabilidad relacional. Sin nuevo test ni promoción.
+
+[Canal de telemetría](workflows/model-training/runs/2026-10-05-telemetry-health.md): 71→79/124 eventos con cuatro falsas ventanas históricas y 25 en normalidad nueva, pero aún pierde seis eventos baseline. Ningún punto se acepta. Se detecta un error semántico del adaptador: el intervalo por fila del simulador representa el gap observado, no la cadencia configurada. El control de cambios desactiva cobertura/repetición en casi todas las ventanas. Corregir esa separación y repetir desarrollo; el ensayo actual no permite juzgar la eficacia del canal de disponibilidad. 88 tests locales y repetibilidad exacta de las cuatro tablas de scores tras cargar JSON.
+
+[Ampliación de normalidad](workflows/model-training/runs/2026-10-05-normal-coverage.md): 180 runs nuevos de desarrollo, misma arquitectura y tres umbrales. Ninguno supera el criterio: q=.99 gana eventos (53→60/124), pero sube falsas ventanas históricas (4→10) y pierde un evento de calidad pese a bad_ratio=19,17 %. La calidad está representada, pero no cruza el umbral global. Siguiente hipótesis: canal explícito de calidad/disponibilidad, calibrado por separado; sin eliminar señales físicas ni reajustar sobre test.
+
+[Exposición normal prolongada](workflows/model-training/runs/2026-10-05-normal-exposure.md): 180 runs y 178,53 horas-activo por clase. La unión conjunta aumenta falsas ventanas de 5,24 a 11,63/activo-día; diferencia pareada IC95% [4,57, 8,33]. Térmica: 7,60 global, pero 11,56 en compresores. El baseline también falla en perfiles de mantenimiento. No se promueve candidato: mejorar cobertura y representación de normalidad con nuevos datos de desarrollo.
+
+[Decisión conjunta](workflows/model-training/runs/2026-10-05-joint-decisions.md): los 24 puntos se rechazan en desarrollo por falsas ventanas. El punto principal q=.9975 conserva todas las alertas baseline y alcanza 87/124 eventos, 18/35 físicos y 5/10 de refrigeración, pero pasa de 4 a 6 falsas ventanas. No se consume otro test ni se promueve candidato. La siguiente medición sigue el [protocolo normal prolongado](NORMAL_EXPOSURE_PROTOCOL.md).
+
+[Dinámica térmica antes de agregar](workflows/model-training/runs/2026-10-05-sample-thermal.md): componente seleccionado en desarrollo y contrastado en tres lotes nuevos. Test: 62/105 eventos frente a 60/105 baseline, refrigeración 2/7 frente a 1/7, falsas ventanas 8 frente a 7, sin perder eventos baseline. Cumple el gate exploratorio, pero los intervalos incluyen ganancia cero; v0.5 relacional detecta 67/105 y sigue siendo mejor en conjunto. No se sustituye el modelo ni se reajusta sobre test. Contexto inicial y normalización de magnitud siguen siendo supuestos explícitos.
+
+[Ensayo térmico y pares simulados](workflows/model-training/runs/2026-10-05-thermal.md): el modelo de dinámica por minuto no mejora refrigeración y se rechaza. Diez replays exactos confirman desviaciones térmicas de 0,59–4,01 °C; sus medias por minuto reducen el pico a 0,31–2,61 °C. La versión declarada 0.3.1 no reproduce estos datos; el checkout congelado 0.6.0 sí, con hashes registrados. La procedencia histórica requiere ese matiz.
+
+Última iteración: [presupuestos separados de alerta](workflows/model-training/runs/2026-10-05-alert-budgets.md) rechazados en desarrollo. La unión conserva todas las alertas baseline y gana eventos físicos, pero pasa de 4 a entre 8 y 17 falsas ventanas. Ninguna de tres semillas cumple el gate; no se consume un nuevo test.
 
 | Etapa | Pregunta y evidencia | Decisión |
 |---|---|---|
@@ -74,6 +100,33 @@ Evidencia completa: [segunda iteración](results/physical-ablation-20261005.json
 
 ## Indicadores siguientes y estado
 
+### Cuarta iteración: candidato relacional v0.5
+
+Diagnóstico en desarrollo: 22/35 eventos físicos contienen algún valor bruto extremo respecto a la referencia normal marginal, pero ninguno supera el percentil 99 del indicador agregado de distancia de features. Esto no prueba pérdida de información: falta una ejecución normal equivalente y cambian las oportunidades de observar extremos.
+
+Se prueban seis residuos por clase: cada media de señal se predice a partir de las otras cinco, con Ridge ajustado solo sobre normales. Una variante añade el minuto anterior sin cruzar runs, activos ni huecos. Después se comparan residuos directos y AE sobre residuos, solos y como suplemento de v0.4. Todas las variantes usan la misma política de cierre y ventanas. La variante temporal no resulta elegida.
+
+El primer umbral q99 produce demasiadas falsas alertas. Una **segunda fase adaptativa de desarrollo**, explícitamente registrada, compara cuatro cuantiles normales: 24 puntos resolubles, cinco elegibles. Se selecciona el máximo de v0.4 y el AE de residuos estáticos, q99,75: 71/124 eventos, 15/35 físicos y cuatro falsos minutos frente a 53/124, 4/35 y cuatro de v0.4. La selección no utiliza test.
+
+Tres semillas AE y umbrales quedan congelados antes de generar los lotes **910531–910533**. Nuevo test: 108 runs, 1.418 minutos completos, 96 intervalos originales, 33 físicos, misma cobertura para todos los modelos.
+
+| Indicador | v0.4 con cierre completo | v0.5 principal |
+|---|---:|---:|
+| PR-AUC | 0,5423 | **0,7036** |
+| Precisión | 88,1 % | **97,6 %** |
+| Eventos detectados | 40/96 (41,7 %) | **61/96 (63,5 %)** |
+| Eventos físicos | 1/33 | **23/33** |
+| Falsos minutos | 7 | **2** |
+| Falsos minutos/activo-día | 7,11 | **2,03** |
+
+Las otras dos semillas detectan 59 y 58 eventos, 21 físicos cada una, con tres falsos minutos. Las tres pasan el objetivo exploratorio en esta muestra. Bootstrap pareado: ΔPR-AUC IC95% [0,0919; 0,2213]; Δdetección total [8,08; 35,17] puntos; Δdetección física [48,48; 83,79] puntos. La reducción de falsas alertas todavía tiene incertidumbre: su diferencia de tasa tiene IC95% [-11,39; +1,03], que incluye cero.
+
+**Regresiones que no se ocultan:** comunicaciones 8/8 -> 6/8; telemetría ausente 6/7 -> 4/7; calidad 7/8 -> 3/8; señal congelada 8/9 -> 5/9. Refrigeración sigue **0/7**. El avance físico se concentra en bearing (1/11 -> 9/11), cavitación (0/8 -> 8/8) y sobrecarga (0/7 -> 6/7). Son familias de ground truth, no diagnósticos emitidos.
+
+Se conserva v0.4 y se empaqueta v0.5 como **candidato experimental**, con inferencia JSONL/Parquet reproducible, scores separados, disponibilidad y contribuciones de residuos. No sustituye los defaults ni se publica un release de pesos. Los controles de cuantil equivalente y residuo directo también se reportan: el avance no se explica únicamente por recalibrar el umbral.
+
+[Protocolo, familias, controles y uso](workflows/model-training/runs/2026-10-05-relationships.md) · [Evidencia numérica](results/relationships-20261005.json).
+
 ### Tercera iteración: resolución temporal y cierre de archivos
 
 Las ventanas reales de 30s y 15s ya están implementadas, con compatibilidad explícita para los artefactos antiguos. Ambas alternativas **fallan** el filtro de desarrollo. Sobre 2.057 minutos comunes, v0.4 detecta 53/124 eventos con 5 minutos falsos; 30s detecta 55 con 27 falsos; 15s detecta 43 con 12 falsos. No se promocionan ni se prueban contra nuevos holdouts.
@@ -95,6 +148,6 @@ Se excluyen **225 minutos incompletos**, cuatro de ellos positivos. Ningún even
 
 Detalles y reproducción: [ejecución temporal](workflows/model-training/runs/2026-10-05-temporal.md); [evidencia numérica](results/temporal-and-tail-20261005.json).
 
-Prioridad: sensibilidad física por familia/severidad, relaciones temporales justificadas y falsas alertas durante transiciones normales. Acortar ventanas sin más ya se ha probado y no basta. Las relaciones entre señales siguen **sin probarse**; deben evaluarse con selección en desarrollo y un nuevo holdout, manteniendo explícita la política de cierre. No se recomienda aumentar épocas ni bajar el umbral como sustituto de esa investigación.
+Prioridad tras v0.5: recuperar las detecciones de integridad mediante presupuestos separados para integridad y desviación física; investigar contexto térmico para refrigeración; y medir falsas alertas con trazas normales mucho más largas. Son hipótesis pendientes, que requieren selección en desarrollo y otro holdout. Los doce lotes de test evaluados hasta aquí están consumidos.
 
-El PR permanece draft. Hay una corrección de procesamiento de archivos validada en datos sintéticos; no hay un nuevo modelo físico que promocionar, validación de planta real ni CI remoto configurado. El objetivo exploratorio conjunto de >=50 % de eventos y <=10 falsas ventanas/día sigue pendiente.
+El PR permanece draft. El candidato v0.5 pasa el objetivo exploratorio conjunto en el último test pseudo-sintético, con mejoras físicas y regresiones de integridad explícitas. No hay validación de planta real ni CI remoto configurado; el resultado no establece aceptación operacional.

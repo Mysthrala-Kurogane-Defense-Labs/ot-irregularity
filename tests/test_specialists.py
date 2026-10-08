@@ -64,3 +64,21 @@ def test_extreme_valid_threshold_has_finite_rank():
     combined = combine([result(calibrated_score=1., threshold=5e-324)])
     assert combined["rank"] == 1. and combined["detected"]
     json.dumps(combined, allow_nan=False)
+
+
+@pytest.mark.parametrize("margin", [None, 0., .25, 1., 3., 1e308])
+def test_relational_adapter_preserves_margin_decision_and_unavailability(margin):
+    from ot_irregularity.specialists import relational_specialist
+    row=dict(run_id="r",asset_id="p",asset_class="PUMP",window_start=0,window_end=60)
+    value=relational_specialist(row,margin=margin,model_version="r1",calibration_version="c1")
+    assert value.raw_score == margin
+    assert value.detected == (None if margin is None else margin >= 1)
+    assert value.observations == (("multivariate_novelty",) if margin is not None and margin >= 1 else ())
+    assert SpecialistResult.model_validate_json(value.model_dump_json()) == value
+
+
+@pytest.mark.parametrize("margin", [-1., float("nan"), float("inf")])
+def test_relational_adapter_rejects_invalid_margin(margin):
+    from ot_irregularity.specialists import relational_specialist
+    with pytest.raises(ValueError,match="margin"):
+        relational_specialist({},margin=margin,model_version="r1",calibration_version="c1")

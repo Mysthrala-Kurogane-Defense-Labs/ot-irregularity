@@ -104,3 +104,22 @@ def telemetry_specialists(row: dict, *, model_version: str, calibration_version:
             reason=None if available else "no_evaluable_role", raw_score=score, calibrated_score=score,
             threshold=threshold, observations=tuple(sorted(set(row.get("observations", [])) & allowed)) if available else ()))
     return result
+
+
+def relational_specialist(row: dict, *, margin: float | None, model_version: str,
+                           calibration_version: str) -> SpecialistResult:
+    """Expose an already calibrated class-relative reconstruction margin.
+
+    The monotonic bounded rank margin/(1+margin) has decision threshold .5.
+    Missing members remain unavailable. This adapter does not refit references
+    or claim that the rank is a probability or an empirical percentile.
+    """
+    if margin is not None and (not math.isfinite(margin) or margin < 0):
+        raise ValueError("Finite nonnegative margin or explicit None required")
+    identity = {k: row[k] for k in ("run_id", "asset_id", "asset_class")}
+    identity.update(window_start_us=row["window_start"], window_end_us=row["window_end"])
+    return SpecialistResult(**identity, specialist="relational_magnitude", model_version=model_version,
+        calibration_version=calibration_version, status="available" if margin is not None else "unavailable",
+        reason=None if margin is not None else "relational_members_unavailable", raw_score=margin,
+        calibrated_score=None if margin is None else margin/(1+margin), threshold=.5,
+        observations=("multivariate_novelty",) if margin is not None and margin >= 1 else ())

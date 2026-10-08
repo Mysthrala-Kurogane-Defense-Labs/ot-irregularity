@@ -2,6 +2,8 @@
 
 | Date | Status | Scope | Evidence |
 | --- | --- | --- | --- |
+| 2026-10-08 | Confirmación por clase rechazada | 73/96 eventos, pérdida física y 5 vs 4 falsas ventanas mixtas; normal mejora, 288 hashes verificados | [registro](runs/2026-10-08-class-confirmation.md) |
+| 2026-10-08 | Revisión; confirmación pendiente, automatización pausada | Fuentes generadas y runtime verificados; prioridades y límites | [registro](runs/2026-10-08-review.md) |
 | 2026-10-05 | Class median passes development; new confirmation pending | 92 events, 3 historical/14 normal false windows; PR-AUC regression recorded, 108 tests | [run record](runs/2026-10-05-class-ensemble.md) |
 | 2026-10-05 | Independent normal gate passes; mixed retention fails, no promotion | 288 runs, 178.67 normal hours/class; 70 vs 73 events, 95 vs 153 normal false windows; verified resume | [run record](runs/2026-10-05-consensus-confirmation.md) |
 | 2026-10-05 | Fixed majority passes development; independent confirmation pending | 89 events, 2 historical/14 normal false windows; 98 tests, exact frozen member inference | [run record](runs/2026-10-05-consensus.md) |

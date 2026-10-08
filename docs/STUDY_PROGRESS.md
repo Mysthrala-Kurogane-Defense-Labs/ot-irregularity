@@ -2,6 +2,10 @@
 
 Este registro conserva avances, resultados negativos y cambios de medición. Los datos son pseudo-sintéticos de [OT Irregularity Lab](https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab), CC BY 4.0; atribución: Mysthrala Kurogane Defense Labs. Los nombres de eventos pertenecen al ground truth y no son diagnósticos del detector.
 
+## Confirmación del 8 de octubre de 2026
+
+[Ensemble por clase](workflows/model-training/runs/2026-10-08-class-confirmation.md): test completado, 73 frente a 71/96 eventos y 85 frente a 144 falsas ventanas normales. Se rechaza: pierde un evento físico requerido y sube de cuatro a cinco falsas ventanas mixtas. PR-AUC .699→.711, con intervalo de diferencia que incluye cero. Los cuatro datasets quedan consumidos; sin promoción.
+
 ## Evolución hasta el 5 de octubre de 2026
 
 [Magnitud calibrada por clase](workflows/model-training/runs/2026-10-05-class-ensemble.md): mediana q=.9975, único punto elegible de seis. Desarrollo: 86→92/124 eventos, 16→20/35 físicos, falsas ventanas históricas 4→3 y normales 25→14; ninguna detección del primario corregido se pierde. PR-AUC empeora .717892→.708312: mejora al umbral elegido, no en todos los indicadores. 108 tests, referencias recargadas exactamente. Requiere nueva confirmación independiente; sin promoción.

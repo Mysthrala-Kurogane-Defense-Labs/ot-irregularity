@@ -4,9 +4,9 @@ Protocolo b3846d0 registrado en commit antes de generar. Lab limpio y fijado a 7
 
 Verificada la exposición declarada de cada régimen estable en los manifiestos: 345,600 segundos-activo por fuente. Warmup/cooldown sostenidos son estrés sintético de cobertura, no prevalencia industrial. [Manifiestos resumidos y hashes](../../../results/balanced-development-sources-20261008.json).
 
-Preparación y scoring iniciados desde 60fd471 con CUDA. Verificación de manifiestos/suites/semillas disjuntas antes de scoring; hashes de telemetría, metadata, escenario y truth por run; abortar si hay eventos o particiones de test. Checkpoints por run con hashes y contrato de reanudación que rechaza cambios en código o inputs. No reentrenamiento de redes/scalers. El comparador contextual ampliado está implementado y pendiente de ejecución cuando termine la preparación.
+Preparación y scoring ejecutados desde 60fd471 con CUDA. Verificación de manifiestos/suites/semillas disjuntas antes de scoring; hashes de telemetría, metadata, escenario y truth por run; abortar si hay eventos o particiones de test. Checkpoints por run con hashes y contrato de reanudación que rechaza cambios en código o inputs. No reentrenamiento de redes/scalers. El comparador contextual ampliado se ejecutó tras completar la preparación.
 
-142 tests locales pasan, incluidos rechazos de fuente/licencia/semilla/partición incorrectas. Estado científico pendiente: generación y tests no prueban mejora. Criterios de promoción permanecen en [protocolo](../../../BALANCED_REGIME_PROTOCOL.md); no destilación ni release.
+142 tests locales pasan, incluidos rechazos de fuente/licencia/semilla/partición incorrectas. En esa etapa, el estado científico estaba pendiente: generación y tests no prueban mejora. Criterios de promoción permanecen en [protocolo](../../../BALANCED_REGIME_PROTOCOL.md); no destilación ni release.
 
 ## Resultado de desarrollo
 

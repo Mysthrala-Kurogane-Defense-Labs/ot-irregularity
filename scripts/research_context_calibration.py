@@ -20,7 +20,7 @@ from ot_irregularity.class_ensemble import ClassMagnitudeEnsemble
 from scripts.freeze_class_ensemble import verified_reference
 from scripts.research_normal_coverage import event_table, integrity_losses
 from scripts.research_physical import PHYSICAL
-from ot_irregularity.pipeline import _scores
+from ot_irregularity.pipeline import _scores, _git_commit
 
 
 def run(args):
@@ -102,7 +102,7 @@ def run(args):
         assert np.array_equal(context.score(*arguments)[0],reloaded.score(*arguments)[0],equal_nan=True)
 
     for kind,frame in frames.items(): frame.select(KEYS+['primary','candidate','contextual']).write_parquet(out/(kind+'.parquet'))
-    write_json(out/'results.json',{'test_used':False,'fit_used':'normal-only tail calibration','selection':True,'eligible':bool(eligible),'routes':routes,'lost_primary_physical':lost_physical,'lost_baseline_integrity':lost_integrity,'reference_reload_exact':True,'input_hashes':inputs,
+    write_json(out/'results.json',{'test_used':False,'fit_used':'normal-only tail calibration','selection':True,'eligible':bool(eligible),'routes':routes,'lost_primary_physical':lost_physical,'lost_baseline_integrity':lost_integrity,'lost_primary_events':sorted(key(e) for e in primary_table if e['detected'] and key(e) not in detected),'reference_reload_exact':True,'execution_commit':_git_commit(),'protocol_sha256':_sha256(Path(__file__).resolve().parents[1]/'docs/CONTEXT_CALIBRATION_PROTOCOL.md'),'input_hashes':inputs,
         'truth_hashes':truth_hashes,'adapter_parity_windows':parity,'populations':populations})
     print(json.dumps({'eligible':bool(eligible),'routes':routes,'lost_physical':lost_physical,'lost_integrity':lost_integrity,'adapter_parity_windows':parity,'historical':{k:(v['detected_events'],v['false_positive_windows']) for k,v in populations['historical'].items()},'normal':populations['normal']}))
 

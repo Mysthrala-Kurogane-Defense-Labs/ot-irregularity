@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "quantile": 0.9975,
+  "minimum_windows": 400,
+  "classes": [
+    "CNC",
+    "COMPRESSOR",
+    "CONVEYOR",
+    "PUMP"
+  ],
+  "groups": [
+    {
+      "asset_class": "CNC",
+      "regime": "COOLDOWN",
+      "normal_windows": 43,
+      "threshold": null
+    },
+    {
+      "asset_class": "CNC",
+      "regime": "HIGH_LOAD",
+      "normal_windows": 118,
+      "threshold": null
+    },
+    {
+      "asset_class": "CNC",
+      "regime": "IDLE",
+      "normal_windows": 15,
+      "threshold": null
+    },
+    {
+      "asset_class": "CNC",
+      "regime": "LOW_LOAD",
+      "normal_windows": 35,
+      "threshold": null
+    },
+    {
+      "asset_class": "CNC",
+      "regime": "MAINTENANCE",
+      "normal_windows": 12,
+      "threshold": null
+    },
+    {
+      "asset_class": "CNC",
+      "regime": "NORMAL_LOAD",
+      "normal_windows": 119,
+      "threshold": null
+    },
+    {
+      "asset_class": "CNC",
+      "regime": "OFF",
+      "normal_windows": 11,
+      "threshold": null
+    },
+    {
+      "asset_class": "CNC",
+      "regime": "WARMUP",
+      "normal_windows": 48,
+      "threshold": null
+    },
+    {
+      "asset_class": "CNC",
+      "regime": "mixed",
+      "normal_windows": 507,
+      "threshold": 0.8475477933271746
+    },
+    {
+      "asset_class": "COMPRESSOR",
+      "regime": "COOLDOWN",
+      "normal_windows": 43,
+      "threshold": null
+    },
+    {
+      "asset_class": "COMPRESSOR",
+      "regime": "HIGH_LOAD",
+      "normal_windows": 114,
+      "threshold": null
+    },
+    {
+      "asset_class": "COMPRESSOR",
+      "regime": "IDLE",
+      "normal_windows": 18,
+      "threshold": null
+    },
+    {
+      "asset_class": "COMPRESSOR",
+      "regime": "LOW_LOAD",
+      "normal_windows": 32,
+      "threshold": null
+    },
+    {
+      "asset_class": "COMPRESSOR",
+      "regime": "MAINTENANCE",
+      "normal_windows": 12,
+      "threshold": null
+    },
+    {
+      "asset_class": "COMPRESSOR",
+      "regime": "NORMAL_LOAD",
+      "normal_windows": 112,
+      "threshold": null
+    },
+    {
+      "asset_class": "COMPRESSOR",
+      "regime": "OFF",
+      "normal_windows": 9,
+      "threshold": null
+    },
+    {
+      "asset_class": "COMPRESSOR",
+      "regime": "WARMUP",
+      "normal_windows": 48,
+      "threshold": null
+    },
+    {
+      "asset_class": "COMPRESSOR",
+      "regime": "mixed",
+      "normal_windows": 458,
+      "threshold": 0.8814996502763562
+    },
+    {
+      "asset_class": "CONVEYOR",
+      "regime": "COOLDOWN",
+      "normal_windows": 43,
+      "threshold": null
+    },
+    {
+      "asset_class": "CONVEYOR",
+      "regime": "HIGH_LOAD",
+      "normal_windows": 115,
+      "threshold": null
+    },
+    {
+      "asset_class": "CONVEYOR",
+      "regime": "IDLE",
+      "normal_windows": 16,
+      "threshold": null
+    },
+    {
+      "asset_class": "CONVEYOR",
+      "regime": "LOW_LOAD",
+      "normal_windows": 35,
+      "threshold": null
+    },
+    {
+      "asset_class": "CONVEYOR",
+      "regime": "MAINTENANCE",
+      "normal_windows": 10,
+      "threshold": null
+    },
+    {
+      "asset_class": "CONVEYOR",
+      "regime": "NORMAL_LOAD",
+      "normal_windows": 114,
+      "threshold": null
+    },
+    {
+      "asset_class": "CONVEYOR",
+      "regime": "OFF",
+      "normal_windows": 10,
+      "threshold": null
+    },
+    {
+      "asset_class": "CONVEYOR",
+      "regime": "WARMUP",
+      "normal_windows": 48,
+      "threshold": null
+    },
+    {
+      "asset_class": "CONVEYOR",
+      "regime": "mixed",
+      "normal_windows": 512,
+      "threshold": 1.067372212354969
+    },
+    {
+      "asset_class": "PUMP",
+      "regime": "COOLDOWN",
+      "normal_windows": 43,
+      "threshold": null
+    },
+    {
+      "asset_class": "PUMP",
+      "regime": "HIGH_LOAD",
+      "normal_windows": 119,
+      "threshold": null
+    },
+    {
+      "asset_class": "PUMP",
+      "regime": "IDLE",
+      "normal_windows": 15,
+      "threshold": null
+    },
+    {
+      "asset_class": "PUMP",
+      "regime": "LOW_LOAD",
+      "normal_windows": 35,
+      "threshold": null
+    },
+    {
+      "asset_class": "PUMP",
+      "regime": "MAINTENANCE",
+      "normal_windows": 11,
+      "threshold": null
+    },
+    {
+      "asset_class": "PUMP",
+      "regime": "NORMAL_LOAD",
+      "normal_windows": 118,
+      "threshold": null
+    },
+    {
+      "asset_class": "PUMP",
+      "regime": "OFF",
+      "normal_windows": 10,
+      "threshold": null
+    },
+    {
+      "asset_class": "PUMP",
+      "regime": "WARMUP",
+      "normal_windows": 48,
+      "threshold": null
+    },
+    {
+      "asset_class": "PUMP",
+      "regime": "mixed",
+      "normal_windows": 506,
+      "threshold": 0.7288524080007095
+    }
+  ]
+}

@@ -2,6 +2,12 @@
 
 Este registro conserva avances, resultados negativos y cambios de medición. Los datos son pseudo-sintéticos de [OT Irregularity Lab](https://github.com/Mysthrala-Kurogane-Defense-Labs/ot-irregularity-lab), CC BY 4.0; atribución: Mysthrala Kurogane Defense Labs. Los nombres de eventos pertenecen al ground truth y no son diagnósticos del detector.
 
+## Especialistas y contexto, 8 de octubre de 2026
+
+[Confirmación independiente](workflows/model-training/runs/2026-10-08-balanced-confirmation.md): 288 runs nuevos, 103 eventos, 714,533 horas-activo normales. El contexto ampliado conserva los 75 eventos y 13 físicos del primario con integridad; reduce falsas ventanas normales 150→110 (5,04→3,69/activo-día). Falla el criterio mixto: falsas ventanas 4→5 y pierde un sensor_drift detectado por v0.4. PR-AUC .689247→.678994, diferencia inconclusa. El comparador por clase tiene 93 falsas normales y las mismas detecciones, por lo que ampliar contexto no demuestra mejora incremental.
+
+**No promoción ni destilación.** Desarrollo normal equilibrado produjo 32 referencias clase/régimen, pero la cobertura no basta para mejorar el modelo. Se conservan la reparación operativa del contador, hashes, resultados negativos y limitaciones. 144 tests locales pasan; el gate científico permanece fallido. Estas fuentes quedan consumidas y no se usarán para ajustar el siguiente candidato.
+
 ## Evolución hasta el 5 de octubre de 2026
 
 [Magnitud calibrada por clase](workflows/model-training/runs/2026-10-05-class-ensemble.md): mediana q=.9975, único punto elegible de seis. Desarrollo: 86→92/124 eventos, 16→20/35 físicos, falsas ventanas históricas 4→3 y normales 25→14; ninguna detección del primario corregido se pierde. PR-AUC empeora .717892→.708312: mejora al umbral elegido, no en todos los indicadores. 108 tests, referencias recargadas exactamente. Requiere nueva confirmación independiente; sin promoción.

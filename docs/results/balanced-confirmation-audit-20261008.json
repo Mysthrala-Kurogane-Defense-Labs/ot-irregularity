@@ -1,0 +1,30 @@
+{
+  "verified_records": 288,
+  "windows": {
+    "mixed": 1611,
+    "normal": 42872
+  },
+  "context_routes": {
+    "normal": {
+      "context_reference": 20248,
+      "class_fallback_unknown_context": 22624
+    },
+    "mixed": {
+      "context_reference": 855,
+      "relational_unavailable": 38,
+      "class_fallback_unknown_context": 718
+    }
+  },
+  "freeze_sha256": "75d13e456789d3c3a5bbbd263564d5f329fbf7c5bbdeaa93d8ec4c897d706e69",
+  "results_sha256": "f66d2b295192a36c38ea7c570d87c2d3a41f7dbd14cbc7ef1695d392b92fef28",
+  "first_failed_attempt_recomputed_parquet_exact": true,
+  "lost_baseline_event": {
+    "run_id": "seed-910572::test-00003",
+    "asset_id": "PUMP-01",
+    "event_id": "seed-910572::test-00003/evt-1",
+    "family": "sensor_drift",
+    "start_us": 1735689702000000,
+    "end_us": 1735689858000000
+  },
+  "resume_results_byte_identical": true
+}

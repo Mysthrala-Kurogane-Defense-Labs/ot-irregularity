@@ -2,7 +2,8 @@
 
 | Date | Status | Scope | Evidence |
 | --- | --- | --- | --- |
-| 2026-10-08 | Desarrollo elegible; confirmación independiente en curso | 216 runs de desarrollo, 32 referencias estables; tradeoffs históricos conservados | [registro](runs/2026-10-08-balanced-regimes.md) |
+| 2026-10-08 | Confirmación rechazada; normalidad pasa | 288 runs, 75/103 eventos, falsas mixtas 4→5; sensor_drift baseline perdido | [registro](runs/2026-10-08-balanced-confirmation.md) |
+| 2026-10-08 | Desarrollo elegible; confirmación rechazada | 216 runs de desarrollo, 32 referencias estables; tradeoffs históricos conservados | [registro](runs/2026-10-08-balanced-regimes.md) |
 | 2026-10-08 | Contexto cumple mínimos, sin mejora incremental suficiente | 92 eventos, normales 14→20; solo mixed tiene cobertura; 136 tests y repetición exacta | [registro](runs/2026-10-08-context-calibration.md) |
 | 2026-10-08 | Contrato y adaptador de integridad implementados; modelo pendiente | 123 tests; paridad exacta en 3,875 ventanas | [registro](runs/2026-10-08-specialists.md) |
 | 2026-10-05 | Class median passes development; new confirmation pending | 92 events, 3 historical/14 normal false windows; PR-AUC regression recorded, 108 tests | [run record](runs/2026-10-05-class-ensemble.md) |

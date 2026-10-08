@@ -1,0 +1,2790 @@
+{
+  "mixed": {
+    "primary-health": {
+      "threshold": 0.5,
+      "samples": 1611,
+      "positive_samples": 199,
+      "precision": 0.9642857142857143,
+      "recall": 0.542713567839196,
+      "f1": 0.6945337620578779,
+      "pr_auc": 0.6892466014087667,
+      "roc_auc": 0.8117375119222174,
+      "false_positive_windows": 4,
+      "false_positives_per_asset_hour": 0.14897579143389197,
+      "false_positives_per_asset_day": 3.5754189944134076,
+      "event_count": 103,
+      "event_detection_rate": 0.7281553398058253,
+      "mean_time_to_first_detection_seconds": 44.86666666666667,
+      "mean_detection_latency_seconds": 44.86666666666667,
+      "detected_events": 75,
+      "events_without_windows": 0,
+      "by_family": {
+        "asset_communication_loss": {
+          "total": 9,
+          "detected": 9
+        },
+        "bearing_degradation": {
+          "total": 6,
+          "detected": 4
+        },
+        "cavitation": {
+          "total": 2,
+          "detected": 2
+        },
+        "cooling_degradation": {
+          "total": 7,
+          "detected": 2
+        },
+        "maintenance_activity": {
+          "total": 6,
+          "detected": 5
+        },
+        "mechanical_overload": {
+          "total": 10,
+          "detected": 5
+        },
+        "missing_telemetry": {
+          "total": 7,
+          "detected": 6
+        },
+        "multivariate_novelty": {
+          "total": 7,
+          "detected": 7
+        },
+        "quality_degradation": {
+          "total": 4,
+          "detected": 4
+        },
+        "regime_mismatch": {
+          "total": 5,
+          "detected": 4
+        },
+        "sensor_bias": {
+          "total": 13,
+          "detected": 6
+        },
+        "sensor_drift": {
+          "total": 12,
+          "detected": 7
+        },
+        "sensor_stuck": {
+          "total": 7,
+          "detected": 7
+        },
+        "single_signal_loss": {
+          "total": 5,
+          "detected": 5
+        },
+        "sudden_spike": {
+          "total": 3,
+          "detected": 2
+        }
+      },
+      "physical_events": {
+        "total": 25,
+        "detected": 13
+      }
+    },
+    "majority": {
+      "threshold": 0.5,
+      "samples": 1611,
+      "positive_samples": 199,
+      "precision": 0.9727272727272728,
+      "recall": 0.5376884422110553,
+      "f1": 0.6925566343042071,
+      "pr_auc": 0.6979244842570946,
+      "roc_auc": 0.8229799849103876,
+      "false_positive_windows": 3,
+      "false_positives_per_asset_hour": 0.11173184357541899,
+      "false_positives_per_asset_day": 2.6815642458100557,
+      "event_count": 103,
+      "event_detection_rate": 0.7184466019417476,
+      "mean_time_to_first_detection_seconds": 45.108108108108105,
+      "mean_detection_latency_seconds": 45.108108108108105,
+      "detected_events": 74,
+      "events_without_windows": 0,
+      "by_family": {
+        "asset_communication_loss": {
+          "total": 9,
+          "detected": 9
+        },
+        "bearing_degradation": {
+          "total": 6,
+          "detected": 4
+        },
+        "cavitation": {
+          "total": 2,
+          "detected": 2
+        },
+        "cooling_degradation": {
+          "total": 7,
+          "detected": 2
+        },
+        "maintenance_activity": {
+          "total": 6,
+          "detected": 5
+        },
+        "mechanical_overload": {
+          "total": 10,
+          "detected": 5
+        },
+        "missing_telemetry": {
+          "total": 7,
+          "detected": 5
+        },
+        "multivariate_novelty": {
+          "total": 7,
+          "detected": 7
+        },
+        "quality_degradation": {
+          "total": 4,
+          "detected": 4
+        },
+        "regime_mismatch": {
+          "total": 5,
+          "detected": 4
+        },
+        "sensor_bias": {
+          "total": 13,
+          "detected": 6
+        },
+        "sensor_drift": {
+          "total": 12,
+          "detected": 7
+        },
+        "sensor_stuck": {
+          "total": 7,
+          "detected": 7
+        },
+        "single_signal_loss": {
+          "total": 5,
+          "detected": 5
+        },
+        "sudden_spike": {
+          "total": 3,
+          "detected": 2
+        }
+      },
+      "physical_events": {
+        "total": 25,
+        "detected": 13
+      }
+    },
+    "v04": {
+      "threshold": 0.5,
+      "samples": 1611,
+      "positive_samples": 199,
+      "precision": 0.890625,
+      "recall": 0.2864321608040201,
+      "f1": 0.43346007604562736,
+      "pr_auc": 0.5150344969768798,
+      "roc_auc": 0.7457186783777243,
+      "false_positive_windows": 7,
+      "false_positives_per_asset_hour": 0.260707635009311,
+      "false_positives_per_asset_day": 6.256983240223463,
+      "event_count": 103,
+      "event_detection_rate": 0.4077669902912621,
+      "mean_time_to_first_detection_seconds": 50.23809523809524,
+      "mean_detection_latency_seconds": 50.23809523809524,
+      "detected_events": 42,
+      "events_without_windows": 0,
+      "by_family": {
+        "asset_communication_loss": {
+          "total": 9,
+          "detected": 9
+        },
+        "bearing_degradation": {
+          "total": 6,
+          "detected": 1
+        },
+        "cavitation": {
+          "total": 2,
+          "detected": 0
+        },
+        "cooling_degradation": {
+          "total": 7,
+          "detected": 0
+        },
+        "maintenance_activity": {
+          "total": 6,
+          "detected": 2
+        },
+        "mechanical_overload": {
+          "total": 10,
+          "detected": 1
+        },
+        "missing_telemetry": {
+          "total": 7,
+          "detected": 4
+        },
+        "multivariate_novelty": {
+          "total": 7,
+          "detected": 7
+        },
+        "quality_degradation": {
+          "total": 4,
+          "detected": 2
+        },
+        "regime_mismatch": {
+          "total": 5,
+          "detected": 0
+        },
+        "sensor_bias": {
+          "total": 13,
+          "detected": 2
+        },
+        "sensor_drift": {
+          "total": 12,
+          "detected": 2
+        },
+        "sensor_stuck": {
+          "total": 7,
+          "detected": 7
+        },
+        "single_signal_loss": {
+          "total": 5,
+          "detected": 5
+        },
+        "sudden_spike": {
+          "total": 3,
+          "detected": 0
+        }
+      },
+      "physical_events": {
+        "total": 25,
+        "detected": 2
+      }
+    },
+    "v05": {
+      "threshold": 0.5,
+      "samples": 1611,
+      "positive_samples": 199,
+      "precision": 0.967391304347826,
+      "recall": 0.4472361809045226,
+      "f1": 0.6116838487972509,
+      "pr_auc": 0.6703710019499715,
+      "roc_auc": 0.8092124930602019,
+      "false_positive_windows": 3,
+      "false_positives_per_asset_hour": 0.11173184357541899,
+      "false_positives_per_asset_day": 2.6815642458100557,
+      "event_count": 103,
+      "event_detection_rate": 0.6116504854368932,
+      "mean_time_to_first_detection_seconds": 48.904761904761905,
+      "mean_detection_latency_seconds": 48.904761904761905,
+      "detected_events": 63,
+      "events_without_windows": 0,
+      "by_family": {
+        "asset_communication_loss": {
+          "total": 9,
+          "detected": 7
+        },
+        "bearing_degradation": {
+          "total": 6,
+          "detected": 4
+        },
+        "cavitation": {
+          "total": 2,
+          "detected": 2
+        },
+        "cooling_degradation": {
+          "total": 7,
+          "detected": 2
+        },
+        "maintenance_activity": {
+          "total": 6,
+          "detected": 5
+        },
+        "mechanical_overload": {
+          "total": 10,
+          "detected": 5
+        },
+        "missing_telemetry": {
+          "total": 7,
+          "detected": 4
+        },
+        "multivariate_novelty": {
+          "total": 7,
+          "detected": 7
+        },
+        "quality_degradation": {
+          "total": 4,
+          "detected": 0
+        },
+        "regime_mismatch": {
+          "total": 5,
+          "detected": 4
+        },
+        "sensor_bias": {
+          "total": 13,
+          "detected": 6
+        },
+        "sensor_drift": {
+          "total": 12,
+          "detected": 7
+        },
+        "sensor_stuck": {
+          "total": 7,
+          "detected": 3
+        },
+        "single_signal_loss": {
+          "total": 5,
+          "detected": 5
+        },
+        "sudden_spike": {
+          "total": 3,
+          "detected": 2
+        }
+      },
+      "physical_events": {
+        "total": 25,
+        "detected": 13
+      }
+    },
+    "class-ensemble": {
+      "threshold": 0.5,
+      "samples": 1611,
+      "positive_samples": 199,
+      "precision": 0.9557522123893806,
+      "recall": 0.542713567839196,
+      "f1": 0.6923076923076923,
+      "pr_auc": 0.67861397802642,
+      "roc_auc": 0.8062924395347845,
+      "false_positive_windows": 5,
+      "false_positives_per_asset_hour": 0.186219739292365,
+      "false_positives_per_asset_day": 4.4692737430167595,
+      "event_count": 103,
+      "event_detection_rate": 0.7281553398058253,
+      "mean_time_to_first_detection_seconds": 44.86666666666667,
+      "mean_detection_latency_seconds": 44.86666666666667,
+      "detected_events": 75,
+      "events_without_windows": 0,
+      "by_family": {
+        "asset_communication_loss": {
+          "total": 9,
+          "detected": 9
+        },
+        "bearing_degradation": {
+          "total": 6,
+          "detected": 4
+        },
+        "cavitation": {
+          "total": 2,
+          "detected": 2
+        },
+        "cooling_degradation": {
+          "total": 7,
+          "detected": 2
+        },
+        "maintenance_activity": {
+          "total": 6,
+          "detected": 5
+        },
+        "mechanical_overload": {
+          "total": 10,
+          "detected": 5
+        },
+        "missing_telemetry": {
+          "total": 7,
+          "detected": 6
+        },
+        "multivariate_novelty": {
+          "total": 7,
+          "detected": 7
+        },
+        "quality_degradation": {
+          "total": 4,
+          "detected": 4
+        },
+        "regime_mismatch": {
+          "total": 5,
+          "detected": 4
+        },
+        "sensor_bias": {
+          "total": 13,
+          "detected": 6
+        },
+        "sensor_drift": {
+          "total": 12,
+          "detected": 7
+        },
+        "sensor_stuck": {
+          "total": 7,
+          "detected": 7
+        },
+        "single_signal_loss": {
+          "total": 5,
+          "detected": 5
+        },
+        "sudden_spike": {
+          "total": 3,
+          "detected": 2
+        }
+      },
+      "physical_events": {
+        "total": 25,
+        "detected": 13
+      }
+    },
+    "context-ensemble": {
+      "threshold": 0.5,
+      "samples": 1611,
+      "positive_samples": 199,
+      "precision": 0.9557522123893806,
+      "recall": 0.542713567839196,
+      "f1": 0.6923076923076923,
+      "pr_auc": 0.6789937180270683,
+      "roc_auc": 0.8056785343146327,
+      "false_positive_windows": 5,
+      "false_positives_per_asset_hour": 0.186219739292365,
+      "false_positives_per_asset_day": 4.4692737430167595,
+      "event_count": 103,
+      "event_detection_rate": 0.7281553398058253,
+      "mean_time_to_first_detection_seconds": 44.86666666666667,
+      "mean_detection_latency_seconds": 44.86666666666667,
+      "detected_events": 75,
+      "events_without_windows": 0,
+      "by_family": {
+        "asset_communication_loss": {
+          "total": 9,
+          "detected": 9
+        },
+        "bearing_degradation": {
+          "total": 6,
+          "detected": 4
+        },
+        "cavitation": {
+          "total": 2,
+          "detected": 2
+        },
+        "cooling_degradation": {
+          "total": 7,
+          "detected": 2
+        },
+        "maintenance_activity": {
+          "total": 6,
+          "detected": 5
+        },
+        "mechanical_overload": {
+          "total": 10,
+          "detected": 5
+        },
+        "missing_telemetry": {
+          "total": 7,
+          "detected": 6
+        },
+        "multivariate_novelty": {
+          "total": 7,
+          "detected": 7
+        },
+        "quality_degradation": {
+          "total": 4,
+          "detected": 4
+        },
+        "regime_mismatch": {
+          "total": 5,
+          "detected": 4
+        },
+        "sensor_bias": {
+          "total": 13,
+          "detected": 6
+        },
+        "sensor_drift": {
+          "total": 12,
+          "detected": 7
+        },
+        "sensor_stuck": {
+          "total": 7,
+          "detected": 7
+        },
+        "single_signal_loss": {
+          "total": 5,
+          "detected": 5
+        },
+        "sudden_spike": {
+          "total": 3,
+          "detected": 2
+        }
+      },
+      "physical_events": {
+        "total": 25,
+        "detected": 13
+      }
+    }
+  },
+  "normal": {
+    "overall": {
+      "primary-health": {
+        "runs": 180,
+        "asset_hours": 714.5333333333324,
+        "windows": 42872,
+        "false_windows": 150,
+        "alarm_episodes": 149,
+        "alarm_seconds": 9000.0,
+        "false_windows_per_asset_day": 5.038253405486104,
+        "alarm_episodes_per_asset_day": 5.004665049449531,
+        "fraction_runs_with_alarm": 0.5222222222222223,
+        "false_windows_per_asset_day_ci95": [
+          4.167658636448386,
+          5.940164866003619
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          4.164946434578309,
+          5.881858687341256
+        ],
+        "zero_count_caution": false
+      },
+      "majority": {
+        "runs": 180,
+        "asset_hours": 714.5333333333324,
+        "windows": 42872,
+        "false_windows": 82,
+        "alarm_episodes": 80,
+        "alarm_seconds": 4920.0,
+        "false_windows_per_asset_day": 2.7542451949990707,
+        "alarm_episodes_per_asset_day": 2.6870684829259224,
+        "fraction_runs_with_alarm": 0.3388888888888889,
+        "false_windows_per_asset_day_ci95": [
+          2.1174444093649534,
+          3.426659730710007
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          2.0815021884898317,
+          3.32749839961226
+        ],
+        "zero_count_caution": false,
+        "paired_false_windows_per_asset_day_delta_ci95": [
+          -2.991422212410415,
+          -1.644904781902174
+        ]
+      },
+      "v04": {
+        "runs": 180,
+        "asset_hours": 714.5333333333324,
+        "windows": 42872,
+        "false_windows": 137,
+        "alarm_episodes": 137,
+        "alarm_seconds": 8220.0,
+        "false_windows_per_asset_day": 4.6016047770106425,
+        "alarm_episodes_per_asset_day": 4.6016047770106425,
+        "fraction_runs_with_alarm": 0.3611111111111111,
+        "false_windows_per_asset_day_ci95": [
+          3.4941589037774547,
+          5.77346695833546
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          3.4941589037774547,
+          5.77346695833546
+        ],
+        "zero_count_caution": false,
+        "paired_false_windows_per_asset_day_delta_ci95": [
+          -1.8478811200403231,
+          0.9397090219643364
+        ]
+      },
+      "v05": {
+        "runs": 180,
+        "asset_hours": 714.5333333333324,
+        "windows": 42872,
+        "false_windows": 150,
+        "alarm_episodes": 149,
+        "alarm_seconds": 9000.0,
+        "false_windows_per_asset_day": 5.038253405486104,
+        "alarm_episodes_per_asset_day": 5.004665049449531,
+        "fraction_runs_with_alarm": 0.5222222222222223,
+        "false_windows_per_asset_day_ci95": [
+          4.167658636448386,
+          5.940164866003619
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          4.164946434578309,
+          5.881858687341256
+        ],
+        "zero_count_caution": false,
+        "paired_false_windows_per_asset_day_delta_ci95": [
+          0.0,
+          0.0
+        ]
+      },
+      "class-ensemble": {
+        "runs": 180,
+        "asset_hours": 714.5333333333324,
+        "windows": 42872,
+        "false_windows": 93,
+        "alarm_episodes": 93,
+        "alarm_seconds": 5580.0,
+        "false_windows_per_asset_day": 3.123717111401385,
+        "alarm_episodes_per_asset_day": 3.123717111401385,
+        "fraction_runs_with_alarm": 0.35555555555555557,
+        "false_windows_per_asset_day_ci95": [
+          2.450572430180787,
+          3.829072588169439
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          2.450572430180787,
+          3.829072588169439
+        ],
+        "zero_count_caution": false,
+        "paired_false_windows_per_asset_day_delta_ci95": [
+          -2.6845762726711895,
+          -1.1752498051062856
+        ]
+      },
+      "context-ensemble": {
+        "runs": 180,
+        "asset_hours": 714.5333333333324,
+        "windows": 42872,
+        "false_windows": 110,
+        "alarm_episodes": 110,
+        "alarm_seconds": 6600.0,
+        "false_windows_per_asset_day": 3.6947191640231436,
+        "alarm_episodes_per_asset_day": 3.6947191640231436,
+        "fraction_runs_with_alarm": 0.4166666666666667,
+        "false_windows_per_asset_day_ci95": [
+          2.98637768633741,
+          4.498782993750033
+        ],
+        "alarm_episodes_per_asset_day_ci95": [
+          2.98637768633741,
+          4.498782993750033
+        ],
+        "zero_count_caution": false,
+        "paired_false_windows_per_asset_day_delta_ci95": [
+          -2.214615493397531,
+          -0.5041534308011795
+        ]
+      }
+    },
+    "by_class": {
+      "CNC": {
+        "primary-health": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 10,
+          "alarm_episodes": 10,
+          "alarm_seconds": 600.0,
+          "false_windows_per_asset_day": 1.3435342414629612,
+          "alarm_episodes_per_asset_day": 1.3435342414629612,
+          "fraction_runs_with_alarm": 0.05,
+          "false_windows_per_asset_day_ci95": [
+            0.5373635600335859,
+            2.2850795418825944
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            0.5373635600335859,
+            2.2850795418825944
+          ],
+          "zero_count_caution": false
+        },
+        "majority": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 3,
+          "alarm_episodes": 3,
+          "alarm_seconds": 180.0,
+          "false_windows_per_asset_day": 0.40306027243888837,
+          "alarm_episodes_per_asset_day": 0.40306027243888837,
+          "fraction_runs_with_alarm": 0.016666666666666666,
+          "false_windows_per_asset_day_ci95": [
+            0.0,
+            0.9401296893272965
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            0.0,
+            0.9401296893272965
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -1.8828803586438803,
+            -0.13418972495695997
+          ]
+        },
+        "v04": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 27,
+          "alarm_episodes": 27,
+          "alarm_seconds": 1620.0,
+          "false_windows_per_asset_day": 3.6275424519499953,
+          "alarm_episodes_per_asset_day": 3.6275424519499953,
+          "fraction_runs_with_alarm": 0.15,
+          "false_windows_per_asset_day_ci95": [
+            2.4181303808413888,
+            4.839455005303099
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            2.4181303808413888,
+            4.839455005303099
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.6717671207314808,
+            3.896258389188421
+          ]
+        },
+        "v05": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 10,
+          "alarm_episodes": 10,
+          "alarm_seconds": 600.0,
+          "false_windows_per_asset_day": 1.3435342414629612,
+          "alarm_episodes_per_asset_day": 1.3435342414629612,
+          "fraction_runs_with_alarm": 0.05,
+          "false_windows_per_asset_day_ci95": [
+            0.5373635600335859,
+            2.2850795418825944
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            0.5373635600335859,
+            2.2850795418825944
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "class-ensemble": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 16,
+          "alarm_episodes": 16,
+          "alarm_seconds": 960.0,
+          "false_windows_per_asset_day": 2.1496547863407383,
+          "alarm_episodes_per_asset_day": 2.1496547863407383,
+          "fraction_runs_with_alarm": 0.08333333333333333,
+          "false_windows_per_asset_day_ci95": [
+            1.2091779971356376,
+            3.225083986562154
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            1.2091779971356376,
+            3.225083986562154
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -0.5372132064913271,
+            2.149058271741752
+          ]
+        },
+        "context-ensemble": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 15,
+          "alarm_episodes": 15,
+          "alarm_seconds": 900.0,
+          "false_windows_per_asset_day": 2.015301362194442,
+          "alarm_episodes_per_asset_day": 2.015301362194442,
+          "fraction_runs_with_alarm": 0.07777777777777778,
+          "false_windows_per_asset_day_ci95": [
+            1.074824886342789,
+            3.092162695946903
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            1.074824886342789,
+            3.092162695946903
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -0.6714570156632657,
+            2.0137982472496754
+          ]
+        }
+      },
+      "COMPRESSOR": {
+        "primary-health": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 47,
+          "alarm_episodes": 46,
+          "alarm_seconds": 2820.0,
+          "false_windows_per_asset_day": 6.314610934875918,
+          "alarm_episodes_per_asset_day": 6.180257510729622,
+          "fraction_runs_with_alarm": 0.18888888888888888,
+          "false_windows_per_asset_day_ci95": [
+            4.16648194877185,
+            8.597877135628083
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.162994673889017,
+            8.334597496630371
+          ],
+          "zero_count_caution": false
+        },
+        "majority": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 57,
+          "alarm_episodes": 55,
+          "alarm_seconds": 3420.0,
+          "false_windows_per_asset_day": 7.65814517633888,
+          "alarm_episodes_per_asset_day": 7.389438328046287,
+          "fraction_runs_with_alarm": 0.2388888888888889,
+          "false_windows_per_asset_day_ci95": [
+            5.507937962249052,
+            10.0690616619075
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            5.243207917094585,
+            9.67164179104479
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.13455397462689866,
+            2.5508170591295736
+          ]
+        },
+        "v04": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 15,
+          "alarm_episodes": 15,
+          "alarm_seconds": 900.0,
+          "false_windows_per_asset_day": 2.015301362194442,
+          "alarm_episodes_per_asset_day": 2.015301362194442,
+          "fraction_runs_with_alarm": 0.08333333333333333,
+          "false_windows_per_asset_day_ci95": [
+            1.0752286727646085,
+            2.9588119921546707
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            1.0752286727646085,
+            2.9588119921546707
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -6.596116387954843,
+            -2.0154894093496343
+          ]
+        },
+        "v05": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 47,
+          "alarm_episodes": 46,
+          "alarm_seconds": 2820.0,
+          "false_windows_per_asset_day": 6.314610934875918,
+          "alarm_episodes_per_asset_day": 6.180257510729622,
+          "fraction_runs_with_alarm": 0.18888888888888888,
+          "false_windows_per_asset_day_ci95": [
+            4.16648194877185,
+            8.597877135628083
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.162994673889017,
+            8.334597496630371
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "class-ensemble": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 40,
+          "alarm_episodes": 40,
+          "alarm_seconds": 2400.0,
+          "false_windows_per_asset_day": 5.374136965851845,
+          "alarm_episodes_per_asset_day": 5.374136965851845,
+          "fraction_runs_with_alarm": 0.18888888888888888,
+          "false_windows_per_asset_day_ci95": [
+            3.6312523088115705,
+            7.129722228048156
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            3.6312523088115705,
+            7.129722228048156
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -2.2855222327954596,
+            0.134529776505461
+          ]
+        },
+        "context-ensemble": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 51,
+          "alarm_episodes": 51,
+          "alarm_seconds": 3060.0,
+          "false_windows_per_asset_day": 6.852024631461102,
+          "alarm_episodes_per_asset_day": 6.852024631461102,
+          "fraction_runs_with_alarm": 0.22777777777777777,
+          "false_windows_per_asset_day_ci95": [
+            4.969222160044776,
+            8.994168899991603
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.969222160044776,
+            8.994168899991603
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -0.9401231113598225,
+            1.8809479380481449
+          ]
+        }
+      },
+      "CONVEYOR": {
+        "primary-health": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 47,
+          "alarm_episodes": 47,
+          "alarm_seconds": 2820.0,
+          "false_windows_per_asset_day": 6.314610934875918,
+          "alarm_episodes_per_asset_day": 6.314610934875918,
+          "fraction_runs_with_alarm": 0.22777777777777777,
+          "false_windows_per_asset_day_ci95": [
+            4.694406368508194,
+            8.066492547910784
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.694406368508194,
+            8.066492547910784
+          ],
+          "zero_count_caution": false
+        },
+        "majority": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 13,
+          "alarm_episodes": 13,
+          "alarm_seconds": 780.0,
+          "false_windows_per_asset_day": 1.7465945139018497,
+          "alarm_episodes_per_asset_day": 1.7465945139018497,
+          "fraction_runs_with_alarm": 0.07222222222222222,
+          "false_windows_per_asset_day_ci95": [
+            0.9395951260492648,
+            2.6865671641791082
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            0.9395951260492648,
+            2.6865671641791082
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -6.18836971925118,
+            -2.954665747068904
+          ]
+        },
+        "v04": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 56,
+          "alarm_episodes": 56,
+          "alarm_seconds": 3360.0,
+          "false_windows_per_asset_day": 7.523791752192583,
+          "alarm_episodes_per_asset_day": 7.523791752192583,
+          "fraction_runs_with_alarm": 0.3,
+          "false_windows_per_asset_day_ci95": [
+            5.906040268456383,
+            9.274734611170528
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            5.906040268456383,
+            9.274734611170528
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -1.3429265642955288,
+            3.762957917173022
+          ]
+        },
+        "v05": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 47,
+          "alarm_episodes": 47,
+          "alarm_seconds": 2820.0,
+          "false_windows_per_asset_day": 6.314610934875918,
+          "alarm_episodes_per_asset_day": 6.314610934875918,
+          "fraction_runs_with_alarm": 0.22777777777777777,
+          "false_windows_per_asset_day_ci95": [
+            4.694406368508194,
+            8.066492547910784
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.694406368508194,
+            8.066492547910784
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "class-ensemble": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 15,
+          "alarm_episodes": 15,
+          "alarm_seconds": 900.0,
+          "false_windows_per_asset_day": 2.015301362194442,
+          "alarm_episodes_per_asset_day": 2.015301362194442,
+          "fraction_runs_with_alarm": 0.08333333333333333,
+          "false_windows_per_asset_day_ci95": [
+            1.0757281827662446,
+            3.086421207529348
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            1.0757281827662446,
+            3.086421207529348
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -6.0498694109330895,
+            -2.6860597700626405
+          ]
+        },
+        "context-ensemble": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 19,
+          "alarm_episodes": 19,
+          "alarm_seconds": 1140.0,
+          "false_windows_per_asset_day": 2.5527150587796266,
+          "alarm_episodes_per_asset_day": 2.5527150587796266,
+          "fraction_runs_with_alarm": 0.10555555555555556,
+          "false_windows_per_asset_day_ci95": [
+            1.606869607598544,
+            3.628905239022565
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            1.606869607598544,
+            3.628905239022565
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -5.515720836723874,
+            -2.015475308444252
+          ]
+        }
+      },
+      "PUMP": {
+        "primary-health": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 46,
+          "alarm_episodes": 46,
+          "alarm_seconds": 2760.0,
+          "false_windows_per_asset_day": 6.180257510729622,
+          "alarm_episodes_per_asset_day": 6.180257510729622,
+          "fraction_runs_with_alarm": 0.21666666666666667,
+          "false_windows_per_asset_day_ci95": [
+            4.432370693543706,
+            8.19557799105151
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.432370693543706,
+            8.19557799105151
+          ],
+          "zero_count_caution": false
+        },
+        "majority": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 9,
+          "alarm_episodes": 9,
+          "alarm_seconds": 540.0,
+          "false_windows_per_asset_day": 1.2091808173166652,
+          "alarm_episodes_per_asset_day": 1.2091808173166652,
+          "fraction_runs_with_alarm": 0.05,
+          "false_windows_per_asset_day_ci95": [
+            0.5372620622768254,
+            2.0158656089594054
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            0.5372620622768254,
+            2.0158656089594054
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -6.715196401874241,
+            -3.3569407108802176
+          ]
+        },
+        "v04": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 39,
+          "alarm_episodes": 39,
+          "alarm_seconds": 2340.0,
+          "false_windows_per_asset_day": 5.239783541705549,
+          "alarm_episodes_per_asset_day": 5.239783541705549,
+          "fraction_runs_with_alarm": 0.2,
+          "false_windows_per_asset_day_ci95": [
+            3.758739628973624,
+            6.855238625647788
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            3.758739628973624,
+            6.855238625647788
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -3.2244821795111083,
+            1.3437944020247743
+          ]
+        },
+        "v05": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 46,
+          "alarm_episodes": 46,
+          "alarm_seconds": 2760.0,
+          "false_windows_per_asset_day": 6.180257510729622,
+          "alarm_episodes_per_asset_day": 6.180257510729622,
+          "fraction_runs_with_alarm": 0.21666666666666667,
+          "false_windows_per_asset_day_ci95": [
+            4.432370693543706,
+            8.19557799105151
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            4.432370693543706,
+            8.19557799105151
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "class-ensemble": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 22,
+          "alarm_episodes": 22,
+          "alarm_seconds": 1320.0,
+          "false_windows_per_asset_day": 2.955775331218515,
+          "alarm_episodes_per_asset_day": 2.955775331218515,
+          "fraction_runs_with_alarm": 0.11666666666666667,
+          "false_windows_per_asset_day_ci95": [
+            1.7472465932424899,
+            4.165733482642783
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            1.7472465932424899,
+            4.165733482642783
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -4.837682436126258,
+            -1.613290978563774
+          ]
+        },
+        "context-ensemble": {
+          "runs": 180,
+          "asset_hours": 178.6333333333331,
+          "windows": 10718,
+          "false_windows": 25,
+          "alarm_episodes": 25,
+          "alarm_seconds": 1500.0,
+          "false_windows_per_asset_day": 3.358835603657403,
+          "alarm_episodes_per_asset_day": 3.358835603657403,
+          "fraction_runs_with_alarm": 0.12777777777777777,
+          "false_windows_per_asset_day_ci95": [
+            2.0168067226890787,
+            4.706354755163248
+          ],
+          "alarm_episodes_per_asset_day_ci95": [
+            2.0168067226890787,
+            4.706354755163248
+          ],
+          "zero_count_caution": false,
+          "paired_false_windows_per_asset_day_delta_ci95": [
+            -4.707200896609701,
+            -0.9402985074626877
+          ]
+        }
+      }
+    },
+    "strata": {
+      "profile": {
+        "planned-maintenance": {
+          "primary-health": {
+            "runs": 22,
+            "asset_hours": 87.13333333333334,
+            "windows": 5228,
+            "false_windows": 19,
+            "alarm_episodes": 19,
+            "alarm_seconds": 1140.0,
+            "false_windows_per_asset_day": 5.2333588370313695,
+            "alarm_episodes_per_asset_day": 5.2333588370313695,
+            "fraction_runs_with_alarm": 0.5454545454545454,
+            "false_windows_per_asset_day_ci95": [
+              3.025210084033614,
+              7.724137931034483
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.025210084033614,
+              7.724137931034483
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 22,
+            "asset_hours": 87.13333333333334,
+            "windows": 5228,
+            "false_windows": 14,
+            "alarm_episodes": 14,
+            "alarm_seconds": 840.0,
+            "false_windows_per_asset_day": 3.856159143075746,
+            "alarm_episodes_per_asset_day": 3.856159143075746,
+            "fraction_runs_with_alarm": 0.5454545454545454,
+            "false_windows_per_asset_day_ci95": [
+              2.2018348623853212,
+              5.784238714613619
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.2018348623853212,
+              5.784238714613619
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.3052792654934966,
+              0.2760736196319016
+            ]
+          },
+          "v04": {
+            "runs": 22,
+            "asset_hours": 87.13333333333334,
+            "windows": 5228,
+            "false_windows": 47,
+            "alarm_episodes": 47,
+            "alarm_seconds": 2820.0,
+            "false_windows_per_asset_day": 12.945677123182861,
+            "alarm_episodes_per_asset_day": 12.945677123182861,
+            "fraction_runs_with_alarm": 0.7272727272727273,
+            "false_windows_per_asset_day_ci95": [
+              9.063013128833637,
+              17.090352220520675
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              9.063013128833637,
+              17.090352220520675
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              3.0344246712784493,
+              12.385321100917432
+            ]
+          },
+          "v05": {
+            "runs": 22,
+            "asset_hours": 87.13333333333334,
+            "windows": 5228,
+            "false_windows": 19,
+            "alarm_episodes": 19,
+            "alarm_seconds": 1140.0,
+            "false_windows_per_asset_day": 5.2333588370313695,
+            "alarm_episodes_per_asset_day": 5.2333588370313695,
+            "fraction_runs_with_alarm": 0.5454545454545454,
+            "false_windows_per_asset_day_ci95": [
+              3.025210084033614,
+              7.724137931034483
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.025210084033614,
+              7.724137931034483
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 22,
+            "asset_hours": 87.13333333333334,
+            "windows": 5228,
+            "false_windows": 11,
+            "alarm_episodes": 11,
+            "alarm_seconds": 660.0,
+            "false_windows_per_asset_day": 3.0298393267023718,
+            "alarm_episodes_per_asset_day": 3.0298393267023718,
+            "fraction_runs_with_alarm": 0.45454545454545453,
+            "false_windows_per_asset_day_ci95": [
+              1.6513761467889911,
+              4.6718449489441864
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.6513761467889911,
+              4.6718449489441864
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -4.13159908186687,
+              -0.5504587155963301
+            ]
+          },
+          "context-ensemble": {
+            "runs": 22,
+            "asset_hours": 87.13333333333334,
+            "windows": 5228,
+            "false_windows": 13,
+            "alarm_episodes": 13,
+            "alarm_seconds": 780.0,
+            "false_windows_per_asset_day": 3.580719204284621,
+            "alarm_episodes_per_asset_day": 3.580719204284621,
+            "fraction_runs_with_alarm": 0.5454545454545454,
+            "false_windows_per_asset_day_ci95": [
+              2.200152788388083,
+              4.975427390393503
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.200152788388083,
+              4.975427390393503
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.5862068965517238,
+              0.006875477463675234
+            ]
+          }
+        },
+        "production-stop": {
+          "primary-health": {
+            "runs": 24,
+            "asset_hours": 95.4,
+            "windows": 5724,
+            "false_windows": 23,
+            "alarm_episodes": 22,
+            "alarm_seconds": 1380.0,
+            "false_windows_per_asset_day": 5.786163522012578,
+            "alarm_episodes_per_asset_day": 5.534591194968553,
+            "fraction_runs_with_alarm": 0.5833333333333334,
+            "false_windows_per_asset_day_ci95": [
+              3.2749602392009667,
+              9.03765690376569
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.2727272727272734,
+              8.273268959569235
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 24,
+            "asset_hours": 95.4,
+            "windows": 5724,
+            "false_windows": 11,
+            "alarm_episodes": 10,
+            "alarm_seconds": 660.0,
+            "false_windows_per_asset_day": 2.7672955974842766,
+            "alarm_episodes_per_asset_day": 2.5157232704402515,
+            "fraction_runs_with_alarm": 0.3333333333333333,
+            "false_windows_per_asset_day_ci95": [
+              1.0091100210231254,
+              4.773286401540698
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.0076800736002973,
+              4.030931995804201
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -5.031446540880503,
+              -1.2587412587412585
+            ]
+          },
+          "v04": {
+            "runs": 24,
+            "asset_hours": 95.4,
+            "windows": 5724,
+            "false_windows": 24,
+            "alarm_episodes": 24,
+            "alarm_seconds": 1440.0,
+            "false_windows_per_asset_day": 6.037735849056603,
+            "alarm_episodes_per_asset_day": 6.037735849056603,
+            "fraction_runs_with_alarm": 0.625,
+            "false_windows_per_asset_day_ci95": [
+              3.776223776223776,
+              8.29030006978367
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.776223776223776,
+              8.29030006978367
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -4.515758167743065,
+              4.27083520137852
+            ]
+          },
+          "v05": {
+            "runs": 24,
+            "asset_hours": 95.4,
+            "windows": 5724,
+            "false_windows": 23,
+            "alarm_episodes": 22,
+            "alarm_seconds": 1380.0,
+            "false_windows_per_asset_day": 5.786163522012578,
+            "alarm_episodes_per_asset_day": 5.534591194968553,
+            "fraction_runs_with_alarm": 0.5833333333333334,
+            "false_windows_per_asset_day_ci95": [
+              3.2749602392009667,
+              9.03765690376569
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.2727272727272734,
+              8.273268959569235
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 24,
+            "asset_hours": 95.4,
+            "windows": 5724,
+            "false_windows": 13,
+            "alarm_episodes": 13,
+            "alarm_seconds": 780.0,
+            "false_windows_per_asset_day": 3.2704402515723268,
+            "alarm_episodes_per_asset_day": 3.2704402515723268,
+            "fraction_runs_with_alarm": 0.3333333333333333,
+            "false_windows_per_asset_day_ci95": [
+              1.2604821494728051,
+              5.526963201783968
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.2604821494728051,
+              5.526963201783968
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -4.534639608117565,
+              -0.5031446540880502
+            ]
+          },
+          "context-ensemble": {
+            "runs": 24,
+            "asset_hours": 95.4,
+            "windows": 5724,
+            "false_windows": 13,
+            "alarm_episodes": 13,
+            "alarm_seconds": 780.0,
+            "false_windows_per_asset_day": 3.2704402515723268,
+            "alarm_episodes_per_asset_day": 3.2704402515723268,
+            "fraction_runs_with_alarm": 0.375,
+            "false_windows_per_asset_day_ci95": [
+              1.5062761506276152,
+              5.519163763066201
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.5062761506276152,
+              5.519163763066201
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -4.769874476987447,
+              -0.49585553842769314
+            ]
+          }
+        },
+        "standard-shift": {
+          "primary-health": {
+            "runs": 64,
+            "asset_hours": 254.1333333333334,
+            "windows": 15248,
+            "false_windows": 33,
+            "alarm_episodes": 33,
+            "alarm_seconds": 1980.0,
+            "false_windows_per_asset_day": 3.116474291710387,
+            "alarm_episodes_per_asset_day": 3.116474291710387,
+            "fraction_runs_with_alarm": 0.359375,
+            "false_windows_per_asset_day_ci95": [
+              1.9832109129066102,
+              4.339651079403544
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.9832109129066102,
+              4.339651079403544
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 64,
+            "asset_hours": 254.1333333333334,
+            "windows": 15248,
+            "false_windows": 17,
+            "alarm_episodes": 17,
+            "alarm_seconds": 1020.0,
+            "false_windows_per_asset_day": 1.605456453305351,
+            "alarm_episodes_per_asset_day": 1.605456453305351,
+            "fraction_runs_with_alarm": 0.1875,
+            "false_windows_per_asset_day_ci95": [
+              0.7555089192025182,
+              2.5505116767252685
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.7555089192025182,
+              2.5505116767252685
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.6422018348623846,
+              -0.47169193591428854
+            ]
+          },
+          "v04": {
+            "runs": 64,
+            "asset_hours": 254.1333333333334,
+            "windows": 15248,
+            "false_windows": 3,
+            "alarm_episodes": 3,
+            "alarm_seconds": 180.0,
+            "false_windows_per_asset_day": 0.2833158447009443,
+            "alarm_episodes_per_asset_day": 0.2833158447009443,
+            "fraction_runs_with_alarm": 0.046875,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              0.6610703043022034
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              0.6610703043022034
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -4.055541000785956,
+              -1.699895068205666
+            ]
+          },
+          "v05": {
+            "runs": 64,
+            "asset_hours": 254.1333333333334,
+            "windows": 15248,
+            "false_windows": 33,
+            "alarm_episodes": 33,
+            "alarm_seconds": 1980.0,
+            "false_windows_per_asset_day": 3.116474291710387,
+            "alarm_episodes_per_asset_day": 3.116474291710387,
+            "fraction_runs_with_alarm": 0.359375,
+            "false_windows_per_asset_day_ci95": [
+              1.9832109129066102,
+              4.339651079403544
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.9832109129066102,
+              4.339651079403544
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 64,
+            "asset_hours": 254.1333333333334,
+            "windows": 15248,
+            "false_windows": 16,
+            "alarm_episodes": 16,
+            "alarm_seconds": 960.0,
+            "false_windows_per_asset_day": 1.5110178384050363,
+            "alarm_episodes_per_asset_day": 1.5110178384050363,
+            "fraction_runs_with_alarm": 0.1875,
+            "false_windows_per_asset_day_ci95": [
+              0.7555089192025182,
+              2.3641283570454816
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.7555089192025182,
+              2.3641283570454816
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.6505274246810155,
+              -0.6596815476883741
+            ]
+          },
+          "context-ensemble": {
+            "runs": 64,
+            "asset_hours": 254.1333333333334,
+            "windows": 15248,
+            "false_windows": 30,
+            "alarm_episodes": 30,
+            "alarm_seconds": 1800.0,
+            "false_windows_per_asset_day": 2.833158447009443,
+            "alarm_episodes_per_asset_day": 2.833158447009443,
+            "fraction_runs_with_alarm": 0.3125,
+            "false_windows_per_asset_day_ci95": [
+              1.7003411178168457,
+              4.071384839866931
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.7003411178168457,
+              4.071384839866931
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -1.6012873334722737,
+              1.03855913207949
+            ]
+          }
+        },
+        "startup-maintenance-shutdown": {
+          "primary-health": {
+            "runs": 21,
+            "asset_hours": 83.39999999999999,
+            "windows": 5004,
+            "false_windows": 28,
+            "alarm_episodes": 28,
+            "alarm_seconds": 1680.0,
+            "false_windows_per_asset_day": 8.057553956834534,
+            "alarm_episodes_per_asset_day": 8.057553956834534,
+            "fraction_runs_with_alarm": 0.6666666666666666,
+            "false_windows_per_asset_day_ci95": [
+              4.892086330935252,
+              11.241217974379502
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.892086330935252,
+              11.241217974379502
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 21,
+            "asset_hours": 83.39999999999999,
+            "windows": 5004,
+            "false_windows": 24,
+            "alarm_episodes": 23,
+            "alarm_seconds": 1440.0,
+            "false_windows_per_asset_day": 6.9064748201438855,
+            "alarm_episodes_per_asset_day": 6.618705035971224,
+            "fraction_runs_with_alarm": 0.7142857142857143,
+            "false_windows_per_asset_day_ci95": [
+              4.313099041533547,
+              9.792195996797437
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.028776978417267,
+              9.511799824474966
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.1654676258992804,
+              0.5750798722044728
+            ]
+          },
+          "v04": {
+            "runs": 21,
+            "asset_hours": 83.39999999999999,
+            "windows": 5004,
+            "false_windows": 37,
+            "alarm_episodes": 37,
+            "alarm_seconds": 2220.0,
+            "false_windows_per_asset_day": 10.64748201438849,
+            "alarm_episodes_per_asset_day": 10.64748201438849,
+            "fraction_runs_with_alarm": 0.5238095238095238,
+            "false_windows_per_asset_day_ci95": [
+              6.028708133971293,
+              15.264305524419536
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              6.028708133971293,
+              15.264305524419536
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.884673215717723,
+              8.351999999999999
+            ]
+          },
+          "v05": {
+            "runs": 21,
+            "asset_hours": 83.39999999999999,
+            "windows": 5004,
+            "false_windows": 28,
+            "alarm_episodes": 28,
+            "alarm_seconds": 1680.0,
+            "false_windows_per_asset_day": 8.057553956834534,
+            "alarm_episodes_per_asset_day": 8.057553956834534,
+            "fraction_runs_with_alarm": 0.6666666666666666,
+            "false_windows_per_asset_day_ci95": [
+              4.892086330935252,
+              11.241217974379502
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.892086330935252,
+              11.241217974379502
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 21,
+            "asset_hours": 83.39999999999999,
+            "windows": 5004,
+            "false_windows": 25,
+            "alarm_episodes": 25,
+            "alarm_seconds": 1500.0,
+            "false_windows_per_asset_day": 7.194244604316547,
+            "alarm_episodes_per_asset_day": 7.194244604316547,
+            "fraction_runs_with_alarm": 0.7619047619047619,
+            "false_windows_per_asset_day_ci95": [
+              4.604316546762591,
+              10.088070456365092
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.604316546762591,
+              10.088070456365092
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.75,
+              1.729383506805445
+            ]
+          },
+          "context-ensemble": {
+            "runs": 21,
+            "asset_hours": 83.39999999999999,
+            "windows": 5004,
+            "false_windows": 27,
+            "alarm_episodes": 27,
+            "alarm_seconds": 1620.0,
+            "false_windows_per_asset_day": 7.769784172661871,
+            "alarm_episodes_per_asset_day": 7.769784172661871,
+            "fraction_runs_with_alarm": 0.7619047619047619,
+            "false_windows_per_asset_day_ci95": [
+              4.6042246075344195,
+              11.78937297446388
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.6042246075344195,
+              11.78937297446388
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.735035913806863,
+              3.1629392971246
+            ]
+          }
+        },
+        "steady-heavy-production": {
+          "primary-health": {
+            "runs": 12,
+            "asset_hours": 47.4,
+            "windows": 2844,
+            "false_windows": 10,
+            "alarm_episodes": 10,
+            "alarm_seconds": 600.0,
+            "false_windows_per_asset_day": 5.063291139240507,
+            "alarm_episodes_per_asset_day": 5.063291139240507,
+            "fraction_runs_with_alarm": 0.6666666666666666,
+            "false_windows_per_asset_day_ci95": [
+              3.0249988263461813,
+              7.573898466678223
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.0249988263461813,
+              7.573898466678223
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 12,
+            "asset_hours": 47.4,
+            "windows": 2844,
+            "false_windows": 2,
+            "alarm_episodes": 2,
+            "alarm_seconds": 120.0,
+            "false_windows_per_asset_day": 1.0126582278481013,
+            "alarm_episodes_per_asset_day": 1.0126582278481013,
+            "fraction_runs_with_alarm": 0.16666666666666666,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              2.5280898876404496
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              2.5280898876404496
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -7.078651685393259,
+              -1.0126582278481016
+            ]
+          },
+          "v04": {
+            "runs": 12,
+            "asset_hours": 47.4,
+            "windows": 2844,
+            "false_windows": 0,
+            "alarm_episodes": 0,
+            "alarm_seconds": 0.0,
+            "false_windows_per_asset_day": 0.0,
+            "alarm_episodes_per_asset_day": 0.0,
+            "fraction_runs_with_alarm": 0.0,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              0.0
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              0.0
+            ],
+            "zero_count_caution": true,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -7.573898466678225,
+              -3.0249988263461822
+            ]
+          },
+          "v05": {
+            "runs": 12,
+            "asset_hours": 47.4,
+            "windows": 2844,
+            "false_windows": 10,
+            "alarm_episodes": 10,
+            "alarm_seconds": 600.0,
+            "false_windows_per_asset_day": 5.063291139240507,
+            "alarm_episodes_per_asset_day": 5.063291139240507,
+            "fraction_runs_with_alarm": 0.6666666666666666,
+            "false_windows_per_asset_day_ci95": [
+              3.0249988263461813,
+              7.573898466678223
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.0249988263461813,
+              7.573898466678223
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 12,
+            "asset_hours": 47.4,
+            "windows": 2844,
+            "false_windows": 5,
+            "alarm_episodes": 5,
+            "alarm_seconds": 300.0,
+            "false_windows_per_asset_day": 2.5316455696202533,
+            "alarm_episodes_per_asset_day": 2.5316455696202533,
+            "fraction_runs_with_alarm": 0.25,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              6.084507042253522
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              6.084507042253522
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -6.5822784810126596,
+              2.535300661514929
+            ]
+          },
+          "context-ensemble": {
+            "runs": 12,
+            "asset_hours": 47.4,
+            "windows": 2844,
+            "false_windows": 4,
+            "alarm_episodes": 4,
+            "alarm_seconds": 240.0,
+            "false_windows_per_asset_day": 2.0253164556962027,
+            "alarm_episodes_per_asset_day": 2.0253164556962027,
+            "fraction_runs_with_alarm": 0.25,
+            "false_windows_per_asset_day_ci95": [
+              0.0,
+              4.556962025316457
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.0,
+              4.556962025316457
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -6.58227848101266,
+              1.014084507042254
+            ]
+          }
+        },
+        "variable-production": {
+          "primary-health": {
+            "runs": 37,
+            "asset_hours": 147.0666666666667,
+            "windows": 8824,
+            "false_windows": 37,
+            "alarm_episodes": 37,
+            "alarm_seconds": 2220.0,
+            "false_windows_per_asset_day": 6.038077969174976,
+            "alarm_episodes_per_asset_day": 6.038077969174976,
+            "fraction_runs_with_alarm": 0.6216216216216216,
+            "false_windows_per_asset_day_ci95": [
+              4.085291835172791,
+              8.330403063632907
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.085291835172791,
+              8.330403063632907
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 37,
+            "asset_hours": 147.0666666666667,
+            "windows": 8824,
+            "false_windows": 14,
+            "alarm_episodes": 14,
+            "alarm_seconds": 840.0,
+            "false_windows_per_asset_day": 2.2846781504986398,
+            "alarm_episodes_per_asset_day": 2.2846781504986398,
+            "fraction_runs_with_alarm": 0.32432432432432434,
+            "false_windows_per_asset_day_ci95": [
+              1.1433627171376717,
+              3.5902085222121487
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.1433627171376717,
+              3.5902085222121487
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -5.392707615698682,
+              -2.2856883823338943
+            ]
+          },
+          "v04": {
+            "runs": 37,
+            "asset_hours": 147.0666666666667,
+            "windows": 8824,
+            "false_windows": 26,
+            "alarm_episodes": 26,
+            "alarm_seconds": 1560.0,
+            "false_windows_per_asset_day": 4.242973708068902,
+            "alarm_episodes_per_asset_day": 4.242973708068902,
+            "fraction_runs_with_alarm": 0.5405405405405406,
+            "false_windows_per_asset_day_ci95": [
+              2.6075147125396105,
+              6.212534059945503
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.6075147125396105,
+              6.212534059945503
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -5.054405079687162,
+              1.1494564411109978
+            ]
+          },
+          "v05": {
+            "runs": 37,
+            "asset_hours": 147.0666666666667,
+            "windows": 8824,
+            "false_windows": 37,
+            "alarm_episodes": 37,
+            "alarm_seconds": 2220.0,
+            "false_windows_per_asset_day": 6.038077969174976,
+            "alarm_episodes_per_asset_day": 6.038077969174976,
+            "fraction_runs_with_alarm": 0.6216216216216216,
+            "false_windows_per_asset_day_ci95": [
+              4.085291835172791,
+              8.330403063632907
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.085291835172791,
+              8.330403063632907
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 37,
+            "asset_hours": 147.0666666666667,
+            "windows": 8824,
+            "false_windows": 23,
+            "alarm_episodes": 23,
+            "alarm_seconds": 1380.0,
+            "false_windows_per_asset_day": 3.7533998186763364,
+            "alarm_episodes_per_asset_day": 3.7533998186763364,
+            "fraction_runs_with_alarm": 0.40540540540540543,
+            "false_windows_per_asset_day_ci95": [
+              2.1224489795918364,
+              5.538586956521739
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.1224489795918364,
+              5.538586956521739
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -4.0835309135455455,
+              -0.4893520616221121
+            ]
+          },
+          "context-ensemble": {
+            "runs": 37,
+            "asset_hours": 147.0666666666667,
+            "windows": 8824,
+            "false_windows": 23,
+            "alarm_episodes": 23,
+            "alarm_seconds": 1380.0,
+            "false_windows_per_asset_day": 3.7533998186763364,
+            "alarm_episodes_per_asset_day": 3.7533998186763364,
+            "fraction_runs_with_alarm": 0.40540540540540543,
+            "false_windows_per_asset_day_ci95": [
+              2.1233879032556757,
+              5.3952793751928345
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.1233879032556757,
+              5.3952793751928345
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -4.2410992634085645,
+              -0.4886822571633806
+            ]
+          }
+        }
+      },
+      "sampling_interval_ms": {
+        "500.0": {
+          "primary-health": {
+            "runs": 93,
+            "asset_hours": 368.8666666666668,
+            "windows": 22132,
+            "false_windows": 42,
+            "alarm_episodes": 42,
+            "alarm_seconds": 2520.0,
+            "false_windows_per_asset_day": 2.732694740647026,
+            "alarm_episodes_per_asset_day": 2.732694740647026,
+            "fraction_runs_with_alarm": 0.3763440860215054,
+            "false_windows_per_asset_day_ci95": [
+              1.9522776572668106,
+              3.584424094071717
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.9522776572668106,
+              3.584424094071717
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 93,
+            "asset_hours": 368.8666666666668,
+            "windows": 22132,
+            "false_windows": 16,
+            "alarm_episodes": 16,
+            "alarm_seconds": 960.0,
+            "false_windows_per_asset_day": 1.0410265678655337,
+            "alarm_episodes_per_asset_day": 1.0410265678655337,
+            "fraction_runs_with_alarm": 0.16129032258064516,
+            "false_windows_per_asset_day_ci95": [
+              0.5856832971800432,
+              1.5604258711902628
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.5856832971800432,
+              1.5604258711902628
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.342320362973019,
+              -1.0423358490032382
+            ]
+          },
+          "v04": {
+            "runs": 93,
+            "asset_hours": 368.8666666666668,
+            "windows": 22132,
+            "false_windows": 109,
+            "alarm_episodes": 109,
+            "alarm_seconds": 6540.0,
+            "false_windows_per_asset_day": 7.091993493583948,
+            "alarm_episodes_per_asset_day": 7.091993493583948,
+            "fraction_runs_with_alarm": 0.5268817204301075,
+            "false_windows_per_asset_day_ci95": [
+              5.460059878445245,
+              8.893337613866578
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              5.460059878445245,
+              8.893337613866578
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              2.733670524368467,
+              6.062012432784271
+            ]
+          },
+          "v05": {
+            "runs": 93,
+            "asset_hours": 368.8666666666668,
+            "windows": 22132,
+            "false_windows": 42,
+            "alarm_episodes": 42,
+            "alarm_seconds": 2520.0,
+            "false_windows_per_asset_day": 2.732694740647026,
+            "alarm_episodes_per_asset_day": 2.732694740647026,
+            "fraction_runs_with_alarm": 0.3763440860215054,
+            "false_windows_per_asset_day_ci95": [
+              1.9522776572668106,
+              3.584424094071717
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.9522776572668106,
+              3.584424094071717
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 93,
+            "asset_hours": 368.8666666666668,
+            "windows": 22132,
+            "false_windows": 18,
+            "alarm_episodes": 18,
+            "alarm_seconds": 1080.0,
+            "false_windows_per_asset_day": 1.1711548888487255,
+            "alarm_episodes_per_asset_day": 1.1711548888487255,
+            "fraction_runs_with_alarm": 0.1827956989247312,
+            "false_windows_per_asset_day_ci95": [
+              0.7149304928687487,
+              1.6956275217668206
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.7149304928687487,
+              1.6956275217668206
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.406949798400515,
+              -0.7819004524886877
+            ]
+          },
+          "context-ensemble": {
+            "runs": 93,
+            "asset_hours": 368.8666666666668,
+            "windows": 22132,
+            "false_windows": 19,
+            "alarm_episodes": 19,
+            "alarm_seconds": 1140.0,
+            "false_windows_per_asset_day": 1.2362190493403213,
+            "alarm_episodes_per_asset_day": 1.2362190493403213,
+            "fraction_runs_with_alarm": 0.20430107526881722,
+            "false_windows_per_asset_day_ci95": [
+              0.7803432974806371,
+              1.7560975609756093
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.7803432974806371,
+              1.7560975609756093
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.403486145183416,
+              -0.7153179190751444
+            ]
+          }
+        },
+        "1000.0": {
+          "primary-health": {
+            "runs": 87,
+            "asset_hours": 345.66666666666674,
+            "windows": 20740,
+            "false_windows": 108,
+            "alarm_episodes": 107,
+            "alarm_seconds": 6480.0,
+            "false_windows_per_asset_day": 7.498553519768562,
+            "alarm_episodes_per_asset_day": 7.429122468659593,
+            "fraction_runs_with_alarm": 0.6781609195402298,
+            "false_windows_per_asset_day_ci95": [
+              6.108754338603933,
+              8.888888888888888
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              6.0462445535858595,
+              8.804244247559513
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 87,
+            "asset_hours": 345.66666666666674,
+            "windows": 20740,
+            "false_windows": 66,
+            "alarm_episodes": 64,
+            "alarm_seconds": 3960.0,
+            "false_windows_per_asset_day": 4.582449373191898,
+            "alarm_episodes_per_asset_day": 4.443587270973962,
+            "fraction_runs_with_alarm": 0.5287356321839081,
+            "false_windows_per_asset_day_ci95": [
+              3.532769803741055,
+              5.759444872783345
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.4021051038308383,
+              5.556627435847963
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -4.159445407279029,
+              -1.731196562177621
+            ]
+          },
+          "v04": {
+            "runs": 87,
+            "asset_hours": 345.66666666666674,
+            "windows": 20740,
+            "false_windows": 28,
+            "alarm_episodes": 28,
+            "alarm_seconds": 1680.0,
+            "false_windows_per_asset_day": 1.9440694310511086,
+            "alarm_episodes_per_asset_day": 1.9440694310511086,
+            "fraction_runs_with_alarm": 0.1839080459770115,
+            "false_windows_per_asset_day_ci95": [
+              0.9705372616984401,
+              3.1238852896199587
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              0.9705372616984401,
+              3.1238852896199587
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -7.151398264223721,
+              -3.8873703883548196
+            ]
+          },
+          "v05": {
+            "runs": 87,
+            "asset_hours": 345.66666666666674,
+            "windows": 20740,
+            "false_windows": 108,
+            "alarm_episodes": 107,
+            "alarm_seconds": 6480.0,
+            "false_windows_per_asset_day": 7.498553519768562,
+            "alarm_episodes_per_asset_day": 7.429122468659593,
+            "fraction_runs_with_alarm": 0.6781609195402298,
+            "false_windows_per_asset_day_ci95": [
+              6.108754338603933,
+              8.888888888888888
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              6.0462445535858595,
+              8.804244247559513
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 87,
+            "asset_hours": 345.66666666666674,
+            "windows": 20740,
+            "false_windows": 75,
+            "alarm_episodes": 75,
+            "alarm_seconds": 4500.0,
+            "false_windows_per_asset_day": 5.207328833172612,
+            "alarm_episodes_per_asset_day": 5.207328833172612,
+            "fraction_runs_with_alarm": 0.5402298850574713,
+            "false_windows_per_asset_day_ci95": [
+              4.035542932051561,
+              6.4584580115830095
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              4.035542932051561,
+              6.4584580115830095
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.60697117848659,
+              -0.9031262060980314
+            ]
+          },
+          "context-ensemble": {
+            "runs": 87,
+            "asset_hours": 345.66666666666674,
+            "windows": 20740,
+            "false_windows": 91,
+            "alarm_episodes": 91,
+            "alarm_seconds": 5460.0,
+            "false_windows_per_asset_day": 6.318225650916102,
+            "alarm_episodes_per_asset_day": 6.318225650916102,
+            "fraction_runs_with_alarm": 0.6436781609195402,
+            "false_windows_per_asset_day_ci95": [
+              5.072355378300502,
+              7.70543490487209
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              5.072355378300502,
+              7.70543490487209
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.7088558749758818,
+              0.34742830956232607
+            ]
+          }
+        }
+      },
+      "expose_operating_regime": {
+        "False": {
+          "primary-health": {
+            "runs": 95,
+            "asset_hours": 377.0666666666668,
+            "windows": 22624,
+            "false_windows": 81,
+            "alarm_episodes": 80,
+            "alarm_seconds": 4860.0,
+            "false_windows_per_asset_day": 5.155586987270154,
+            "alarm_episodes_per_asset_day": 5.09193776520509,
+            "fraction_runs_with_alarm": 0.5368421052631579,
+            "false_windows_per_asset_day_ci95": [
+              3.94972593768985,
+              6.427520295811636
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.940669138186874,
+              6.360452126978693
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 95,
+            "asset_hours": 377.0666666666668,
+            "windows": 22624,
+            "false_windows": 37,
+            "alarm_episodes": 35,
+            "alarm_seconds": 2220.0,
+            "false_windows_per_asset_day": 2.3550212164073545,
+            "alarm_episodes_per_asset_day": 2.227722772277227,
+            "fraction_runs_with_alarm": 0.3157894736842105,
+            "false_windows_per_asset_day_ci95": [
+              1.590668080593849,
+              3.1193771879535994
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.527041357370095,
+              2.930454786763404
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.8203380054479203,
+              -1.7843866171003713
+            ]
+          },
+          "v04": {
+            "runs": 95,
+            "asset_hours": 377.0666666666668,
+            "windows": 22624,
+            "false_windows": 61,
+            "alarm_episodes": 61,
+            "alarm_seconds": 3660.0,
+            "false_windows_per_asset_day": 3.8826025459688815,
+            "alarm_episodes_per_asset_day": 3.8826025459688815,
+            "fraction_runs_with_alarm": 0.3368421052631579,
+            "false_windows_per_asset_day_ci95": [
+              2.5482102823805484,
+              5.277450488950017
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.5482102823805484,
+              5.277450488950017
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.0584070796460163,
+              0.5090160352764458
+            ]
+          },
+          "v05": {
+            "runs": 95,
+            "asset_hours": 377.0666666666668,
+            "windows": 22624,
+            "false_windows": 81,
+            "alarm_episodes": 80,
+            "alarm_seconds": 4860.0,
+            "false_windows_per_asset_day": 5.155586987270154,
+            "alarm_episodes_per_asset_day": 5.09193776520509,
+            "fraction_runs_with_alarm": 0.5368421052631579,
+            "false_windows_per_asset_day_ci95": [
+              3.94972593768985,
+              6.427520295811636
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.940669138186874,
+              6.360452126978693
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 95,
+            "asset_hours": 377.0666666666668,
+            "windows": 22624,
+            "false_windows": 43,
+            "alarm_episodes": 43,
+            "alarm_seconds": 2580.0,
+            "false_windows_per_asset_day": 2.736916548797736,
+            "alarm_episodes_per_asset_day": 2.736916548797736,
+            "fraction_runs_with_alarm": 0.3473684210526316,
+            "false_windows_per_asset_day_ci95": [
+              1.910481557791859,
+              3.56626378418088
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.910481557791859,
+              3.56626378418088
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.626098368630604,
+              -1.2720791878971054
+            ]
+          },
+          "context-ensemble": {
+            "runs": 95,
+            "asset_hours": 377.0666666666668,
+            "windows": 22624,
+            "false_windows": 43,
+            "alarm_episodes": 43,
+            "alarm_seconds": 2580.0,
+            "false_windows_per_asset_day": 2.736916548797736,
+            "alarm_episodes_per_asset_day": 2.736916548797736,
+            "fraction_runs_with_alarm": 0.3473684210526316,
+            "false_windows_per_asset_day_ci95": [
+              1.910481557791859,
+              3.56626378418088
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              1.910481557791859,
+              3.56626378418088
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -3.626098368630604,
+              -1.2720791878971054
+            ]
+          }
+        },
+        "True": {
+          "primary-health": {
+            "runs": 85,
+            "asset_hours": 337.4666666666668,
+            "windows": 20248,
+            "false_windows": 69,
+            "alarm_episodes": 69,
+            "alarm_seconds": 4140.0,
+            "false_windows_per_asset_day": 4.907151323587513,
+            "alarm_episodes_per_asset_day": 4.907151323587513,
+            "fraction_runs_with_alarm": 0.5058823529411764,
+            "false_windows_per_asset_day_ci95": [
+              3.627723636510119,
+              6.255985963624514
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.627723636510119,
+              6.255985963624514
+            ],
+            "zero_count_caution": false
+          },
+          "majority": {
+            "runs": 85,
+            "asset_hours": 337.4666666666668,
+            "windows": 20248,
+            "false_windows": 45,
+            "alarm_episodes": 45,
+            "alarm_seconds": 2700.0,
+            "false_windows_per_asset_day": 3.200316080600552,
+            "alarm_episodes_per_asset_day": 3.200316080600552,
+            "fraction_runs_with_alarm": 0.36470588235294116,
+            "false_windows_per_asset_day_ci95": [
+              2.1339656194427974,
+              4.3390848642607605
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.1339656194427974,
+              4.3390848642607605
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.7019553624333392,
+              -0.7829181494661919
+            ]
+          },
+          "v04": {
+            "runs": 85,
+            "asset_hours": 337.4666666666668,
+            "windows": 20248,
+            "false_windows": 76,
+            "alarm_episodes": 76,
+            "alarm_seconds": 4560.0,
+            "false_windows_per_asset_day": 5.404978269458709,
+            "alarm_episodes_per_asset_day": 5.404978269458709,
+            "fraction_runs_with_alarm": 0.38823529411764707,
+            "false_windows_per_asset_day_ci95": [
+              3.6915293523963677,
+              7.329547988539502
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.6915293523963677,
+              7.329547988539502
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -1.7055550013838674,
+              2.7068449298846136
+            ]
+          },
+          "v05": {
+            "runs": 85,
+            "asset_hours": 337.4666666666668,
+            "windows": 20248,
+            "false_windows": 69,
+            "alarm_episodes": 69,
+            "alarm_seconds": 4140.0,
+            "false_windows_per_asset_day": 4.907151323587513,
+            "alarm_episodes_per_asset_day": 4.907151323587513,
+            "fraction_runs_with_alarm": 0.5058823529411764,
+            "false_windows_per_asset_day_ci95": [
+              3.627723636510119,
+              6.255985963624514
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.627723636510119,
+              6.255985963624514
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              0.0,
+              0.0
+            ]
+          },
+          "class-ensemble": {
+            "runs": 85,
+            "asset_hours": 337.4666666666668,
+            "windows": 20248,
+            "false_windows": 50,
+            "alarm_episodes": 50,
+            "alarm_seconds": 3000.0,
+            "false_windows_per_asset_day": 3.5559067562228353,
+            "alarm_episodes_per_asset_day": 3.5559067562228353,
+            "fraction_runs_with_alarm": 0.36470588235294116,
+            "false_windows_per_asset_day_ci95": [
+              2.488151658767772,
+              4.835125784996417
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              2.488151658767772,
+              4.835125784996417
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -2.2775913307159583,
+              -0.4264539665750688
+            ]
+          },
+          "context-ensemble": {
+            "runs": 85,
+            "asset_hours": 337.4666666666668,
+            "windows": 20248,
+            "false_windows": 67,
+            "alarm_episodes": 67,
+            "alarm_seconds": 4020.0,
+            "false_windows_per_asset_day": 4.7649150533385995,
+            "alarm_episodes_per_asset_day": 4.7649150533385995,
+            "fraction_runs_with_alarm": 0.49411764705882355,
+            "false_windows_per_asset_day_ci95": [
+              3.4861315732349683,
+              6.189753907840054
+            ],
+            "alarm_episodes_per_asset_day_ci95": [
+              3.4861315732349683,
+              6.189753907840054
+            ],
+            "zero_count_caution": false,
+            "paired_false_windows_per_asset_day_delta_ci95": [
+              -1.2803793716656777,
+              0.9950690782856036
+            ]
+          }
+        }
+      }
+    }
+  },
+  "lost_baseline_integrity": [
+    [
+      "seed-910572::test-00003",
+      "PUMP-01",
+      "seed-910572::test-00003/evt-1"
+    ]
+  ],
+  "lost_primary_physical": [],
+  "gate": {
+    "mixed_passed": false,
+    "normal_passed": true,
+    "exploratory_confirmation_passed": false
+  },
+  "paired_mixed_intervals": {
+    "event_detection": {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "replicates": 2000
+    },
+    "physical_detection": {
+      "ci95": [
+        0.0,
+        0.0
+      ],
+      "replicates": 2000
+    },
+    "pr_auc": {
+      "ci95": [
+        -0.03269566575738779,
+        0.011811253877340408
+      ],
+      "replicates": 2000
+    },
+    "false_windows_per_asset_day": {
+      "ci95": [
+        -1.8545349924835068,
+        4.226018648201418
+      ],
+      "replicates": 2000
+    }
+  },
+  "freeze_sha256": "75d13e456789d3c3a5bbbd263564d5f329fbf7c5bbdeaa93d8ec4c897d706e69",
+  "evaluated_runs": 288,
+  "mixed_windows": 1611,
+  "original_events": 103,
+  "selection_after_test": false,
+  "component_availability": {
+    "mixed": {
+      "CNC": {
+        "windows": 504,
+        "health_score": 504,
+        "quality_score": 504,
+        "sampling_score": 504,
+        "class_margin": 494
+      },
+      "PUMP": {
+        "windows": 433,
+        "health_score": 433,
+        "quality_score": 433,
+        "sampling_score": 433,
+        "class_margin": 425
+      },
+      "COMPRESSOR": {
+        "windows": 318,
+        "health_score": 318,
+        "quality_score": 318,
+        "sampling_score": 318,
+        "class_margin": 314
+      },
+      "CONVEYOR": {
+        "windows": 356,
+        "health_score": 356,
+        "quality_score": 356,
+        "sampling_score": 356,
+        "class_margin": 340
+      }
+    },
+    "normal": {
+      "CNC": {
+        "windows": 10718,
+        "health_score": 10718,
+        "quality_score": 10718,
+        "sampling_score": 10718,
+        "class_margin": 10718
+      },
+      "COMPRESSOR": {
+        "windows": 10718,
+        "health_score": 10718,
+        "quality_score": 10718,
+        "sampling_score": 10718,
+        "class_margin": 10718
+      },
+      "CONVEYOR": {
+        "windows": 10718,
+        "health_score": 10718,
+        "quality_score": 10718,
+        "sampling_score": 10718,
+        "class_margin": 10718
+      },
+      "PUMP": {
+        "windows": 10718,
+        "health_score": 10718,
+        "quality_score": 10718,
+        "sampling_score": 10718,
+        "class_margin": 10718
+      }
+    }
+  },
+  "candidate": "context-ensemble",
+  "lost_primary_events": [],
+  "sources": [
+    {
+      "master_seed": 910571,
+      "manifest_sha256": "c1de4916607dc7f7ac52b71804734d5517840e095b9f7260d9f27f7f4db6f783",
+      "test_runs": 36
+    },
+    {
+      "master_seed": 910572,
+      "manifest_sha256": "9939484c1e474d2da56c9f69a18c9e12b77da3cbe173a2615d06c48cebec55de",
+      "test_runs": 36
+    },
+    {
+      "master_seed": 910573,
+      "manifest_sha256": "8885e794e71b8297cfde8db830828ce263181cb595ee429bf234c5020b5daa85",
+      "test_runs": 36
+    },
+    {
+      "master_seed": 920641,
+      "manifest_sha256": "36e8c9025c055c289c7bbeabc90b4c1ad44ae0b259c62aa04d141d705e4ebcfa",
+      "test_runs": 180
+    }
+  ]
+}

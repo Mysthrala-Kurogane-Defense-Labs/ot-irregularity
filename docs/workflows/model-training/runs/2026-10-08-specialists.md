@@ -11,3 +11,13 @@ Revisión local: corregido antes de entrega un caso de desbordamiento de score/t
 Pendiente: completar confirmación congelada; adaptar especialistas relacional/térmico, empaquetar CLI/bundle y demostrar utilidad incremental. La destilación permanece condicionada a un teacher confirmado, y no sustituye automáticamente controles deterministas de cadencia/calidad. No se declara un nuevo modelo aceptado, release ni validación industrial.
 
 Ver [decisión de arquitectura](../../../SPECIALIST_ARCHITECTURE.md). La confirmación usa el worktree research/relational-v05 y sus hashes congelados, no esta rama.
+
+## Relational adapter and fixed union diagnostic
+
+Added relational margin adapter with explicit unavailable state and monotonic rank margin/(1+margin), threshold .5. No fitting or causal attribution. Unit suite: 132 tests pass. Saved development score adapter parity: 9,829 windows, exact ranks and decisions; no consumed test read.
+
+Protocol committed at 109f41d before the single diagnostic. Historical primary 86 events/4 false windows; class median 92/3; union 92/6. New-normal false windows primary 25, class median 14, union 29. Union fails both overall false-window limits (4 historical, 25 normal). It is rejected without generating another test. Retaining all votes increases false alarms without additional development event detections here.
+
+Input cache checksums, exact identity joins, development run partitions and truth hashes verified. Saved input scores are preserved and hashed; this diagnostic did not re-run all original networks. Script uncommitted at execution, recorded as such. [Full diagnostic](../../../results/specialist-union-20261008.json).
+
+Next hypothesis: context-conditioned specialist calibration/routing selected in development, preserving quality/sampling and exact physical event requirements. No routing rule has yet been selected or validated. Do not use rejected independent confirmation sources for that selection. Thermal adapter and teacher distillation remain pending.
